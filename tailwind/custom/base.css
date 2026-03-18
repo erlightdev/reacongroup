@@ -2,10 +2,4 @@
  * Custom styles to immediately follow Tailwind’s `base` layer
  */
 
-/**
- * This uses the background and foreground colors declared in the `theme.json`
- * file and is applied both to the front end and in the block editor.
- */
-body {
-	@apply bg-background text-foreground font-sans;
-}
+/* Intentionally left minimal; global base styles live in `tailwind/tailwind-theme.css`. */

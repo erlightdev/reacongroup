@@ -1,50 +1,210 @@
-/**
- * Add your design tokens as Tailwind theme variables.
- *
- * https://tailwindcss.com/docs/theme
- */
+@custom-variant dark (&:is(.dark *));
 
-/**
- * Your theme variables are merged with Tailwind’s defaults, either extending
- * the default theme with new variables or overriding the values of existing
- * variables.
- */
-@theme {
-	/**
-	 * These theme variables use CSS variables set by WordPress using values
-	 * from your `theme.json` file.
-	 *
-	 * If you are using the classic editor, you should use hardcoded color
-	 * values instead of the `var()` functions below.
-     */
-	--color-background: var(--wp--preset--color--background);
-	--color-foreground: var(--wp--preset--color--foreground);
-	--color-primary: var(--wp--preset--color--primary);
-	--color-secondary: var(--wp--preset--color--secondary);
-	--color-tertiary: var(--wp--preset--color--tertiary);
-	--container-content: var(--wp--style--global--content-size);
-	--container-wide: var(--wp--style--global--wide-size);
-
-	/**
-	 * These are the default `font-family` theme variables included with
-     * Tailwind. You can update them below by adding custom fonts at the
-	 * beginning of each value.
-	 *
-	 * Default theme variables can be found in their entirety at the links
-	 * below, on GitHub or in Tailwind’s documentation, respectively:
-	 *
-	 * https://github.com/tailwindlabs/tailwindcss/blob/main/packages/tailwindcss/theme.css
-	 * https://tailwindcss.com/docs/theme#default-theme-variable-reference
-	 */
-	--font-sans:
-		ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
-		"Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+:root {
+	--background: #ffffff;
+	--foreground: #383b43;
+	--card: #ffffff;
+	--card-foreground: #383b43;
+	--popover: #ffffff;
+	--popover-foreground: #383b43;
+	--primary: #1ecad3;
+	--primary-foreground: #ffffff;
+	--secondary: #2c8d9d;
+	--secondary-foreground: #ffffff;
+	--muted: #f3f4f6;
+	--muted-foreground: #666666;
+	--accent: #2c8d9d;
+	--accent-foreground: #ffffff;
+	--destructive: #e7000b;
+	--destructive-foreground: #ffffff;
+	--border: #d1d5db;
+	--input: #d1d5db;
+	--ring: #1ecad3;
+	--chart-1: #1ecad3;
+	--chart-2: #2c8d9d;
+	--chart-3: #383b43;
+	--chart-4: #666666;
+	--chart-5: #bfc4c9;
+	--sidebar: #ffffff;
+	--sidebar-foreground: #383b43;
+	--sidebar-primary: #1ecad3;
+	--sidebar-primary-foreground: #ffffff;
+	--sidebar-accent: #2c8d9d;
+	--sidebar-accent-foreground: #ffffff;
+	--sidebar-border: #d1d5db;
+	--sidebar-ring: #1ecad3;
+	--container-content: var(--wp--style--global--content-size, 64rem);
+	--container-wide: var(--wp--style--global--wide-size, 80rem);
+	--font-display: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system,
+		BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+		sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+		"Noto Color Emoji";
+	--font-sans: "Graphik Trial", ui-sans-serif, system-ui, -apple-system,
+		BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+		sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+		"Noto Color Emoji";
 	--font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-	--font-mono:
-		ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+	--font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
 		"Liberation Mono", "Courier New", monospace;
+	--radius: 0.625rem;
+	--shadow-x: 0;
+	--shadow-y: 1px;
+	--shadow-blur: 3px;
+	--shadow-spread: 0px;
+	--shadow-opacity: 0.1;
+	--shadow-color: #000000;
+	--shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+	--shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+	--shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.1),
+		0 1px 2px -1px hsl(0 0% 0% / 0.1);
+	--shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.1),
+		0 1px 2px -1px hsl(0 0% 0% / 0.1);
+	--shadow-md: 0 1px 3px 0px hsl(0 0% 0% / 0.1),
+		0 2px 4px -1px hsl(0 0% 0% / 0.1);
+	--shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.1),
+		0 4px 6px -1px hsl(0 0% 0% / 0.1);
+	--shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.1),
+		0 8px 10px -1px hsl(0 0% 0% / 0.1);
+	--shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
+	--tracking-normal: 0em;
+	--spacing: 0.25rem;
+}
 
-	/**
-	 * Add your theme below:
-	 */
+.dark {
+	--background: #080808;
+	--foreground: #ffffff;
+	--card: #444850;
+	--card-foreground: #ffffff;
+	--popover: #444850;
+	--popover-foreground: #ffffff;
+	--primary: #1ecad3;
+	--primary-foreground: #ffffff;
+	--secondary: #2c8d9d;
+	--secondary-foreground: #ffffff;
+	--muted: #4b5058;
+	--muted-foreground: #d1d5db;
+	--accent: #666666;
+	--accent-foreground: #ffffff;
+	--destructive: #ff6467;
+	--destructive-foreground: #ffffff;
+	--border: #5a5f68;
+	--input: #5a5f68;
+	--ring: #1ecad3;
+	--chart-1: #1ecad3;
+	--chart-2: #2c8d9d;
+	--chart-3: #666666;
+	--chart-4: #d1d5db;
+	--chart-5: #ffffff;
+	--sidebar: #2f3238;
+	--sidebar-foreground: #ffffff;
+	--sidebar-primary: #1ecad3;
+	--sidebar-primary-foreground: #ffffff;
+	--sidebar-accent: #2c8d9d;
+	--sidebar-accent-foreground: #ffffff;
+	--sidebar-border: #5a5f68;
+	--sidebar-ring: #1ecad3;
+	--container-content: var(--wp--style--global--content-size, 64rem);
+	--container-wide: var(--wp--style--global--wide-size, 80rem);
+	--font-display: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system,
+		BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+		sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+		"Noto Color Emoji";
+	--font-sans: "Graphik Trial", ui-sans-serif, system-ui, -apple-system,
+		BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+		sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+		"Noto Color Emoji";
+	--font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+	--font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+		"Liberation Mono", "Courier New", monospace;
+	--radius: 0.625rem;
+	--shadow-x: 0;
+	--shadow-y: 1px;
+	--shadow-blur: 3px;
+	--shadow-spread: 0px;
+	--shadow-opacity: 0.1;
+	--shadow-color: #000000;
+	--shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+	--shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+	--shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.1),
+		0 1px 2px -1px hsl(0 0% 0% / 0.1);
+	--shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.1),
+		0 1px 2px -1px hsl(0 0% 0% / 0.1);
+	--shadow-md: 0 1px 3px 0px hsl(0 0% 0% / 0.1),
+		0 2px 4px -1px hsl(0 0% 0% / 0.1);
+	--shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.1),
+		0 4px 6px -1px hsl(0 0% 0% / 0.1);
+	--shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.1),
+		0 8px 10px -1px hsl(0 0% 0% / 0.1);
+	--shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
+}
+
+@theme inline {
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--color-card: var(--card);
+	--color-card-foreground: var(--card-foreground);
+	--color-popover: var(--popover);
+	--color-popover-foreground: var(--popover-foreground);
+	--color-primary: var(--primary);
+	--color-primary-foreground: var(--primary-foreground);
+	--color-secondary: var(--secondary);
+	--color-secondary-foreground: var(--secondary-foreground);
+	--color-muted: var(--muted);
+	--color-muted-foreground: var(--muted-foreground);
+	--color-accent: var(--accent);
+	--color-accent-foreground: var(--accent-foreground);
+	--color-destructive: var(--destructive);
+	--color-destructive-foreground: var(--destructive-foreground);
+	--color-border: var(--border);
+	--color-input: var(--input);
+	--color-ring: var(--ring);
+	--color-chart-1: var(--chart-1);
+	--color-chart-2: var(--chart-2);
+	--color-chart-3: var(--chart-3);
+	--color-chart-4: var(--chart-4);
+	--color-chart-5: var(--chart-5);
+	--color-sidebar: var(--sidebar);
+	--color-sidebar-foreground: var(--sidebar-foreground);
+	--color-sidebar-primary: var(--sidebar-primary);
+	--color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+	--color-sidebar-accent: var(--sidebar-accent);
+	--color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+	--color-sidebar-border: var(--sidebar-border);
+	--color-sidebar-ring: var(--sidebar-ring);
+
+	--container-content: var(--container-content);
+	--container-wide: var(--container-wide);
+
+	--font-display: var(--font-display);
+	--font-sans: var(--font-sans);
+	--font-mono: var(--font-mono);
+	--font-serif: var(--font-serif);
+
+	--radius-sm: calc(var(--radius) - 4px);
+	--radius-md: calc(var(--radius) - 2px);
+	--radius-lg: var(--radius);
+	--radius-xl: calc(var(--radius) + 4px);
+
+	--shadow-2xs: var(--shadow-2xs);
+	--shadow-xs: var(--shadow-xs);
+	--shadow-sm: var(--shadow-sm);
+	--shadow: var(--shadow);
+	--shadow-md: var(--shadow-md);
+	--shadow-lg: var(--shadow-lg);
+	--shadow-xl: var(--shadow-xl);
+	--shadow-2xl: var(--shadow-2xl);
+}
+
+@layer base {
+	* {
+		@apply border-border outline-ring/50;
+	}
+
+	body {
+		@apply bg-background text-foreground font-sans;
+	}
+
+	:where(h1, h2, h3, h4, h5, h6, .entry-title, .wp-block-heading) {
+		@apply font-display;
+	}
 }
