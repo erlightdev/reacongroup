@@ -1,119 +1,131 @@
 <?php
+
 /**
  * Home page section: Hero.
  *
- * Full-viewport hero with background video, teal overlay,
- * headline copy, CTA, and a floating stats card.
- * Designed to sit beneath the absolutely-positioned header.
+ * Responsive hero with design-system tokens and an optimized
+ * background media strategy: use video when available, otherwise
+ * fall back to a high-priority image.
  *
  * @package reacon-group
  */
 
-$video_src = get_template_directory_uri() . '/public/video/hero-bg.mp4';
-$poster    = get_template_directory_uri() . '/public/image/hero-poster.jpg';
+$hero_image_webp = get_template_directory_uri() . '/public/image/hero-bg.webp';
+$hero_image_png  = get_template_directory_uri() . '/public/image/hero-bg.png';
+$hero_video_webm = get_template_directory_uri() . '/public/video/hero-bg.webm';
+$hero_video_mp4  = get_template_directory_uri() . '/public/video/hero-bg.mp4';
+$stats_icon      = get_template_directory_uri() . '/public/figma-assets/stats-icon.png';
+
+$hero_video_webm_path = get_template_directory() . '/public/video/hero-bg.webm';
+$hero_video_mp4_path  = get_template_directory() . '/public/video/hero-bg.mp4';
+
+$has_hero_webm  = file_exists($hero_video_webm_path);
+$has_hero_mp4   = file_exists($hero_video_mp4_path);
+$has_hero_video = $has_hero_webm || $has_hero_mp4;
 ?>
 
 <section
-	id="hero"
-	class="relative py-20 pt-24 flex items-end overflow-hidden  lg:items-center  lg:pt-24"
-	aria-label="<?php esc_attr_e( 'Hero', 'reacon-group' ); ?>"
->
+    id="hero"
+    class="relative w-full p-4"
+    aria-label="<?php esc_attr_e('Hero', 'reacon-group'); ?>">
+    <div class="relative flex min-h-[60vh] w-full flex-col overflow-hidden rounded-[31px] bg-foreground lg:min-h-[640px] xl:min-h-[720px]">
 
-	<!-- ── Background Video ──────────────────────────────── -->
-	<video
-		class="pointer-events-none absolute inset-0 h-full w-full object-cover"
-		autoplay
-		muted
-		loop
-		playsinline
-		preload="auto"
-		poster="<?php echo esc_url( $poster ); ?>"
-		aria-hidden="true"
-	>
-		<source src="<?php echo esc_url( $video_src ); ?>" type="video/mp4" />
-	</video>
+        <!-- Background media: video when available, image fallback otherwise -->
+        <?php if ($has_hero_video) : ?>
+            <video
+                class="pointer-events-none absolute inset-0 h-full w-full object-cover object-center"
+                style="clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                poster="<?php echo esc_url($hero_image_png); ?>"
+                aria-hidden="true">
+                <?php if ($has_hero_webm) : ?>
+                    <source src="<?php echo esc_url($hero_video_webm); ?>" type="video/webm" />
+                <?php endif; ?>
+                <?php if ($has_hero_mp4) : ?>
+                    <source src="<?php echo esc_url($hero_video_mp4); ?>" type="video/mp4" />
+                <?php endif; ?>
+            </video>
+        <?php else : ?>
+            <picture class="pointer-events-none absolute inset-0" style="clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);" aria-hidden="true">
+                <source srcset="<?php echo esc_url($hero_image_webp); ?>" type="image/webp" />
+                <img
+                    src="<?php echo esc_url($hero_image_png); ?>"
+                    alt=""
+                    class="h-full w-full object-cover object-center"
+                    fetchpriority="high"
+                    loading="eager"
+                    decoding="async" />
+            </picture>
+        <?php endif; ?>
 
-	<!-- ── Teal colour overlay ───────────────────────────── -->
-	<div
-		class="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#0a6e72]/90 via-[#10898f]/75 to-primary/50"
-		aria-hidden="true"
-	></div>
+        <div class="pointer-events-none absolute inset-0 bg-black/40 lg:bg-gradient-to-t lg:from-black/55 lg:via-black/20 lg:to-transparent" aria-hidden="true"></div>
 
-	<!-- ── Subtle grain texture ──────────────────────────── -->
-	<div
-		class="pointer-events-none absolute inset-0 opacity-[0.04]"
-		aria-hidden="true"
-		style="background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='1'/%3E%3C/svg%3E&quot;);"
-	></div>
+        <div
+            class="pointer-events-none absolute left-0 top-0 h-[60%] w-[42%] min-w-[280px]"
+            style="background-image:linear-gradient(130deg, rgba(30, 202, 211, 0.34) 12%, rgba(30, 202, 211, 0) 58%);"
+            aria-hidden="true"></div>
 
-	<!-- ── Content container ─────────────────────────────── -->
-	<div class="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-10 px-6 lg:flex-row lg:items-end lg:justify-between lg:gap-16 lg:px-12">
+        <div class="relative z-10 mx-auto flex h-full w-full flex-1 flex-col justify-end px-6 pb-0 pt-28 lg:px-[42px] lg:pt-24">
 
-		<!-- Left column: copy + CTA -->
-		<div class="max-w-2xl">
+            <div class="mb-10 flex w-full max-w-[860px] flex-col items-start gap-6 lg:mb-[42px]">
+                <div class="flex flex-col gap-3 text-white">
+                    <p class="font-sans text-base leading-[1.42]">
+                        <?php esc_html_e('Powering how brands print, automate, and deliver worldwide.', 'reacon-group'); ?>
+                    </p>
 
-			<!-- Tagline -->
-			<p class="mb-4 font-sans text-sm font-medium tracking-wide text-white/75 lg:text-base">
-				<?php esc_html_e( 'Powering how brands print, automate, and deliver worldwide.', 'reacon-group' ); ?>
-			</p>
+                    <h1 class="font-display text-4xl font-bold leading-[1.15] tracking-tight lg:text-[64px] lg:leading-[1.14]">
+                        <?php esc_html_e('We Are Your Global Printing & Production Partner', 'reacon-group'); ?>
+                    </h1>
+                </div>
 
-			<!-- Heading -->
-			<h1 class="mb-6 font-display text-4xl font-extrabold leading-[1.12] text-white lg:text-5xl xl:text-[3.4rem]">
-				<?php esc_html_e( 'We Are Your Global Printing & Production Partner', 'reacon-group' ); ?>
-			</h1>
+                <p class="max-w-[847px] font-sans text-base leading-[1.42] text-white/95">
+                    <?php esc_html_e('From packaging to retail activations, we produce print at scale, on time, every time. With 30+ years of experience, Reacon delivers precision, consistency, and speed across 8 countries.', 'reacon-group'); ?>
+                </p>
 
-			<!-- Description -->
-			<p class="mb-8 max-w-lg font-sans text-sm leading-relaxed text-white/80 lg:text-[15px]">
-				<?php esc_html_e( 'From packaging to retail activations, we produce print at scale—on time, every time. With 30+ years of experience, Reacon delivers precision, consistency, and speed across 8 countries.', 'reacon-group' ); ?>
-			</p>
+                <a
+                    href="<?php echo esc_url(home_url('/about-us/')); ?>"
+                    class="group inline-flex items-center gap-2.5 rounded-full bg-primary py-1 pl-5 pr-1 font-sans transition-all duration-300 hover:bg-secondary">
+                    <span class="text-base font-medium text-primary-foreground">
+                        <?php esc_html_e('Learn More About Us', 'reacon-group'); ?>
+                    </span>
+                    <span class="flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-full bg-white/30 transition-transform duration-300 group-hover:rotate-45" aria-hidden="true">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.16699 12.8333L12.8337 1.16666M12.8337 1.16666H3.49965M12.8337 1.16666V10.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                </a>
+            </div>
 
-			<!-- CTA button -->
-			<a
-				href="<?php echo esc_url( home_url( '/about-us/' ) ); ?>"
-				class="inline-flex items-center gap-2.5 rounded-full bg-primary py-2.5 pl-6 pr-3 font-display text-sm font-bold text-white no-underline transition-all duration-200 hover:-translate-y-px hover:brightness-110"
-			>
-				<?php esc_html_e( 'Learn More About Us', 'reacon-group' ); ?>
-				<span
-					aria-hidden="true"
-					class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white/20"
-				>
-					<i class="ph-bold ph-arrow-up-right text-[11px]" aria-hidden="true"></i>
-				</span>
-			</a>
+            <div class="relative flex w-full flex-col gap-3 rounded-t-[32px] bg-white p-6 sm:max-w-[320px] lg:absolute lg:bottom-0 lg:right-[42px] lg:min-h-[287px]">
+                <div class="pointer-events-none absolute right-4 top-4 h-[34px] w-[76px] overflow-hidden">
+                    <img
+                        src="<?php echo esc_url($stats_icon); ?>"
+                        alt=""
+                        class="h-full w-full object-cover object-top"
+                        loading="lazy"
+                        decoding="async" />
+                </div>
 
-		</div><!-- /left column -->
+                <div class="relative z-10 flex w-full flex-col gap-1">
+                    <p class="font-display text-[44px] font-bold leading-[1.2] text-primary">
+                        <?php esc_html_e('490,000+', 'reacon-group'); ?>
+                    </p>
+                    <p class="font-sans text-base font-semibold leading-[1.42] text-foreground">
+                        <?php esc_html_e('projects delivered globally', 'reacon-group'); ?>
+                    </p>
+                </div>
 
-		<!-- Right column: stats card -->
-		<div class="w-full max-w-xs shrink-0 lg:mb-2">
-			<div class="rounded-2xl bg-white/95 p-6 shadow-xl backdrop-blur-sm lg:p-7">
+                <div class="relative z-10 w-full">
+                    <p class="font-sans text-sm leading-[1.42] text-muted-foreground">
+                        <?php esc_html_e('Across 8 countries and counting powering consistent, high-quality brand execution for enterprises, institutions, and agencies worldwide.', 'reacon-group'); ?>
+                    </p>
+                </div>
+            </div>
 
-				<!-- Badge icon (top-right decorative) -->
-				<div class="mb-3 flex items-start justify-between">
-					<div>
-						<!-- Stat number -->
-						<p class="font-display text-4xl font-extrabold leading-none text-primary lg:text-[2.6rem]">
-							<?php esc_html_e( '490,000+', 'reacon-group' ); ?>
-						</p>
-					</div>
-					<!-- Gear / badge icon -->
-					<span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-foreground text-white" aria-hidden="true">
-						<i class="ph-fill ph-gear-six text-lg"></i>
-					</span>
-				</div>
-
-				<!-- Stat label -->
-				<p class="mb-3 font-display text-sm font-bold text-foreground">
-					<?php esc_html_e( 'projects delivered globally', 'reacon-group' ); ?>
-				</p>
-
-				<!-- Stat description -->
-				<p class="font-sans text-xs leading-relaxed text-muted-foreground">
-					<?php esc_html_e( 'Across 8 countries and counting powering consistent, high-quality brand execution for enterprises, institutions, and agencies worldwide.', 'reacon-group' ); ?>
-				</p>
-
-			</div><!-- /card -->
-		</div><!-- /right column -->
-
-	</div><!-- /container -->
-
-</section><!-- #hero -->
+        </div>
+    </div>
+</section>

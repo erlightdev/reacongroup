@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Template part: Site footer content.
  *
@@ -9,16 +10,194 @@
  * @package reacon-group
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  */
-
-$logo_src     = get_template_directory_uri() . '/public/image/Reacon Logo 2.svg';
-$current_year = absint( gmdate( 'Y' ) );
-$site_name    = esc_html( get_bloginfo( 'name' ) );
+$logo_src = get_template_directory_uri() . '/public/image/Reacon Logo 2.svg';
+$current_year = absint(gmdate('Y'));
+$site_name = esc_html(get_bloginfo('name'));
 ?>
+<section
+  id="reacon-faq-section"
+  class="w-full bg-white py-[72px] sm:py-[96px] lg:py-[120px]"
+  aria-labelledby="reacon-faq-heading"
+>
+  <div class="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-0">
+    <!-- Header -->
+    <div class="flex flex-col gap-[24px] lg:flex-row lg:items-end lg:justify-between">
+      <div class="flex flex-col gap-[24px]">
+        <h2
+          id="reacon-faq-heading"
+          class="text-[28px] font-semibold leading-[1.32] text-black sm:text-[36px] lg:text-[44px]"
+          style="font-family: 'Plus Jakarta Sans','Graphik Trial',ui-sans-serif,system-ui"
+        >
+          Frequently Asked Questions
+        </h2>
+        <p
+          class="max-w-[1177px] text-[15px] leading-[1.42] text-black sm:text-[16px]"
+        >
+          Find quick answers to how Reacon works, what we deliver, and how we
+          support brands across print, production, and data-driven automation.
+        </p>
+      </div>
+    </div>
 
+    <!-- FAQ items -->
+    <div
+      class="mt-[40px] flex flex-col gap-[12px] sm:mt-[48px] lg:mt-[56px]"
+      aria-label="Frequently asked questions list"
+    >
+      <!-- Item 1 (open) -->
+      <details
+        open
+        class="rounded-[16px] bg-[#F9FAFB] px-[20px] py-[18px] sm:px-[24px] sm:py-[20px]"
+      >
+        <summary
+          class="flex cursor-pointer list-none items-center justify-between gap-4"
+        >
+          <span
+            class="text-[18px] font-medium leading-[1.32] text-[#383B43] sm:text-[20px]"
+            style="font-family: 'Plus Jakarta Sans','Graphik Trial',ui-sans-serif,system-ui"
+          >
+            What services does Reacon provide?
+          </span>
+          <span
+            class="text-[18px] leading-none text-[#383B43] select-none"
+            aria-hidden="true"
+          >
+            −
+          </span>
+        </summary>
+        <p
+          class="mt-[14px] text-[15px] leading-[1.42] text-[#666666] sm:mt-[20px] sm:text-[16px]"
+        >
+          Reacon delivers end-to-end brand execution including content design,
+          printing, packaging, warehousing, fulfilment, logistics, and
+          data-driven communication systems.
+        </p>
+      </details>
+
+      <!-- Item 2 -->
+      <details
+        class="rounded-[16px] border border-[#E7E7E7] px-[20px] py-[18px] sm:px-[24px] sm:py-[20px]"
+      >
+        <summary
+          class="flex cursor-pointer list-none items-center justify-between gap-4"
+        >
+          <span
+            class="text-[18px] font-medium leading-[1.32] text-[#383B43] sm:text-[20px]"
+            style="font-family: 'Plus Jakarta Sans','Graphik Trial',ui-sans-serif,system-ui"
+          >
+            Reacon offers project management solutions.
+          </span>
+          <span
+            class="text-[18px] leading-none text-[#383B43] select-none"
+            aria-hidden="true"
+          >
+            +
+          </span>
+        </summary>
+      </details>
+
+      <!-- Item 3 -->
+      <details
+        class="rounded-[16px] border border-[#E7E7E7] px-[20px] py-[18px] sm:px-[24px] sm:py-[20px]"
+      >
+        <summary
+          class="flex cursor-pointer list-none items-center justify-between gap-4"
+        >
+          <span
+            class="text-[18px] font-medium leading-[1.32] text-[#383B43] sm:text-[20px]"
+            style="font-family: 'Plus Jakarta Sans','Graphik Trial',ui-sans-serif,system-ui"
+          >
+            Reacon specializes in digital marketing strategies.
+          </span>
+          <span
+            class="text-[18px] leading-none text-[#383B43] select-none"
+            aria-hidden="true"
+          >
+            +
+          </span>
+        </summary>
+      </details>
+
+      <!-- Item 4 -->
+      <details
+        class="rounded-[16px] border border-[#E7E7E7] px-[20px] py-[18px] sm:px-[24px] sm:py-[20px]"
+      >
+        <summary
+          class="flex cursor-pointer list-none items-center justify-between gap-4"
+        >
+          <span
+            class="text-[18px] font-medium leading-[1.32] text-[#383B43] sm:text-[20px]"
+            style="font-family: 'Plus Jakarta Sans','Graphik Trial',ui-sans-serif,system-ui"
+          >
+            TechVibe offers innovative solutions in software development.
+          </span>
+          <span
+            class="text-[18px] leading-none text-[#383B43] select-none"
+            aria-hidden="true"
+          >
+            +
+          </span>
+        </summary>
+      </details>
+
+      <!-- Item 5 -->
+      <details
+        class="rounded-[16px] border border-[#E7E7E7] px-[20px] py-[18px] sm:px-[24px] sm:py-[20px]"
+      >
+        <summary
+          class="flex cursor-pointer list-none items-center justify-between gap-4"
+        >
+          <span
+            class="text-[18px] font-medium leading-[1.32] text-[#383B43] sm:text-[20px]"
+            style="font-family: 'Plus Jakarta Sans','Graphik Trial',ui-sans-serif,system-ui"
+          >
+            EcoTrend focuses on sustainable product design and consulting.
+          </span>
+          <span
+            class="text-[18px] leading-none text-[#383B43] select-none"
+            aria-hidden="true"
+          >
+            +
+          </span>
+        </summary>
+      </details>
+
+      <!-- CTA card -->
+      <div
+        class="mt-[4px] rounded-[16px] bg-[#E9FBFC] px-[20px] py-[18px] sm:px-[24px] sm:py-[20px]"
+      >
+        <div class="flex flex-col gap-[8px]">
+          <p
+            class="text-[15px] font-medium leading-[1.42] text-[#383B43] sm:text-[16px]"
+          >
+            Have addtional Question about reacon gorup ?
+          </p>
+          <p
+            class="text-[15px] leading-[1.42] text-[#666666] sm:text-[16px]"
+          >
+            Our Australian based customer ecperienced team has licensed
+            specialists standing by to help
+          </p>
+        </div>
+        <div
+          class="my-[16px] h-px w-full bg-[#ECEFF2] sm:my-[20px]"
+          aria-hidden="true"
+        ></div>
+        <a
+          href="#"
+          class="flex items-center justify-between gap-4 text-[15px] leading-[1.42] text-[var(--reacon-teal)] sm:text-[16px]"
+        >
+          <span>Contact our Lead Team</span>
+          <span aria-hidden="true" class="text-[18px]">↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 <footer
 	id="reacon-site-footer"
 	role="contentinfo"
-	aria-label="<?php esc_attr_e( 'Site footer', 'reacon-group' ); ?>"
+	aria-label="<?php esc_attr_e('Site footer', 'reacon-group'); ?>"
 	class="relative overflow-hidden text-white antialiased"
 	style="background: radial-gradient(ellipse 90% 70% at 72% -10%, #148c93 0%, transparent 55%), linear-gradient(160deg, #062B2D 0%, #041f21 100%);"
 >
@@ -37,13 +216,13 @@ $site_name    = esc_html( get_bloginfo( 'name' ) );
 		<div class="flex items-center justify-between py-12 lg:py-14">
 
 			<a
-				href="<?php echo esc_url( home_url( '/' ) ); ?>"
+				href="<?php echo esc_url(home_url('/')); ?>"
 				rel="home"
-				aria-label="<?php echo esc_attr( $site_name ); ?> — <?php esc_attr_e( 'home', 'reacon-group' ); ?>"
+				aria-label="<?php echo esc_attr($site_name); ?> — <?php esc_attr_e('home', 'reacon-group'); ?>"
 			>
 				<img
-					src="<?php echo esc_url( $logo_src ); ?>"
-					alt="<?php echo esc_attr( $site_name ); ?>"
+					src="<?php echo esc_url($logo_src); ?>"
+					alt="<?php echo esc_attr($site_name); ?>"
 					width="240"
 					height="64"
 					loading="lazy"
@@ -56,11 +235,11 @@ $site_name    = esc_html( get_bloginfo( 'name' ) );
 			<button
 				type="button"
 				class="inline-flex cursor-pointer items-center gap-2 rounded-full border border-white/25 bg-transparent px-[18px] py-[9px] font-sans text-[13.5px] text-white transition-colors duration-200 hover:bg-white/[.06]"
-				aria-label="<?php esc_attr_e( 'Select language', 'reacon-group' ); ?>"
+				aria-label="<?php esc_attr_e('Select language', 'reacon-group'); ?>"
 			>
 				<!-- Globe -->
 				<i class="ph ph-globe shrink-0 text-[17px]" aria-hidden="true"></i>
-				<span><?php esc_html_e( 'English', 'reacon-group' ); ?></span>
+				<span><?php esc_html_e('English', 'reacon-group'); ?></span>
 				<!-- Chevron down -->
 				<i class="ph-bold ph-caret-down shrink-0 text-[10px] opacity-65" aria-hidden="true"></i>
 			</button>
@@ -71,71 +250,71 @@ $site_name    = esc_html( get_bloginfo( 'name' ) );
 		<div class="grid grid-cols-2 gap-7 pb-14 lg:grid-cols-[190px_200px_250px_1fr]">
 
 			<!-- Quick Links -->
-			<nav aria-label="<?php esc_attr_e( 'Quick links', 'reacon-group' ); ?>">
+			<nav aria-label="<?php esc_attr_e('Quick links', 'reacon-group'); ?>">
 				<h3 class="mb-[18px] font-display text-[14.5px] font-semibold tracking-[0.01em] text-white">
-					<?php esc_html_e( 'Quick Links', 'reacon-group' ); ?>
+					<?php esc_html_e('Quick Links', 'reacon-group'); ?>
 				</h3>
 				<ul class="flex flex-col gap-[11px]">
-					<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>"
+					<li><a href="<?php echo esc_url(home_url('/')); ?>"
 						class="font-sans text-sm text-white/85 transition-colors duration-200 hover:text-primary">
-						<?php esc_html_e( 'Home', 'reacon-group' ); ?></a></li>
-					<li><a href="<?php echo esc_url( home_url( '/about-us/' ) ); ?>"
+						<?php esc_html_e('Home', 'reacon-group'); ?></a></li>
+					<li><a href="<?php echo esc_url(home_url('/about-us/')); ?>"
 						class="font-sans text-sm text-white/85 transition-colors duration-200 hover:text-primary">
-						<?php esc_html_e( 'About Us', 'reacon-group' ); ?></a></li>
-					<li><a href="<?php echo esc_url( home_url( '/who-we-are/' ) ); ?>"
+						<?php esc_html_e('About Us', 'reacon-group'); ?></a></li>
+					<li><a href="<?php echo esc_url(home_url('/who-we-are/')); ?>"
 						class="font-sans text-sm text-white/85 transition-colors duration-200 hover:text-primary">
-						<?php esc_html_e( 'Who We Are', 'reacon-group' ); ?></a></li>
-					<li><a href="<?php echo esc_url( home_url( '/blogs/' ) ); ?>"
+						<?php esc_html_e('Who We Are', 'reacon-group'); ?></a></li>
+					<li><a href="<?php echo esc_url(home_url('/blogs/')); ?>"
 						class="font-sans text-sm text-white/85 transition-colors duration-200 hover:text-primary">
-						<?php esc_html_e( 'Blogs', 'reacon-group' ); ?></a></li>
-					<li><a href="<?php echo esc_url( home_url( '/contact-us/' ) ); ?>"
+						<?php esc_html_e('Blogs', 'reacon-group'); ?></a></li>
+					<li><a href="<?php echo esc_url(home_url('/contact-us/')); ?>"
 						class="font-sans text-sm text-white/85 transition-colors duration-200 hover:text-primary">
-						<?php esc_html_e( 'Contact Us', 'reacon-group' ); ?></a></li>
+						<?php esc_html_e('Contact Us', 'reacon-group'); ?></a></li>
 				</ul>
 			</nav>
 
 			<!-- Solution -->
-			<nav aria-label="<?php esc_attr_e( 'Solutions', 'reacon-group' ); ?>">
+			<nav aria-label="<?php esc_attr_e('Solutions', 'reacon-group'); ?>">
 				<h3 class="mb-[18px] font-display text-[14.5px] font-semibold tracking-[0.01em] text-white">
-					<?php esc_html_e( 'Solution', 'reacon-group' ); ?>
+					<?php esc_html_e('Solution', 'reacon-group'); ?>
 				</h3>
 				<ul class="flex flex-col gap-[11px]">
-					<li><a href="<?php echo esc_url( home_url( '/content-studio/' ) ); ?>"
+					<li><a href="<?php echo esc_url(home_url('/content-studio/')); ?>"
 						class="font-sans text-sm text-white/85 transition-colors duration-200 hover:text-primary">
-						<?php esc_html_e( 'Content Studio', 'reacon-group' ); ?></a></li>
-					<li><a href="<?php echo esc_url( home_url( '/production-fulfillment/' ) ); ?>"
+						<?php esc_html_e('Content Studio', 'reacon-group'); ?></a></li>
+					<li><a href="<?php echo esc_url(home_url('/production-fulfillment/')); ?>"
 						class="font-sans text-sm text-white/85 transition-colors duration-200 hover:text-primary">
-						<?php esc_html_e( 'Production &amp; Fulfillment', 'reacon-group' ); ?></a></li>
-					<li><a href="<?php echo esc_url( home_url( '/data-driven-innovation/' ) ); ?>"
+						<?php esc_html_e('Production &amp; Fulfillment', 'reacon-group'); ?></a></li>
+					<li><a href="<?php echo esc_url(home_url('/data-driven-innovation/')); ?>"
 						class="font-sans text-sm text-white/85 transition-colors duration-200 hover:text-primary">
-						<?php esc_html_e( 'Data-Driven Innovation', 'reacon-group' ); ?></a></li>
+						<?php esc_html_e('Data-Driven Innovation', 'reacon-group'); ?></a></li>
 				</ul>
 			</nav>
 
 			<!-- Industries -->
-			<nav aria-label="<?php esc_attr_e( 'Industries', 'reacon-group' ); ?>">
+			<nav aria-label="<?php esc_attr_e('Industries', 'reacon-group'); ?>">
 				<h3 class="mb-[18px] font-display text-[14.5px] font-semibold tracking-[0.01em] text-white">
-					<?php esc_html_e( 'Industries', 'reacon-group' ); ?>
+					<?php esc_html_e('Industries', 'reacon-group'); ?>
 				</h3>
 				<ul class="flex flex-col gap-[11px]">
-					<li><a href="<?php echo esc_url( home_url( '/industries/banking-finance/' ) ); ?>"
+					<li><a href="<?php echo esc_url(home_url('/industries/banking-finance/')); ?>"
 						class="font-sans text-sm text-white/85 transition-colors duration-200 hover:text-primary">
-						<?php esc_html_e( 'Banking &amp; Finance', 'reacon-group' ); ?></a></li>
-					<li><a href="<?php echo esc_url( home_url( '/industries/health-pharmaceuticals/' ) ); ?>"
+						<?php esc_html_e('Banking &amp; Finance', 'reacon-group'); ?></a></li>
+					<li><a href="<?php echo esc_url(home_url('/industries/health-pharmaceuticals/')); ?>"
 						class="font-sans text-sm text-white/85 transition-colors duration-200 hover:text-primary">
-						<?php esc_html_e( 'Health &amp; Pharmaceuticals', 'reacon-group' ); ?></a></li>
-					<li><a href="<?php echo esc_url( home_url( '/industries/e-commerce/' ) ); ?>"
+						<?php esc_html_e('Health &amp; Pharmaceuticals', 'reacon-group'); ?></a></li>
+					<li><a href="<?php echo esc_url(home_url('/industries/e-commerce/')); ?>"
 						class="font-sans text-sm text-white/85 transition-colors duration-200 hover:text-primary">
-						<?php esc_html_e( 'E-Commerce', 'reacon-group' ); ?></a></li>
-					<li><a href="<?php echo esc_url( home_url( '/industries/charities-not-for-profit/' ) ); ?>"
+						<?php esc_html_e('E-Commerce', 'reacon-group'); ?></a></li>
+					<li><a href="<?php echo esc_url(home_url('/industries/charities-not-for-profit/')); ?>"
 						class="font-sans text-sm text-white/85 transition-colors duration-200 hover:text-primary">
-						<?php esc_html_e( 'Charities &amp; Not-for-Profit', 'reacon-group' ); ?></a></li>
-					<li><a href="<?php echo esc_url( home_url( '/industries/utilities/' ) ); ?>"
+						<?php esc_html_e('Charities &amp; Not-for-Profit', 'reacon-group'); ?></a></li>
+					<li><a href="<?php echo esc_url(home_url('/industries/utilities/')); ?>"
 						class="font-sans text-sm text-white/85 transition-colors duration-200 hover:text-primary">
-						<?php esc_html_e( 'Utilities', 'reacon-group' ); ?></a></li>
-					<li><a href="<?php echo esc_url( home_url( '/industries/government/' ) ); ?>"
+						<?php esc_html_e('Utilities', 'reacon-group'); ?></a></li>
+					<li><a href="<?php echo esc_url(home_url('/industries/government/')); ?>"
 						class="font-sans text-sm text-white/85 transition-colors duration-200 hover:text-primary">
-						<?php esc_html_e( 'Government', 'reacon-group' ); ?></a></li>
+						<?php esc_html_e('Government', 'reacon-group'); ?></a></li>
 				</ul>
 			</nav>
 
@@ -144,7 +323,7 @@ $site_name    = esc_html( get_bloginfo( 'name' ) );
 				<div class="rounded-[30px] border border-[#A6EEF2] bg-[#E9FBFC] p-8">
 
 					<h2 class="mb-[18px] font-display text-2xl font-bold leading-[1.22] text-[#1e2330]">
-						<?php esc_html_e( 'Power Your Communication With Precision', 'reacon-group' ); ?>
+						<?php esc_html_e('Power Your Communication With Precision', 'reacon-group'); ?>
 					</h2>
 
 					<!-- Feature checklist -->
@@ -161,7 +340,7 @@ $site_name    = esc_html( get_bloginfo( 'name' ) );
 								</svg>
 							</span>
 							<p class="font-sans text-[13.5px] leading-[1.55] text-[#4b5058]">
-								<?php esc_html_e( 'Deliver print, packaging, and campaigns on time, every time', 'reacon-group' ); ?>
+								<?php esc_html_e('Deliver print, packaging, and campaigns on time, every time', 'reacon-group'); ?>
 							</p>
 						</li>
 
@@ -176,7 +355,7 @@ $site_name    = esc_html( get_bloginfo( 'name' ) );
 								</svg>
 							</span>
 							<p class="font-sans text-[13.5px] leading-[1.55] text-[#4b5058]">
-								<?php esc_html_e( 'Cut operational delays with one integrated partner', 'reacon-group' ); ?>
+								<?php esc_html_e('Cut operational delays with one integrated partner', 'reacon-group'); ?>
 							</p>
 						</li>
 
@@ -186,10 +365,10 @@ $site_name    = esc_html( get_bloginfo( 'name' ) );
 					<div class="flex flex-wrap items-center gap-[10px]">
 
 						<a
-							href="<?php echo esc_url( home_url( '/contact-us/' ) ); ?>"
+							href="<?php echo esc_url(home_url('/contact-us/')); ?>"
 							class="inline-flex items-center gap-[10px] rounded-full bg-primary py-2 pl-5 pr-2.5 font-display text-[13.5px] font-bold text-white/85 no-underline transition-all duration-200 hover:-translate-y-px hover:brightness-110 whitespace-nowrap"
 						>
-							<?php esc_html_e( 'Work With Reacon', 'reacon-group' ); ?>
+							<?php esc_html_e('Work With Reacon', 'reacon-group'); ?>
 							<span
 								aria-hidden="true"
 								class="flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-full bg-black/[.16]"
@@ -199,10 +378,10 @@ $site_name    = esc_html( get_bloginfo( 'name' ) );
 						</a>
 
 						<a
-							href="<?php echo esc_url( home_url( '/talk-to-our-team/' ) ); ?>"
+							href="<?php echo esc_url(home_url('/talk-to-our-team/')); ?>"
 							class="inline-flex items-center justify-center rounded-full border-[1.5px] border-primary px-[22px] py-[9px] font-display text-[13.5px] font-semibold text-primary no-underline transition-all duration-200 hover:-translate-y-px hover:bg-primary/[.07] whitespace-nowrap"
 						>
-							<?php esc_html_e( 'Talk to Our Team', 'reacon-group' ); ?>
+							<?php esc_html_e('Talk to Our Team', 'reacon-group'); ?>
 						</a>
 
 					</div><!-- /cta buttons -->
@@ -226,52 +405,52 @@ $site_name    = esc_html( get_bloginfo( 'name' ) );
 
 				<a
 					href="#"
-					aria-label="<?php esc_attr_e( 'Facebook', 'reacon-group' ); ?>"
+					aria-label="<?php esc_attr_e('Facebook', 'reacon-group'); ?>"
 					rel="noopener noreferrer"
 					target="_blank"
 					class="transition-all duration-200 hover:-translate-y-0.5 hover:brightness-125"
 				>
-					<img src="<?php echo esc_url( get_template_directory_uri() . '/public/social-icon/facebook.svg' ); ?>" alt="" width="12" height="21" loading="lazy" class="h-5 w-auto" />
+					<img src="<?php echo esc_url(get_template_directory_uri() . '/public/social-icon/facebook.svg'); ?>" alt="" width="12" height="21" loading="lazy" class="h-5 w-auto" />
 				</a>
 
 				<a
 					href="#"
-					aria-label="<?php esc_attr_e( 'Twitter / X', 'reacon-group' ); ?>"
+					aria-label="<?php esc_attr_e('Twitter / X', 'reacon-group'); ?>"
 					rel="noopener noreferrer"
 					target="_blank"
 					class="transition-all duration-200 hover:-translate-y-0.5 hover:brightness-125"
 				>
-					<img src="<?php echo esc_url( get_template_directory_uri() . '/public/social-icon/twitter.svg' ); ?>" alt="" width="42" height="42" loading="lazy" class="h-10 w-auto" />
+					<img src="<?php echo esc_url(get_template_directory_uri() . '/public/social-icon/twitter.svg'); ?>" alt="" width="42" height="42" loading="lazy" class="h-10 w-auto" />
 				</a>
 
 				<a
 					href="#"
-					aria-label="<?php esc_attr_e( 'Instagram', 'reacon-group' ); ?>"
+					aria-label="<?php esc_attr_e('Instagram', 'reacon-group'); ?>"
 					rel="noopener noreferrer"
 					target="_blank"
 					class="transition-all duration-200 hover:-translate-y-0.5 hover:brightness-125"
 				>
-					<img src="<?php echo esc_url( get_template_directory_uri() . '/public/social-icon/instagram.svg' ); ?>" alt="" width="21" height="21" loading="lazy" class="h-5 w-auto" />
+					<img src="<?php echo esc_url(get_template_directory_uri() . '/public/social-icon/instagram.svg'); ?>" alt="" width="21" height="21" loading="lazy" class="h-5 w-auto" />
 				</a>
 
 				<a
 					href="#"
-					aria-label="<?php esc_attr_e( 'LinkedIn', 'reacon-group' ); ?>"
+					aria-label="<?php esc_attr_e('LinkedIn', 'reacon-group'); ?>"
 					rel="noopener noreferrer"
 					target="_blank"
 					class="transition-all duration-200 hover:-translate-y-0.5 hover:brightness-125"
 				>
-					<img src="<?php echo esc_url( get_template_directory_uri() . '/public/social-icon/linkedin.svg' ); ?>" alt="" width="21" height="20" loading="lazy" class="h-5 w-auto" />
+					<img src="<?php echo esc_url(get_template_directory_uri() . '/public/social-icon/linkedin.svg'); ?>" alt="" width="21" height="20" loading="lazy" class="h-5 w-auto" />
 				</a>
 
 				<a
 					href="#"
-					aria-label="<?php esc_attr_e( 'YouTube', 'reacon-group' ); ?>"
+					aria-label="<?php esc_attr_e('YouTube', 'reacon-group'); ?>"
 					rel="noopener noreferrer"
 					target="_blank"
 					class="transition-all duration-200 hover:-translate-y-0.5 hover:brightness-125"
 				>
-					<img src="<?php echo esc_url( get_template_directory_uri() . '/public/social-icon/youtube.svg' ); ?>" alt="" width="24" height="17" loading="lazy" class="h-5 w-auto" />
+					<img src="<?php echo esc_url(get_template_directory_uri() . '/public/social-icon/youtube.svg'); ?>" alt="" width="24" height="17" loading="lazy" class="h-5 w-auto" />
 				</a>
 
 			</div>
@@ -293,29 +472,29 @@ $site_name    = esc_html( get_bloginfo( 'name' ) );
 			</p>
 
 			<!-- Legal links -->
-			<ul class="mb-[26px] flex flex-wrap justify-center gap-x-6 gap-y-1.5" aria-label="<?php esc_attr_e( 'Legal links', 'reacon-group' ); ?>">
+			<ul class="mb-[26px] flex flex-wrap justify-center gap-x-6 gap-y-1.5" aria-label="<?php esc_attr_e('Legal links', 'reacon-group'); ?>">
 				<li>
-					<a href="<?php echo esc_url( home_url( '/terms/' ) ); ?>"
+					<a href="<?php echo esc_url(home_url('/terms/')); ?>"
 						class="font-sans text-[13px] text-white/85 no-underline transition-colors duration-200 hover:text-primary">
-						<?php esc_html_e( 'Terms', 'reacon-group' ); ?>
+						<?php esc_html_e('Terms', 'reacon-group'); ?>
 					</a>
 				</li>
 				<li>
-					<a href="<?php echo esc_url( home_url( '/privacy/' ) ); ?>"
+					<a href="<?php echo esc_url(home_url('/privacy/')); ?>"
 						class="font-sans text-[13px] text-white/85 no-underline transition-colors duration-200 hover:text-primary">
-						<?php esc_html_e( 'Privacy', 'reacon-group' ); ?>
+						<?php esc_html_e('Privacy', 'reacon-group'); ?>
 					</a>
 				</li>
 				<li>
-					<a href="<?php echo esc_url( home_url( '/cookies/' ) ); ?>"
+					<a href="<?php echo esc_url(home_url('/cookies/')); ?>"
 						class="font-sans text-[13px] text-white/85 no-underline transition-colors duration-200 hover:text-primary">
-						<?php esc_html_e( 'Cookies', 'reacon-group' ); ?>
+						<?php esc_html_e('Cookies', 'reacon-group'); ?>
 					</a>
 				</li>
 				<li>
-					<a href="<?php echo esc_url( home_url( '/sitemap/' ) ); ?>"
+					<a href="<?php echo esc_url(home_url('/sitemap/')); ?>"
 						class="font-sans text-[13px] text-white/85 no-underline transition-colors duration-200 hover:text-primary">
-						<?php esc_html_e( 'Sitemap', 'reacon-group' ); ?>
+						<?php esc_html_e('Sitemap', 'reacon-group'); ?>
 					</a>
 				</li>
 			</ul>
@@ -326,19 +505,19 @@ $site_name    = esc_html( get_bloginfo( 'name' ) );
 			<!-- Sub-brands / group companies -->
 			<ul
 				class="flex flex-wrap justify-center gap-x-11 gap-y-2 pb-10"
-				aria-label="<?php esc_attr_e( 'Group brands', 'reacon-group' ); ?>"
+				aria-label="<?php esc_attr_e('Group brands', 'reacon-group'); ?>"
 			>
 				<li class="font-sans text-[13px] text-white/85 transition-colors duration-200 hover:text-primary cursor-pointer">
-					<?php esc_html_e( 'Cups Galore', 'reacon-group' ); ?>
+					<?php esc_html_e('Cups Galore', 'reacon-group'); ?>
 				</li>
 				<li class="font-sans text-[13px] text-white/85 transition-colors duration-200 hover:text-primary cursor-pointer">
-					<?php esc_html_e( 'Digital Press', 'reacon-group' ); ?>
+					<?php esc_html_e('Digital Press', 'reacon-group'); ?>
 				</li>
 				<li class="font-sans text-[13px] text-white/85 transition-colors duration-200 hover:text-primary cursor-pointer">
-					<?php esc_html_e( 'Horizon Print Management', 'reacon-group' ); ?>
+					<?php esc_html_e('Horizon Print Management', 'reacon-group'); ?>
 				</li>
 				<li class="font-sans text-[13px] text-white/85 transition-colors duration-200 hover:text-primary cursor-pointer">
-					<?php esc_html_e( 'Westman Printing', 'reacon-group' ); ?>
+					<?php esc_html_e('Westman Printing', 'reacon-group'); ?>
 				</li>
 			</ul>
 

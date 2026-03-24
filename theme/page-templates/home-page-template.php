@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Template Name: Home Page
  * Template Post Type: page
@@ -21,7 +22,46 @@ get_header();
 	 * Full-viewport hero with headline, sub-copy, CTA and
 	 * optional background video / image. Overlaps header.
 	 */
-	get_template_part( 'template-parts/home/section', 'hero' );
+	get_template_part('template-parts/home/section', 'hero');
+	?>
+
+	<?php
+	/**
+	 * ── PARTNERS SECTION ──────────────────────────────────────
+	 * Display partner logos in an infinite scrolling carousel.
+	 */
+	get_template_part('template-parts/home/section', 'partners');
+	?>
+
+	<?php
+	/**
+	 * ── BRAND INTRO SECTION ──────────────────────────────────────
+	 * Display brand introduction content and partner cards.
+	 */
+	get_template_part('template-parts/home/section', 'brandintro');
+	?>
+
+	<?php
+	/**
+	 * ── BRAND INTRO SECTION ──────────────────────────────────────
+	 * Display brand introduction content and partner cards.
+	 */
+	get_template_part('template-parts/home/section', 'content');
+	?>
+	<?php
+	/**
+	 * ── Industries SECTION ──────────────────────────────────────
+	 * Display Industries.
+	 */
+	get_template_part('template-parts/home/section', 'industries');
+	?>
+
+	<?php
+	/**
+	 * ── Testimonials SECTION ──────────────────────────────────────
+	 * Display testimonials.
+	 */
+	get_template_part('template-parts/home/section', 'testimonials');
 	?>
 
 	<?php
