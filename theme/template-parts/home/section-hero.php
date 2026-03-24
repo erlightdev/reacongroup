@@ -9,18 +9,17 @@
  *
  * @package reacon-group
  */
-
 $hero_image_webp = get_template_directory_uri() . '/public/image/hero-bg.webp';
-$hero_image_png  = get_template_directory_uri() . '/public/image/hero-bg.png';
+$hero_image_png = get_template_directory_uri() . '/public/image/hero-bg.png';
 $hero_video_webm = get_template_directory_uri() . '/public/video/hero-bg.webm';
-$hero_video_mp4  = get_template_directory_uri() . '/public/video/hero-bg.mp4';
-$stats_icon      = get_template_directory_uri() . '/public/figma-assets/stats-icon.png';
+$hero_video_mp4 = get_template_directory_uri() . '/public/home/hero-home.mp4';
+$stats_icon = get_template_directory_uri() . '/public/figma-assets/stats-icon.png';
 
 $hero_video_webm_path = get_template_directory() . '/public/video/hero-bg.webm';
-$hero_video_mp4_path  = get_template_directory() . '/public/video/hero-bg.mp4';
+$hero_video_mp4_path = get_template_directory() . '/public/video/hero-bg.mp4';
 
-$has_hero_webm  = file_exists($hero_video_webm_path);
-$has_hero_mp4   = file_exists($hero_video_mp4_path);
+$has_hero_webm = file_exists($hero_video_webm_path);
+$has_hero_mp4 = file_exists($hero_video_mp4_path);
 $has_hero_video = $has_hero_webm || $has_hero_mp4;
 ?>
 
@@ -31,7 +30,7 @@ $has_hero_video = $has_hero_webm || $has_hero_mp4;
     <div class="relative flex min-h-[60vh] w-full flex-col overflow-hidden rounded-[31px] bg-foreground lg:min-h-[640px] xl:min-h-[720px]">
 
         <!-- Background media: video when available, image fallback otherwise -->
-        <?php if ($has_hero_video) : ?>
+        <?php if ($has_hero_video): ?>
             <video
                 class="pointer-events-none absolute inset-0 h-full w-full object-cover object-center"
                 style="clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);"
@@ -42,14 +41,14 @@ $has_hero_video = $has_hero_webm || $has_hero_mp4;
                 preload="metadata"
                 poster="<?php echo esc_url($hero_image_png); ?>"
                 aria-hidden="true">
-                <?php if ($has_hero_webm) : ?>
+                <?php if ($has_hero_webm): ?>
                     <source src="<?php echo esc_url($hero_video_webm); ?>" type="video/webm" />
                 <?php endif; ?>
-                <?php if ($has_hero_mp4) : ?>
+                <?php if ($has_hero_mp4): ?>
                     <source src="<?php echo esc_url($hero_video_mp4); ?>" type="video/mp4" />
                 <?php endif; ?>
             </video>
-        <?php else : ?>
+        <?php else: ?>
             <picture class="pointer-events-none absolute inset-0" style="clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);" aria-hidden="true">
                 <source srcset="<?php echo esc_url($hero_image_webp); ?>" type="image/webp" />
                 <img
