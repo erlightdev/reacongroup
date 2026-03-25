@@ -1,10 +1,10 @@
 <?php
+
 /**
  * About page section: Hero header block.
  *
  * @package reacon-group
  */
-
 $about_header_bg = get_template_directory_uri() . '/public/about/about-header.png';
 ?>
 
