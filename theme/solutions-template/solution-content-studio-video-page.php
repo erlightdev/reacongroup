@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Template Name: Solution — Content Studio Visual
+ * Template Name: Solution — Content Studio Video
  * Template Post Type: page, solution
  *
- * Placeholder layout for Content Studio Visual solution pages. Assign this template in
+ * Placeholder layout for Content Studio Video solution pages. Assign this template in
  * Page Attributes (or the template panel on your `solution` CPT). If the CPT slug
  * registered by your plugin is not `solution`, update `Template Post Type` below.
  *
@@ -12,157 +12,171 @@
  */
 get_header();
 
-$solution_hero_bg = get_template_directory_uri() . '/public/solutions/visual-hero-subtract.png';
-$visual_pre_production_img = get_template_directory_uri() . '/public/solutions/visual-preproduction-base.png';
-$visual_post_production_img = get_template_directory_uri() . '/public/solutions/visual-postproduction-base.png';
-$visual_copy_img = get_template_directory_uri() . '/public/solutions/visual-copy-image.png';
+$solution_video_hero_bg = get_template_directory_uri() . '/public/solutions/video-hero-subtract.png';
 $visual_capability_video_img = get_template_directory_uri() . '/public/solutions/capability-video.png';
 $visual_capability_digital_img = get_template_directory_uri() . '/public/solutions/capability-digital.png';
 $visual_capability_structure_img = get_template_directory_uri() . '/public/solutions/capability-visual.png';
 ?>
 
 <main id="primary" class="overflow-x-hidden bg-background" role="main">
-<!-- Page Header -->
-	<!-- Visual Hero Section -->
+	<!-- Video Hero Section -->
 	<section
-		id="solution-visual-hero"
+		id="solution-video-hero"
 		class="relative w-full p-4 sm:p-5 lg:p-6"
-		aria-label="<?php esc_attr_e('Visual hero', 'reacon-group'); ?>">
+		aria-label="<?php esc_attr_e('Video hero', 'reacon-group'); ?>">
 		<div
-			class="relative flex  w-full flex-col overflow-hidden rounded-[31px] bg-foreground ">
+			class="relative flex min-h-[360px] w-full flex-col overflow-hidden rounded-[31px] bg-foreground bg-cover bg-center">
 			<img
-				src="<?php echo esc_url($solution_hero_bg); ?>"
+				src="<?php echo esc_url($solution_video_hero_bg); ?>"
 				alt=""
 				aria-hidden="true"
 				class="absolute inset-0 h-full w-full object-cover object-center"
 				loading="eager"
-				decoding="async" />
+				decoding="async"
+				fetchpriority="high" />
 
 			<!-- Dark overlay to keep typography readable over the image -->
 			<div
 				class="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.55)_0%,rgba(0,0,0,0.25)_55%,rgba(0,0,0,0.55)_100%)]"
 				aria-hidden="true"></div>
 
-			<div class="relative z-10 mx-auto flex w-full flex-1 flex-col items-center justify-center px-5 py-24 text-center sm:px-6 lg:px-10">
+			<div
+				class="relative z-10 mx-auto flex w-full flex-1 flex-col items-center justify-center px-5 py-14 text-center sm:px-6 lg:px-10">
 				<div class="flex max-w-[900px] flex-col items-center">
 					<p class="w-full font-sans text-[14px] font-normal leading-[22.72px] text-white/80 sm:text-[16px]">
-						<?php esc_html_e('Creative Capabilities', 'reacon-group'); ?>
+						<?php esc_html_e('Creative Capabilitie', 'reacon-group'); ?>
 					</p>
-
 					<h1 class="mt-3 font-display text-[40px] font-semibold leading-tight text-white sm:text-[48px] lg:text-[56px]">
-						<?php esc_html_e('Visual', 'reacon-group'); ?>
+						<?php esc_html_e('Video', 'reacon-group'); ?>
 					</h1>
-
-					<p class="mt-5 max-w-[820px] font-sans text-[16px] leading-[22.72px] text-white/80">
-						<?php esc_html_e('We craft compelling visual content—from design and photography to artwork adaptation—ensuring brand consistency across every touchpoint.', 'reacon-group'); ?>
+					<p class="mt-5 max-w-[638px] font-sans text-[16px] leading-[22.72px] text-white/80">
+						<?php esc_html_e('We create impactful video content—from live-action and animation to motion graphics—bringing brand stories to life across every channel and format.', 'reacon-group'); ?>
 					</p>
 				</div>
 			</div>
 		</div>
 	</section>
-	<!-- End Visual Hero Section -->
-<!-- End Page Header -->
-    <!-- Content Section -->
-	<section id="solution-visual-content" class="bg-background py-8 sm:py-12 lg:py-16 xl:py-20 2xl:py-20" aria-label="<?php esc_attr_e('Visual studio service details', 'reacon-group'); ?>">
-		<div class="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12">
-			<!-- Major Section: Pre-Production and Photography -->
-			<article class="py-8 sm:py-10 lg:py-16">
-				<div class="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-[62px]">
-					<div class="lg:col-span-5 xl:col-span-5">
-						<header class="space-y-5 text-foreground">
-							<h2 class="font-display text-[32px] font-bold leading-tight sm:text-[36px] md:text-[40px] lg:text-[44px] lg:leading-[58.08px]">
-								<?php esc_html_e('Pre-Production & Photography', 'reacon-group'); ?>
-							</h2>
-						</header>
-						<div class="mt-5 space-y-3 font-sans text-[16px] font-normal leading-[22.72px] text-foreground">
-							<p>
-								<?php esc_html_e('Our pre-production and photography team ensures every shoot is strategically planned and flawlessly executed. From creative direction to on-site logistics, we manage each detail to align with your brand objectives and campaign goals. With expertise in location scouting, studio setup, styling, lighting design, and talent coordination, we create the foundation for high-quality, consistent visual storytelling.', 'reacon-group'); ?>
-							</p>
-							<p>
-								<?php esc_html_e('We tailor each shoot to meet the unique demands of your content—be it lifestyle imagery, product showcases, or hero visuals. Every element is thoughtfully curated to enhance visual appeal while supporting multi-channel delivery. Our approach blends technical precision with creative intent, ensuring each capture is both beautiful and purposeful.', 'reacon-group'); ?>
-							</p>
-						</div>
-					</div>
-					<div class="lg:col-span-7 xl:col-span-7">
-						<div class="relative overflow-hidden rounded-[24px] bg-muted">
-							<img
-								src="<?php echo esc_url($visual_pre_production_img); ?>"
-								alt="<?php esc_attr_e('Pre-production and photography process', 'reacon-group'); ?>"
-								class="h-auto w-full object-cover"
-								loading="lazy"
-								decoding="async" />
-						</div>
-					</div>
-				</div>
-			</article>
-			<!-- End Major Section: Pre-Production and Photography -->
+	<!-- End Video Hero Section -->
 
-			<!-- Major Section: Post Production and Retouching -->
-			<article class="py-8 sm:py-10 lg:py-16">
-				<div class="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-[62px]">
-					<div class="order-2 lg:order-1 lg:col-span-7 xl:col-span-7">
-						<div class="relative overflow-hidden rounded-[24px] bg-muted">
-							<img
-								src="<?php echo esc_url($visual_post_production_img); ?>"
-								alt="<?php esc_attr_e('Post production and retouching process', 'reacon-group'); ?>"
-								class="h-auto w-full object-cover"
-								loading="lazy"
-								decoding="async" />
-						</div>
-					</div>
-					<div class="order-1 lg:order-2 lg:col-span-5 xl:col-span-5">
-						<header class="space-y-5 text-foreground">
-							<h2 class="font-display text-[32px] font-bold leading-tight sm:text-[36px] md:text-[40px] lg:text-[44px] lg:leading-[58.08px]">
-								<?php esc_html_e('Post Production & Retouching', 'reacon-group'); ?>
-							</h2>
-						</header>
-						<div class="mt-5 space-y-3 font-sans text-[16px] font-normal leading-[22.72px] text-foreground">
-							<p>
-								<?php esc_html_e('Our post-production team brings creative precision to every image, transforming raw visuals into polished, high-impact assets. With a deep understanding of brand aesthetics and channel requirements, we enhance imagery to meet the highest standards of visual quality. We apply advanced retouching techniques to refine product details, balance lighting, and ensure every element is sharp, clean, and brand-aligned. From subtle touch-ups to complex compositing, our team ensures consistency across every visual asset.', 'reacon-group'); ?>
-							</p>
-							<p>
-								<?php esc_html_e('Color correction and grading are tailored to match brand tones and ensure a cohesive look across campaigns and formats. Whether for print, digital, or retail, we optimize each image for its final destination—maximizing clarity, vibrancy, and resolution. The result is production-ready content that elevates your brand presence across all channels. With an eye for detail and technical excellence, we deliver visuals that perform as beautifully as they look.', 'reacon-group'); ?>
-							</p>
-						</div>
-					</div>
-				</div>
-			</article>
-			<!-- End Major Section: Post Production and Retouching -->
+	<!-- Video Content Section: Video & CGI / Production / Dynamic Content / Rendering / Animation / VFX (Figma 570:5265). -->
+	<?php
+	$solution_video_content_blocks = array(
+		array(
+			'title' => __('Video & CGI', 'reacon-group'),
+			'paragraphs' => array(
+				__('We specialize in crafting immersive, visually striking content using a seamless blend of live-action video and cutting-edge CGI. Our team of expert creatives transforms brand ideas into captivating visual stories, leveraging advanced software and cinematic techniques to engage and inspire.', 'reacon-group'),
+				__('Whether for a promotional campaign, product showcase, or high-impact explainer, we ensure every visual element aligns with your brand’s message. With full-service production support and CGI integration, we bring complexity and imagination to life in a way that feels both polished and purposeful.', 'reacon-group'),
+			),
+			'image' => get_template_directory_uri() . '/public/solutions/video-cgi-rect-1.png',
+			'swap' => false,
+		),
+		array(
+			'title' => __('Video Production', 'reacon-group'),
+			'paragraphs' => array(
+				__('Every video we produce begins with a deep understanding of your brand, story, and audience. From scripting and storyboarding to filming and direction, we manage the entire production process to ensure authenticity, precision, and creative integrity.', 'reacon-group'),
+				__('During post-production, we refine every detail—editing footage, designing soundscapes, applying motion graphics, and enhancing with color grading. The result is a cohesive, high-quality video that communicates your message with clarity and emotional impact.', 'reacon-group'),
+			),
+			'image' => get_template_directory_uri() . '/public/solutions/video-production-rect-2.png',
+			'swap' => true,
+		),
+		array(
+			'title' => __('Dynamic Video Content', 'reacon-group'),
+			'paragraphs' => array(
+				__('We help brands deliver personalized video experiences using dynamic, data-driven content. By layering CRM data into your creative assets, we tailor each message to individual recipients—boosting relevance, engagement, and conversion.', 'reacon-group'),
+				__('Our rules-based personalization approach ensures accuracy and scale, allowing you to deliver targeted content for specific moments, audiences, or campaigns. The result is smarter storytelling that resonates personally across email, web, and social platforms.', 'reacon-group'),
+			),
+			'image' => get_template_directory_uri() . '/public/solutions/dynamic-video-rect-3.png',
+			'swap' => false,
+		),
+		array(
+			'title' => __('2D/3D Rendering', 'reacon-group'),
+			'paragraphs' => array(
+				__('Our rendering services transform concepts into photo-realistic 2D and 3D visuals that bring your designs to life. Whether you’re showcasing a product, space, or architectural idea, we deliver refined visuals that reflect accuracy, detail, and creative excellence.', 'reacon-group'),
+				__('From packaging and retail displays to interior layouts and industrial designs, our renderings help clients visualize outcomes clearly before production. These assets are ideal for approvals, promotions, and immersive customer presentations.', 'reacon-group'),
+			),
+			'image' => get_template_directory_uri() . '/public/solutions/rendering-rect-4.png',
+			'swap' => true,
+		),
+		array(
+			'title' => __('Animation', 'reacon-group'),
+			'paragraphs' => array(
+				__('We create captivating 2D and 3D animations that simplify complex ideas and strengthen audience connection. With a focus on storytelling and visual clarity, our animations are designed to educate, engage, and drive action.', 'reacon-group'),
+				__('Perfect for explainer videos, product demos, or brand storytelling, our animation team works closely with you to ensure each movement supports the message—resulting in content that’s not only eye-catching, but strategically effective.', 'reacon-group'),
+			),
+			'image' => get_template_directory_uri() . '/public/solutions/animation-rect-5.png',
+			'swap' => false,
+		),
+		array(
+			'title' => __('VFX', 'reacon-group'),
+			'paragraphs' => array(
+				__('Our visual effects capabilities allow you to push creative boundaries while staying efficient. Using CGI and compositing, we enhance live-action footage with cinematic realism, dynamic environments, and striking visual enhancements.', 'reacon-group'),
+				__('Ideal for reducing shoot complexity and elevating production value, our VFX services bring your concepts to life with detail and precision—ensuring your final video looks stunning without compromising budget or quality.', 'reacon-group'),
+			),
+			'image' => get_template_directory_uri() . '/public/solutions/vfx-rect-6.png',
+			'swap' => true,
+		),
+	);
+	?>
 
-			<!-- Major Section: Copy -->
-			<article class="py-8 sm:py-10 lg:py-16">
-				<div class="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-[62px]">
-					<div class="lg:col-span-5 xl:col-span-5">
-						<header class="space-y-5 text-foreground">
-							<h2 class="font-display text-[32px] font-bold leading-tight sm:text-[36px] md:text-[40px] lg:text-[44px] lg:leading-[58.08px]">
-								<?php esc_html_e('Copy', 'reacon-group'); ?>
-							</h2>
-						</header>
-						<div class="mt-5 space-y-3 font-sans text-[16px] font-normal leading-[22.72px] text-foreground">
-							<p>
-								<?php esc_html_e('Our copywriters craft clear, engaging content that aligns seamlessly with your brand voice and marketing objectives. From campaign headlines and product descriptions to technical copy and SEO-driven content, we adapt tone and format to suit every platform—digital, print, and beyond. Working closely with design and strategy teams, we ensure every message enhances the overall creative execution.', 'reacon-group'); ?>
-							</p>
-							<p>
-								<?php esc_html_e('To support global reach, we partner with trusted localization experts to deliver accurate, culturally relevant translations in over 38 languages. Whether you are speaking to local markets or international audiences, our copy ensures consistency, clarity, and impact across all communication channels.', 'reacon-group'); ?>
-							</p>
-						</div>
+	<section
+		id="solution-video-content"
+		class="bg-white"
+		aria-labelledby="solution-video-content-heading">
+		<h2
+			id="solution-video-content-heading"
+			class="sr-only">
+			<?php esc_html_e('Video capabilities', 'reacon-group'); ?>
+		</h2>
+
+		<?php foreach ($solution_video_content_blocks as $block): ?>
+			<?php
+			$swap = !empty($block['swap']);
+			?>
+			<article
+				class="mx-auto flex w-full max-w-[1370px] flex-col gap-[24px] px-5 py-10 sm:px-6 lg:flex-row lg:gap-[62px] lg:px-10 lg:py-16">
+				<?php if ($swap): ?>
+					<div
+						class="relative h-[260px] w-full overflow-hidden rounded-[24px] sm:h-[320px] lg:h-[420px] lg:w-[688px] shrink-0">
+						<img
+							src="<?php echo esc_url($block['image']); ?>"
+							alt=""
+							aria-hidden="true"
+							class="absolute inset-0 h-full w-full object-cover pointer-events-none"
+							loading="lazy"
+							decoding="async" />
 					</div>
-					<div class="lg:col-span-7 xl:col-span-7">
-						<div class="relative overflow-hidden rounded-[24px] bg-muted">
-							<img
-								src="<?php echo esc_url($visual_copy_img); ?>"
-								alt="<?php esc_attr_e('Creative copy and localization process', 'reacon-group'); ?>"
-								class="h-auto w-full object-cover"
-								loading="lazy"
-								decoding="async" />
-						</div>
+				<?php endif; ?>
+
+				<div class="flex w-full flex-col gap-[20px] lg:max-w-[620px]">
+					<h3 class="font-display text-[36px] font-bold leading-tight text-foreground sm:text-[44px] sm:leading-[58.08px]">
+						<?php echo esc_html($block['title']); ?>
+					</h3>
+					<div class="flex flex-col gap-[12px]">
+						<?php foreach ($block['paragraphs'] as $p): ?>
+							<p class="font-sans text-[16px] leading-[22.72px] text-foreground/80">
+								<?php echo esc_html($p); ?>
+							</p>
+						<?php endforeach; ?>
 					</div>
 				</div>
+
+				<?php if (!$swap): ?>
+					<div
+						class="relative h-[260px] w-full overflow-hidden rounded-[24px] sm:h-[320px] lg:h-[420px] lg:w-[688px] shrink-0">
+						<img
+							src="<?php echo esc_url($block['image']); ?>"
+							alt=""
+							aria-hidden="true"
+							class="absolute inset-0 h-full w-full object-cover pointer-events-none"
+							loading="lazy"
+							decoding="async" />
+					</div>
+				<?php endif; ?>
 			</article>
-			<!-- End Major Section: Copy -->
-		</div>
+		<?php endforeach; ?>
 	</section>
-    <!-- End Content Section -->
+	<!-- End Video Content Section -->
+
 	<!-- Major Section: Core Capabilities -->
 	<section id="solution-visual-core-capabilities" class="bg-background pb-12 pt-8 sm:pb-16 sm:pt-10 lg:pb-24 lg:pt-14 xl:pb-28 xl:pt-16 2xl:pb-16 2xl:pt-10" aria-label="<?php esc_attr_e('Our core creative capabilities', 'reacon-group'); ?>">
 		<div class="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12">
@@ -239,19 +253,19 @@ $visual_capability_structure_img = get_template_directory_uri() . '/public/solut
 
 <!-- Cta Section: strategic call-to-action banner (Figma 577:12234). -->
 		<?php
-        $solution_cta = array(
-            'heading' => __('Print Smarter. Move Faster. Deliver Everywhere.', 'reacon-group'),
-            'description' => __('Reacon connects creativity, automation, and logistics to help brands operate at global speed.', 'reacon-group'),
-            'primary' => array(
-                'label' => __('Contact Us', 'reacon-group'),
-                'url' => home_url('/contact/'),
-            ),
-            'secondary' => array(
-                'label' => __('Talk to Our Team', 'reacon-group'),
-                'url' => home_url('/contact/'),
-            ),
-        );
-        ?>
+		$solution_cta = array(
+			'heading' => __('Print Smarter. Move Faster. Deliver Everywhere.', 'reacon-group'),
+			'description' => __('Reacon connects creativity, automation, and logistics to help brands operate at global speed.', 'reacon-group'),
+			'primary' => array(
+				'label' => __('Contact Us', 'reacon-group'),
+				'url' => home_url('/contact/'),
+			),
+			'secondary' => array(
+				'label' => __('Talk to Our Team', 'reacon-group'),
+				'url' => home_url('/contact/'),
+			),
+		);
+		?>
 		<section
 			id="solution-cta"
 			class="py-10 sm:py-12 lg:py-14"
@@ -324,6 +338,6 @@ $visual_capability_structure_img = get_template_directory_uri() . '/public/solut
         <!-- Faq Section -->
         <?php get_template_part('template-parts/components/component', 'faq'); ?>
         <!-- End Faq Section -->
-
 </main>
+
 <?php get_footer(); ?>
