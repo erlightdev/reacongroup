@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The template for displaying all single posts
  *
@@ -6,7 +7,6 @@
  *
  * @package reacon-group
  */
-
 get_header();
 ?>
 
@@ -15,29 +15,29 @@ get_header();
 
 			<?php
 			/* Start the Loop */
-			while ( have_posts() ) :
+			while (have_posts()):
 				the_post();
-				get_template_part( 'template-parts/content/content', 'single' );
+				get_template_part('template-parts/content/content', 'blog');
 
-				if ( is_singular( 'post' ) ) {
-					// Previous/next post navigation.
-					the_post_navigation(
-						array(
-							'next_text' => '<span aria-hidden="true">' . __( 'Next Post', 'reacon-group' ) . '</span> ' .
-								'<span class="sr-only">' . __( 'Next post:', 'reacon-group' ) . '</span> <br/>' .
-								'<span>%title</span>',
-							'prev_text' => '<span aria-hidden="true">' . __( 'Previous Post', 'reacon-group' ) . '</span> ' .
-								'<span class="sr-only">' . __( 'Previous post:', 'reacon-group' ) . '</span> <br/>' .
-								'<span>%title</span>',
-						)
-					);
-				}
+				// if (is_singular('post')) {
+				// 	// Previous/next post navigation.
+				// 	the_post_navigation(
+				// 		array(
+				// 			'next_text' => '<span aria-hidden="true">' . __('Next Post', 'reacon-group') . '</span> '
+				// 				. '<span class="sr-only">' . __('Next post:', 'reacon-group') . '</span> <br/>'
+				// 				. '<span>%title</span>',
+				// 			'prev_text' => '<span aria-hidden="true">' . __('Previous Post', 'reacon-group') . '</span> '
+				// 				. '<span class="sr-only">' . __('Previous post:', 'reacon-group') . '</span> <br/>'
+				// 				. '<span>%title</span>',
+				// 		)
+				// 	);
+				// }
 
 				// If comments are open, or we have at least one comment, load
 				// the comment template.
-				if ( comments_open() || get_comments_number() ) {
-					comments_template();
-				}
+				// if (comments_open() || get_comments_number()) {
+				// 	comments_template();
+				// }
 
 				// End the loop.
 			endwhile;

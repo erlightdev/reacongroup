@@ -237,21 +237,21 @@ $visual_capability_structure_img = get_template_directory_uri() . '/public/solut
 	</section>
 	<!-- End Major Section: Core Capabilities -->
 
-<!-- Cta Section: strategic call-to-action banner (Figma 577:12234). -->
+<!-- Cta Section: strategic call-to-action banner. -->
 		<?php
-        $solution_cta = array(
-            'heading' => __('Print Smarter. Move Faster. Deliver Everywhere.', 'reacon-group'),
-            'description' => __('Reacon connects creativity, automation, and logistics to help brands operate at global speed.', 'reacon-group'),
-            'primary' => array(
-                'label' => __('Contact Us', 'reacon-group'),
-                'url' => home_url('/contact/'),
-            ),
-            'secondary' => array(
-                'label' => __('Talk to Our Team', 'reacon-group'),
-                'url' => home_url('/contact/'),
-            ),
-        );
-        ?>
+		$solution_cta = array(
+			'heading' => __('Print Smarter. Move Faster. Deliver Everywhere.', 'reacon-group'),
+			'description' => __('Reacon connects creativity, automation, and logistics to help brands operate at global speed.', 'reacon-group'),
+			'primary' => array(
+				'label' => __('Contact Us', 'reacon-group'),
+				'url' => home_url('/contact/'),
+			),
+			'secondary' => array(
+				'label' => __('Talk to Our Team', 'reacon-group'),
+				'url' => home_url('/contact/'),
+			),
+		);
+		?>
 		<section
 			id="solution-cta"
 			class="py-10 sm:py-12 lg:py-14"

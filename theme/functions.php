@@ -160,6 +160,23 @@ function reacon_group_scripts()
 		true
 	);
 
+	if ( is_singular( 'post' ) || is_page_template( 'page-templates/industries-page-template.php' ) ) {
+		wp_enqueue_style(
+			'reacon-group-swiper-style',
+			'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css',
+			array(),
+			'11.1.4'
+		);
+
+		wp_enqueue_script(
+			'reacon-group-swiper-script',
+			'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js',
+			array(),
+			'11.1.4',
+			true
+		);
+	}
+
 	if (is_singular() && comments_open() && get_option('thread_comments')) {
 		wp_enqueue_script('comment-reply');
 	}
