@@ -160,7 +160,7 @@ function reacon_group_scripts()
 		true
 	);
 
-	if ( is_singular( 'post' ) || is_page_template( 'page-templates/industries-page-template.php' ) ) {
+	if (is_singular('post') || is_page_template('page-templates/industries-page-template.php')) {
 		wp_enqueue_style(
 			'reacon-group-swiper-style',
 			'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css',
