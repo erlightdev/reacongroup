@@ -9,7 +9,6 @@
  * @package reacon-group
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  */
-
 $default_logo = get_template_directory_uri() . '/public/image/Reacon Logo 2.svg';
 $current_year = absint(gmdate('Y'));
 $site_name = get_bloginfo('name');
@@ -188,7 +187,7 @@ $reacon_footer_echo_menu = static function ($location, $menu_class, $extra = arr
 
 	$html = wp_nav_menu($args);
 	if ($html) {
-		echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped — core menu HTML.
+		echo $html;  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped — core menu HTML.
 		return;
 	}
 
@@ -230,7 +229,7 @@ $reacon_footer_echo_menu = static function ($location, $menu_class, $extra = arr
 					class="h-16 w-auto" />
 			</a>
 
-			<?php if ($footer_show_language) : ?>
+			<?php if ($footer_show_language): ?>
 				<!-- Language selector (label from ACF or default) -->
 				<button
 					type="button"
@@ -295,7 +294,7 @@ $reacon_footer_echo_menu = static function ($location, $menu_class, $extra = arr
 					</h2>
 
 					<ul class="mb-6 flex flex-col gap-[11px]" role="list">
-						<?php foreach ($footer_cta_features as $feature) : ?>
+						<?php foreach ($footer_cta_features as $feature): ?>
 							<?php
 							$ftext = '';
 							if (is_array($feature) && !empty($feature['text']) && is_string($feature['text'])) {
@@ -368,7 +367,7 @@ $reacon_footer_echo_menu = static function ($location, $menu_class, $extra = arr
 				style="background: linear-gradient(to right, transparent, rgba(213,219,226,0.22));"></div>
 
 			<div class="flex items-center gap-5 px-7">
-				<?php foreach ($footer_social_links as $row) : ?>
+				<?php foreach ($footer_social_links as $row): ?>
 					<?php
 					$asset = $reacon_footer_social_asset($row);
 					if (!$asset) {
@@ -380,10 +379,10 @@ $reacon_footer_echo_menu = static function ($location, $menu_class, $extra = arr
 					}
 					$soc_host = wp_parse_url($soc_url, PHP_URL_HOST);
 					$home_host = wp_parse_url(home_url('/'), PHP_URL_HOST);
-					$social_new_tab = $soc_url !== '#'
-						&& $soc_host
-						&& $home_host
-						&& strtolower((string) $soc_host) !== strtolower((string) $home_host);
+					$social_new_tab = $soc_url !== '#' &&
+						$soc_host &&
+						$home_host &&
+						strtolower((string) $soc_host) !== strtolower((string) $home_host);
 					?>
 					<a
 						href="<?php echo esc_url($soc_url); ?>"
@@ -412,8 +411,8 @@ $reacon_footer_echo_menu = static function ($location, $menu_class, $extra = arr
 		<div class="text-center">
 
 			<p class="mb-3 font-sans text-[12.5px] text-white/55">
-				&copy; <?php echo esc_html((string) $current_year); ?> &mdash; <?php echo esc_html($site_name); ?>
-				<?php if ($footer_copyright_suffix !== '') : ?>
+			
+				<?php if ($footer_copyright_suffix !== ''): ?>
 					<?php echo ' ' . esc_html($footer_copyright_suffix); ?>
 				<?php endif; ?>
 			</p>
