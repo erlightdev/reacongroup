@@ -151,6 +151,15 @@ function reacon_group_scripts()
 	wp_enqueue_style('reacon-group-style', get_stylesheet_uri(), array(), REACON_GROUP_VERSION);
 	wp_enqueue_script('reacon-group-script', get_template_directory_uri() . '/js/script.min.js', array(), REACON_GROUP_VERSION, true);
 
+	// Alpine.js for lightweight interactive UI behavior.
+	wp_enqueue_script(
+		'reacon-group-alpine',
+		'https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js',
+		array(),
+		'3.14.1',
+		true
+	);
+
 	// Phosphor icons (all weights).
 	wp_enqueue_script(
 		'reacon-group-phosphor',
@@ -194,7 +203,7 @@ add_action('wp_enqueue_scripts', 'reacon_group_scripts');
 function reacon_group_defer_scripts($tag, $handle)
 {
 	$defer_handles = array(
-		// Add handles of scripts that should be deferred here if needed in the future.
+		'reacon-group-alpine',
 	);
 
 	if (in_array($handle, $defer_handles, true)) {
