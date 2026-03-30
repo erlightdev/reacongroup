@@ -1,10 +1,10 @@
 <?php
+
 /**
  * Home page section: Brand intro — heading + partner cards.
  *
  * @package reacon-group
  */
-
 $brandintro_dir = get_template_directory_uri() . '/public/brandintro';
 ?>
 
@@ -26,9 +26,9 @@ $brandintro_dir = get_template_directory_uri() . '/public/brandintro';
 	<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 xl:gap-8 w-full max-w-[1400px]">
 
 		<!-- Cups Galore -->
-		<div class="group bg-muted border border-border rounded-[20px] p-5 sm:p-6 min-h-[240px] h-full flex flex-col transition-all duration-300 hover:border-primary hover:shadow-sm">
+		<div class="group bg-muted border border-border rounded-[20px] p-5 sm:p-6 min-h-[240px] h-full flex flex-col transition-all duration-300 hover:bg-white hover:border-primary hover:shadow-sm">
 			<div class="flex flex-col gap-4 mb-6">
-				<div class="h-8 flex items-center">
+				<div class="flex h-8 w-full items-center justify-end">
 					<img
 						src="<?php echo esc_url($brandintro_dir . '/cups-galore-logo.png'); ?>"
 						alt="<?php esc_attr_e('Cups Galore', 'reacon-group'); ?>"
@@ -49,9 +49,9 @@ $brandintro_dir = get_template_directory_uri() . '/public/brandintro';
 		</div>
 
 		<!-- Digital Press -->
-		<div class="group bg-muted border border-border rounded-[20px] p-5 sm:p-6 min-h-[240px] h-full flex flex-col transition-all duration-300 hover:border-primary hover:shadow-sm">
+		<div class="group bg-muted border border-border rounded-[20px] p-5 sm:p-6 min-h-[240px] h-full flex flex-col transition-all duration-300 hover:bg-white hover:border-primary hover:shadow-sm">
 			<div class="flex flex-col gap-4 mb-6">
-				<div class="h-8 flex items-center">
+				<div class="flex h-8 w-full items-center justify-end">
 					<img
 						src="<?php echo esc_url($brandintro_dir . '/digital-press-logo.png'); ?>"
 						alt="<?php esc_attr_e('Digital Press', 'reacon-group'); ?>"
@@ -72,9 +72,9 @@ $brandintro_dir = get_template_directory_uri() . '/public/brandintro';
 		</div>
 
 		<!-- Westman Printing -->
-		<div class="group bg-muted border border-border rounded-[20px] p-5 sm:p-6 min-h-[240px] h-full flex flex-col transition-all duration-300 hover:border-primary hover:shadow-sm">
+		<div class="group bg-muted border border-border rounded-[20px] p-5 sm:p-6 min-h-[240px] h-full flex flex-col transition-all duration-300 hover:bg-white hover:border-primary hover:shadow-sm">
 			<div class="flex flex-col gap-4 mb-6">
-				<div class="h-8 flex items-center">
+				<div class="flex h-8 w-full items-center justify-end">
 					<img
 						src="<?php echo esc_url($brandintro_dir . '/westman.svg'); ?>"
 						alt="<?php esc_attr_e('Westman Printing', 'reacon-group'); ?>"
@@ -95,9 +95,9 @@ $brandintro_dir = get_template_directory_uri() . '/public/brandintro';
 		</div>
 
 		<!-- Horizon Print Management -->
-		<div class="group bg-muted border border-border rounded-[20px] p-5 sm:p-6 min-h-[240px] h-full flex flex-col transition-all duration-300 hover:border-primary hover:shadow-sm">
+		<div class="group bg-muted border border-border rounded-[20px] p-5 sm:p-6 min-h-[240px] h-full flex flex-col transition-all duration-300 hover:bg-white hover:border-primary hover:shadow-sm">
 			<div class="flex flex-col gap-4 mb-6">
-				<div class="h-8 flex items-center">
+				<div class="flex h-8 w-full items-center justify-end">
 					<img
 						src="<?php echo esc_url($brandintro_dir . '/hirizon.png'); ?>"
 						alt="<?php esc_attr_e('Horizon Print Management', 'reacon-group'); ?>"

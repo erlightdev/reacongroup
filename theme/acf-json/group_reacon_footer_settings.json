@@ -1,0 +1,287 @@
+{
+    "key": "group_reacon_footer_settings",
+    "title": "Footer content",
+    "fields": [
+        {
+            "key": "field_reacon_footer_logo",
+            "label": "Footer logo",
+            "name": "footer_logo",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Optional. Falls back to the default Reacon logo if empty.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "return_format": "url",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": ""
+        },
+        {
+            "key": "field_reacon_footer_show_language",
+            "label": "Show language control",
+            "name": "footer_show_language",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Toggle the language button in the footer top bar.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "message": "",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_reacon_footer_language_label",
+            "label": "Language label",
+            "name": "footer_language_label",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Shown next to the globe icon when the language control is visible.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_reacon_footer_show_language",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "default_value": "English",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_reacon_footer_cta_title",
+            "label": "CTA card title",
+            "name": "footer_cta_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_reacon_footer_cta_features",
+            "label": "CTA checklist items",
+            "name": "footer_cta_features",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "",
+            "button_label": "Add item",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_reacon_footer_cta_feature_text",
+                    "label": "Text",
+                    "name": "text",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": { "width": "", "class": "", "id": "" },
+                    "default_value": "",
+                    "placeholder": "",
+                    "maxlength": "",
+                    "rows": 3,
+                    "new_lines": "br",
+                    "parent_repeater": "field_reacon_footer_cta_features"
+                }
+            ]
+        },
+        {
+            "key": "field_reacon_footer_cta_primary",
+            "label": "Primary CTA button",
+            "name": "footer_cta_primary",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "return_format": "array"
+        },
+        {
+            "key": "field_reacon_footer_cta_secondary",
+            "label": "Secondary CTA button",
+            "name": "footer_cta_secondary",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "return_format": "array"
+        },
+        {
+            "key": "field_reacon_footer_social",
+            "label": "Social profiles",
+            "name": "footer_social_links",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Order controls display order. Pick a network for built-in icons or choose Custom and upload an icon.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "layout": "row",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "",
+            "button_label": "Add network",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_reacon_footer_social_network",
+                    "label": "Network",
+                    "name": "network",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": { "width": "33", "class": "", "id": "" },
+                    "choices": {
+                        "facebook": "Facebook",
+                        "twitter": "Twitter / X",
+                        "instagram": "Instagram",
+                        "linkedin": "LinkedIn",
+                        "youtube": "YouTube",
+                        "custom": "Custom"
+                    },
+                    "default_value": "facebook",
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "ui": 0,
+                    "return_format": "value",
+                    "ajax": 0,
+                    "placeholder": "",
+                    "parent_repeater": "field_reacon_footer_social"
+                },
+                {
+                    "key": "field_reacon_footer_social_url",
+                    "label": "URL",
+                    "name": "url",
+                    "aria-label": "",
+                    "type": "url",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": { "width": "34", "class": "", "id": "" },
+                    "default_value": "",
+                    "placeholder": "",
+                    "parent_repeater": "field_reacon_footer_social"
+                },
+                {
+                    "key": "field_reacon_footer_social_label",
+                    "label": "Accessible label",
+                    "name": "label",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Used for aria-label and empty img alt (recommended).",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": { "width": "33", "class": "", "id": "" },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": "",
+                    "parent_repeater": "field_reacon_footer_social"
+                },
+                {
+                    "key": "field_reacon_footer_social_icon",
+                    "label": "Custom icon",
+                    "name": "icon",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "Only used when Network is Custom.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_reacon_footer_social_network",
+                                "operator": "==",
+                                "value": "custom"
+                            }
+                        ]
+                    ],
+                    "wrapper": { "width": "", "class": "", "id": "" },
+                    "return_format": "url",
+                    "preview_size": "thumbnail",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": "",
+                    "parent_repeater": "field_reacon_footer_social"
+                }
+            ]
+        },
+        {
+            "key": "field_reacon_footer_copyright_suffix",
+            "label": "Copyright suffix",
+            "name": "footer_copyright_suffix",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Optional text after the site name (e.g. tagline or legal entity).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": { "width": "", "class": "", "id": "" },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "footer-setting"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Synced to theme acf-json. Assign footer columns under Appearance → Menus.",
+    "show_in_rest": 0,
+    "modified": 1730289000
+}

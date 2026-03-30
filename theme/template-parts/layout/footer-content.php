@@ -3,16 +3,201 @@
 /**
  * Template part: Site footer content.
  *
- * Styled exclusively with Tailwind v4 utilities that resolve against the
- * theme's design tokens defined in tailwind/tailwind-theme.css.
- * No custom inline <style> block — every class is in the compiled style.css.
+ * Content: ACF Options (“Footer Setting”) + Appearance → Menus (footer locations).
+ * Styled with Tailwind v4 utilities (tailwind/tailwind-theme.css tokens).
  *
  * @package reacon-group
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  */
-$logo_src = get_template_directory_uri() . '/public/image/Reacon Logo 2.svg';
+
+$default_logo = get_template_directory_uri() . '/public/image/Reacon Logo 2.svg';
 $current_year = absint(gmdate('Y'));
-$site_name = esc_html(get_bloginfo('name'));
+$site_name = get_bloginfo('name');
+
+// —— ACF option helpers (graceful when ACF is disabled) ————————————————
+$footer_logo = $default_logo;
+$footer_show_language = true;
+$footer_language_label = __('English', 'reacon-group');
+$footer_cta_title = '';
+$footer_cta_features = array();
+$footer_cta_primary = null;
+$footer_cta_secondary = null;
+$footer_social_links = null;
+$footer_copyright_suffix = '';
+
+if (function_exists('get_field')) {
+	$acf_logo = get_field('footer_logo', 'option');
+	if (!empty($acf_logo) && is_string($acf_logo)) {
+		$footer_logo = $acf_logo;
+	}
+
+	$show_lang = get_field('footer_show_language', 'option');
+	if ($show_lang === false || $show_lang === '0' || $show_lang === 0) {
+		$footer_show_language = false;
+	}
+
+	$lang_label = get_field('footer_language_label', 'option');
+	if (is_string($lang_label) && $lang_label !== '') {
+		$footer_language_label = $lang_label;
+	}
+
+	$cta_title = get_field('footer_cta_title', 'option');
+	if (is_string($cta_title)) {
+		$footer_cta_title = $cta_title;
+	}
+
+	$features = get_field('footer_cta_features', 'option');
+	if (is_array($features)) {
+		$footer_cta_features = $features;
+	}
+
+	$footer_cta_primary = get_field('footer_cta_primary', 'option');
+	$footer_cta_secondary = get_field('footer_cta_secondary', 'option');
+
+	$social = get_field('footer_social_links', 'option');
+	if (is_array($social) && $social !== array()) {
+		$footer_social_links = $social;
+	}
+
+	$suffix = get_field('footer_copyright_suffix', 'option');
+	if (is_string($suffix)) {
+		$footer_copyright_suffix = $suffix;
+	}
+}
+
+// Defaults mirror previous static footer when options are empty.
+if ($footer_cta_title === '') {
+	$footer_cta_title = __('Power Your Communication With Precision', 'reacon-group');
+}
+
+if ($footer_cta_features === array()) {
+	$footer_cta_features = array(
+		array(
+			'text' => __('Deliver print, packaging, and campaigns on time, every time', 'reacon-group'),
+		),
+		array(
+			'text' => __('Cut operational delays with one integrated partner', 'reacon-group'),
+		),
+	);
+}
+
+if (!is_array($footer_cta_primary) || empty($footer_cta_primary['url'])) {
+	$footer_cta_primary = array(
+		'title' => __('Work With Reacon', 'reacon-group'),
+		'url' => home_url('/contact-us/'),
+		'target' => '',
+	);
+}
+
+if (!is_array($footer_cta_secondary) || empty($footer_cta_secondary['url'])) {
+	$footer_cta_secondary = array(
+		'title' => __('Talk to Our Team', 'reacon-group'),
+		'url' => home_url('/talk-to-our-team/'),
+		'target' => '',
+	);
+}
+
+if ($footer_social_links === null) {
+	$base = get_template_directory_uri() . '/public/social-icon/';
+	$footer_social_links = array(
+		array('network' => 'facebook', 'url' => '#', 'label' => __('Facebook', 'reacon-group')),
+		array('network' => 'twitter', 'url' => '#', 'label' => __('Twitter / X', 'reacon-group')),
+		array('network' => 'instagram', 'url' => '#', 'label' => __('Instagram', 'reacon-group')),
+		array('network' => 'linkedin', 'url' => '#', 'label' => __('LinkedIn', 'reacon-group')),
+		array('network' => 'youtube', 'url' => '#', 'label' => __('YouTube', 'reacon-group')),
+	);
+}
+
+/**
+ * @param array<string,mixed> $row Repeater row.
+ * @return array{src:string,class:string,w:int,h:int,label:string}|null
+ */
+$reacon_footer_social_asset = static function ($row) {
+	if (!is_array($row)) {
+		return null;
+	}
+	$url = isset($row['url']) ? esc_url_raw($row['url']) : '';
+	if ($url === '') {
+		return null;
+	}
+
+	$network = isset($row['network']) ? (string) $row['network'] : 'custom';
+	$base = get_template_directory_uri() . '/public/social-icon/';
+	$label = isset($row['label']) && is_string($row['label']) ? $row['label'] : '';
+
+	$presets = array(
+		'facebook' => array('src' => $base . 'facebook.svg', 'class' => 'h-5 w-auto', 'w' => 12, 'h' => 21),
+		'twitter' => array('src' => $base . 'twitter.svg', 'class' => 'h-10 w-auto', 'w' => 42, 'h' => 42),
+		'instagram' => array('src' => $base . 'instagram.svg', 'class' => 'h-5 w-auto', 'w' => 21, 'h' => 21),
+		'linkedin' => array('src' => $base . 'linkedin.svg', 'class' => 'h-5 w-auto', 'w' => 21, 'h' => 20),
+		'youtube' => array('src' => $base . 'youtube.svg', 'class' => 'h-5 w-auto', 'w' => 24, 'h' => 17),
+	);
+
+	if ($network === 'custom') {
+		$icon = isset($row['icon']) && is_string($row['icon']) ? $row['icon'] : '';
+		if ($icon === '') {
+			return null;
+		}
+		if ($label === '') {
+			$label = __('Social link', 'reacon-group');
+		}
+		return array(
+			'src' => esc_url($icon),
+			'class' => 'h-5 w-auto',
+			'w' => 24,
+			'h' => 24,
+			'label' => $label,
+		);
+	}
+
+	if (!isset($presets[$network])) {
+		return null;
+	}
+
+	if ($label === '') {
+		$fallback_labels = array(
+			'facebook' => __('Facebook', 'reacon-group'),
+			'twitter' => __('Twitter / X', 'reacon-group'),
+			'instagram' => __('Instagram', 'reacon-group'),
+			'linkedin' => __('LinkedIn', 'reacon-group'),
+			'youtube' => __('YouTube', 'reacon-group'),
+		);
+		$label = $fallback_labels[$network] ?? __('Social link', 'reacon-group');
+	}
+
+	return array_merge($presets[$network], array('label' => $label));
+};
+
+/**
+ * @param string               $location Theme location slug.
+ * @param string               $menu_class <ul> classes.
+ * @param array<string,mixed> $extra wp_nav_menu args overrides.
+ */
+$reacon_footer_echo_menu = static function ($location, $menu_class, $extra = array()) {
+	$args = array_merge(
+		array(
+			'theme_location' => $location,
+			'container' => false,
+			'menu_class' => $menu_class,
+			'fallback_cb' => false,
+			'depth' => 1,
+			'echo' => false,
+		),
+		$extra
+	);
+
+	$html = wp_nav_menu($args);
+	if ($html) {
+		echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped — core menu HTML.
+		return;
+	}
+
+	printf(
+		'<ul class="%s"></ul>',
+		esc_attr($menu_class)
+	);
+};
+
 ?>
 
 <footer
@@ -36,7 +221,7 @@ $site_name = esc_html(get_bloginfo('name'));
 				rel="home"
 				aria-label="<?php echo esc_attr($site_name); ?> — <?php esc_attr_e('home', 'reacon-group'); ?>">
 				<img
-					src="<?php echo esc_url($logo_src); ?>"
+					src="<?php echo esc_url($footer_logo); ?>"
 					alt="<?php echo esc_attr($site_name); ?>"
 					width="240"
 					height="64"
@@ -45,140 +230,109 @@ $site_name = esc_html(get_bloginfo('name'));
 					class="h-16 w-auto" />
 			</a>
 
-			<!-- Language selector -->
-			<button
-				type="button"
-				class="inline-flex cursor-pointer items-center gap-2 rounded-full border border-white/25 bg-transparent px-[18px] py-[9px] font-sans text-[13.5px] text-white transition-colors duration-200 hover:bg-white/[.06]"
-				aria-label="<?php esc_attr_e('Select language', 'reacon-group'); ?>">
-				<!-- Globe -->
-				<i class="ph ph-globe shrink-0 text-[17px]" aria-hidden="true"></i>
-				<span><?php esc_html_e('English', 'reacon-group'); ?></span>
-				<!-- Chevron down -->
-				<i class="ph-bold ph-caret-down shrink-0 text-[10px] opacity-65" aria-hidden="true"></i>
-			</button>
+			<?php if ($footer_show_language) : ?>
+				<!-- Language selector (label from ACF or default) -->
+				<button
+					type="button"
+					class="inline-flex cursor-pointer items-center gap-2 rounded-full border border-white/25 bg-transparent px-[18px] py-[9px] font-sans text-[13.5px] text-white transition-colors duration-200 hover:bg-white/[.06]"
+					aria-label="<?php esc_attr_e('Select language', 'reacon-group'); ?>">
+					<i class="ph ph-globe shrink-0 text-[17px]" aria-hidden="true"></i>
+					<span><?php echo esc_html($footer_language_label); ?></span>
+					<i class="ph-bold ph-caret-down shrink-0 text-[10px] opacity-65" aria-hidden="true"></i>
+				</button>
+			<?php endif; ?>
 
 		</div><!-- /top bar -->
 
-		<!-- ══ NAVIGATION COLUMNS + CTA CARD ══════════════════════════ -->
+		<!-- ══ NAVIGATION COLUMNS + CTA CARD (menus: Appearance → Menus) ══ -->
 		<div class="grid grid-cols-2 gap-7 pb-14 lg:grid-cols-[190px_200px_250px_1fr]">
 
 			<!-- Quick Links -->
-			<nav aria-label="<?php esc_attr_e('Quick links', 'reacon-group'); ?>">
+			<nav aria-label="<?php echo esc_attr(reacon_group_footer_nav_column_heading('reacon-footer-quick-links', __('Quick links', 'reacon-group'))); ?>">
 				<h3 class="mb-[18px] font-display text-[14.5px] font-semibold tracking-[0.01em] text-white">
-					<?php esc_html_e('Quick Links', 'reacon-group'); ?>
+					<?php echo esc_html(reacon_group_footer_nav_column_heading('reacon-footer-quick-links', __('Quick Links', 'reacon-group'))); ?>
 				</h3>
-				<ul class="flex flex-col gap-[11px]">
-					<li><a href="<?php echo esc_url(home_url('/')); ?>"
-							class="font-sans text-sm text-white/85 transition-colors duration-200 hover:text-primary">
-							<?php esc_html_e('Home', 'reacon-group'); ?></a></li>
-					<li><a href="<?php echo esc_url(home_url('/about-us/')); ?>"
-							class="font-sans text-sm text-white/85 transition-colors duration-200 hover:text-primary">
-							<?php esc_html_e('About Us', 'reacon-group'); ?></a></li>
-					<li><a href="<?php echo esc_url(home_url('/who-we-are/')); ?>"
-							class="font-sans text-sm text-white/85 transition-colors duration-200 hover:text-primary">
-							<?php esc_html_e('Who We Are', 'reacon-group'); ?></a></li>
-					<li><a href="<?php echo esc_url(home_url('/blogs/')); ?>"
-							class="font-sans text-sm text-white/85 transition-colors duration-200 hover:text-primary">
-							<?php esc_html_e('Blogs', 'reacon-group'); ?></a></li>
-					<li><a href="<?php echo esc_url(home_url('/contact-us/')); ?>"
-							class="font-sans text-sm text-white/85 transition-colors duration-200 hover:text-primary">
-							<?php esc_html_e('Contact Us', 'reacon-group'); ?></a></li>
-				</ul>
+				<?php
+				$reacon_footer_echo_menu(
+					'reacon-footer-quick-links',
+					'flex flex-col gap-[11px]'
+				);
+				?>
 			</nav>
 
 			<!-- Solution -->
-			<nav aria-label="<?php esc_attr_e('Solutions', 'reacon-group'); ?>">
+			<nav aria-label="<?php echo esc_attr(reacon_group_footer_nav_column_heading('reacon-footer-solutions', __('Solutions', 'reacon-group'))); ?>">
 				<h3 class="mb-[18px] font-display text-[14.5px] font-semibold tracking-[0.01em] text-white">
-					<?php esc_html_e('Solution', 'reacon-group'); ?>
+					<?php echo esc_html(reacon_group_footer_nav_column_heading('reacon-footer-solutions', __('Solution', 'reacon-group'))); ?>
 				</h3>
-				<ul class="flex flex-col gap-[11px]">
-					<li><a href="<?php echo esc_url(home_url('/content-studio/')); ?>"
-							class="font-sans text-sm text-white/85 transition-colors duration-200 hover:text-primary">
-							<?php esc_html_e('Content Studio', 'reacon-group'); ?></a></li>
-					<li><a href="<?php echo esc_url(home_url('/production-fulfillment/')); ?>"
-							class="font-sans text-sm text-white/85 transition-colors duration-200 hover:text-primary">
-							<?php esc_html_e('Production &amp; Fulfillment', 'reacon-group'); ?></a></li>
-					<li><a href="<?php echo esc_url(home_url('/data-driven-innovation/')); ?>"
-							class="font-sans text-sm text-white/85 transition-colors duration-200 hover:text-primary">
-							<?php esc_html_e('Data-Driven Innovation', 'reacon-group'); ?></a></li>
-				</ul>
+				<?php
+				$reacon_footer_echo_menu(
+					'reacon-footer-solutions',
+					'flex flex-col gap-[11px]'
+				);
+				?>
 			</nav>
 
 			<!-- Industries -->
-			<nav aria-label="<?php esc_attr_e('Industries', 'reacon-group'); ?>">
+			<nav aria-label="<?php echo esc_attr(reacon_group_footer_nav_column_heading('reacon-footer-industries', __('Industries', 'reacon-group'))); ?>">
 				<h3 class="mb-[18px] font-display text-[14.5px] font-semibold tracking-[0.01em] text-white">
-					<?php esc_html_e('Industries', 'reacon-group'); ?>
+					<?php echo esc_html(reacon_group_footer_nav_column_heading('reacon-footer-industries', __('Industries', 'reacon-group'))); ?>
 				</h3>
-				<ul class="flex flex-col gap-[11px]">
-					<li><a href="<?php echo esc_url(home_url('/industries/banking-finance/')); ?>"
-							class="font-sans text-sm text-white/85 transition-colors duration-200 hover:text-primary">
-							<?php esc_html_e('Banking &amp; Finance', 'reacon-group'); ?></a></li>
-					<li><a href="<?php echo esc_url(home_url('/industries/health-pharmaceuticals/')); ?>"
-							class="font-sans text-sm text-white/85 transition-colors duration-200 hover:text-primary">
-							<?php esc_html_e('Health &amp; Pharmaceuticals', 'reacon-group'); ?></a></li>
-					<li><a href="<?php echo esc_url(home_url('/industries/e-commerce/')); ?>"
-							class="font-sans text-sm text-white/85 transition-colors duration-200 hover:text-primary">
-							<?php esc_html_e('E-Commerce', 'reacon-group'); ?></a></li>
-					<li><a href="<?php echo esc_url(home_url('/industries/charities-not-for-profit/')); ?>"
-							class="font-sans text-sm text-white/85 transition-colors duration-200 hover:text-primary">
-							<?php esc_html_e('Charities &amp; Not-for-Profit', 'reacon-group'); ?></a></li>
-					<li><a href="<?php echo esc_url(home_url('/industries/utilities/')); ?>"
-							class="font-sans text-sm text-white/85 transition-colors duration-200 hover:text-primary">
-							<?php esc_html_e('Utilities', 'reacon-group'); ?></a></li>
-					<li><a href="<?php echo esc_url(home_url('/industries/government/')); ?>"
-							class="font-sans text-sm text-white/85 transition-colors duration-200 hover:text-primary">
-							<?php esc_html_e('Government', 'reacon-group'); ?></a></li>
-				</ul>
+				<?php
+				$reacon_footer_echo_menu(
+					'reacon-footer-industries',
+					'flex flex-col gap-[11px]'
+				);
+				?>
 			</nav>
 
-			<!-- CTA Card — full-width on mobile / tablet, 4th column on desktop -->
+			<!-- CTA Card — ACF options -->
 			<div class="col-span-2 lg:col-span-1">
 				<div class="rounded-[30px] border border-[#A6EEF2] bg-[#E9FBFC] p-8">
 
 					<h2 class="mb-[18px] font-display text-2xl font-bold leading-[1.22] text-[#1e2330]">
-						<?php esc_html_e('Power Your Communication With Precision', 'reacon-group'); ?>
+						<?php echo esc_html($footer_cta_title); ?>
 					</h2>
 
-					<!-- Feature checklist -->
 					<ul class="mb-6 flex flex-col gap-[11px]" role="list">
+						<?php foreach ($footer_cta_features as $feature) : ?>
+							<?php
+							$ftext = '';
+							if (is_array($feature) && !empty($feature['text']) && is_string($feature['text'])) {
+								$ftext = $feature['text'];
+							}
+							if ($ftext === '') {
+								continue;
+							}
+							?>
+							<li class="flex items-start gap-[10px]">
+								<span
+									aria-hidden="true"
+									class="mt-[3px] flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full bg-secondary">
+									<svg width="10" height="10" viewBox="0 0 12 12" fill="none"
+										stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+										<polyline points="2,6.5 5,9.5 10,3" />
+									</svg>
+								</span>
+								<p class="font-sans text-[13.5px] leading-[1.55] text-[#4b5058]">
+									<?php echo esc_html($ftext); ?>
+								</p>
+							</li>
+						<?php endforeach; ?>
+					</ul>
 
-						<li class="flex items-start gap-[10px]">
-							<span
-								aria-hidden="true"
-								class="mt-[3px] flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full bg-secondary">
-								<svg width="10" height="10" viewBox="0 0 12 12" fill="none"
-									stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-									<polyline points="2,6.5 5,9.5 10,3" />
-								</svg>
-							</span>
-							<p class="font-sans text-[13.5px] leading-[1.55] text-[#4b5058]">
-								<?php esc_html_e('Deliver print, packaging, and campaigns on time, every time', 'reacon-group'); ?>
-							</p>
-						</li>
-
-						<li class="flex items-start gap-[10px]">
-							<span
-								aria-hidden="true"
-								class="mt-[3px] flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full bg-secondary">
-								<svg width="10" height="10" viewBox="0 0 12 12" fill="none"
-									stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-									<polyline points="2,6.5 5,9.5 10,3" />
-								</svg>
-							</span>
-							<p class="font-sans text-[13.5px] leading-[1.55] text-[#4b5058]">
-								<?php esc_html_e('Cut operational delays with one integrated partner', 'reacon-group'); ?>
-							</p>
-						</li>
-
-					</ul><!-- /checklist -->
-
-					<!-- CTA buttons -->
 					<div class="flex flex-wrap items-center gap-[10px]">
-
+						<?php
+						$p = $footer_cta_primary;
+						$p_target = (!empty($p['target']) && is_string($p['target'])) ? trim($p['target']) : '';
+						$p_title = (!empty($p['title']) && is_string($p['title'])) ? $p['title'] : '';
+						?>
 						<a
-							href="<?php echo esc_url(home_url('/contact-us/')); ?>"
+							href="<?php echo esc_url($p['url']); ?>"
+							<?php echo $p_target !== '' ? ' target="' . esc_attr($p_target) . '"' : ''; ?>
+							<?php echo ($p_target && '_blank' === strtolower($p_target)) ? ' rel="noopener noreferrer"' : ''; ?>
 							class="inline-flex items-center gap-[10px] rounded-full bg-primary py-2 pl-5 pr-2.5 font-display text-[13.5px] font-bold text-white/85 no-underline transition-all duration-200 hover:-translate-y-px hover:brightness-110 whitespace-nowrap">
-							<?php esc_html_e('Work With Reacon', 'reacon-group'); ?>
+							<?php echo esc_html($p_title); ?>
 							<span
 								aria-hidden="true"
 								class="flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-full bg-black/[.16]">
@@ -186,78 +340,67 @@ $site_name = esc_html(get_bloginfo('name'));
 							</span>
 						</a>
 
+						<?php
+						$s = $footer_cta_secondary;
+						$s_target = (!empty($s['target']) && is_string($s['target'])) ? trim($s['target']) : '';
+						$s_title = (!empty($s['title']) && is_string($s['title'])) ? $s['title'] : '';
+						?>
 						<a
-							href="<?php echo esc_url(home_url('/talk-to-our-team/')); ?>"
+							href="<?php echo esc_url($s['url']); ?>"
+							<?php echo $s_target !== '' ? ' target="' . esc_attr($s_target) . '"' : ''; ?>
+							<?php echo ($s_target && '_blank' === strtolower(trim($s_target))) ? ' rel="noopener noreferrer"' : ''; ?>
 							class="inline-flex items-center justify-center rounded-full border-[1.5px] border-primary px-[22px] py-[9px] font-display text-[13.5px] font-semibold text-primary no-underline transition-all duration-200 hover:-translate-y-px hover:bg-primary/[.07] whitespace-nowrap">
-							<?php esc_html_e('Talk to Our Team', 'reacon-group'); ?>
+							<?php echo esc_html($s_title); ?>
 						</a>
+					</div>
 
-					</div><!-- /cta buttons -->
-
-				</div><!-- /cta card -->
-			</div><!-- /cta col -->
+				</div>
+			</div>
 
 		</div><!-- /nav-cta grid -->
 
-		<!-- ══ SOCIAL ICONS ROW ════════════════════════════════════════ -->
+		<!-- ══ SOCIAL ICONS ROW (ACF repeater or defaults) ═══════════════ -->
 		<div class="mb-[18px] flex items-center">
 
-			<!-- Left fade line -->
 			<div
 				aria-hidden="true"
 				class="h-px flex-1"
 				style="background: linear-gradient(to right, transparent, rgba(213,219,226,0.22));"></div>
 
 			<div class="flex items-center gap-5 px-7">
-
-				<a
-					href="#"
-					aria-label="<?php esc_attr_e('Facebook', 'reacon-group'); ?>"
-					rel="noopener noreferrer"
-					target="_blank"
-					class="transition-all duration-200 hover:-translate-y-0.5 hover:brightness-125">
-					<img src="<?php echo esc_url(get_template_directory_uri() . '/public/social-icon/facebook.svg'); ?>" alt="" width="12" height="21" loading="lazy" class="h-5 w-auto" />
-				</a>
-
-				<a
-					href="#"
-					aria-label="<?php esc_attr_e('Twitter / X', 'reacon-group'); ?>"
-					rel="noopener noreferrer"
-					target="_blank"
-					class="transition-all duration-200 hover:-translate-y-0.5 hover:brightness-125">
-					<img src="<?php echo esc_url(get_template_directory_uri() . '/public/social-icon/twitter.svg'); ?>" alt="" width="42" height="42" loading="lazy" class="h-10 w-auto" />
-				</a>
-
-				<a
-					href="#"
-					aria-label="<?php esc_attr_e('Instagram', 'reacon-group'); ?>"
-					rel="noopener noreferrer"
-					target="_blank"
-					class="transition-all duration-200 hover:-translate-y-0.5 hover:brightness-125">
-					<img src="<?php echo esc_url(get_template_directory_uri() . '/public/social-icon/instagram.svg'); ?>" alt="" width="21" height="21" loading="lazy" class="h-5 w-auto" />
-				</a>
-
-				<a
-					href="#"
-					aria-label="<?php esc_attr_e('LinkedIn', 'reacon-group'); ?>"
-					rel="noopener noreferrer"
-					target="_blank"
-					class="transition-all duration-200 hover:-translate-y-0.5 hover:brightness-125">
-					<img src="<?php echo esc_url(get_template_directory_uri() . '/public/social-icon/linkedin.svg'); ?>" alt="" width="21" height="20" loading="lazy" class="h-5 w-auto" />
-				</a>
-
-				<a
-					href="#"
-					aria-label="<?php esc_attr_e('YouTube', 'reacon-group'); ?>"
-					rel="noopener noreferrer"
-					target="_blank"
-					class="transition-all duration-200 hover:-translate-y-0.5 hover:brightness-125">
-					<img src="<?php echo esc_url(get_template_directory_uri() . '/public/social-icon/youtube.svg'); ?>" alt="" width="24" height="17" loading="lazy" class="h-5 w-auto" />
-				</a>
-
+				<?php foreach ($footer_social_links as $row) : ?>
+					<?php
+					$asset = $reacon_footer_social_asset($row);
+					if (!$asset) {
+						continue;
+					}
+					$soc_url = isset($row['url']) ? esc_url($row['url']) : '';
+					if ($soc_url === '') {
+						continue;
+					}
+					$soc_host = wp_parse_url($soc_url, PHP_URL_HOST);
+					$home_host = wp_parse_url(home_url('/'), PHP_URL_HOST);
+					$social_new_tab = $soc_url !== '#'
+						&& $soc_host
+						&& $home_host
+						&& strtolower((string) $soc_host) !== strtolower((string) $home_host);
+					?>
+					<a
+						href="<?php echo esc_url($soc_url); ?>"
+						aria-label="<?php echo esc_attr($asset['label']); ?>"
+						<?php echo $social_new_tab ? ' rel="noopener noreferrer" target="_blank"' : ''; ?>
+						class="transition-all duration-200 hover:-translate-y-0.5 hover:brightness-125">
+						<img
+							src="<?php echo esc_url($asset['src']); ?>"
+							alt=""
+							width="<?php echo esc_attr((string) $asset['w']); ?>"
+							height="<?php echo esc_attr((string) $asset['h']); ?>"
+							loading="lazy"
+							class="<?php echo esc_attr($asset['class']); ?>" />
+					</a>
+				<?php endforeach; ?>
 			</div>
 
-			<!-- Right fade line -->
 			<div
 				aria-hidden="true"
 				class="h-px flex-1"
@@ -265,61 +408,39 @@ $site_name = esc_html(get_bloginfo('name'));
 
 		</div><!-- /social row -->
 
-		<!-- ══ BOTTOM: Copyright, Legal, Brands ════════════════════════ -->
+		<!-- ══ BOTTOM: Copyright, Legal menu, Brands menu ═══════════════ -->
 		<div class="text-center">
 
 			<p class="mb-3 font-sans text-[12.5px] text-white/55">
-				&copy; <?php echo $current_year; ?> &mdash; <?php echo $site_name; ?>
+				&copy; <?php echo esc_html((string) $current_year); ?> &mdash; <?php echo esc_html($site_name); ?>
+				<?php if ($footer_copyright_suffix !== '') : ?>
+					<?php echo ' ' . esc_html($footer_copyright_suffix); ?>
+				<?php endif; ?>
 			</p>
 
-			<!-- Legal links -->
-			<ul class="mb-[26px] flex flex-wrap justify-center gap-x-6 gap-y-1.5" aria-label="<?php esc_attr_e('Legal links', 'reacon-group'); ?>">
-				<li>
-					<a href="<?php echo esc_url(home_url('/terms/')); ?>"
-						class="font-sans text-[13px] text-white/85 no-underline transition-colors duration-200 hover:text-primary">
-						<?php esc_html_e('Terms', 'reacon-group'); ?>
-					</a>
-				</li>
-				<li>
-					<a href="<?php echo esc_url(home_url('/privacy/')); ?>"
-						class="font-sans text-[13px] text-white/85 no-underline transition-colors duration-200 hover:text-primary">
-						<?php esc_html_e('Privacy', 'reacon-group'); ?>
-					</a>
-				</li>
-				<li>
-					<a href="<?php echo esc_url(home_url('/cookies/')); ?>"
-						class="font-sans text-[13px] text-white/85 no-underline transition-colors duration-200 hover:text-primary">
-						<?php esc_html_e('Cookies', 'reacon-group'); ?>
-					</a>
-				</li>
-				<li>
-					<a href="<?php echo esc_url(home_url('/sitemap/')); ?>"
-						class="font-sans text-[13px] text-white/85 no-underline transition-colors duration-200 hover:text-primary">
-						<?php esc_html_e('Sitemap', 'reacon-group'); ?>
-					</a>
-				</li>
-			</ul>
+			<?php
+			$reacon_footer_echo_menu(
+				'reacon-footer-legal',
+				'mb-[26px] flex flex-wrap justify-center gap-x-6 gap-y-1.5',
+				array(
+					'menu_id' => 'reacon-footer-legal-menu',
+					'items_wrap' => '<ul id="%1$s" aria-label="' . esc_attr__('Legal links', 'reacon-group') . '" class="%2$s">%3$s</ul>',
+				)
+			);
+			?>
 
-			<!-- Divider -->
 			<div class="mb-[22px] h-px bg-white/[.08]" aria-hidden="true"></div>
 
-			<!-- Sub-brands / group companies -->
-			<ul
-				class="flex flex-wrap justify-center gap-x-11 gap-y-2 pb-10"
-				aria-label="<?php esc_attr_e('Group brands', 'reacon-group'); ?>">
-				<li class="font-sans text-[13px] text-white/85 transition-colors duration-200 hover:text-primary cursor-pointer">
-					<?php esc_html_e('Cups Galore', 'reacon-group'); ?>
-				</li>
-				<li class="font-sans text-[13px] text-white/85 transition-colors duration-200 hover:text-primary cursor-pointer">
-					<?php esc_html_e('Digital Press', 'reacon-group'); ?>
-				</li>
-				<li class="font-sans text-[13px] text-white/85 transition-colors duration-200 hover:text-primary cursor-pointer">
-					<?php esc_html_e('Horizon Print Management', 'reacon-group'); ?>
-				</li>
-				<li class="font-sans text-[13px] text-white/85 transition-colors duration-200 hover:text-primary cursor-pointer">
-					<?php esc_html_e('Westman Printing', 'reacon-group'); ?>
-				</li>
-			</ul>
+			<?php
+			$reacon_footer_echo_menu(
+				'reacon-footer-brands',
+				'flex flex-wrap justify-center gap-x-11 gap-y-2 pb-10',
+				array(
+					'menu_id' => 'reacon-footer-brands-menu',
+					'items_wrap' => '<ul id="%1$s" aria-label="' . esc_attr__('Group brands', 'reacon-group') . '" class="%2$s">%3$s</ul>',
+				)
+			);
+			?>
 
 		</div><!-- /bottom -->
 

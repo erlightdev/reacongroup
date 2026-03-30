@@ -13,8 +13,7 @@
  *
  * @package reacon-group
  */
-
-$logo_src  = get_template_directory_uri() . '/public/image/Reacon Logo 2.svg';
+$logo_src = get_template_directory_uri() . '/public/image/Reacon Logo 2.svg';
 $site_name = esc_html(get_bloginfo('name'));
 
 // Determine current page slug for active state highlighting.
@@ -26,12 +25,12 @@ if (is_front_page()) {
 }
 
 $nav_items = array(
-	array('label' => __('Home',         'reacon-group'), 'url' => home_url('/'),              'slug' => 'home'),
-	array('label' => __('About Us',     'reacon-group'), 'url' => home_url('/about-us/'),     'slug' => 'about-us'),
-	array('label' => __('Solutions',    'reacon-group'), 'url' => '#',                         'slug' => 'solutions', 'has_mega' => true),
-	array('label' => __('Our Industry', 'reacon-group'), 'url' => '#',                          'slug' => 'our-industry', 'has_mega' => true),
-	array('label' => __('Our Works',    'reacon-group'), 'url' => home_url('/our-works/'),    'slug' => 'our-works'),
-	array('label' => __('Blogs',        'reacon-group'), 'url' => home_url('/blogs/'),        'slug' => 'blogs'),
+	array('label' => __('Home', 'reacon-group'), 'url' => home_url('/'), 'slug' => 'home'),
+	array('label' => __('About Us', 'reacon-group'), 'url' => home_url('/about-us/'), 'slug' => 'about-us'),
+	array('label' => __('Solutions', 'reacon-group'), 'url' => '#', 'slug' => 'solutions', 'has_mega' => true),
+	array('label' => __('Our Industry', 'reacon-group'), 'url' => '#', 'slug' => 'our-industry', 'has_mega' => true),
+	array('label' => __('Our Works', 'reacon-group'), 'url' => home_url('/our-works/'), 'slug' => 'our-works'),
+	array('label' => __('Blogs', 'reacon-group'), 'url' => home_url('/blogs/'), 'slug' => 'blogs'),
 );
 ?>
 
@@ -63,28 +62,29 @@ $nav_items = array(
 			aria-label="<?php esc_attr_e('Main Navigation', 'reacon-group'); ?>">
 			<ul class="flex items-center gap-1 rounded-[30px] bg-white px-2 py-1.5 shadow-[0_10px_22px_rgba(0,0,0,0.16)]">
 
-				<?php foreach ($nav_items as $item) :
-					$is_active  = ($current_slug === $item['slug']);
-					$has_mega   = ! empty($item['has_mega']);
+				<?php
+				foreach ($nav_items as $item):
+					$is_active = ($current_slug === $item['slug']);
+					$has_mega = !empty($item['has_mega']);
 					$active_cls = $is_active
 						? 'bg-primary text-white shadow-[0_4px_10px_rgba(30,202,211,0.45)]'
 						: 'text-[#5a6b83] hover:bg-[#eef4f8] hover:text-[#263444]';
-				?>
+					?>
 					<li class="relative<?php echo $has_mega ? ' group' : ''; ?>">
 						<a
 							href="<?php echo esc_url($item['url']); ?>"
 							class="relative inline-flex items-center gap-1.5 rounded-full px-5 py-2.5 font-sans text-[15px] font-medium transition-all duration-200 <?php echo esc_attr($active_cls); ?>"
-							<?php if ($has_mega) : ?>
+							<?php if ($has_mega): ?>
 							aria-haspopup="true"
 							aria-expanded="false"
 							<?php endif; ?>>
 							<?php echo esc_html($item['label']); ?>
-							<?php if ($has_mega) : ?>
+							<?php if ($has_mega): ?>
 								<i class="ph-bold ph-caret-down text-[10px] opacity-70 transition-transform duration-200 group-hover:rotate-180" aria-hidden="true"></i>
 							<?php endif; ?>
 						</a>
 
-						<?php if ($has_mega && 'solutions' === $item['slug']) : ?>
+						<?php if ($has_mega && 'solutions' === $item['slug']): ?>
 							<!-- ── Mega Menu (Solutions) ──────────── -->
 							<div
 								class="pointer-events-none invisible absolute left-1/2 top-full z-50 w-[1320px] -translate-x-1/2 pt-4 opacity-0 transition-all duration-250 ease-out group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100"
@@ -192,7 +192,7 @@ $nav_items = array(
 									</div><!-- /grid -->
 								</div><!-- /mega card -->
 							</div><!-- /mega wrapper -->
-						<?php elseif ($has_mega && 'our-industry' === $item['slug']) : ?>
+						<?php elseif ($has_mega && 'our-industry' === $item['slug']): ?>
 							<!-- ── Mega Menu (Our Industry) ───────── -->
 							<div
 								class="pointer-events-none invisible absolute left-1/2 top-full z-50 w-[1320px] -translate-x-1/2 pt-4 opacity-0 transition-all duration-250 ease-out group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100"
@@ -310,12 +310,13 @@ $nav_items = array(
 		aria-label="<?php esc_attr_e('Mobile navigation', 'reacon-group'); ?>">
 		<div class="flex-1 overflow-y-auto px-6 pb-8">
 			<ul class="flex flex-col gap-1">
-				<?php foreach ($nav_items as $item) :
-					$is_active  = ($current_slug === $item['slug']);
-					$has_mega   = ! empty($item['has_mega']);
-				?>
+				<?php
+				foreach ($nav_items as $item):
+					$is_active = ($current_slug === $item['slug']);
+					$has_mega = !empty($item['has_mega']);
+					?>
 					<li>
-						<?php if ($has_mega) : ?>
+						<?php if ($has_mega): ?>
 							<button
 								type="button"
 								class="flex w-full items-center justify-between rounded-xl px-4 py-3 font-sans text-base font-medium text-white/90 transition-colors hover:bg-white/10 mobile-submenu-toggle"
@@ -344,7 +345,7 @@ $nav_items = array(
 									<li><a href="<?php echo esc_url(home_url('/solutions/distribution/')); ?>" class="block rounded-lg px-3 py-2 text-sm text-white/80 no-underline hover:bg-white/10 hover:text-white"><?php esc_html_e('Distribution', 'reacon-group'); ?></a></li>
 								</ul>
 							</div>
-						<?php else : ?>
+						<?php else: ?>
 							<a
 								href="<?php echo esc_url($item['url']); ?>"
 								class="block rounded-xl px-4 py-3 font-sans text-base font-medium no-underline transition-colors <?php echo $is_active ? 'bg-primary text-white' : 'text-white/90 hover:bg-white/10 hover:text-white'; ?>">
@@ -387,10 +388,12 @@ $nav_items = array(
 			}
 
 			if (window.scrollY > 20) {
-				masthead.classList.add('backdrop-blur-lg', 'shadow-md', 'top-0');
+				// masthead.classList.add('backdrop-blur-lg', 'shadow-md', 'top-0');
+				masthead.classList.add('top-0');
 				masthead.classList.remove('top-6');
 			} else {
-				masthead.classList.remove('backdrop-blur-lg', 'shadow-md', 'top-0');
+				// masthead.classList.remove('backdrop-blur-lg', 'shadow-md', 'top-0');
+				masthead.classList.remove('top-0');
 				masthead.classList.add('top-6');
 			}
 		}

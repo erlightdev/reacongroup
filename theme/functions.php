@@ -78,11 +78,16 @@ if (!function_exists('reacon_group_setup')):
 		 */
 		add_theme_support('post-thumbnails');
 
-		// This theme uses wp_nav_menu() in two locations.
+		// Primary header + footer columns (assign under Appearance → Menus).
 		register_nav_menus(
 			array(
 				'menu-1' => __('Primary', 'reacon-group'),
-				'menu-2' => __('Footer Menu', 'reacon-group'),
+				'menu-2' => __('Footer (legacy)', 'reacon-group'),
+				'reacon-footer-quick-links' => __('Footer: Quick links', 'reacon-group'),
+				'reacon-footer-solutions' => __('Footer: Solutions', 'reacon-group'),
+				'reacon-footer-industries' => __('Footer: Industries', 'reacon-group'),
+				'reacon-footer-legal' => __('Footer: Legal', 'reacon-group'),
+				'reacon-footer-brands' => __('Footer: Group brands', 'reacon-group'),
 			)
 		);
 
@@ -120,6 +125,30 @@ if (!function_exists('reacon_group_setup')):
 	}
 endif;
 add_action('after_setup_theme', 'reacon_group_setup');
+
+/**
+ * Save and load ACF field groups / UI from the bundled acf-json directory.
+ *
+ * @link https://www.advancedcustomfields.com/resources/local-json/
+ */
+function reacon_group_acf_json_save_path($path)
+{
+	return get_template_directory() . '/acf-json';
+}
+
+/**
+ * @param array<string> $paths Default load paths.
+ * @return array<string>
+ */
+function reacon_group_acf_json_load_paths($paths)
+{
+	unset($paths[0]);
+	$paths[] = get_template_directory() . '/acf-json';
+	return $paths;
+}
+
+add_filter('acf/settings/save_json', 'reacon_group_acf_json_save_path');
+add_filter('acf/settings/load_json', 'reacon_group_acf_json_load_paths');
 
 /**
  * Register widget area.

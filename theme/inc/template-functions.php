@@ -204,3 +204,84 @@ function reacon_group_html5_comment( $comment, $args, $depth ) {
 		</article><!-- .comment-body -->
 	<?php
 }
+
+/**
+ * Footer nav link class map for Appearance → Menus locations.
+ *
+ * @param array<string,string> $atts Anchor attributes.
+ * @param WP_Post                $item Menu item.
+ * @param stdClass               $args Menu arguments.
+ * @param int                    $depth Nesting depth.
+ * @return array<string,string>
+ */
+function reacon_group_footer_nav_menu_link_attributes($atts, $item, $args, $depth)
+{
+	if (empty($args->theme_location) || !is_string($args->theme_location)) {
+		return $atts;
+	}
+
+	$loc = $args->theme_location;
+
+	$column_locs = array(
+		'reacon-footer-quick-links',
+		'reacon-footer-solutions',
+		'reacon-footer-industries',
+	);
+
+	if (in_array($loc, $column_locs, true)) {
+		$atts['class'] = 'font-sans text-sm text-white/85 transition-colors duration-200 hover:text-primary';
+		return $atts;
+	}
+
+	if ('reacon-footer-legal' === $loc) {
+		$atts['class'] = 'font-sans text-[13px] text-white/85 no-underline transition-colors duration-200 hover:text-primary';
+		return $atts;
+	}
+
+	if ('reacon-footer-brands' === $loc) {
+		$atts['class'] = 'font-sans text-[13px] text-white/85 no-underline transition-colors duration-200 hover:text-primary';
+	}
+
+	return $atts;
+}
+add_filter('nav_menu_link_attributes', 'reacon_group_footer_nav_menu_link_attributes', 10, 4);
+
+/**
+ * Extra list-item classes for footer menus.
+ *
+ * @param string[] $classes CSS class names.
+ * @param WP_Post  $item Menu item.
+ * @param stdClass $args Menu arguments.
+ * @param int      $depth Nesting depth.
+ * @return string[]
+ */
+function reacon_group_footer_nav_menu_css_class($classes, $item, $args, $depth)
+{
+	if (!empty($args->theme_location) && 'reacon-footer-brands' === $args->theme_location) {
+		$classes[] = 'cursor-pointer';
+	}
+
+	return $classes;
+}
+add_filter('nav_menu_css_class', 'reacon_group_footer_nav_menu_css_class', 10, 4);
+
+/**
+ * Heading text for a footer column — uses the assigned menu's name when set.
+ *
+ * @param string $location Registered theme location slug.
+ * @param string $fallback Default label if no menu is assigned.
+ */
+function reacon_group_footer_nav_column_heading($location, $fallback)
+{
+	$locs = get_nav_menu_locations();
+	if (empty($locs[$location])) {
+		return $fallback;
+	}
+
+	$menu = wp_get_nav_menu_object((int) $locs[$location]);
+	if (!$menu || is_wp_error($menu)) {
+		return $fallback;
+	}
+
+	return $menu->name;
+}
