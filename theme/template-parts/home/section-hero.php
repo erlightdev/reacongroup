@@ -24,7 +24,7 @@ $has_hero_video = $has_hero_mp4;
     id="hero"
     class="relative w-full p-4"
     aria-label="<?php esc_attr_e('Hero', 'reacon-group'); ?>">
-    <div class="relative flex min-h-[60vh] w-full flex-col overflow-hidden rounded-[31px] bg-foreground lg:min-h-[640px] xl:min-h-[720px]">
+    <div class="reacon-home-hero-card relative flex min-h-[60vh] w-full flex-col overflow-hidden rounded-[31px] bg-foreground lg:min-h-[640px] xl:min-h-[720px]">
 
         <!-- Always render image placeholder under video for reliable fallback -->
         <picture class="pointer-events-none absolute inset-0" aria-hidden="true">
@@ -120,3 +120,45 @@ $has_hero_video = $has_hero_mp4;
         </div>
     </div>
 </section>
+
+<style>
+	/* Desktop-only top notch that lets the fixed header "recess" into the hero. */
+	@media (min-width: 1024px) {
+		/* 1. The White Notch (same geometry as the About hero) */
+		#hero .reacon-home-hero-card::before {
+			content: "";
+			position: absolute;
+			left: 50%;
+			top: 0;
+			/* Align to the very top */
+			transform: translateX(-50%);
+			width: clamp(420px, 46vw, 720px);
+			height: 86px;
+			background: #fff;
+			border-bottom-left-radius: 40px;
+			border-bottom-right-radius: 40px;
+			z-index: 3;
+			pointer-events: none;
+		}
+
+		/* 2. The Inverted Corners (The "Swoop") */
+		#hero .reacon-home-hero-card::after {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 50%;
+			transform: translateX(-50%);
+
+			/* Width = Notch Width + 78px (40px radius on each side) */
+			width: calc(clamp(420px, 46vw, 720px) + 78px);
+			height: 40px;
+
+			background:
+				radial-gradient(circle at 0% 100%, transparent 40px, var(--background) 41px) no-repeat left bottom / 40px 40px,
+				radial-gradient(circle at 100% 100%, transparent 40px, var(--background) 41px) no-repeat right bottom / 40px 40px;
+
+			z-index: 4;
+			pointer-events: none;
+		}
+	}
+</style>

@@ -1,6 +1,6 @@
 <section
   id="reacon-faq-section"
-  class="w-full bg-white py-[72px] sm:py-[96px] lg:py-[120px]"
+  class="w-full bg-white py-[72px] sm:py-[96px] lg:py-16"
   aria-labelledby="reacon-faq-heading"
 >
   <div class="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-0">

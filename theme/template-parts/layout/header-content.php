@@ -60,7 +60,7 @@ $nav_items = array(
 			id="site-navigation"
 			class="absolute left-1/2 hidden -translate-x-1/2 items-center lg:flex"
 			aria-label="<?php esc_attr_e('Main Navigation', 'reacon-group'); ?>">
-			<ul class="flex items-center gap-1 rounded-[30px] bg-white px-2 py-1.5 shadow-[0_10px_22px_rgba(0,0,0,0.16)]">
+			<ul class="flex items-center gap-1 rounded-[30px] bg-white px-2 py-1.5">
 
 				<?php
 				foreach ($nav_items as $item):
@@ -267,6 +267,17 @@ $nav_items = array(
 
 			</ul>
 		</nav><!-- #site-navigation -->
+
+		<style>
+			/* Match request: show nav pill shadow only when the header is in the scrolled position. */
+			#masthead #site-navigation>ul {
+				box-shadow: none;
+			}
+
+			#masthead.top-0 #site-navigation>ul {
+				box-shadow: 0 10px 22px rgba(0, 0, 0, 0.16);
+			}
+		</style>
 
 		<!-- ── CTA Buttons (desktop) ───────────────────────── -->
 		<div class="hidden items-center gap-3 lg:flex">

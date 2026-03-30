@@ -9,10 +9,45 @@
  * @package reacon-group
  */
 get_header();
+
+$about_header_bg = get_template_directory_uri() . '/public/about/about-header.png';
 ?>
 
 <main id="primary" class="overflow-x-hidden" role="main">
-	<?php get_template_part('template-parts/about/section', 'hero'); ?>
+	<!-- Page Section: Hero -->
+	<section
+		id="about-hero"
+		class="w-full p-1.5 sm:p-2 lg:p-4"
+		aria-label="<?php esc_attr_e('About page hero', 'reacon-group'); ?>">
+
+		<div class="reacon-about-hero-card relative min-h-[255px] overflow-hidden rounded-[24px] bg-[#062B53] sm:min-h-[300px] lg:min-h-[380px] lg:rounded-[31px]">
+			<img
+				src="<?php echo esc_url($about_header_bg); ?>"
+				alt=""
+				aria-hidden="true"
+				class="pointer-events-none absolute inset-0 h-full w-full object-cover object-center"
+				fetchpriority="high"
+				loading="eager"
+				decoding="async" />
+
+			<div class="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,10,33,0.28)_0%,rgba(0,10,33,0.18)_45%,rgba(0,10,33,0.28)_100%)]" aria-hidden="true"></div>
+
+			<div class="relative z-10 mx-auto flex min-h-[255px] w-full max-w-[1200px] flex-col items-center justify-center px-5 pb-10 pt-28 text-center sm:min-h-[300px] sm:px-6 sm:pt-32 lg:min-h-[380px] lg:px-10 lg:pb-14 lg:pt-36">
+				<p class="mb-4 font-sans text-[11px] font-medium uppercase tracking-[0.18em] text-white/85 lg:mb-5">
+					<?php esc_html_e('Reacon Group', 'reacon-group'); ?>
+				</p>
+
+				<h1 class="max-w-[860px] font-display text-[30px] font-bold leading-[1.16] text-white sm:text-[40px] lg:text-[56px]">
+					<?php esc_html_e('Built to Create, Produce, and Deliver at Scale', 'reacon-group'); ?>
+				</h1>
+
+				<p class="mt-4 max-w-[780px] font-sans text-[13px] leading-[1.45] text-white/90 sm:text-[15px] lg:mt-5 lg:text-base">
+					<?php esc_html_e('Reacon Group is a multidisciplinary production and fulfillment ecosystem transforming how brands design, manufacture, and distribute physical and digital experiences.', 'reacon-group'); ?>
+				</p>
+			</div>
+		</div>
+	</section>
+	<!-- End Page Section: Hero -->
 
 
 	<section
@@ -521,6 +556,58 @@ get_header();
 	get_template_part('template-parts/components/component', 'faq');
 	?>
 </main>
+
+<style>
+	/* Desktop-only top notch that lets the fixed header "recess" into the hero. */
+	@media (min-width: 1024px) {
+
+		/* 1. The White Notch (unchanged, just added a background color for clarity) */
+		#about-hero .reacon-about-hero-card::before {
+			content: "";
+			position: absolute;
+			left: 50%;
+			top: 0;
+			/* Align to the very top */
+			transform: translateX(-50%);
+			width: clamp(420px, 46vw, 720px);
+			height: 86px;
+			background: #fff;
+			/* This is the notch color */
+			border-bottom-left-radius: 40px;
+			border-bottom-right-radius: 40px;
+			z-index: 3;
+			pointer-events: none;
+		}
+
+		/* 2. The Inverted Corners (The "Swoop") */
+		#about-hero .reacon-about-hero-card::after {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 50%;
+			transform: translateX(-50%);
+
+			/* Width = Notch Width + 80px (40px radius on each side) */
+			width: calc(clamp(420px, 46vw, 720px) + 78px);
+			height: 40px;
+			/* Match the radius height */
+
+			/* 
+       We create two squares at the top. 
+       The gradient draws the Card Color and leaves a 
+       transparent circle at the bottom corners of those squares.
+    */
+			background:
+				radial-gradient(circle at 0% 100%, transparent 40px, var(--background) 41px) no-repeat left bottom / 40px 40px,
+				radial-gradient(circle at 100% 100%, transparent 40px, var(--background) 41px) no-repeat right bottom / 40px 40px;
+
+			z-index: 4;
+			/* Must be HIGHER than ::before to sit on top of the notch edges */
+			pointer-events: none;
+		}
+	}
+</style>
+
 
 <?php
 get_footer();
