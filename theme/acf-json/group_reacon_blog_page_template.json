@@ -1,0 +1,342 @@
+{
+    "key": "group_reacon_blog_page_template",
+    "title": "Blog Page Template Content",
+    "fields": [
+        {
+            "key": "field_blog_tab_hero",
+            "label": "Hero",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_blog_enable_hero",
+            "label": "Enable hero",
+            "name": "blog_enable_hero",
+            "type": "true_false",
+            "default_value": 1,
+            "ui": 1
+        },
+        {
+            "key": "field_blog_hero_background",
+            "label": "Hero background",
+            "name": "blog_hero_background",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "large",
+            "library": "all",
+            "mime_types": "jpg,jpeg,png,webp,svg",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_blog_enable_hero",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ]
+        },
+        {
+            "key": "field_blog_hero_eyebrow",
+            "label": "Hero eyebrow",
+            "name": "blog_hero_eyebrow",
+            "type": "text",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_blog_enable_hero",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ]
+        },
+        {
+            "key": "field_blog_hero_title",
+            "label": "Hero title",
+            "name": "blog_hero_title",
+            "type": "text",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_blog_enable_hero",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ]
+        },
+        {
+            "key": "field_blog_hero_description",
+            "label": "Hero description",
+            "name": "blog_hero_description",
+            "type": "textarea",
+            "rows": 4,
+            "new_lines": "",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_blog_enable_hero",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ]
+        },
+        {
+            "key": "field_blog_tab_latest",
+            "label": "Latest Blogs",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_blog_enable_latest",
+            "label": "Enable latest blogs",
+            "name": "blog_enable_latest",
+            "type": "true_false",
+            "default_value": 1,
+            "ui": 1
+        },
+        {
+            "key": "field_blog_latest_heading",
+            "label": "Section heading",
+            "name": "blog_latest_heading",
+            "type": "text",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_blog_enable_latest",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ]
+        },
+        {
+            "key": "field_blog_posts_per_page",
+            "label": "Posts per page",
+            "name": "blog_posts_per_page",
+            "type": "number",
+            "instructions": "Controls the grid size and pagination threshold.",
+            "default_value": 6,
+            "min": 1,
+            "step": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_blog_enable_latest",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ]
+        },
+        {
+            "key": "field_blog_card_read_more_label",
+            "label": "Card read more fallback label",
+            "name": "blog_card_read_more_label",
+            "type": "text",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_blog_enable_latest",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ]
+        },
+        {
+            "key": "field_blog_pagination_prev_label",
+            "label": "Previous label",
+            "name": "blog_pagination_prev_label",
+            "type": "text",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_blog_enable_latest",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ]
+        },
+        {
+            "key": "field_blog_pagination_next_label",
+            "label": "Next label",
+            "name": "blog_pagination_next_label",
+            "type": "text",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_blog_enable_latest",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ]
+        },
+        {
+            "key": "field_blog_tab_cta",
+            "label": "CTA",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_blog_enable_cta",
+            "label": "Enable CTA",
+            "name": "blog_enable_cta",
+            "type": "true_false",
+            "default_value": 1,
+            "ui": 1
+        },
+        {
+            "key": "field_blog_cta_heading",
+            "label": "CTA heading",
+            "name": "blog_cta_heading",
+            "type": "text",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_blog_enable_cta",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ]
+        },
+        {
+            "key": "field_blog_cta_description",
+            "label": "CTA description",
+            "name": "blog_cta_description",
+            "type": "textarea",
+            "rows": 3,
+            "new_lines": "",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_blog_enable_cta",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ]
+        },
+        {
+            "key": "field_blog_cta_primary_button",
+            "label": "Primary button",
+            "name": "blog_cta_primary_button",
+            "type": "link",
+            "return_format": "array",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_blog_enable_cta",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ]
+        },
+        {
+            "key": "field_blog_cta_secondary_button",
+            "label": "Secondary button",
+            "name": "blog_cta_secondary_button",
+            "type": "link",
+            "return_format": "array",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_blog_enable_cta",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ]
+        },
+        {
+            "key": "field_blog_cta_color",
+            "label": "CTA color theme",
+            "name": "blog_cta_color",
+            "type": "select",
+            "choices": {
+                "teal": "Teal",
+                "blue": "Blue"
+            },
+            "return_format": "value",
+            "default_value": "teal",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_blog_enable_cta",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ]
+        },
+        {
+            "key": "field_blog_cta_primary_icon_type",
+            "label": "Primary icon source",
+            "name": "blog_cta_primary_icon_type",
+            "type": "select",
+            "choices": {
+                "phosphor": "Phosphor class",
+                "lucide": "Lucide name",
+                "svg": "SVG attachment/path"
+            },
+            "return_format": "value",
+            "default_value": "phosphor",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_blog_enable_cta",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ]
+        },
+        {
+            "key": "field_blog_cta_primary_icon_value",
+            "label": "Primary icon value",
+            "name": "blog_cta_primary_icon_value",
+            "type": "text",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_blog_enable_cta",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "page-templates/blog-page-template.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+        "the_content"
+    ],
+    "active": true,
+    "description": "Dynamic fields for Blog page template.",
+    "show_in_rest": 0,
+    "modified": 1774924801
+}
