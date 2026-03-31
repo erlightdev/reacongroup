@@ -11,10 +11,100 @@
 get_header();
 
 $about_header_bg = get_template_directory_uri() . '/public/about/about-header.png';
+$about_assets_uri = get_template_directory_uri() . '/public/about';
+$acf_enabled = function_exists('get_field');
+
+if (!function_exists('reacon_about_get_link')) {
+	function reacon_about_get_link($field_value, $fallback_url = '#', $fallback_title = '')
+	{
+		if (is_array($field_value)) {
+			return array(
+				'url' => !empty($field_value['url']) ? $field_value['url'] : $fallback_url,
+				'title' => !empty($field_value['title']) ? $field_value['title'] : $fallback_title,
+				'target' => !empty($field_value['target']) ? $field_value['target'] : '_self',
+			);
+		}
+
+		return array(
+			'url' => $fallback_url,
+			'title' => $fallback_title,
+			'target' => '_self',
+		);
+	}
+}
+
+if (!function_exists('reacon_about_render_icon')) {
+	function reacon_about_render_icon($icon_type, $icon_value, $icon_wrap_class = '', $icon_class = '')
+	{
+		if ('lucide' === $icon_type && is_string($icon_value) && $icon_value !== '') {
+			echo '<i data-lucide="' . esc_attr($icon_value) . '" class="' . esc_attr($icon_class) . '" aria-hidden="true"></i>';
+			return;
+		}
+
+		if ('svg' === $icon_type && !empty($icon_value)) {
+			$svg_markup = '';
+			if (function_exists('reacon_group_inline_svg')) {
+				$svg_markup = reacon_group_inline_svg($icon_value, $icon_class);
+			}
+			if ($svg_markup) {
+				echo $svg_markup;  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				return;
+			}
+		}
+
+		$ph_class = is_string($icon_value) && $icon_value !== '' ? $icon_value : 'ph-fill ph-check-circle';
+		echo '<i class="' . esc_attr(trim($ph_class . ' ' . $icon_class)) . '" aria-hidden="true"></i>';
+	}
+}
+
+if (!function_exists('reacon_about_fallback_text')) {
+	function reacon_about_fallback_text($value, $fallback)
+	{
+		$value = trim((string) $value);
+		return $value !== '' ? $value : $fallback;
+	}
+}
+
+$about_sections = array(
+	'hero' => true,
+	'overview' => true,
+	'partners' => true,
+	'ecosystem' => true,
+	'what_we_do' => true,
+	'testimonials' => true,
+	'cta' => true,
+	'faq' => true,
+);
+if ($acf_enabled) {
+	$about_sections = array(
+		'hero' => (bool) get_field('about_enable_hero'),
+		'overview' => (bool) get_field('about_enable_overview'),
+		'partners' => (bool) get_field('about_enable_partners'),
+		'ecosystem' => (bool) get_field('about_enable_ecosystem'),
+		'what_we_do' => (bool) get_field('about_enable_what_we_do'),
+		'testimonials' => (bool) get_field('about_enable_testimonials'),
+		'cta' => (bool) get_field('about_enable_cta'),
+		'faq' => (bool) get_field('about_enable_faq'),
+	);
+}
 ?>
 
 <main id="primary" class="overflow-x-hidden" role="main">
+	<?php
+	$hero_bg = '';
+	$hero_eyebrow = '';
+	$hero_title = '';
+	$hero_description = '';
+	if ($acf_enabled) {
+		$hero_bg_field = get_field('about_hero_background');
+		$hero_bg = is_array($hero_bg_field) && !empty($hero_bg_field['url']) ? $hero_bg_field['url'] : (is_string($hero_bg_field) ? $hero_bg_field : '');
+		$hero_eyebrow = (string) get_field('about_hero_eyebrow');
+		$hero_title = (string) get_field('about_hero_title');
+		$hero_description = (string) get_field('about_hero_description');
+	}
+	?>
 	<!-- Page Section: Hero -->
+	<?php if ($about_sections['hero']): ?>
 	<section
 		id="about-hero"
 		class="w-full p-1.5 sm:p-2 lg:p-4"
@@ -22,7 +112,7 @@ $about_header_bg = get_template_directory_uri() . '/public/about/about-header.pn
 
 		<div class="reacon-about-hero-card relative min-h-[255px] overflow-hidden rounded-[24px] bg-[#062B53] sm:min-h-[300px] lg:min-h-[380px] lg:rounded-[31px]">
 			<img
-				src="<?php echo esc_url($about_header_bg); ?>"
+				src="<?php echo esc_url($hero_bg !== '' ? $hero_bg : $about_header_bg); ?>"
 				alt=""
 				aria-hidden="true"
 				class="pointer-events-none absolute inset-0 h-full w-full object-cover object-center"
@@ -34,22 +124,37 @@ $about_header_bg = get_template_directory_uri() . '/public/about/about-header.pn
 
 			<div class="relative z-10 mx-auto flex min-h-[255px] w-full max-w-[1200px] flex-col items-center justify-center px-5 pb-10 pt-28 text-center sm:min-h-[300px] sm:px-6 sm:pt-32 lg:min-h-[380px] lg:px-10 lg:pb-14 lg:pt-36">
 				<p class="mb-4 font-sans text-[11px] font-medium uppercase tracking-[0.18em] text-white/85 lg:mb-5">
-					<?php esc_html_e('Reacon Group', 'reacon-group'); ?>
+					<?php echo esc_html(reacon_about_fallback_text($hero_eyebrow, 'About')); ?>
 				</p>
 
 				<h1 class="max-w-[860px] font-display text-[30px] font-bold leading-[1.16] text-white sm:text-[40px] lg:text-[56px]">
-					<?php esc_html_e('Built to Create, Produce, and Deliver at Scale', 'reacon-group'); ?>
+					<?php echo esc_html(reacon_about_fallback_text($hero_title, 'Hero content coming soon.')); ?>
 				</h1>
 
 				<p class="mt-4 max-w-[780px] font-sans text-[13px] leading-[1.45] text-white/90 sm:text-[15px] lg:mt-5 lg:text-base">
-					<?php esc_html_e('Reacon Group is a multidisciplinary production and fulfillment ecosystem transforming how brands design, manufacture, and distribute physical and digital experiences.', 'reacon-group'); ?>
+					<?php echo esc_html(reacon_about_fallback_text($hero_description, 'Please add hero description content in ACF.')); ?>
 				</p>
 			</div>
 		</div>
 	</section>
+	<?php endif; ?>
 	<!-- End Page Section: Hero -->
 
 
+	<?php
+	$overview_eyebrow = '';
+	$overview_body = '';
+	$overview_stats = array();
+	if ($acf_enabled) {
+		$overview_eyebrow = (string) get_field('about_overview_eyebrow');
+		$overview_body = (string) get_field('about_overview_body');
+		$overview_stats_field = get_field('about_overview_stats');
+		if (is_array($overview_stats_field) && !empty($overview_stats_field)) {
+			$overview_stats = $overview_stats_field;
+		}
+	}
+	?>
+	<?php if ($about_sections['overview']): ?>
 	<section
 		id="about-overview"
 		class="bg-[#f5f5f5] py-14 sm:py-16 lg:py-20"
@@ -57,194 +162,248 @@ $about_header_bg = get_template_directory_uri() . '/public/about/about-header.pn
 		<div class="mx-auto grid w-full max-w-[1220px] grid-cols-1 gap-8 px-5 sm:px-6 lg:grid-cols-[220px_1fr] lg:gap-10 lg:px-10">
 			<div class="pt-1">
 				<p class="font-sans text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
-					<?php esc_html_e('About Reacon Group', 'reacon-group'); ?>
+					<?php echo esc_html(reacon_about_fallback_text($overview_eyebrow, 'Overview')); ?>
 				</p>
 			</div>
 
 			<div>
 				<p class="max-w-4xl font-sans text-[24px] font-medium leading-[1.22] text-foreground sm:text-[28px] lg:text-[32px]">
-					<?php esc_html_e('We are dedicated to helping brands create, produce, and deliver with confidence. From content and design to industrial print, custom packaging, and nationwide fulfillment, our integrated ecosystem empowers businesses to streamline operations, reduce costs, and achieve consistent, high-quality outcomes.', 'reacon-group'); ?>
+					<?php echo esc_html(reacon_about_fallback_text($overview_body, 'Please add overview content in ACF.')); ?>
 				</p>
 
 				<div class="mt-8 grid grid-cols-2 gap-x-6 gap-y-7 border-t border-black/8 pt-7 sm:mt-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-8 lg:pt-8">
-					<div>
-						<p class="max-w-[180px] font-sans text-[12px] leading-[1.35] text-muted-foreground">
-							<?php esc_html_e('Customer satisfaction rate, proving our reliability', 'reacon-group'); ?>
-						</p>
-						<p class="mt-2 font-sans text-[44px] font-medium leading-none text-foreground">
-							<?php esc_html_e('95%', 'reacon-group'); ?>
-						</p>
-					</div>
-
-					<div>
-						<p class="max-w-[180px] font-sans text-[12px] leading-[1.35] text-muted-foreground">
-							<?php esc_html_e('Years of production & creative innovation', 'reacon-group'); ?>
-						</p>
-						<p class="mt-2 font-sans text-[44px] font-medium leading-none text-foreground">
-							<?php esc_html_e('10+', 'reacon-group'); ?>
-						</p>
-					</div>
-
-					<div>
-						<p class="max-w-[180px] font-sans text-[12px] leading-[1.35] text-muted-foreground">
-							<?php esc_html_e('Annual print & packaging output value', 'reacon-group'); ?>
-						</p>
-						<p class="mt-2 font-sans text-[44px] font-medium leading-none text-foreground">
-							<?php esc_html_e('$50M+', 'reacon-group'); ?>
-						</p>
-					</div>
-
-					<div>
-						<p class="max-w-[180px] font-sans text-[12px] leading-[1.35] text-muted-foreground">
-							<?php esc_html_e('Brands supported across Australia & beyond', 'reacon-group'); ?>
-						</p>
-						<p class="mt-2 font-sans text-[44px] font-medium leading-none text-foreground">
-							<?php esc_html_e('200+', 'reacon-group'); ?>
-						</p>
-					</div>
+					<?php if (!empty($overview_stats)): ?>
+						<?php foreach ($overview_stats as $stat): ?>
+							<div>
+								<p class="max-w-[180px] font-sans text-[12px] leading-[1.35] text-muted-foreground">
+									<?php echo esc_html(isset($stat['label']) ? $stat['label'] : ''); ?>
+								</p>
+								<p class="mt-2 font-sans text-[44px] font-medium leading-none text-foreground">
+									<?php echo esc_html(isset($stat['value']) ? $stat['value'] : ''); ?>
+								</p>
+							</div>
+						<?php endforeach; ?>
+					<?php else: ?>
+						<div>
+							<p class="max-w-[180px] font-sans text-[12px] leading-[1.35] text-muted-foreground"><?php echo esc_html('Statistic'); ?></p>
+							<p class="mt-2 font-sans text-[44px] font-medium leading-none text-foreground"><?php echo esc_html('--'); ?></p>
+						</div>
+					<?php endif; ?>
 				</div>
 			</div>
 		</div>
 	</section>
+	<?php endif; ?>
 
+	
+	<!--Start Partners Section -->
+	<?php if ($about_sections['partners']): ?>
 	<?php
+	$partner_logos = array();
+	$partners_aria_label = '';
+	$partners_marquee_duration = 30;
 
-	/**
-	 * ── PARTNERS SECTION ──────────────────────────────────────
-	 * Display partner logos in an infinite scrolling carousel.
-	 */
-	get_template_part('template-parts/about/section', 'partners');
+	if (function_exists('get_field')) {
+		$partners_aria_label = (string) get_field('about_partners_aria_label');
+		$partners_marquee_duration_raw = get_field('about_partners_marquee_duration');
+		if (is_numeric($partners_marquee_duration_raw) && (int) $partners_marquee_duration_raw > 0) {
+			$partners_marquee_duration = (int) $partners_marquee_duration_raw;
+		}
+
+		$partners_logos_field = get_field('about_partners_logos');
+		if (is_array($partners_logos_field) && !empty($partners_logos_field)) {
+			foreach ($partners_logos_field as $item) {
+				$image_field = isset($item['logo']) ? $item['logo'] : '';
+				$image_url = '';
+				$image_alt = '';
+
+				if (is_array($image_field)) {
+					$image_url = !empty($image_field['url']) ? (string) $image_field['url'] : '';
+					$image_alt = !empty($image_field['alt']) ? (string) $image_field['alt'] : '';
+				} elseif (is_string($image_field)) {
+					$image_url = $image_field;
+				}
+
+				$custom_alt = isset($item['alt']) ? (string) $item['alt'] : '';
+				if ($image_url === '') {
+					continue;
+				}
+
+				$partner_logos[] = array(
+					'url' => esc_url($image_url),
+					'alt' => sanitize_text_field($custom_alt !== '' ? $custom_alt : $image_alt),
+				);
+			}
+		}
+	}
+
+	$partners_empty_text = 'Please add partner logos in ACF.';
 	?>
+
+<section class="relative w-full overflow-hidden" aria-label="<?php echo esc_attr($partners_aria_label !== '' ? $partners_aria_label : 'Partners section'); ?>">
+    <div class="pointer-events-none absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-white to-transparent lg:w-32" aria-hidden="true"></div>
+    <div class="pointer-events-none absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-white to-transparent lg:w-32" aria-hidden="true"></div>
+
+    <div class="mx-auto flex min-h-[74px] w-full max-w-[1320px] items-center overflow-hidden px-4 lg:px-0">
+		<?php if (!empty($partner_logos)): ?>
+			<div class="flex w-fit animate-partner-marquee items-center gap-12">
+				<?php for ($rep = 0; $rep < 2; $rep++): ?>
+					<?php foreach ($partner_logos as $logo): ?>
+						<img
+							class="h-14 w-[90px] object-contain mix-blend-luminosity opacity-70 transition-opacity duration-200 hover:opacity-100"
+							src="<?php echo esc_attr($logo['url']); ?>"
+							alt="<?php echo esc_attr($logo['alt']); ?>"
+							loading="lazy"
+							decoding="async" />
+					<?php endforeach; ?>
+				<?php endfor; ?>
+			</div>
+		<?php else: ?>
+			<p class="w-full text-center font-sans text-sm text-muted-foreground"><?php echo esc_html($partners_empty_text); ?></p>
+		<?php endif; ?>
+    </div>
+
+    <style>
+        @keyframes partner-marquee {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .animate-partner-marquee {
+            animation: partner-marquee <?php echo esc_attr($partners_marquee_duration); ?>s linear infinite;
+        }
+
+        .animate-partner-marquee:hover {
+            animation-play-state: paused;
+        }
+    </style>
+</section>
+	<?php endif; ?>
+	<!--End Partners Section -->
 	<!-- Ecosystem Section -->
 	<?php
 	$ecosystem_assets_uri = get_template_directory_uri() . '/public/about';
-	$ecosystem_cards = array(
-		array(
-			'name' => __('Cups Galore', 'reacon-group'),
-			'description' => __('Cups Galore is an Australian manufacturer that creates high-quality, custom-printed paper cups for businesses, cafes, and events.', 'reacon-group'),
-			'logo' => $ecosystem_assets_uri . '/ecosystem-cupsgalore-logo.png',
-			'logo_alt' => __('Cups Galore logo', 'reacon-group'),
-			'url' => '#',
-			'type' => 'image',
-		),
-		array(
-			'name' => __('Digital Press', 'reacon-group'),
-			'description' => __('Provides various printing services, including marketing materials, stationery, books, catalogues, signage, and design services.', 'reacon-group'),
-			'logo' => $ecosystem_assets_uri . '/ecosystem-digitalpress-logo.png',
-			'logo_alt' => __('Digital Press logo', 'reacon-group'),
-			'url' => '#',
-			'type' => 'image',
-		),
-		array(
-			'name' => __('Westman Printing', 'reacon-group'),
-			'description' => __('Westman Printing offers the services of an experienced in-house design team, equipped with the latest design technology and creativity.', 'reacon-group'),
-			'logo' => '',
-			'logo_alt' => __('Westman Printing logo', 'reacon-group'),
-			'url' => '#',
-			'type' => 'westman',
-		),
-		array(
-			'name' => __('Horizon Print Management', 'reacon-group'),
-			'description' => __('This includes printing business and marketing materials, alongside managing integrated marketing campaigns across various platforms.', 'reacon-group'),
-			'logo' => $ecosystem_assets_uri . '/horizon.png',
-			'logo_alt' => __('Horizon logo', 'reacon-group'),
-			'url' => '#',
-			'type' => 'image',
-		),
-	);
+	$ecosystem_eyebrow = '';
+	$ecosystem_title = '';
+	$ecosystem_description = '';
+	$ecosystem_cards = array();
+	if ($acf_enabled) {
+		$ecosystem_eyebrow = (string) get_field('about_ecosystem_eyebrow');
+		$ecosystem_title = (string) get_field('about_ecosystem_title');
+		$ecosystem_description = (string) get_field('about_ecosystem_description');
+		$ecosystem_cards_field = get_field('about_ecosystem_cards');
+		if (is_array($ecosystem_cards_field) && !empty($ecosystem_cards_field)) {
+			$ecosystem_cards = $ecosystem_cards_field;
+		}
+	}
 	?>
+	<?php if ($about_sections['ecosystem']): ?>
 	<section id="reacon-ecosystem-section" class="pb-12 pt-14 sm:pb-14 sm:pt-16 md:pb-16 md:pt-20 lg:pb-20 lg:pt-24 xl:pb-16 xl:pt-16">
 		<div class="mx-auto w-full max-w-[1370px] px-4 sm:px-6 md:px-8 xl:px-0">
 			<div class="mx-auto w-full max-w-[820px] text-center">
 				<p class="font-sans text-[13px] uppercase tracking-[0.08em] text-muted-foreground sm:text-sm md:text-base">
-					<?php esc_html_e('Our Ecosystem', 'reacon-group'); ?>
+					<?php echo esc_html(reacon_about_fallback_text($ecosystem_eyebrow, 'Our Ecosystem')); ?>
 				</p>
 				<h2 class="mt-2 font-display text-[34px] font-semibold leading-[1.15] text-foreground sm:text-[40px] md:text-[44px] lg:text-[52px] xl:text-[56px]">
-					<?php esc_html_e('A unified ecosystem powering creation, production, and delivery', 'reacon-group'); ?>
+					<?php echo esc_html(reacon_about_fallback_text($ecosystem_title, 'Ecosystem content coming soon.')); ?>
 				</h2>
 				<p class="mt-3 font-sans text-[15px] leading-[1.42] text-muted-foreground sm:text-base md:mt-4">
-					<?php esc_html_e('Our family of specialized brands works together under one integrated system - combining creativity, manufacturing, automation, and fulfillment to deliver consistent quality from concept to distribution.', 'reacon-group'); ?>
+					<?php echo esc_html(reacon_about_fallback_text($ecosystem_description, 'Please add ecosystem description in ACF.')); ?>
 				</p>
 			</div>
 
 			<div class="mt-8 grid grid-cols-1 gap-4 sm:mt-10 sm:grid-cols-2 sm:gap-5 lg:mt-12 lg:grid-cols-4 lg:gap-8">
-				<?php foreach ($ecosystem_cards as $card): ?>
+				<?php if (!empty($ecosystem_cards)): ?>
+					<?php foreach ($ecosystem_cards as $card): ?>
 					<article class="flex min-h-[240px] flex-col justify-between rounded-[20px] border border-[#f3f4f6] bg-[#f6f6f6] p-5 sm:p-6 transition-all duration-200 hover:bg-white hover:border-primary hover:shadow-sm">
+						<?php
+						$card_link = isset($card['link']) ? $card['link'] : (isset($card['url']) ? $card['url'] : '');
+						$card_link_data = reacon_about_get_link($card_link, '#', 'Explore');
+						?>
 						<div>
 							<div class="mb-3 flex h-[32px] items-center justify-end">
-								<?php if ('westman' === $card['type']): ?>
-									<div class="relative h-10 w-auto" aria-label="<?php echo esc_attr($card['logo_alt']); ?>">
+								<?php if (isset($card['type']) && 'westman' === $card['type']): ?>
+									<div class="relative h-10 w-auto" aria-label="<?php echo esc_attr(isset($card['logo_alt']) ? $card['logo_alt'] : ''); ?>">
 
 										<img src="<?php echo esc_url($ecosystem_assets_uri . '/westman.png'); ?>" alt="" aria-hidden="true" class="h-12 w-[55px]" />
 									</div>
 								<?php else: ?>
-									<img src="<?php echo esc_url($card['logo']); ?>" alt="<?php echo esc_attr($card['logo_alt']); ?>" class="h-[32px] w-auto object-contain" loading="lazy" decoding="async" />
+									<img src="<?php echo esc_url(isset($card['logo']) ? $card['logo'] : ''); ?>" alt="<?php echo esc_attr(isset($card['logo_alt']) ? $card['logo_alt'] : ''); ?>" class="h-[32px] w-auto object-contain" loading="lazy" decoding="async" />
 								<?php endif; ?>
 							</div>
 							<h3 class="font-display text-[28px] font-semibold leading-[1.2] text-foreground sm:text-[24px]">
-								<?php echo esc_html($card['name']); ?>
+								<?php echo esc_html(isset($card['name']) ? $card['name'] : ''); ?>
 							</h3>
 							<p class="mt-2 font-sans text-[14px] leading-[1.42] text-muted-foreground">
-								<?php echo esc_html($card['description']); ?>
+								<?php echo esc_html(isset($card['description']) ? $card['description'] : ''); ?>
 							</p>
 						</div>
-						<a href="<?php echo esc_url($card['url']); ?>" class="mt-5 inline-flex items-center gap-1.5 font-sans text-sm text-[#1e293b] no-underline">
-							<span><?php esc_html_e('Explore Site', 'reacon-group'); ?></span>
+						<a href="<?php echo esc_url($card_link_data['url']); ?>" target="<?php echo esc_attr($card_link_data['target']); ?>" class="mt-5 inline-flex items-center gap-1.5 font-sans text-sm text-[#1e293b] no-underline">
+							<span><?php echo esc_html($card_link_data['title']); ?></span>
 							<img src="<?php echo esc_url($ecosystem_assets_uri . '/ecosystem-arrow-right.svg'); ?>" alt="" aria-hidden="true" class="h-3 w-3" />
 						</a>
 					</article>
-				<?php endforeach; ?>
+					<?php endforeach; ?>
+				<?php else: ?>
+					<div class="col-span-full text-center font-sans text-sm text-muted-foreground">
+						<?php echo esc_html('Please add ecosystem cards in ACF.'); ?>
+					</div>
+				<?php endif; ?>
 			</div>
 		</div>
 	</section>
+	<?php endif; ?>
 	<!-- End Ecosystem Section -->
 	<!-- What we do section -->
 	<?php
 	$about_assets_uri = get_template_directory_uri() . '/public/about';
-	$what_we_do_cards = array(
-		array(
-			'title' => __('Creative & Content Studio', 'reacon-group'),
-			'subtitle' => __('Visual storytelling made for scale', 'reacon-group'),
-			'body' => __('Brand design, photography, CGI, video, and campaign content crafted for consistency and impact across touchpoints.', 'reacon-group'),
-			'highlight' => false,
-		),
-		array(
-			'title' => __('Print & Packaging Manufacturing', 'reacon-group'),
-			'subtitle' => __('Industrial-grade production', 'reacon-group'),
-			'body' => __('Digital, offset, and large-format printing, custom packaging, labeling, and structural fabrication engineered for precision and volume.', 'reacon-group'),
-			'highlight' => true,
-		),
-		array(
-			'title' => __('Automation & Technology', 'reacon-group'),
-			'subtitle' => __('Smarter workflows, faster operations', 'reacon-group'),
-			'body' => __('Order management, job tracking, workflow automation, and data-driven systems that simplify processes and reduce operational friction.', 'reacon-group'),
-			'highlight' => true,
-		),
-		array(
-			'title' => __('Fulfillment & Distribution', 'reacon-group'),
-			'subtitle' => __('End-to-end logistics you can rely on', 'reacon-group'),
-			'body' => __('Warehouse storage, inventory management, kitting, pick-pack, and nationwide distribution with real-time delivery visibility.', 'reacon-group'),
-			'highlight' => false,
-		),
-	);
+	$what_we_do_eyebrow = '';
+	$what_we_do_title = '';
+	$what_we_do_description = '';
+	$what_we_do_image_url = '';
+	$what_we_do_image_alt = '';
+	$what_we_do_cards = array();
+	if ($acf_enabled) {
+		$what_we_do_eyebrow = (string) get_field('about_what_we_do_eyebrow');
+		$what_we_do_title = (string) get_field('about_what_we_do_title');
+		$what_we_do_description = (string) get_field('about_what_we_do_description');
+		$what_we_do_image = get_field('about_what_we_do_image');
+		if (is_array($what_we_do_image) && !empty($what_we_do_image['url'])) {
+			$what_we_do_image_url = $what_we_do_image['url'];
+			$what_we_do_image_alt = !empty($what_we_do_image['alt']) ? $what_we_do_image['alt'] : '';
+		} elseif (is_string($what_we_do_image) && $what_we_do_image !== '') {
+			$what_we_do_image_url = $what_we_do_image;
+		}
+		$what_we_do_cards_field = get_field('about_what_we_do_cards');
+		if (is_array($what_we_do_cards_field) && !empty($what_we_do_cards_field)) {
+			$what_we_do_cards = $what_we_do_cards_field;
+		}
+	}
 	?>
+	<?php if ($about_sections['what_we_do']): ?>
 	<section id="reacon-what-we-do-section" class="bg-[#f5f5f5] py-12 sm:py-14 md:py-16 lg:py-20 xl:py-[120px]">
 		<div class="mx-auto grid w-full max-w-[1370px] grid-cols-1 gap-8 px-4 sm:px-6 md:gap-10 lg:grid-cols-[minmax(0,720px)_minmax(0,620px)] lg:items-stretch lg:gap-[30px] lg:px-8 xl:px-0">
 			<div class="flex flex-col gap-6 md:gap-8">
 				<div class="w-full max-w-[720px]">
 					<p class="font-sans text-[13px] uppercase tracking-[0.08em] text-muted-foreground sm:text-sm md:text-base">
-						<?php esc_html_e('What We Do', 'reacon-group'); ?>
+						<?php echo esc_html(reacon_about_fallback_text($what_we_do_eyebrow, 'What We Do')); ?>
 					</p>
 					<h2 class="mt-2 font-display text-[36px] font-semibold leading-[1.15] text-foreground sm:text-[40px] md:text-[44px] lg:text-[56px] xl:text-[60px]">
-						<?php esc_html_e('Integrated solutions built to create, produce, and deliver at scale', 'reacon-group'); ?>
+						<?php echo esc_html(reacon_about_fallback_text($what_we_do_title, 'Section content coming soon.')); ?>
 					</h2>
 					<p class="mt-3 max-w-[720px] font-sans text-[15px] leading-[1.42] text-muted-foreground sm:text-base md:mt-4">
-						<?php esc_html_e('Reacon Group brings together creative, manufacturing, technology, and fulfillment capabilities - allowing brands to operate with speed, consistency, and efficiency across every stage of their workflow.', 'reacon-group'); ?>
+						<?php echo esc_html(reacon_about_fallback_text($what_we_do_description, 'Please add What We Do description in ACF.')); ?>
 					</p>
 				</div>
 
 				<div class="grid grid-cols-1 border border-[#eceff2] sm:grid-cols-2">
-					<?php foreach ($what_we_do_cards as $index => $card): ?>
+					<?php if (!empty($what_we_do_cards)): ?>
+						<?php foreach ($what_we_do_cards as $index => $card): ?>
 						<?php
 						$is_top_row = $index < 2;
 						$is_left_col = 0 === $index % 2;
@@ -255,7 +414,14 @@ $about_header_bg = get_template_directory_uri() . '/public/about/about-header.pn
 						?>
 						<article class="flex gap-2 p-4 sm:p-5 md:p-6 <?php echo esc_attr(trim($cell_border)); ?> <?php echo $card['highlight'] ? 'bg-[rgba(233,251,252,0.5)]' : 'bg-transparent'; ?>">
 							<div class="pt-1.5 text-primary">
-								<i class="ph-fill ph-check-circle text-[18px] leading-none" aria-hidden="true"></i>
+								<?php
+								reacon_about_render_icon(
+									isset($card['icon_type']) ? $card['icon_type'] : 'phosphor',
+									isset($card['icon_value']) ? $card['icon_value'] : 'ph-fill ph-check-circle',
+									'',
+									'text-[18px] leading-none'
+								);
+								?>
 							</div>
 							<div class="min-w-0">
 								<h3 class="font-display text-[24px] font-semibold leading-[1.2] text-foreground sm:text-xl md:text-2xl">
@@ -269,110 +435,67 @@ $about_header_bg = get_template_directory_uri() . '/public/about/about-header.pn
 								</p>
 							</div>
 						</article>
-					<?php endforeach; ?>
+						<?php endforeach; ?>
+					<?php else: ?>
+						<div class="p-4 sm:p-5 md:p-6 font-sans text-sm text-muted-foreground">
+							<?php echo esc_html('Please add What We Do cards in ACF.'); ?>
+						</div>
+					<?php endif; ?>
 				</div>
 			</div>
 
 			<div class="relative h-[440px] overflow-hidden rounded-3xl sm:h-[560px] md:h-[640px] lg:h-auto lg:min-h-[774px]">
 				<img
-					src="<?php echo esc_url($about_assets_uri . '/what-we-do-image.png'); ?>"
-					alt="<?php esc_attr_e('Integrated solutions workflow', 'reacon-group'); ?>"
+					src="<?php echo esc_url($what_we_do_image_url); ?>"
+					alt="<?php echo esc_attr($what_we_do_image_alt); ?>"
 					class="h-full w-full object-cover"
 					loading="lazy"
 					decoding="async" />
 			</div>
 		</div>
 	</section>
+	<?php endif; ?>
 	<!-- End What we do section -->
 
 	<!-- Testimonials Section -->
 	<?php
-	$about_assets_uri = get_template_directory_uri() . '/public/about';
-
-	$testimonials_row_1 = array(
-		array(
-			'quote' => __('Reacon has been a game-changer for our branding strategy. Their creative solutions have not only elevated our product presentation but also enhanced customer engagement at every touchpoint.', 'reacon-group'),
-			'name' => __('Maria Gomez', 'reacon-group'),
-			'role' => __('Brand Manager, Lifestyle Products Co.', 'reacon-group'),
-			'img' => $about_assets_uri . '/testimonial-avatar-1.png',
-		),
-		array(
-			'quote' => __('Since partnering with Reacon, we have seen a significant increase in our market reach. Their innovative approaches to design and marketing have truly set us apart from competitors.', 'reacon-group'),
-			'name' => __('James Chen', 'reacon-group'),
-			'role' => __('Marketing Director, Tech Innovations Ltd.', 'reacon-group'),
-			'img' => $about_assets_uri . '/testimonial-avatar-2.png',
-		),
-		array(
-			'quote' => __("Reacon's expertise in digital marketing has transformed our online presence. Their strategies have led to increased traffic and conversion rates across all platforms.", 'reacon-group'),
-			'name' => __('Linda Patel', 'reacon-group'),
-			'role' => __('E-commerce Lead, Fashion Forward.', 'reacon-group'),
-			'img' => $about_assets_uri . '/testimonial-avatar-3.png',
-		),
-		array(
-			'quote' => __('Collaborating with Reacon has been an enlightening experience. Their ability to understand our vision and turn it into reality has exceeded our expectations.', 'reacon-group'),
-			'name' => __('Carlos Martinez', 'reacon-group'),
-			'role' => __('Creative Director, Artistry Agency.', 'reacon-group'),
-			'img' => $about_assets_uri . '/testimonial-avatar-4.png',
-		),
-		array(
-			'quote' => __('The team at Reacon brought our ideas to life with their stunning visuals and compelling narratives. Our audience response has been overwhelmingly positive since the rebranding.', 'reacon-group'),
-			'name' => __('Samantha Lee', 'reacon-group'),
-			'role' => __('Product Development Manager, Fresh Foods Inc.', 'reacon-group'),
-			'img' => $about_assets_uri . '/testimonial-avatar-5.png',
-		),
-	);
-
-	$testimonials_row_2 = array(
-		array(
-			'quote' => __('The partnership with Reacon allowed us to redefine our visual identity. Their innovative approach helped us stand out in a competitive market, driving increased sales and brand loyalty.', 'reacon-group'),
-			'name' => __('James Lee', 'reacon-group'),
-			'role' => __('Marketing Director, Tech Innovations Inc.', 'reacon-group'),
-			'img' => $about_assets_uri . '/testimonial-avatar-6.png',
-		),
-		array(
-			'quote' => __("Thanks to Reacon's expertise, our advertising campaigns have seen a remarkable improvement in conversion rates. Their strategic insight was invaluable to our success.", 'reacon-group'),
-			'name' => __('Linda Carter', 'reacon-group'),
-			'role' => __('Chief Marketing Officer, Eco Friendly Solutions.', 'reacon-group'),
-			'img' => $about_assets_uri . '/testimonial-avatar-7.png',
-		),
-		array(
-			'quote' => __('Working with Reacon has transformed our storytelling. Their unique designs and concepts resonate deeply with our audience, creating a memorable brand experience.', 'reacon-group'),
-			'name' => __('Raj Patel', 'reacon-group'),
-			'role' => __('Creative Director, NextGen Media.', 'reacon-group'),
-			'img' => $about_assets_uri . '/testimonial-avatar-8.png',
-		),
-		array(
-			'quote' => __("Reacon's attention to detail and commitment to excellence has made a significant impact on our product launches. Their designs have consistently received positive feedback from our customers.", 'reacon-group'),
-			'name' => __('Sophia Chen', 'reacon-group'),
-			'role' => __('Product Development Lead, HealthTech Co.', 'reacon-group'),
-			'img' => $about_assets_uri . '/testimonial-avatar-9.png',
-		),
-		array(
-			'quote' => __('Reacon has been a game-changer for our branding strategy. Their creative solutions have not only elevated our product presentation but also enhanced customer engagement at every touchpoint.', 'reacon-group'),
-			'name' => __('Maria Gomez', 'reacon-group'),
-			'role' => __('Brand Manager, Lifestyle Products Co.', 'reacon-group'),
-			'img' => $about_assets_uri . '/testimonial-avatar-10.png',
-		),
-	);
+	$testimonials_row_1 = array();
+	$testimonials_row_2 = array();
+	$testimonials_heading = '';
+	$testimonials_description = '';
+	if ($acf_enabled) {
+		$testimonials_heading = (string) get_field('about_testimonials_heading');
+		$testimonials_description = (string) get_field('about_testimonials_description');
+		$testimonials_row_1_field = get_field('about_testimonials_row_1');
+		$testimonials_row_2_field = get_field('about_testimonials_row_2');
+		if (is_array($testimonials_row_1_field) && !empty($testimonials_row_1_field)) {
+			$testimonials_row_1 = $testimonials_row_1_field;
+		}
+		if (is_array($testimonials_row_2_field) && !empty($testimonials_row_2_field)) {
+			$testimonials_row_2 = $testimonials_row_2_field;
+		}
+	}
 	?>
 
+	<?php if ($about_sections['testimonials']): ?>
 	<section id="reacon-testimonials-section" class="relative overflow-hidden bg-[#fafafa] py-16 lg:py-24" aria-label="<?php esc_attr_e('Testimonials', 'reacon-group'); ?>">
 		<div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(233,251,252,0.9)_0%,rgba(255,255,255,0.85)_58%,rgba(255,255,255,1)_100%)]" aria-hidden="true"></div>
 
 		<div class="relative z-10 mx-auto mb-10 flex w-full max-w-[760px] flex-col items-center gap-3 px-6 text-center lg:mb-12">
 			<h2 class="font-display text-[32px] font-bold leading-[1.3] text-[#1e293b] sm:text-[38px] lg:text-[42px]">
-				<?php esc_html_e('What Our Partners Say About Us', 'reacon-group'); ?>
+				<?php echo esc_html(reacon_about_fallback_text($testimonials_heading, 'Testimonials')); ?>
 			</h2>
 			<p class="max-w-[706px] font-sans text-sm leading-[1.42] text-[#262626] sm:text-base">
-				<?php esc_html_e("Our clients trust us to deliver precision, creativity, and scale - every time. Here's what they say about working with Reacon.", 'reacon-group'); ?>
+				<?php echo esc_html(reacon_about_fallback_text($testimonials_description, 'Please add testimonials intro in ACF.')); ?>
 			</p>
 		</div>
 
 		<div class="relative z-10 space-y-6 lg:space-y-8">
 			<div class="reacon-testi-track-wrap">
 				<div class="reacon-testi-track reacon-testi-track--forward">
-					<?php for ($r = 0; $r < 2; $r++): ?>
-						<?php foreach ($testimonials_row_1 as $item): ?>
+					<?php if (!empty($testimonials_row_1)): ?>
+						<?php for ($r = 0; $r < 2; $r++): ?>
+							<?php foreach ($testimonials_row_1 as $item): ?>
 							<article class="flex h-[260px] w-[86vw] max-w-[472px] shrink-0 flex-col justify-between rounded-3xl border border-[#e5e5e5] bg-white p-6 shadow-[0_1px_0_rgba(0,0,0,0.02)] sm:w-[472px]">
 								<p class="font-sans text-base leading-[1.42] text-foreground">
 									<?php echo esc_html($item['quote']); ?>
@@ -382,18 +505,28 @@ $about_header_bg = get_template_directory_uri() . '/public/about/about-header.pn
 										<p class="font-sans text-base font-medium leading-[1.42] text-primary"><?php echo esc_html($item['name']); ?></p>
 										<p class="font-sans text-sm leading-[1.42] text-muted-foreground"><?php echo esc_html($item['role']); ?></p>
 									</div>
-									<img src="<?php echo esc_url($item['img']); ?>" alt="<?php echo esc_attr($item['name']); ?>" class="h-[52px] w-[52px] shrink-0 rounded-full object-cover" loading="lazy" decoding="async" />
+									<?php
+									$item_img = isset($item['img']) ? $item['img'] : '';
+									$item_img_url = is_array($item_img) && !empty($item_img['url']) ? $item_img['url'] : $item_img;
+									?>
+									<img src="<?php echo esc_url($item_img_url); ?>" alt="<?php echo esc_attr($item['name']); ?>" class="h-[52px] w-[52px] shrink-0 rounded-full object-cover" loading="lazy" decoding="async" />
 								</div>
 							</article>
-						<?php endforeach; ?>
-					<?php endfor; ?>
+							<?php endforeach; ?>
+						<?php endfor; ?>
+					<?php else: ?>
+						<article class="flex h-[260px] w-[86vw] max-w-[472px] shrink-0 flex-col justify-center rounded-3xl border border-[#e5e5e5] bg-white p-6 shadow-[0_1px_0_rgba(0,0,0,0.02)] sm:w-[472px]">
+							<p class="font-sans text-base leading-[1.42] text-foreground"><?php echo esc_html('Please add testimonials in ACF.'); ?></p>
+						</article>
+					<?php endif; ?>
 				</div>
 			</div>
 
 			<div class="reacon-testi-track-wrap">
 				<div class="reacon-testi-track reacon-testi-track--reverse">
-					<?php for ($r = 0; $r < 2; $r++): ?>
-						<?php foreach ($testimonials_row_2 as $item): ?>
+					<?php if (!empty($testimonials_row_2)): ?>
+						<?php for ($r = 0; $r < 2; $r++): ?>
+							<?php foreach ($testimonials_row_2 as $item): ?>
 							<article class="flex h-[260px] w-[86vw] max-w-[472px] shrink-0 flex-col justify-between rounded-3xl border border-[#e5e5e5] bg-white p-6 shadow-[0_1px_0_rgba(0,0,0,0.02)] sm:w-[472px]">
 								<p class="font-sans text-base leading-[1.42] text-foreground">
 									<?php echo esc_html($item['quote']); ?>
@@ -403,11 +536,20 @@ $about_header_bg = get_template_directory_uri() . '/public/about/about-header.pn
 										<p class="font-sans text-base font-medium leading-[1.42] text-primary"><?php echo esc_html($item['name']); ?></p>
 										<p class="font-sans text-sm leading-[1.42] text-muted-foreground"><?php echo esc_html($item['role']); ?></p>
 									</div>
-									<img src="<?php echo esc_url($item['img']); ?>" alt="<?php echo esc_attr($item['name']); ?>" class="h-[52px] w-[52px] shrink-0 rounded-full object-cover" loading="lazy" decoding="async" />
+									<?php
+									$item_img = isset($item['img']) ? $item['img'] : '';
+									$item_img_url = is_array($item_img) && !empty($item_img['url']) ? $item_img['url'] : $item_img;
+									?>
+									<img src="<?php echo esc_url($item_img_url); ?>" alt="<?php echo esc_attr($item['name']); ?>" class="h-[52px] w-[52px] shrink-0 rounded-full object-cover" loading="lazy" decoding="async" />
 								</div>
 							</article>
-						<?php endforeach; ?>
-					<?php endfor; ?>
+							<?php endforeach; ?>
+						<?php endfor; ?>
+					<?php else: ?>
+						<article class="flex h-[260px] w-[86vw] max-w-[472px] shrink-0 flex-col justify-center rounded-3xl border border-[#e5e5e5] bg-white p-6 shadow-[0_1px_0_rgba(0,0,0,0.02)] sm:w-[472px]">
+							<p class="font-sans text-base leading-[1.42] text-foreground"><?php echo esc_html('Please add testimonials in ACF.'); ?></p>
+						</article>
+					<?php endif; ?>
 				</div>
 			</div>
 		</div>
@@ -460,26 +602,51 @@ $about_header_bg = get_template_directory_uri() . '/public/about/about-header.pn
 			}
 		</style>
 	</section>
+	<?php endif; ?>
 	<!-- End Testimonials Section -->
 
 	<!-- CTA SECTION START -->
 	<?php
 	$about_cta = array(
-		'heading' => __('Print Smarter. Move Faster. Deliver Everywhere.', 'reacon-group'),
-		'description' => __('Reacon connects creativity, automation, and logistics to help brands operate at global speed.', 'reacon-group'),
+		'heading' => '',
+		'description' => '',
 		'primary' => array(
-			'label' => __('Contact Us', 'reacon-group'),
-			'url' => home_url('/contact-us/'),
+			'label' => '',
+			'url' => '#',
 		),
 		'secondary' => array(
-			'label' => __('Talk to Our Team', 'reacon-group'),
-			'url' => home_url('/contact-us/'),
+			'label' => '',
+			'url' => '#',
 		),
 	);
+	$about_cta_bg = 'teal';
+	$about_cta_primary_icon_type = 'phosphor';
+	$about_cta_primary_icon_value = 'ph ph-arrow-up-right';
+	if ($acf_enabled) {
+		$about_cta_heading = (string) get_field('about_cta_heading');
+		$about_cta_description = (string) get_field('about_cta_description');
+		$about_cta_primary = reacon_about_get_link(get_field('about_cta_primary_button'), $about_cta['primary']['url'], $about_cta['primary']['label']);
+		$about_cta_secondary = reacon_about_get_link(get_field('about_cta_secondary_button'), $about_cta['secondary']['url'], $about_cta['secondary']['label']);
+		$about_cta['heading'] = $about_cta_heading;
+		$about_cta['description'] = $about_cta_description;
+		$about_cta['primary'] = array('label' => $about_cta_primary['title'], 'url' => $about_cta_primary['url'], 'target' => $about_cta_primary['target']);
+		$about_cta['secondary'] = array('label' => $about_cta_secondary['title'], 'url' => $about_cta_secondary['url'], 'target' => $about_cta_secondary['target']);
+		$about_cta_bg = (string) get_field('about_cta_color');
+		$about_cta_primary_icon_type = (string) get_field('about_cta_primary_icon_type');
+		$about_cta_primary_icon_value = get_field('about_cta_primary_icon_value');
+	}
+	$cta_bg_style = '';
+	if ('teal' === $about_cta_bg || '' === $about_cta_bg) {
+		$cta_bg_style = 'background: linear-gradient(179deg, #062b2d 0%, #1ECAD3 100%);';
+	}
+	if ('blue' === $about_cta_bg) {
+		$cta_bg_style = 'background: linear-gradient(179deg, #062B53 0%, #0A969B 100%);';
+	}
 	?>
+	<?php if ($about_sections['cta']): ?>
 	<section id="home-cta" class="py-10 sm:py-12 lg:py-14" aria-labelledby="home-cta-heading">
 		<div class="mx-auto w-full  px-5 sm:px-6 lg:px-10">
-			<div class="relative overflow-hidden rounded-[22px] px-5 py-14 sm:px-8 sm:py-16 lg:rounded-[24px] lg:px-12 lg:py-[70px]" style="background: linear-gradient(179deg, #062b2d 0%, #1ECAD3 100%);">
+			<div class="relative overflow-hidden rounded-[22px] px-5 py-14 sm:px-8 sm:py-16 lg:rounded-[24px] lg:px-12 lg:py-[70px]" style="<?php echo esc_attr($cta_bg_style); ?>">
 				<div class="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
 					<svg preserveAspectRatio="none" style="display:block; width:100%; height:100%;" viewBox="0 0 2014 746" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<defs>
@@ -524,30 +691,55 @@ $about_header_bg = get_template_directory_uri() . '/public/about/about-header.pn
 				<div class="pointer-events-none absolute inset-0 z-[2] bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08)_0%,rgba(255,255,255,0)_58%)]" aria-hidden="true"></div>
 				<div class="relative z-10 mx-auto flex max-w-[760px] flex-col items-center justify-center text-center">
 					<h2 id="home-cta-heading" class="font-display text-[34px] font-bold leading-[1.08] text-white sm:text-[46px] lg:text-[56px]">
-						<?php echo esc_html($about_cta['heading']); ?>
+						<?php echo esc_html(reacon_about_fallback_text($about_cta['heading'], 'CTA content coming soon.')); ?>
 					</h2>
 					<p class="mx-auto mt-4 font-sans text-[14px] leading-[1.4] text-white/90 sm:text-[16px]">
-						<?php echo esc_html($about_cta['description']); ?>
+						<?php echo esc_html(reacon_about_fallback_text($about_cta['description'], 'Please add CTA description in ACF.')); ?>
 					</p>
 					<div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-[10px]">
-						<a href="<?php echo esc_url($about_cta['primary']['url']); ?>" class="inline-flex items-center gap-[10px] rounded-full bg-white py-[4px] pl-[20px] pr-[4px] font-sans text-[16px] font-medium text-primary no-underline transition-all duration-300 hover:bg-white/90">
-							<span><?php echo esc_html($about_cta['primary']['label']); ?></span>
+						<a href="<?php echo esc_url($about_cta['primary']['url']); ?>" target="<?php echo esc_attr(isset($about_cta['primary']['target']) ? $about_cta['primary']['target'] : '_self'); ?>" class="inline-flex items-center gap-[10px] rounded-full bg-white py-[4px] pl-[20px] pr-[4px] font-sans text-[16px] font-medium text-primary no-underline transition-all duration-300 hover:bg-white/90">
+							<span><?php echo esc_html(reacon_about_fallback_text($about_cta['primary']['label'], 'Primary Action')); ?></span>
 							<span class="flex h-[42px] w-[42px] items-center justify-center rounded-full bg-secondary/15">
-								<i class="ph ph-arrow-up-right text-base text-primary" aria-hidden="true"></i>
+								<?php reacon_about_render_icon($about_cta_primary_icon_type, $about_cta_primary_icon_value, '', 'text-base text-primary'); ?>
 							</span>
 						</a>
-						<a href="<?php echo esc_url($about_cta['secondary']['url']); ?>" class="inline-flex items-center gap-[10px] rounded-full border border-solid border-white pl-[20px] pr-[16px] py-[4px] font-sans text-[16px] font-normal text-white no-underline transition-all duration-300 hover:bg-white/10">
-							<?php echo esc_html($about_cta['secondary']['label']); ?>
+						<a href="<?php echo esc_url($about_cta['secondary']['url']); ?>" target="<?php echo esc_attr(isset($about_cta['secondary']['target']) ? $about_cta['secondary']['target'] : '_self'); ?>" class="inline-flex items-center gap-[10px] rounded-full border border-solid border-white pl-[20px] pr-[16px] py-[4px] font-sans text-[16px] font-normal text-white no-underline transition-all duration-300 hover:bg-white/10">
+							<?php echo esc_html(reacon_about_fallback_text($about_cta['secondary']['label'], 'Secondary Action')); ?>
 						</a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
+	<?php endif; ?>
 
 	<!-- End CTA SECTION -->
 
 	<!-- Faq Section -->
+	<?php
+	$faq_heading = '';
+	$faq_description = '';
+	$faq_items = array();
+	$faq_cta_title = '';
+	$faq_cta_description = '';
+	$faq_cta_link = array('url' => '#', 'title' => '', 'target' => '_self');
+	$faq_cta_icon_type = 'phosphor';
+	$faq_cta_icon_value = 'ph ph-arrow-right';
+	if ($acf_enabled) {
+		$faq_heading = (string) get_field('about_faq_heading');
+		$faq_description = (string) get_field('about_faq_description');
+		$faq_items_field = get_field('about_faq_items');
+		if (is_array($faq_items_field) && !empty($faq_items_field)) {
+			$faq_items = $faq_items_field;
+		}
+		$faq_cta_title = (string) get_field('about_faq_cta_title');
+		$faq_cta_description = (string) get_field('about_faq_cta_description');
+		$faq_cta_link = reacon_about_get_link(get_field('about_faq_cta_link'), '#', '');
+		$faq_cta_icon_type = (string) get_field('about_faq_cta_icon_type');
+		$faq_cta_icon_value = get_field('about_faq_cta_icon_value');
+	}
+	?>
+	<?php if ($about_sections['faq']): ?>
 	<section
 		id="reacon-faq-section"
 		class="w-full bg-white py-[72px] sm:py-[96px] lg:py-16"
@@ -560,12 +752,11 @@ $about_header_bg = get_template_directory_uri() . '/public/about/about-header.pn
 						id="reacon-faq-heading"
 						class="text-[28px] font-semibold leading-[1.32] text-black sm:text-[36px] lg:text-[44px]"
 						style="font-family: 'Plus Jakarta Sans','Graphik Trial',ui-sans-serif,system-ui">
-						Frequently Asked Questions
+						<?php echo esc_html(reacon_about_fallback_text($faq_heading, 'Frequently Asked Questions')); ?>
 					</h2>
 					<p
 						class="max-w-[1177px] text-[15px] leading-[1.42] text-black sm:text-[16px]">
-						Find quick answers to how Reacon works, what we deliver, and how we
-						support brands across print, production, and data-driven automation.
+						<?php echo esc_html(reacon_about_fallback_text($faq_description, 'Please add FAQ intro content in ACF.')); ?>
 					</p>
 				</div>
 			</div>
@@ -574,124 +765,68 @@ $about_header_bg = get_template_directory_uri() . '/public/about/about-header.pn
 			<div
 				class="mt-[40px] flex flex-col gap-[12px] sm:mt-[48px] lg:mt-[56px]"
 				aria-label="Frequently asked questions list">
-				<!-- Item 1 (open) -->
-				<details
-					open
-					class="transition-colors duration-300 rounded-[16px] bg-[#F9FAFB] px-[20px] py-[18px] sm:px-[24px] sm:py-[20px]">
-					<summary class="flex cursor-pointer list-none items-center justify-between gap-4 outline-none focus-visible:ring-2 focus-visible:ring-[var(--reacon-teal)] focus-visible:ring-offset-2 rounded-md">
-						<span
-							class="text-[18px] font-medium leading-[1.32] text-[#383B43] sm:text-[20px]"
-							style="font-family: 'Plus Jakarta Sans','Graphik Trial',ui-sans-serif,system-ui">
-							What services does Reacon provide?
-						</span>
-						<span class="text-[20px] leading-none text-[#383B43] select-none" aria-hidden="true">
-							−
-						</span>
-					</summary>
-					<p class="mt-[14px] text-[15px] leading-[1.42] text-[#666666] sm:mt-[20px] sm:text-[16px]">
-						Reacon delivers end-to-end brand execution including content design,
-						printing, packaging, warehousing, fulfilment, logistics, and
-						data-driven communication systems.
-					</p>
-				</details>
-
-				<!-- Item 2 -->
-				<details
-					class="transition-colors duration-300 rounded-[16px] border border-[#E7E7E7] px-[20px] py-[18px] sm:px-[24px] sm:py-[20px]">
-					<summary class="flex cursor-pointer list-none items-center justify-between gap-4 outline-none focus-visible:ring-2 focus-visible:ring-[var(--reacon-teal)] focus-visible:ring-offset-2 rounded-md">
-						<span
-							class="text-[18px] font-medium leading-[1.32] text-[#383B43] sm:text-[20px]"
-							style="font-family: 'Plus Jakarta Sans','Graphik Trial',ui-sans-serif,system-ui">
-							Does Reacon offer project management solutions?
-						</span>
-						<span class="text-[20px] leading-none text-[#383B43] select-none" aria-hidden="true">
-							+
-						</span>
-					</summary>
-					<p class="mt-[14px] text-[15px] leading-[1.42] text-[#666666] sm:mt-[20px] sm:text-[16px]">
-						Yes, we provide end-to-end project management. Our team coordinates everything from initial design and planning to production and final delivery, ensuring your campaigns run smoothly and on budget.
-					</p>
-				</details>
-
-				<!-- Item 3 -->
-				<details
-					class="transition-colors duration-300 rounded-[16px] border border-[#E7E7E7] px-[20px] py-[18px] sm:px-[24px] sm:py-[20px]">
-					<summary class="flex cursor-pointer list-none items-center justify-between gap-4 outline-none focus-visible:ring-2 focus-visible:ring-[var(--reacon-teal)] focus-visible:ring-offset-2 rounded-md">
-						<span
-							class="text-[18px] font-medium leading-[1.32] text-[#383B43] sm:text-[20px]"
-							style="font-family: 'Plus Jakarta Sans','Graphik Trial',ui-sans-serif,system-ui">
-							What digital marketing strategies do you specialize in?
-						</span>
-						<span class="text-[20px] leading-none text-[#383B43] select-none" aria-hidden="true">
-							+
-						</span>
-					</summary>
-					<p class="mt-[14px] text-[15px] leading-[1.42] text-[#666666] sm:mt-[20px] sm:text-[16px]">
-						Absolutely. Our digital marketing experts craft data-driven strategies spanning SEO, paid media, email automation, and social media to maximize your brand's reach and return on investment.
-					</p>
-				</details>
-
-				<!-- Item 4 -->
-				<details
-					class="transition-colors duration-300 rounded-[16px] border border-[#E7E7E7] px-[20px] py-[18px] sm:px-[24px] sm:py-[20px]">
-					<summary class="flex cursor-pointer list-none items-center justify-between gap-4 outline-none focus-visible:ring-2 focus-visible:ring-[var(--reacon-teal)] focus-visible:ring-offset-2 rounded-md">
-						<span
-							class="text-[18px] font-medium leading-[1.32] text-[#383B43] sm:text-[20px]"
-							style="font-family: 'Plus Jakarta Sans','Graphik Trial',ui-sans-serif,system-ui">
-							Do you offer innovative solutions in software development?
-						</span>
-						<span class="text-[20px] leading-none text-[#383B43] select-none" aria-hidden="true">
-							+
-						</span>
-					</summary>
-					<p class="mt-[14px] text-[15px] leading-[1.42] text-[#666666] sm:mt-[20px] sm:text-[16px]">
-						Yes, our technology teams build scalable custom software, powerful web applications, and seamless system integrations tailored to support your specific operational and marketing needs.
-					</p>
-				</details>
-
-				<!-- Item 5 -->
-				<details
-					class="transition-colors duration-300 rounded-[16px] border border-[#E7E7E7] px-[20px] py-[18px] sm:px-[24px] sm:py-[20px]">
-					<summary class="flex cursor-pointer list-none items-center justify-between gap-4 outline-none focus-visible:ring-2 focus-visible:ring-[var(--reacon-teal)] focus-visible:ring-offset-2 rounded-md">
-						<span
-							class="text-[18px] font-medium leading-[1.32] text-[#383B43] sm:text-[20px]"
-							style="font-family: 'Plus Jakarta Sans','Graphik Trial',ui-sans-serif,system-ui">
-							How does Reacon approach sustainable product design?
-						</span>
-						<span class="text-[20px] leading-none text-[#383B43] select-none" aria-hidden="true">
-							+
-						</span>
-					</summary>
-					<p class="mt-[14px] text-[15px] leading-[1.42] text-[#666666] sm:mt-[20px] sm:text-[16px]">
-						We are deeply committed to sustainability. Our eco-friendly practices encompass sustainable packaging design, responsible material sourcing, and waste-reducing production methods.
-					</p>
-				</details>
+				<?php if (!empty($faq_items)): ?>
+					<?php foreach ($faq_items as $faq_index => $faq_item): ?>
+					<details
+						<?php echo 0 === $faq_index ? 'open' : ''; ?>
+						class="transition-colors duration-300 rounded-[16px] <?php echo 0 === $faq_index ? 'bg-[#F9FAFB]' : 'border border-[#E7E7E7]'; ?> px-[20px] py-[18px] sm:px-[24px] sm:py-[20px]">
+						<summary class="flex cursor-pointer list-none items-center justify-between gap-4 outline-none focus-visible:ring-2 focus-visible:ring-[var(--reacon-teal)] focus-visible:ring-offset-2 rounded-md">
+							<span
+								class="text-[18px] font-medium leading-[1.32] text-[#383B43] sm:text-[20px]"
+								style="font-family: 'Plus Jakarta Sans','Graphik Trial',ui-sans-serif,system-ui">
+								<?php echo esc_html(isset($faq_item['question']) ? $faq_item['question'] : ''); ?>
+							</span>
+							<span class="text-[20px] leading-none text-[#383B43] select-none" aria-hidden="true">
+								<?php echo 0 === $faq_index ? '−' : '+'; ?>
+							</span>
+						</summary>
+						<p class="mt-[14px] text-[15px] leading-[1.42] text-[#666666] sm:mt-[20px] sm:text-[16px]">
+							<?php echo esc_html(isset($faq_item['answer']) ? $faq_item['answer'] : ''); ?>
+						</p>
+					</details>
+					<?php endforeach; ?>
+				<?php else: ?>
+					<details
+						open
+						class="transition-colors duration-300 rounded-[16px] bg-[#F9FAFB] px-[20px] py-[18px] sm:px-[24px] sm:py-[20px]">
+						<summary class="flex cursor-pointer list-none items-center justify-between gap-4 outline-none focus-visible:ring-2 focus-visible:ring-[var(--reacon-teal)] focus-visible:ring-offset-2 rounded-md">
+							<span class="text-[18px] font-medium leading-[1.32] text-[#383B43] sm:text-[20px]" style="font-family: 'Plus Jakarta Sans','Graphik Trial',ui-sans-serif,system-ui">
+								<?php echo esc_html('FAQ content coming soon.'); ?>
+							</span>
+							<span class="text-[20px] leading-none text-[#383B43] select-none" aria-hidden="true">−</span>
+						</summary>
+						<p class="mt-[14px] text-[15px] leading-[1.42] text-[#666666] sm:mt-[20px] sm:text-[16px]">
+							<?php echo esc_html('Please add FAQ items in ACF.'); ?>
+						</p>
+					</details>
+				<?php endif; ?>
 
 				<!-- CTA card -->
 				<div
 					class="mt-[4px] rounded-[16px] bg-[#E9FBFC] px-[20px] py-[18px] sm:px-[24px] sm:py-[20px]">
 					<div class="flex flex-col gap-[8px]">
 						<p class="text-[15px] font-medium leading-[1.42] text-[#383B43] sm:text-[16px]">
-							Have additional questions about Reacon Group?
+							<?php echo esc_html(reacon_about_fallback_text($faq_cta_title, 'Need more help?')); ?>
 						</p>
 						<p class="text-[15px] leading-[1.42] text-[#666666] sm:text-[16px]">
-							Our Australian-based customer experience team has licensed
-							specialists standing by to help.
+							<?php echo esc_html(reacon_about_fallback_text($faq_cta_description, 'Please add FAQ CTA description in ACF.')); ?>
 						</p>
 					</div>
 					<div
 						class="my-[16px] h-px w-full bg-[#ECEFF2] sm:my-[20px]"
 						aria-hidden="true"></div>
 					<a
-						href="#"
+						href="<?php echo esc_url($faq_cta_link['url']); ?>"
+						target="<?php echo esc_attr($faq_cta_link['target']); ?>"
 						class="flex w-full items-center justify-between gap-4 text-[15px] font-medium leading-[1.42] text-[#0A969B] hover:text-black transition-colors duration-300 sm:text-[16px]">
-						<span>Contact our Lead Team</span>
-						<i class="ph ph-arrow-right"></i>
+						<span><?php echo esc_html(reacon_about_fallback_text($faq_cta_link['title'], 'Contact our team')); ?></span>
+						<?php reacon_about_render_icon($faq_cta_icon_type, $faq_cta_icon_value); ?>
 					</a>
 				</div>
 			</div>
 		</div>
 	</section>
+	<?php endif; ?>
 	<!-- End Faq Section -->
 </main>
 
@@ -748,6 +883,10 @@ $about_header_bg = get_template_directory_uri() . '/public/about/about-header.pn
 
 <script>
 	document.addEventListener('DOMContentLoaded', () => {
+		if (window.lucide && typeof window.lucide.createIcons === 'function') {
+			window.lucide.createIcons();
+		}
+
 		const faqSection = document.getElementById('reacon-faq-section');
 		if (!faqSection) return;
 

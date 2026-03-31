@@ -198,6 +198,15 @@ function reacon_group_scripts()
 		true
 	);
 
+	// Lucide icons (used by ACF-selectable icon fields).
+	wp_enqueue_script(
+		'reacon-group-lucide',
+		'https://unpkg.com/lucide@latest',
+		array(),
+		null,
+		true
+	);
+
 	if (is_singular('post') || is_page_template('page-templates/industries-page-template.php')) {
 		wp_enqueue_style(
 			'reacon-group-swiper-style',
