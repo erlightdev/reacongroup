@@ -60,7 +60,7 @@ if (!function_exists('reacon_blog_render_icon')) {
 		if ('svg' === $icon_type && !empty($icon_value) && function_exists('reacon_group_inline_svg')) {
 			$svg_markup = reacon_group_inline_svg($icon_value, $class);
 			if ($svg_markup) {
-				echo $svg_markup; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo $svg_markup;  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				return;
 			}
 		}
@@ -122,7 +122,7 @@ if ($acf_enabled) {
 		class="relative w-full p-4 sm:p-5 lg:p-6"
 		aria-label="<?php esc_attr_e('Blog hero', 'reacon-group'); ?>">
 		<div
-			class="relative flex min-h-[360px] w-full flex-col overflow-hidden rounded-[31px] bg-foreground ">
+			class="reacon-blog-hero-card relative flex min-h-[360px] w-full flex-col overflow-hidden rounded-[31px] bg-foreground ">
 			<img
 				src="<?php echo esc_url($hero_bg !== '' ? $hero_bg : $blog_hero_bg); ?>"
 				alt=""
@@ -383,7 +383,7 @@ if ($acf_enabled) {
 									$is_current = strpos($link_html, 'current') !== false;
 									$page_label = trim(wp_strip_all_tags($link_html));
 									$page_url = '';
-									if (preg_match('/href=[\\\"\\\']([^\\\"\\\']+)[\\\"\\\']/', $link_html, $m)) {
+									if (preg_match("/href=[\\\\\"\']([^\\\\\"\']+)[\\\\\"\']/", $link_html, $m)) {
 										$page_url = $m[1];
 									}
 									?>
@@ -459,7 +459,7 @@ if ($acf_enabled) {
 			id="solution-cta"
 			class="py-10 "
 			aria-labelledby="solution-cta-heading">
-			<div class="mx-auto w-full px-10">
+			<div class="mx-auto w-full px-4 md:px-10">
 				<div class="relative overflow-hidden rounded-[22px] px-5 py-14 sm:px-8 sm:py-16 lg:rounded-[24px] lg:px-12 lg:py-[70px]" style="<?php echo esc_attr($cta_bg_style); ?>">
 					<div class="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_100%_at_50%_10%,rgba(255,255,255,0.08)_0%,rgba(255,255,255,0)_58%)]" aria-hidden="true"></div>
 					<div class="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,#0E6D77_0%,#0A4E57_100%)] opacity-75" aria-hidden="true"></div>
@@ -526,6 +526,41 @@ if ($acf_enabled) {
 		</section>
 	<?php endif; ?>
 		<!-- End Cta Section -->
+
+<style>
+	/* Desktop-only top notch that lets the fixed header "recess" into the hero. */
+	@media (min-width: 1024px) {
+		#blog-hero .reacon-blog-hero-card::before {
+			content: "";
+			position: absolute;
+			left: 50%;
+			top: 0;
+			transform: translateX(-50%);
+			width: clamp(420px, 46vw, 720px);
+			height: 86px;
+			background: #fff;
+			border-bottom-left-radius: 40px;
+			border-bottom-right-radius: 40px;
+			z-index: 3;
+			pointer-events: none;
+		}
+
+		#blog-hero .reacon-blog-hero-card::after {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 50%;
+			transform: translateX(-50%);
+			width: calc(clamp(420px, 46vw, 720px) + 78px);
+			height: 40px;
+			background:
+				radial-gradient(circle at 0% 100%, transparent 40px, var(--background) 41px) no-repeat left bottom / 40px 40px,
+				radial-gradient(circle at 100% 100%, transparent 40px, var(--background) 41px) no-repeat right bottom / 40px 40px;
+			z-index: 4;
+			pointer-events: none;
+		}
+	}
+</style>
 
 	<?php
 	$blog_debug_enabled = isset($_GET['blog_debug']) && '1' === (string) $_GET['blog_debug'];
