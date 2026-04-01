@@ -58,7 +58,7 @@ $nav_items = array(
 		<!-- ── Desktop Navigation (centred) ─────────────────── -->
 		<nav
 			id="site-navigation"
-			class="hidden min-w-0 items-center justify-center lg:flex"
+			class="relative hidden min-w-0 items-center justify-center lg:flex"
 			aria-label="<?php esc_attr_e('Main Navigation', 'reacon-group'); ?>">
 			<ul class="flex items-center gap-0.5 whitespace-nowrap rounded-[30px] bg-white px-1.5 py-1.5 xl:gap-1 xl:px-2">
 
@@ -70,11 +70,12 @@ $nav_items = array(
 						? 'bg-primary text-white shadow-[0_4px_10px_rgba(30,202,211,0.45)]'
 						: 'text-[#5a6b83] hover:bg-[#eef4f8] hover:text-[#263444]';
 					?>
-					<li class="relative<?php echo $has_mega ? ' group' : ''; ?>">
+					<li class="<?php echo $has_mega ? 'group static' : 'relative'; ?>">
 						<a
 							href="<?php echo esc_url($item['url']); ?>"
 							class="relative inline-flex items-center gap-1 whitespace-nowrap rounded-full px-3 py-2 font-sans text-[13px] font-medium transition-all duration-200 xl:gap-1.5 xl:px-4 xl:py-2.5 xl:text-[14px] <?php echo esc_attr($active_cls); ?>"
 							<?php if ($has_mega): ?>
+							data-mega-trigger="<?php echo esc_attr($item['slug']); ?>"
 							aria-haspopup="true"
 							aria-expanded="false"
 							<?php endif; ?>>
@@ -87,7 +88,8 @@ $nav_items = array(
 						<?php if ($has_mega && 'solutions' === $item['slug']): ?>
 							<!-- ── Mega Menu (Solutions) ──────────── -->
 							<div
-								class="pointer-events-none invisible absolute left-1/2 top-full z-50 w-[1320px] -translate-x-1/2 pt-4 opacity-0 transition-all duration-250 ease-out group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100"
+								class="absolute left-1/2 top-full z-50 hidden w-[1120px] -translate-x-1/2 pt-4"
+								data-mega-panel="solutions"
 								role="menu">
 								<div class="overflow-hidden rounded-[24px] border border-[#f3f4f6] bg-white p-6 shadow-[0px_0px_12px_0px_rgba(0,0,0,0.1)]">
 									<div class="grid grid-cols-[1fr_520px] items-start gap-8">
@@ -195,7 +197,8 @@ $nav_items = array(
 						<?php elseif ($has_mega && 'our-industry' === $item['slug']): ?>
 							<!-- ── Mega Menu (Our Industry) ───────── -->
 							<div
-								class="pointer-events-none invisible absolute left-1/2 top-full z-50 w-[1320px] -translate-x-1/2 pt-4 opacity-0 transition-all duration-250 ease-out group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100"
+								class="absolute left-1/2 top-full z-50 hidden w-[1120px] -translate-x-1/2 pt-4"
+								data-mega-panel="our-industry"
 								role="menu">
 								<div class="overflow-hidden rounded-3xl border border-[#f3f4f6] bg-white p-6 shadow-xl">
 									<div class="grid grid-cols-[1fr_520px] gap-8">
@@ -413,6 +416,52 @@ $nav_items = array(
 		updateHeaderOnScroll();
 		// --------------------------------------------------------------
 
+		// Desktop mega menu: click to open, click outside to close.
+		var megaTriggers = document.querySelectorAll('[data-mega-trigger]');
+		var megaPanels = document.querySelectorAll('[data-mega-panel]');
+
+		function closeDesktopMegaMenus() {
+			megaPanels.forEach(function(panel) {
+				panel.classList.add('hidden');
+			});
+			megaTriggers.forEach(function(trigger) {
+				trigger.setAttribute('aria-expanded', 'false');
+			});
+		}
+
+		function toggleDesktopMegaMenu(slug) {
+			var targetPanel = document.querySelector('[data-mega-panel="' + slug + '"]');
+			var targetTrigger = document.querySelector('[data-mega-trigger="' + slug + '"]');
+			if (!targetPanel || !targetTrigger) {
+				return;
+			}
+
+			var willOpen = targetPanel.classList.contains('hidden');
+			closeDesktopMegaMenus();
+			if (willOpen) {
+				targetPanel.classList.remove('hidden');
+				targetTrigger.setAttribute('aria-expanded', 'true');
+			}
+		}
+
+		megaTriggers.forEach(function(trigger) {
+			trigger.addEventListener('click', function(event) {
+				event.preventDefault();
+				if (window.innerWidth < 1024) {
+					return;
+				}
+				toggleDesktopMegaMenu(trigger.getAttribute('data-mega-trigger'));
+			});
+		});
+
+		document.addEventListener('click', function(event) {
+			var nav = document.getElementById('site-navigation');
+			if (!nav || nav.contains(event.target)) {
+				return;
+			}
+			closeDesktopMegaMenus();
+		});
+
 		var toggle = document.getElementById('mobile-menu-toggle');
 		var menu = document.getElementById('mobile-menu');
 		var iconOpen = document.getElementById('hamburger-icon');
@@ -464,11 +513,15 @@ $nav_items = array(
 
 		document.addEventListener('keydown', function(event) {
 			if (event.key === 'Escape') {
+				closeDesktopMegaMenus();
 				setMenuState(false);
 			}
 		});
 
 		window.addEventListener('resize', function() {
+			if (window.innerWidth < 1024) {
+				closeDesktopMegaMenus();
+			}
 			if (window.innerWidth >= 1024) {
 				setMenuState(false);
 			}

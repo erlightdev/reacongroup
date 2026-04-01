@@ -928,7 +928,7 @@ get_header();
 	];
 	?>
 	<!-- FAQ Section -->
-	<section id="reacon-faq-section" class="w-full bg-white py-16 xs:py-16 sm:py-20 md:py-24 lg:py-24 xl:py-24 2xl:py-28" aria-labelledby="reacon-faq-heading">
+	<section id="reacon-faq-section" class="w-full bg-white py-12 xs:py-12 sm:py-12 md:py-16 lg:py-16 xl:py-16 2xl:py-16" aria-labelledby="reacon-faq-heading">
 		<div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
 			<!-- FAQ Header -->
 			<header class="flex flex-col gap-6">
