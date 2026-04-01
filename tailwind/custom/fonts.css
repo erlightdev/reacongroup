@@ -8,6 +8,45 @@
 
 @font-face {
 	font-family: "Graphik Trial";
+	src:
+		local("Graphik Trial"), local("GraphikTrial-Regular"),
+		local("Graphik Regular");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Graphik Trial";
+	src:
+		local("Graphik Trial Medium"), local("GraphikTrial-Medium"),
+		local("Graphik Medium");
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Graphik Trial";
+	src:
+		local("Graphik Trial Semibold"), local("GraphikTrial-Semibold"),
+		local("Graphik Semibold");
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Graphik Trial";
+	src:
+		local("Graphik Trial Bold"), local("GraphikTrial-Bold"),
+		local("Graphik Bold");
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: "Graphik Trial";
 	src: url("./fonts/GraphikTrial-Regular.woff2") format("woff2");
 	font-weight: 400;
 	font-style: normal;
