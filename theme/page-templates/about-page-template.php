@@ -107,7 +107,7 @@ if ($acf_enabled) {
 	<?php if ($about_sections['hero']): ?>
 	<section
 		id="about-hero"
-		class="w-full p-1.5 sm:p-2 lg:p-4"
+		class="relative w-full p-1.5 md:p-2.5"
 		aria-label="<?php esc_attr_e('About page hero', 'reacon-group'); ?>">
 
 		<div class="reacon-about-hero-card relative min-h-[255px] overflow-hidden rounded-[24px] bg-[#062B53] sm:min-h-[300px] lg:min-h-[380px] lg:rounded-[31px]">
@@ -833,49 +833,42 @@ if ($acf_enabled) {
 <style>
 	/* Desktop-only top notch that lets the fixed header "recess" into the hero. */
 	@media (min-width: 1024px) {
+		#about-hero .reacon-about-hero-card {
+			--hero-notch-width: clamp(560px, 48vw, 720px);
+			--hero-notch-radius: 40px;
+			--hero-notch-height: 86px;
+			--hero-notch-swoop: 40px;
+		}
 
-		/* 1. The White Notch (unchanged, just added a background color for clarity) */
+		/* 1. Hero top notch */
 		#about-hero .reacon-about-hero-card::before {
 			content: "";
 			position: absolute;
 			left: 50%;
 			top: 0;
-			/* Align to the very top */
-			transform: translateX(-50%);
-			width: clamp(420px, 46vw, 720px);
-			height: 86px;
+			transform: translateX(calc(-50% + var(--hero-notch-shift, 0px)));
+			width: var(--hero-notch-width);
+			height: var(--hero-notch-height);
 			background: #fff;
-			/* This is the notch color */
-			border-bottom-left-radius: 40px;
-			border-bottom-right-radius: 40px;
+			border-bottom-left-radius: var(--hero-notch-radius);
+			border-bottom-right-radius: var(--hero-notch-radius);
 			z-index: 3;
 			pointer-events: none;
 		}
 
-		/* 2. The Inverted Corners (The "Swoop") */
+		/* 2. Hero notch corner cutouts */
 		#about-hero .reacon-about-hero-card::after {
 			content: "";
 			position: absolute;
 			top: 0;
 			left: 50%;
-			transform: translateX(-50%);
-
-			/* Width = Notch Width + 80px (40px radius on each side) */
-			width: calc(clamp(420px, 46vw, 720px) + 78px);
-			height: 40px;
-			/* Match the radius height */
-
-			/* 
-       We create two squares at the top. 
-       The gradient draws the Card Color and leaves a 
-       transparent circle at the bottom corners of those squares.
-    */
+			transform: translateX(calc(-50% + var(--hero-notch-shift, 0px)));
+			width: calc(var(--hero-notch-width) + (var(--hero-notch-swoop) * 2));
+			height: var(--hero-notch-swoop);
 			background:
-				radial-gradient(circle at 0% 100%, transparent 40px, var(--background) 41px) no-repeat left bottom / 40px 40px,
-				radial-gradient(circle at 100% 100%, transparent 40px, var(--background) 41px) no-repeat right bottom / 40px 40px;
-
+				radial-gradient(circle at 0% 100%, transparent var(--hero-notch-swoop), #fff calc(var(--hero-notch-swoop) + 1px)) no-repeat left bottom / var(--hero-notch-swoop) var(--hero-notch-swoop),
+				radial-gradient(circle at 100% 100%, transparent var(--hero-notch-swoop), #fff calc(var(--hero-notch-swoop) + 1px)) no-repeat right bottom / var(--hero-notch-swoop) var(--hero-notch-swoop);
 			z-index: 4;
-			/* Must be HIGHER than ::before to sit on top of the notch edges */
 			pointer-events: none;
 		}
 	}
@@ -885,6 +878,46 @@ if ($acf_enabled) {
 	document.addEventListener('DOMContentLoaded', () => {
 		if (window.lucide && typeof window.lucide.createIcons === 'function') {
 			window.lucide.createIcons();
+		}
+
+		// Sync about-hero notch with centered desktop nav menu.
+		const syncAboutHeroNotchToDesktopMenu = () => {
+			const heroCard = document.querySelector('#about-hero .reacon-about-hero-card');
+			const navPill = document.querySelector('#site-navigation > ul');
+			if (!heroCard || !navPill) return;
+
+			if (window.innerWidth < 1024) {
+				heroCard.style.removeProperty('--hero-notch-width');
+				heroCard.style.removeProperty('--hero-notch-shift');
+				return;
+			}
+
+			const heroRect = heroCard.getBoundingClientRect();
+			const navRect = navPill.getBoundingClientRect();
+			const navWidth = Math.round(navRect.width);
+			if (!navWidth) return;
+
+			const heroCenterX = heroRect.left + (heroRect.width / 2);
+			const navCenterX = navRect.left + (navRect.width / 2);
+			const notchShift = Math.round(navCenterX - heroCenterX);
+
+			heroCard.style.setProperty('--hero-notch-width', `${navWidth + 18}px`);
+			heroCard.style.setProperty('--hero-notch-shift', `${notchShift}px`);
+		};
+
+		let aboutNotchSyncRaf = null;
+		const scheduleAboutNotchSync = () => {
+			if (aboutNotchSyncRaf) {
+				cancelAnimationFrame(aboutNotchSyncRaf);
+			}
+			aboutNotchSyncRaf = requestAnimationFrame(syncAboutHeroNotchToDesktopMenu);
+		};
+
+		scheduleAboutNotchSync();
+		window.addEventListener('resize', scheduleAboutNotchSync);
+		window.addEventListener('load', scheduleAboutNotchSync);
+		if (document.fonts && document.fonts.ready) {
+			document.fonts.ready.then(scheduleAboutNotchSync).catch(() => {});
 		}
 
 		const faqSection = document.getElementById('reacon-faq-section');

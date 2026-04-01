@@ -10,13 +10,13 @@
  * @package reacon-group
  */
 $hero_image_webp = get_template_directory_uri() . '/public/image/hero-bg.webp';
-$hero_image_png  = get_template_directory_uri() . '/public/image/hero-bg.png';
-$hero_video_mp4  = get_template_directory_uri() . '/public/home/hero-home.mp4';
-$stats_icon      = get_template_directory_uri() . '/public/figma-assets/stats-icon.png';
+$hero_image_png = get_template_directory_uri() . '/public/image/hero-bg.png';
+$hero_video_mp4 = get_template_directory_uri() . '/public/home/hero-home.mp4';
+$stats_icon = get_template_directory_uri() . '/public/figma-assets/stats-icon.png';
 
 $hero_video_mp4_path = get_template_directory() . '/public/home/hero-home.mp4';
 
-$has_hero_mp4   = file_exists($hero_video_mp4_path);
+$has_hero_mp4 = file_exists($hero_video_mp4_path);
 $has_hero_video = $has_hero_mp4;
 ?>
 

@@ -1,9 +1,4 @@
 <?php
-/**
- * Home page section: Content Studio / Data-Driven / Production & Fulfilment.
- *
- * @package reacon-group
- */
 
 $figma = get_template_directory_uri() . '/public/figma-assets';
 ?>
@@ -49,7 +44,8 @@ $figma = get_template_directory_uri() . '/public/figma-assets';
 							__('3D and experiential storytelling for activations', 'reacon-group'),
 							__('Consistent brand expression across every channel', 'reacon-group'),
 						);
-						foreach ($cs_items as $item) : ?>
+						foreach ($cs_items as $item):
+							?>
 							<div class="flex items-start lg:items-center gap-2.5">
 								<img src="<?php echo esc_url($figma . '/tick-circle-teal.svg'); ?>" alt="" class="w-4 h-4 shrink-0 mt-0.5 lg:mt-0" aria-hidden="true" />
 								<span class="font-sans text-sm md:text-base text-foreground"><?php echo esc_html($item); ?></span>
@@ -116,7 +112,8 @@ $figma = get_template_directory_uri() . '/public/figma-assets';
 							__('Automated, regulation-compliant communication systems', 'reacon-group'),
 							__('Real-time visibility and analytics for business growth', 'reacon-group'),
 						);
-						foreach ($dd_items as $item) : ?>
+						foreach ($dd_items as $item):
+							?>
 							<div class="flex items-start lg:items-center gap-2.5">
 								<img src="<?php echo esc_url($figma . '/tick-circle-teal.svg'); ?>" alt="" class="w-4 h-4 shrink-0 mt-0.5 lg:mt-0" aria-hidden="true" />
 								<span class="font-sans text-sm md:text-base text-foreground"><?php echo esc_html($item); ?></span>
@@ -163,7 +160,8 @@ $figma = get_template_directory_uri() . '/public/figma-assets';
 							__('Global print network across Asia and the Middle East', 'reacon-group'),
 							__('Integrated logistics for speed and precision', 'reacon-group'),
 						);
-						foreach ($pf_items as $item) : ?>
+						foreach ($pf_items as $item):
+							?>
 							<div class="flex items-start lg:items-center gap-2.5">
 								<img src="<?php echo esc_url($figma . '/tick-circle-teal.svg'); ?>" alt="" class="w-4 h-4 shrink-0 mt-0.5 lg:mt-0" aria-hidden="true" />
 								<span class="font-sans text-sm md:text-base text-foreground"><?php echo esc_html($item); ?></span>

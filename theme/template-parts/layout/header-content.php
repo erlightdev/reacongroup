@@ -37,9 +37,9 @@ $nav_items = array(
 <!-- FIX: Changed 'absolute' to 'fixed' and added transition classes for the sticky effect -->
 <header
 	id="masthead"
-	class="fixed inset-x-0 top-6 z-50  transition-all duration-300"
+	class="fixed inset-x-0 top-4 z-50  transition-all duration-300"
 	role="banner">
-	<div class="mx-auto flex h-20 w-full items-center justify-between px-6 lg:px-8 xl:px-10">
+	<div class="mx-auto grid h-20 w-full max-w-7xl grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 px-4 sm:gap-3 sm:px-6 lg:px-4 xl:px-6 2xl:px-8">
 
 		<!-- ── Logo ─────────────────────────────────────────── -->
 		<a
@@ -58,9 +58,9 @@ $nav_items = array(
 		<!-- ── Desktop Navigation (centred) ─────────────────── -->
 		<nav
 			id="site-navigation"
-			class="absolute left-1/2 hidden -translate-x-1/2 items-center lg:flex"
+			class="hidden min-w-0 items-center justify-center lg:flex"
 			aria-label="<?php esc_attr_e('Main Navigation', 'reacon-group'); ?>">
-			<ul class="flex items-center gap-1 rounded-[30px] bg-white px-2 py-1.5">
+			<ul class="flex items-center gap-0.5 whitespace-nowrap rounded-[30px] bg-white px-1.5 py-1.5 xl:gap-1 xl:px-2">
 
 				<?php
 				foreach ($nav_items as $item):
@@ -73,7 +73,7 @@ $nav_items = array(
 					<li class="relative<?php echo $has_mega ? ' group' : ''; ?>">
 						<a
 							href="<?php echo esc_url($item['url']); ?>"
-							class="relative inline-flex items-center gap-1.5 rounded-full px-5 py-2.5 font-sans text-[15px] font-medium transition-all duration-200 <?php echo esc_attr($active_cls); ?>"
+							class="relative inline-flex items-center gap-1 whitespace-nowrap rounded-full px-3 py-2 font-sans text-[13px] font-medium transition-all duration-200 xl:gap-1.5 xl:px-4 xl:py-2.5 xl:text-[14px] <?php echo esc_attr($active_cls); ?>"
 							<?php if ($has_mega): ?>
 							aria-haspopup="true"
 							aria-expanded="false"
@@ -280,20 +280,20 @@ $nav_items = array(
 		</style>
 
 		<!-- ── CTA Buttons (desktop) ───────────────────────── -->
-		<div class="hidden items-center gap-3 lg:flex">
+		<div class="hidden items-center gap-2 lg:flex">
 			<a
 				href="<?php echo esc_url(home_url('/start-an-order/')); ?>"
-				class="rounded-full border border-white/40 bg-[#07212c]/55 px-6 py-2.5 font-display text-sm font-bold text-white no-underline backdrop-blur-sm transition-all duration-200 hover:-translate-y-px hover:bg-[#07212c]/75 hover:border-white/60">
+				class="rounded-full border border-white/40 bg-[#07212c]/55 px-4 py-2.5 font-display text-[13px] font-bold text-white no-underline backdrop-blur-sm transition-all duration-200 hover:-translate-y-px hover:bg-[#07212c]/75 hover:border-white/60 xl:px-6 xl:text-sm">
 				<?php esc_html_e('Start an Order', 'reacon-group'); ?>
 			</a>
 
 			<a
 				href="<?php echo esc_url(home_url('/contact-us/')); ?>"
-				class="inline-flex items-center gap-2 rounded-full bg-primary py-2 pl-5 pr-2 font-display text-sm font-bold text-white no-underline shadow-[0_8px_20px_rgba(30,202,211,0.5)] transition-all duration-200 hover:-translate-y-px hover:brightness-105">
+				class="inline-flex items-center gap-1.5 rounded-full bg-primary py-2 pl-4 pr-1.5 font-display text-[13px] font-bold text-white no-underline shadow-[0_8px_20px_rgba(30,202,211,0.5)] transition-all duration-200 hover:-translate-y-px hover:brightness-105 xl:gap-2 xl:pl-5 xl:pr-2 xl:text-sm">
 				<?php esc_html_e('Contact Us', 'reacon-group'); ?>
 				<span
 					aria-hidden="true"
-					class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#6be6ec]">
+					class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#6be6ec] xl:h-8 xl:w-8">
 					<i class="ph-bold ph-arrow-up-right text-[11px]" aria-hidden="true"></i>
 				</span>
 			</a>
@@ -303,7 +303,7 @@ $nav_items = array(
 		<button
 			id="mobile-menu-toggle"
 			type="button"
-			class="relative z-[60] flex h-10 w-10 items-center justify-center rounded-lg text-white lg:hidden"
+			class="relative z-[60] flex h-10 w-10 justify-self-end items-center justify-center rounded-lg text-white lg:hidden"
 			aria-controls="mobile-menu"
 			aria-expanded="false"
 			aria-label="<?php esc_attr_e('Toggle menu', 'reacon-group'); ?>">
@@ -401,11 +401,11 @@ $nav_items = array(
 			if (window.scrollY > 20) {
 				// masthead.classList.add('backdrop-blur-lg', 'shadow-md', 'top-0');
 				masthead.classList.add('top-0');
-				masthead.classList.remove('top-6');
+				masthead.classList.remove('top-4');
 			} else {
 				// masthead.classList.remove('backdrop-blur-lg', 'shadow-md', 'top-0');
 				masthead.classList.remove('top-0');
-				masthead.classList.add('top-6');
+				masthead.classList.add('top-4');
 			}
 		}
 

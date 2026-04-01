@@ -119,39 +119,37 @@ if ($acf_enabled) {
 	<?php if ($blog_sections['hero']): ?>
 	<section
 		id="blog-hero"
-		class="relative w-full p-4 sm:p-5 lg:p-6"
-		aria-label="<?php esc_attr_e('Blog hero', 'reacon-group'); ?>">
+		class="relative w-full p-1.5 md:p-2.5"
+		aria-label="<?php esc_attr_e('Blog page hero', 'reacon-group'); ?>">
 		<div
-			class="reacon-blog-hero-card relative flex min-h-[360px] w-full flex-col overflow-hidden rounded-[31px] bg-foreground ">
+			class="reacon-blog-hero-card relative min-h-[255px] overflow-hidden rounded-[24px] bg-[#062B53] sm:min-h-[300px] lg:min-h-[380px] lg:rounded-[31px]">
 			<img
 				src="<?php echo esc_url($hero_bg !== '' ? $hero_bg : $blog_hero_bg); ?>"
 				alt=""
 				aria-hidden="true"
-				class="absolute inset-0 h-full w-full object-cover object-center"
+				class="pointer-events-none absolute inset-0 h-full w-full object-cover object-center"
+				fetchpriority="high"
 				loading="eager"
-				decoding="async"
-				fetchpriority="high" />
+				decoding="async" />
 
 			<!-- Dark overlay to keep typography readable over the image -->
 			<div
-				class="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.55)_0%,rgba(0,0,0,0.25)_55%,rgba(0,0,0,0.55)_100%)]"
+				class="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,10,33,0.28)_0%,rgba(0,10,33,0.18)_45%,rgba(0,10,33,0.28)_100%)]"
 				aria-hidden="true"></div>
 
 			<div
-				class="relative z-10 mx-auto flex w-full flex-1 flex-col items-center justify-center px-5 py-14 text-center sm:px-6 lg:px-10">
-				<div class="flex max-w-[900px] flex-col items-center">
-					<p class="w-full font-sans text-[14px] font-normal leading-[22.72px] text-white/80 sm:text-[16px]">
+				class="relative z-10 mx-auto flex min-h-[255px] w-full max-w-[1200px] flex-col items-center justify-center px-5 pb-10 pt-28 text-center sm:min-h-[300px] sm:px-6 sm:pt-32 lg:min-h-[380px] lg:px-10 lg:pb-14 lg:pt-36">
+				<p class="mb-4 font-sans text-[11px] font-medium uppercase tracking-[0.18em] text-white/85 lg:mb-5">
 						<?php echo esc_html(reacon_blog_fallback_text($hero_eyebrow, 'Blogs')); ?>
 					</p>
 
-					<h1 class="mt-3 font-display text-[40px] font-semibold leading-tight text-white sm:text-[48px] lg:text-[56px]">
-						<?php echo esc_html(reacon_blog_fallback_text($hero_title, 'Insights, Ideas & Industry Thinking')); ?>
-					</h1>
+				<h1 class="max-w-[860px] font-display text-[30px] font-bold leading-[1.16] text-white sm:text-[40px] lg:text-[56px]">
+					<?php echo esc_html(reacon_blog_fallback_text($hero_title, 'Insights, Ideas & Industry Thinking')); ?>
+				</h1>
 
-					<p class="mt-5 max-w-[840px] font-sans text-[16px] leading-[22.72px] text-white/80">
-						<?php echo esc_html(reacon_blog_fallback_text($hero_description, 'Please add hero description in ACF.')); ?>
-					</p>
-				</div>
+				<p class="mt-4 max-w-[780px] font-sans text-[13px] leading-[1.45] text-white/90 sm:text-[15px] lg:mt-5 lg:text-base">
+					<?php echo esc_html(reacon_blog_fallback_text($hero_description, 'Please add hero description in ACF.')); ?>
+				</p>
 			</div>
 		</div>
 	</section>
@@ -530,17 +528,24 @@ if ($acf_enabled) {
 <style>
 	/* Desktop-only top notch that lets the fixed header "recess" into the hero. */
 	@media (min-width: 1024px) {
+		#blog-hero .reacon-blog-hero-card {
+			--hero-notch-width: clamp(560px, 48vw, 720px);
+			--hero-notch-radius: 40px;
+			--hero-notch-height: 86px;
+			--hero-notch-swoop: 40px;
+		}
+
 		#blog-hero .reacon-blog-hero-card::before {
 			content: "";
 			position: absolute;
 			left: 50%;
 			top: 0;
-			transform: translateX(-50%);
-			width: clamp(420px, 46vw, 720px);
-			height: 86px;
+			transform: translateX(calc(-50% + var(--hero-notch-shift, 0px)));
+			width: var(--hero-notch-width);
+			height: var(--hero-notch-height);
 			background: #fff;
-			border-bottom-left-radius: 40px;
-			border-bottom-right-radius: 40px;
+			border-bottom-left-radius: var(--hero-notch-radius);
+			border-bottom-right-radius: var(--hero-notch-radius);
 			z-index: 3;
 			pointer-events: none;
 		}
@@ -550,12 +555,12 @@ if ($acf_enabled) {
 			position: absolute;
 			top: 0;
 			left: 50%;
-			transform: translateX(-50%);
-			width: calc(clamp(420px, 46vw, 720px) + 78px);
-			height: 40px;
+			transform: translateX(calc(-50% + var(--hero-notch-shift, 0px)));
+			width: calc(var(--hero-notch-width) + (var(--hero-notch-swoop) * 2));
+			height: var(--hero-notch-swoop);
 			background:
-				radial-gradient(circle at 0% 100%, transparent 40px, var(--background) 41px) no-repeat left bottom / 40px 40px,
-				radial-gradient(circle at 100% 100%, transparent 40px, var(--background) 41px) no-repeat right bottom / 40px 40px;
+				radial-gradient(circle at 0% 100%, transparent var(--hero-notch-swoop), #fff calc(var(--hero-notch-swoop) + 1px)) no-repeat left bottom / var(--hero-notch-swoop) var(--hero-notch-swoop),
+				radial-gradient(circle at 100% 100%, transparent var(--hero-notch-swoop), #fff calc(var(--hero-notch-swoop) + 1px)) no-repeat right bottom / var(--hero-notch-swoop) var(--hero-notch-swoop);
 			z-index: 4;
 			pointer-events: none;
 		}
@@ -595,6 +600,45 @@ if ($acf_enabled) {
 	document.addEventListener('DOMContentLoaded', () => {
 		if (window.lucide && typeof window.lucide.createIcons === 'function') {
 			window.lucide.createIcons();
+		}
+
+		const syncBlogHeroNotchToDesktopMenu = () => {
+			const heroCard = document.querySelector('#blog-hero .reacon-blog-hero-card');
+			const navPill = document.querySelector('#site-navigation > ul');
+			if (!heroCard || !navPill) return;
+
+			if (window.innerWidth < 1024) {
+				heroCard.style.removeProperty('--hero-notch-width');
+				heroCard.style.removeProperty('--hero-notch-shift');
+				return;
+			}
+
+			const heroRect = heroCard.getBoundingClientRect();
+			const navRect = navPill.getBoundingClientRect();
+			const navWidth = Math.round(navRect.width);
+			if (!navWidth) return;
+
+			const heroCenterX = heroRect.left + (heroRect.width / 2);
+			const navCenterX = navRect.left + (navRect.width / 2);
+			const notchShift = Math.round(navCenterX - heroCenterX);
+
+			heroCard.style.setProperty('--hero-notch-width', `${navWidth + 18}px`);
+			heroCard.style.setProperty('--hero-notch-shift', `${notchShift}px`);
+		};
+
+		let blogNotchSyncRaf = null;
+		const scheduleBlogNotchSync = () => {
+			if (blogNotchSyncRaf) {
+				cancelAnimationFrame(blogNotchSyncRaf);
+			}
+			blogNotchSyncRaf = requestAnimationFrame(syncBlogHeroNotchToDesktopMenu);
+		};
+
+		scheduleBlogNotchSync();
+		window.addEventListener('resize', scheduleBlogNotchSync);
+		window.addEventListener('load', scheduleBlogNotchSync);
+		if (document.fonts && document.fonts.ready) {
+			document.fonts.ready.then(scheduleBlogNotchSync).catch(() => {});
 		}
 
 		document.querySelectorAll('#blog-latest nav button[data-url]').forEach((btn) => {
