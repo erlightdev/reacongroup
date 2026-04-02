@@ -100,9 +100,14 @@ if ($acf_enabled) {
 			$so_radial_style = sprintf('opacity:%s;', (string) $radial_opacity);
 			$so_dark_overlay_style = sprintf('opacity:%s;', (string) $dark_opacity);
 
-			$so_pattern_style = sprintf('opacity:%s;', (string) $pattern_opacity);
-			if ($pattern_needs_custom && $pattern_custom_url !== '') {
-				$so_pattern_style .= '--so-hero-pattern-svg:url("' . esc_url($pattern_custom_url) . '");';
+			// Preserve the original built-in registration-grid appearance by only
+			// applying the extra opacity multiplier when using a custom tile.
+			$so_pattern_style = '';
+			if ($pattern_needs_custom) {
+				$so_pattern_style = sprintf('opacity:%s;', (string) $pattern_opacity);
+				if ($pattern_custom_url !== '') {
+					$so_pattern_style .= '--so-hero-pattern-svg:url("' . esc_url($pattern_custom_url) . '");';
+				}
 			}
 		}
 	}
