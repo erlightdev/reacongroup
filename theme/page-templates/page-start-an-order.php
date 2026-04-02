@@ -11,91 +11,258 @@
 get_header();
 ?>
 
+<?php
+$acf_enabled = function_exists('get_field');
+$start_order_page_id = (int) get_queried_object_id();
+
+$start_order_show_hero = false;
+$start_order_show_form_section = false;
+$start_order_show_stats_section = false;
+
+$so_hero = array();
+$so_form = array();
+$so_stats = array();
+
+$so_hero_bg_style = '';
+$so_pattern_style = '';
+$so_radial_style = '';
+$so_dark_overlay_style = '';
+
+$so_thank_you_url = '';
+$so_steps = array();
+$so_stats_items = array();
+
+if ($acf_enabled) {
+	$start_order_enable_hero = (bool) get_field('start_order_enable_hero_section', $start_order_page_id);
+	$start_order_enable_form = (bool) get_field('start_order_enable_form_section', $start_order_page_id);
+	$start_order_enable_stats = (bool) get_field('start_order_enable_stats_section', $start_order_page_id);
+
+	$so_hero = get_field('start_order_hero', $start_order_page_id);
+	$so_form = get_field('start_order_form_section', $start_order_page_id);
+	$so_stats = get_field('start_order_stats_section', $start_order_page_id);
+
+	$so_hero = is_array($so_hero) ? $so_hero : array();
+	$so_form = is_array($so_form) ? $so_form : array();
+	$so_stats = is_array($so_stats) ? $so_stats : array();
+
+	if ($start_order_enable_hero) {
+		$hero_eyebrow = trim((string) ($so_hero['hero_eyebrow'] ?? ''));
+		$hero_heading = trim((string) ($so_hero['hero_heading'] ?? ''));
+		$hero_description = trim((string) ($so_hero['hero_description'] ?? ''));
+
+		$g_start = trim((string) ($so_hero['hero_gradient_start'] ?? ''));
+		$g_middle = trim((string) ($so_hero['hero_gradient_middle'] ?? ''));
+		$g_end = trim((string) ($so_hero['hero_gradient_end'] ?? ''));
+
+		$radial_opacity = $so_hero['hero_radial_highlight_opacity'] ?? null;
+		$dark_opacity = $so_hero['hero_dark_overlay_opacity'] ?? null;
+		$pattern_opacity = $so_hero['hero_pattern_opacity'] ?? null;
+
+		$pattern_mode = trim((string) ($so_hero['hero_pattern_mode'] ?? ''));
+		$pattern_custom_file = $so_hero['hero_pattern_custom_file'] ?? '';
+
+		$radial_opacity = is_numeric($radial_opacity) ? (float) $radial_opacity : null;
+		$dark_opacity = is_numeric($dark_opacity) ? (float) $dark_opacity : null;
+		$pattern_opacity = is_numeric($pattern_opacity) ? (float) $pattern_opacity : null;
+
+		$pattern_custom_url = '';
+		if (is_string($pattern_custom_file)) {
+			$pattern_custom_url = trim($pattern_custom_file);
+		} elseif (is_array($pattern_custom_file) && !empty($pattern_custom_file['url'])) {
+			$pattern_custom_url = trim((string) $pattern_custom_file['url']);
+		}
+
+		// Clamp opacities to [0..1] to avoid invalid CSS.
+		if (null !== $radial_opacity)
+			$radial_opacity = max(0.0, min(1.0, $radial_opacity));
+		if (null !== $dark_opacity)
+			$dark_opacity = max(0.0, min(1.0, $dark_opacity));
+		if (null !== $pattern_opacity)
+			$pattern_opacity = max(0.0, min(1.0, $pattern_opacity));
+
+		$pattern_needs_custom = ('custom_file' === $pattern_mode);
+
+		$hero_ready = $hero_eyebrow !== '' && $hero_heading !== '' && $hero_description !== '' && $g_start !== '' && $g_middle !== '' && $g_end !== '';
+		$hero_ready = $hero_ready && (null !== $radial_opacity) && (null !== $dark_opacity) && (null !== $pattern_opacity) && $pattern_mode !== '';
+		if ($pattern_needs_custom) {
+			$hero_ready = $hero_ready && $pattern_custom_url !== '';
+		}
+
+		if ($hero_ready) {
+			$start_order_show_hero = true;
+			$so_hero_bg_style = sprintf(
+				'background-image: linear-gradient(145deg,%s 0%%,%s 42%%,%s 100%%);',
+				esc_attr($g_start),
+				esc_attr($g_middle),
+				esc_attr($g_end)
+			);
+
+			$so_radial_style = sprintf('opacity:%s;', (string) $radial_opacity);
+			$so_dark_overlay_style = sprintf('opacity:%s;', (string) $dark_opacity);
+
+			$so_pattern_style = sprintf('opacity:%s;', (string) $pattern_opacity);
+			if ($pattern_needs_custom && $pattern_custom_url !== '') {
+				$so_pattern_style .= '--so-hero-pattern-svg:url("' . esc_url($pattern_custom_url) . '");';
+			}
+		}
+	}
+
+	if ($start_order_enable_form) {
+		$left_heading = trim((string) ($so_form['form_card_heading'] ?? ''));
+		$left_body = trim((string) ($so_form['form_card_body'] ?? ''));
+		$how_heading = trim((string) ($so_form['how_it_works_heading'] ?? ''));
+
+		$form_cf7_id = $so_form['cf7_form'] ?? 0;
+		$form_cf7_id = is_numeric($form_cf7_id) ? absint($form_cf7_id) : 0;
+
+		$thank_you_link = $so_form['thank_you_link'] ?? null;
+		if (is_array($thank_you_link) && !empty($thank_you_link['url'])) {
+			$so_thank_you_url = trim((string) $thank_you_link['url']);
+		}
+
+		$so_steps = is_array($so_form['steps'] ?? null) ? (array) ($so_form['steps'] ?? array()) : array();
+
+		$steps_ok = count($so_steps) === 4;
+		if ($steps_ok) {
+			foreach ($so_steps as $s) {
+				if (!is_array($s)) {
+					$steps_ok = false;
+					break;
+				}
+
+				$label = trim((string) ($s['step_number_label'] ?? ''));
+				$text = trim((string) ($s['step_description'] ?? ''));
+				if ($label === '' || $text === '') {
+					$steps_ok = false;
+					break;
+				}
+			}
+		}
+
+		$form_ready = $left_heading !== '' && $left_body !== '' && $how_heading !== '' && $form_cf7_id > 0 && $so_thank_you_url !== '' && $steps_ok;
+		if ($form_ready) {
+			$start_order_show_form_section = true;
+		}
+	}
+
+	if ($start_order_enable_stats) {
+		$so_stats_items = is_array($so_stats['stats_items'] ?? null) ? (array) ($so_stats['stats_items'] ?? array()) : array();
+		$stats_ok = count($so_stats_items) === 4;
+		if ($stats_ok) {
+			foreach ($so_stats_items as $st) {
+				$val = trim((string) ($st['stat_value'] ?? ''));
+				$desc = trim((string) ($st['stat_description'] ?? ''));
+				if ($val === '' || $desc === '') {
+					$stats_ok = false;
+					break;
+				}
+			}
+		}
+		if ($stats_ok) {
+			$start_order_show_stats_section = true;
+			$so_stats_items = array_values($so_stats_items);
+			$so_stats['stats_items'] = $so_stats_items;
+		}
+	}
+}
+
+// Steps now render number labels only (no icon mode selection).
+?>
+
 <main id="primary" class="overflow-x-hidden" role="main">
 	<!-- Page Header Hero -->
+	<?php if ($start_order_show_hero): ?>
 	<section id="start-order-hero" class="relative w-full p-1.5 md:p-2.5" aria-labelledby="start-order-heading">
-		<div class="reacon-about-hero-card relative min-h-[255px] overflow-hidden rounded-[24px] bg-[linear-gradient(145deg,#0E6D77_0%,#062B53_42%,#0A4E57_100%)] sm:min-h-[300px] lg:min-h-[380px] lg:rounded-[31px]">
-			<div class="reacon-start-order-hero-pattern pointer-events-none absolute inset-0" aria-hidden="true"></div>
-			<div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_85%_60%_at_50%_-10%,rgba(30,202,211,0.22)_0%,transparent_55%)]" aria-hidden="true"></div>
-			<div class="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,10,33,0.22)_0%,rgba(0,10,33,0.12)_45%,rgba(0,10,33,0.26)_100%)]" aria-hidden="true"></div>
+		<div class="reacon-about-hero-card relative min-h-[255px] overflow-hidden rounded-[24px] bg-[linear-gradient(145deg,#0E6D77_0%,#062B53_42%,#0A4E57_100%)] sm:min-h-[300px] lg:min-h-[380px] lg:rounded-[31px]" style="<?php echo esc_attr($so_hero_bg_style); ?>">
+			<div class="reacon-start-order-hero-pattern pointer-events-none absolute inset-0" aria-hidden="true" style="<?php echo esc_attr($so_pattern_style); ?>"></div>
+			<div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_85%_60%_at_50%_-10%,rgba(30,202,211,0.22)_0%,transparent_55%)]" aria-hidden="true" style="<?php echo esc_attr($so_radial_style); ?>"></div>
+			<div class="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,10,33,0.22)_0%,rgba(0,10,33,0.12)_45%,rgba(0,10,33,0.26)_100%)]" aria-hidden="true" style="<?php echo esc_attr($so_dark_overlay_style); ?>"></div>
 
 			<div class="relative z-10 mx-auto flex min-h-[255px] w-full max-w-[1200px] flex-col items-center justify-center px-5 pb-10 pt-28 text-center sm:min-h-[300px] sm:px-6 sm:pt-32 lg:min-h-[380px] lg:px-10 lg:pb-14 lg:pt-36">
-				<p class="mb-4 font-sans text-[11px] font-medium uppercase tracking-[0.18em] text-white/85 lg:mb-5">Order Workflow</p>
+				<p class="mb-4 font-sans text-[11px] font-medium uppercase tracking-[0.18em] text-white/85 lg:mb-5"><?php echo esc_html((string) ($so_hero['hero_eyebrow'] ?? '')); ?></p>
 				<h1 id="start-order-heading" class="max-w-[860px] font-display text-[30px] font-bold leading-[1.16] text-white sm:text-[40px] lg:text-[56px]">
-					Start Your Print Order in Minutes
+					<?php echo esc_html((string) ($so_hero['hero_heading'] ?? '')); ?>
 				</h1>
 				<p class="mt-4 max-w-[780px] font-sans text-[13px] leading-[1.45] text-white/90 sm:text-[15px] lg:mt-5 lg:text-base">
-					Share your requirements, upload artwork, and choose delivery timelines. Our production team reviews every brief and confirms next steps quickly.
+					<?php echo esc_html((string) ($so_hero['hero_description'] ?? '')); ?>
 				</p>
 			</div>
 		</div>
 	</section>
+	<?php endif; ?>
 
 
 
 	<!-- Form Layout -->
+	<?php if ($start_order_show_form_section): ?>
 	<section class="bg-[#FAFAFA] px-4 py-12 sm:px-6 md:py-14 lg:px-8 lg:py-16" aria-labelledby="order-form-title">
 		<div class="mx-auto grid w-full max-w-7xl grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_360px] lg:gap-10">
 			<div class="rounded-3xl border border-[#ECEFF2] bg-white p-5 sm:p-6 md:p-8">
-				<h2 id="order-form-title" class="font-display text-[26px] font-semibold leading-[1.2] text-[#1E293B] sm:text-[30px] md:text-[34px]">Order Details</h2>
+				<h2 id="order-form-title" class="font-display text-[26px] font-semibold leading-[1.2] text-[#1E293B] sm:text-[30px] md:text-[34px]"><?php echo esc_html((string) ($so_form['form_card_heading'] ?? '')); ?></h2>
 				<p class="mt-3 font-sans text-[14px] leading-[1.5] text-[#4B5058] sm:text-[15px] md:text-[16px]">
-					Complete this form and our team will contact you with pricing, timeline, and production recommendations.
+					<?php echo esc_html((string) ($so_form['form_card_body'] ?? '')); ?>
 				</p>
 
 				<div class="start-order-cf7 mt-8">
-					<?php echo do_shortcode('[contact-form-7 id="32f7643" title="Start an Order Form"]'); ?>
+					<?php
+					$cf7_form_id = isset($so_form['cf7_form']) ? absint((int) $so_form['cf7_form']) : 0;
+					if ($cf7_form_id > 0) {
+						echo do_shortcode('[contact-form-7 id="' . esc_attr((string) $cf7_form_id) . '"]');
+					}
+					?>
 				</div>
 			</div>
 
 			<aside class="rounded-3xl border border-[#ECEFF2] bg-white p-6 sm:p-7 lg:sticky lg:top-28 lg:h-fit" aria-label="How it works">
-				<h3 class="font-display text-[24px] font-semibold leading-[1.2] text-[#1E293B]">How It Works</h3>
+				<h3 class="font-display text-[24px] font-semibold leading-[1.2] text-[#1E293B]"><?php echo esc_html((string) ($so_form['how_it_works_heading'] ?? '')); ?></h3>
 				<ol class="mt-6 space-y-5">
-					<li class="flex gap-3">
-						<span class="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-primary font-sans text-[12px] font-semibold text-white">1</span>
-						<p class="font-sans text-[14px] leading-[1.5] text-[#4B5058]">Submit your project details and files.</p>
-					</li>
-					<li class="flex gap-3">
-						<span class="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-primary font-sans text-[12px] font-semibold text-white">2</span>
-						<p class="font-sans text-[14px] leading-[1.5] text-[#4B5058]">We confirm scope, timeline, and quotation.</p>
-					</li>
-					<li class="flex gap-3">
-						<span class="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-primary font-sans text-[12px] font-semibold text-white">3</span>
-						<p class="font-sans text-[14px] leading-[1.5] text-[#4B5058]">Production starts after your approval.</p>
-					</li>
-					<li class="flex gap-3">
-						<span class="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-primary font-sans text-[12px] font-semibold text-white">4</span>
-						<p class="font-sans text-[14px] leading-[1.5] text-[#4B5058]">Delivery and fulfilment to your locations.</p>
-					</li>
+					<?php foreach ($so_steps as $step): ?>
+						<?php
+						if (!is_array($step))
+							continue;
+						$step_desc = trim((string) ($step['step_description'] ?? ''));
+						$step_number = trim((string) ($step['step_number_label'] ?? ''));
+						?>
+						<li class="flex gap-3">
+							<span class="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-primary font-sans text-[12px] font-semibold text-white">
+								<?php echo esc_html($step_number); ?>
+							</span>
+							<p class="font-sans text-[14px] leading-[1.5] text-[#4B5058]"><?php echo esc_html($step_desc); ?></p>
+						</li>
+					<?php endforeach; ?>
 				</ol>
 			</aside>
 		</div>
 	</section>
+	<?php endif; ?>
 	<!-- Intro Stats -->
+	<?php if ($start_order_show_stats_section): ?>
 	<section class="bg-white px-4 py-10 sm:px-6 sm:py-12 md:py-14 lg:px-8 lg:py-16" aria-label="Order highlights">
 		<div class="mx-auto grid w-full max-w-7xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
-			<div class="rounded-2xl border border-[#ECEFF2] bg-[#F9FAFB] p-6">
-				<p class="font-display text-[30px] font-bold leading-none text-primary sm:text-[34px]">24h</p>
-				<p class="mt-2 font-sans text-[14px] leading-[1.45] text-[#383B43] sm:text-[15px]">Average response on working days</p>
-			</div>
-			<div class="rounded-2xl border border-[#ECEFF2] bg-[#F9FAFB] p-6">
-				<p class="font-display text-[30px] font-bold leading-none text-primary sm:text-[34px]">8+</p>
-				<p class="mt-2 font-sans text-[14px] leading-[1.45] text-[#383B43] sm:text-[15px]">Countries in our print network</p>
-			</div>
-			<div class="rounded-2xl border border-[#ECEFF2] bg-[#F9FAFB] p-6">
-				<p class="font-display text-[30px] font-bold leading-none text-primary sm:text-[34px]">500k+</p>
-				<p class="mt-2 font-sans text-[14px] leading-[1.45] text-[#383B43] sm:text-[15px]">Jobs delivered globally</p>
-			</div>
-			<div class="rounded-2xl border border-[#ECEFF2] bg-[#F9FAFB] p-6">
-				<p class="font-display text-[30px] font-bold leading-none text-primary sm:text-[34px]">ISO</p>
-				<p class="mt-2 font-sans text-[14px] leading-[1.45] text-[#383B43] sm:text-[15px]">Quality-controlled production process</p>
-			</div>
+			<?php
+			$stats_items = is_array($so_stats['stats_items'] ?? null) ? (array) $so_stats['stats_items'] : array();
+			foreach ($stats_items as $stat):
+				if (!is_array($stat))
+					continue;
+				$stat_val = trim((string) ($stat['stat_value'] ?? ''));
+				$stat_desc = trim((string) ($stat['stat_description'] ?? ''));
+				if ($stat_val === '' || $stat_desc === '')
+					continue;
+				?>
+				<div class="rounded-2xl border border-[#ECEFF2] bg-[#F9FAFB] p-6">
+					<p class="font-display text-[30px] font-bold leading-none text-primary sm:text-[34px]"><?php echo esc_html($stat_val); ?></p>
+					<p class="mt-2 font-sans text-[14px] leading-[1.45] text-[#383B43] sm:text-[15px]"><?php echo esc_html($stat_desc); ?></p>
+				</div>
+			<?php endforeach; ?>
 		</div>
 	</section>
+	<?php endif; ?>
 	<style>
 		/* Hero pattern mirrors Our Works for cross-page consistency. */
 		#start-order-hero .reacon-start-order-hero-pattern {
+			--so-hero-pattern-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Cg fill='none' stroke='%23FFFFFF' stroke-opacity='0.1'%3E%3Cpath d='M36 10v52M10 36h52' stroke-width='1'/%3E%3Ccircle cx='36' cy='36' r='3' stroke-opacity='0.14' stroke-width='1'/%3E%3C/g%3E%3Cpath d='M0 72L72 0' stroke='%23FFFFFF' stroke-opacity='0.04' stroke-width='1'/%3E%3C/svg%3E");
 			background-image:
-				url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Cg fill='none' stroke='%23FFFFFF' stroke-opacity='0.1'%3E%3Cpath d='M36 10v52M10 36h52' stroke-width='1'/%3E%3Ccircle cx='36' cy='36' r='3' stroke-opacity='0.14' stroke-width='1'/%3E%3C/g%3E%3Cpath d='M0 72L72 0' stroke='%23FFFFFF' stroke-opacity='0.04' stroke-width='1'/%3E%3C/svg%3E"),
+				var(--so-hero-pattern-svg),
 				repeating-linear-gradient(
 					-18deg,
 					transparent,
@@ -351,11 +518,13 @@ get_header();
 				document.fonts.ready.then(scheduleStartOrderNotchSync).catch(() => {});
 			}
 
-			const startOrderThankYouUrl = '<?php echo esc_url(home_url('/thank-you/')); ?>';
+			const startOrderThankYouUrl = '<?php echo esc_js((string) $so_thank_you_url); ?>';
 			const handleStartOrderSuccess = (event) => {
 				if (!event || !event.target) return;
 				const formWrapper = event.target.closest('.start-order-cf7');
 				if (!formWrapper) return;
+
+				if (!startOrderThankYouUrl) return;
 
 				const submitButton = formWrapper.querySelector('.wpcf7-submit');
 				if (submitButton) {

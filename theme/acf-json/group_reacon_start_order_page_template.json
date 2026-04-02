@@ -1,0 +1,362 @@
+{
+	"key": "group_reacon_start_order_page_template",
+	"title": "Start an Order Page Template Content",
+	"fields": [
+		{
+			"key": "field_so_tab_hero",
+			"label": "Hero",
+			"name": "",
+			"type": "tab",
+			"placement": "top",
+			"endpoint": 0
+		},
+		{
+			"key": "field_so_enable_hero",
+			"label": "Enable hero section",
+			"name": "start_order_enable_hero_section",
+			"type": "true_false",
+			"default_value": 1,
+			"ui": 1
+		},
+		{
+			"key": "field_so_hero_group",
+			"label": "Hero content",
+			"name": "start_order_hero",
+			"type": "group",
+			"layout": "block",
+			"conditional_logic": [
+				[
+					{
+						"field": "field_so_enable_hero",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"sub_fields": [
+				{
+					"key": "field_so_hero_eyebrow",
+					"label": "Eyebrow (upper label)",
+					"name": "hero_eyebrow",
+					"type": "text",
+					"required": 1
+				},
+				{
+					"key": "field_so_hero_heading",
+					"label": "Heading (H1)",
+					"name": "hero_heading",
+					"type": "text",
+					"required": 1
+				},
+				{
+					"key": "field_so_hero_description",
+					"label": "Hero description",
+					"name": "hero_description",
+					"type": "textarea",
+					"rows": 3,
+					"new_lines": "",
+					"required": 1
+				},
+				{
+					"key": "field_so_hero_gradient_start",
+					"label": "Gradient start color",
+					"name": "hero_gradient_start",
+					"type": "select",
+					"required": 1,
+					"return_format": "value",
+					"choices": {
+						"#0E6D77": "#0E6D77 (Brand Teal)",
+						"#1ECAD3": "#1ECAD3 (Bright Cyan)",
+						"#062B53": "#062B53 (Deep Navy)"
+					}
+				},
+				{
+					"key": "field_so_hero_gradient_middle",
+					"label": "Gradient middle color",
+					"name": "hero_gradient_middle",
+					"type": "select",
+					"required": 1,
+					"return_format": "value",
+					"choices": {
+						"#062B53": "#062B53 (Deep Navy)",
+						"#0A4E57": "#0A4E57 (Ocean Teal)",
+						"#0E6D77": "#0E6D77 (Brand Teal)"
+					}
+				},
+				{
+					"key": "field_so_hero_gradient_end",
+					"label": "Gradient end color",
+					"name": "hero_gradient_end",
+					"type": "select",
+					"required": 1,
+					"return_format": "value",
+					"choices": {
+						"#0A4E57": "#0A4E57 (Ocean Teal)",
+						"#062B53": "#062B53 (Deep Navy)",
+						"#0E6D77": "#0E6D77 (Brand Teal)"
+					}
+				},
+				{
+					"key": "field_so_hero_radial_opacity",
+					"label": "Radial highlight opacity",
+					"name": "hero_radial_highlight_opacity",
+					"type": "select",
+					"required": 1,
+					"return_format": "value",
+					"choices": {
+						"0.16": "0.16 (Soft)",
+						"0.22": "0.22 (Default)",
+						"0.28": "0.28 (Strong)"
+					}
+				},
+				{
+					"key": "field_so_hero_dark_opacity",
+					"label": "Dark overlay opacity",
+					"name": "hero_dark_overlay_opacity",
+					"type": "select",
+					"required": 1,
+					"return_format": "value",
+					"choices": {
+						"0.18": "0.18 (Soft)",
+						"0.22": "0.22 (Default)",
+						"0.28": "0.28 (Strong)"
+					}
+				},
+				{
+					"key": "field_so_hero_pattern_opacity",
+					"label": "Pattern opacity",
+					"name": "hero_pattern_opacity",
+					"type": "select",
+					"required": 1,
+					"return_format": "value",
+					"choices": {
+						"0.06": "0.06 (Very subtle)",
+						"0.10": "0.10 (Subtle)",
+						"0.14": "0.14 (Visible)"
+					}
+				},
+				{
+					"key": "field_so_hero_pattern_mode",
+					"label": "Hero pattern mode",
+					"name": "hero_pattern_mode",
+					"type": "select",
+					"required": 1,
+					"return_format": "value",
+					"choices": {
+						"registration_grid": "Registration grid (built-in SVG tile)",
+						"custom_file": "Custom SVG/PNG tile (file upload)"
+					}
+				},
+				{
+					"key": "field_so_hero_pattern_custom_file",
+					"label": "Custom pattern tile (SVG recommended)",
+					"name": "hero_pattern_custom_file",
+					"type": "file",
+					"return_format": "url",
+					"required": 1,
+					"conditional_logic": [
+						[
+							{
+								"field": "field_so_hero_pattern_mode",
+								"operator": "==",
+								"value": "custom_file"
+							}
+						]
+					],
+					"mime_types": "svg,xml,png,webp"
+				}
+			]
+		},
+		{
+			"key": "field_so_tab_form",
+			"label": "Form",
+			"name": "",
+			"type": "tab",
+			"placement": "top",
+			"endpoint": 0
+		},
+		{
+			"key": "field_so_enable_form",
+			"label": "Enable form + steps section",
+			"name": "start_order_enable_form_section",
+			"type": "true_false",
+			"default_value": 1,
+			"ui": 1
+		},
+		{
+			"key": "field_so_form_group",
+			"label": "Form content",
+			"name": "start_order_form_section",
+			"type": "group",
+			"layout": "block",
+			"conditional_logic": [
+				[
+					{
+						"field": "field_so_enable_form",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"sub_fields": [
+				{
+					"key": "field_so_form_heading",
+					"label": "Order Details heading",
+					"name": "form_card_heading",
+					"type": "text",
+					"required": 1
+				},
+				{
+					"key": "field_so_form_body",
+					"label": "Order Details description",
+					"name": "form_card_body",
+					"type": "textarea",
+					"rows": 3,
+					"new_lines": "",
+					"required": 1
+				},
+				{
+					"key": "field_so_cf7_select",
+					"label": "Contact Form 7 form",
+					"name": "cf7_form",
+					"type": "post_object",
+					"instructions": "Choose the Contact Form 7 form to render inside the Order Details card.",
+					"post_type": [
+						"wpcf7_contact_form"
+					],
+					"return_format": "id",
+					"ui": 1,
+					"allow_null": 0,
+					"multiple": 0,
+					"required": 1
+				},
+				{
+					"key": "field_so_thank_you_link",
+					"label": "Thank-you redirect link (after successful submit)",
+					"name": "thank_you_link",
+					"type": "link",
+					"return_format": "array",
+					"required": 1
+				},
+				{
+					"key": "field_so_how_heading",
+					"label": "How It Works heading",
+					"name": "how_it_works_heading",
+					"type": "text",
+					"required": 1
+				},
+				{
+					"key": "field_so_steps",
+					"label": "How it works steps",
+					"name": "steps",
+					"type": "repeater",
+					"layout": "block",
+					"button_label": "Add step",
+					"min": 4,
+					"max": 4,
+					"sub_fields": [
+						{
+							"key": "field_so_step_number",
+							"label": "Step number label",
+							"name": "step_number_label",
+							"type": "text",
+							"required": 1
+						},
+						{
+							"key": "field_so_step_desc",
+							"label": "Step description (right side text)",
+							"name": "step_description",
+							"type": "textarea",
+							"rows": 3,
+							"new_lines": "",
+							"required": 1
+						}
+					]
+				}
+			]
+		},
+		{
+			"key": "field_so_tab_stats",
+			"label": "Statistics",
+			"name": "",
+			"type": "tab",
+			"placement": "top",
+			"endpoint": 0
+		},
+		{
+			"key": "field_so_enable_stats",
+			"label": "Enable intro stats section",
+			"name": "start_order_enable_stats_section",
+			"type": "true_false",
+			"default_value": 1,
+			"ui": 1
+		},
+		{
+			"key": "field_so_stats_group",
+			"label": "Intro stats content",
+			"name": "start_order_stats_section",
+			"type": "group",
+			"layout": "block",
+			"conditional_logic": [
+				[
+					{
+						"field": "field_so_enable_stats",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"sub_fields": [
+				{
+					"key": "field_so_stats_items",
+					"label": "Stats items",
+					"name": "stats_items",
+					"type": "repeater",
+					"layout": "block",
+					"button_label": "Add stat",
+					"min": 4,
+					"max": 4,
+					"sub_fields": [
+						{
+							"key": "field_so_stat_value",
+							"label": "Stat value",
+							"name": "stat_value",
+							"type": "text",
+							"required": 1
+						},
+						{
+							"key": "field_so_stat_description",
+							"label": "Stat description",
+							"name": "stat_description",
+							"type": "textarea",
+							"rows": 2,
+							"new_lines": "",
+							"required": 1
+						}
+					]
+				}
+			]
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "page_template",
+				"operator": "==",
+				"value": "page-templates/page-start-an-order.php"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"hide_on_screen": [
+		"the_content"
+	],
+	"active": true,
+	"description": "Dynamic fields for Start an Order page template.",
+	"show_in_rest": 0
+}
+
