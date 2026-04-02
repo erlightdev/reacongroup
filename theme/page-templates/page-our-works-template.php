@@ -8,47 +8,46 @@
  *
  * @package reacon-group
  */
-
 get_header();
 
 $works_placeholder = 'https://placehold.co/';
 
 $works_projects = array(
 	array(
-		'title'    => __('Retail campaign rollout', 'reacon-group'),
+		'title' => __('Retail campaign rollout', 'reacon-group'),
 		'category' => __('Print & fulfilment', 'reacon-group'),
-		'image'    => $works_placeholder . '800x560/0E6D77/FFFFFF/png?text=Project+01',
-		'excerpt'  => __('National in-store POS and collateral delivered on a coordinated timeline across regions.', 'reacon-group'),
+		'image' => $works_placeholder . '800x560/0E6D77/FFFFFF/png?text=Project+01',
+		'excerpt' => __('National in-store POS and collateral delivered on a coordinated timeline across regions.', 'reacon-group'),
 	),
 	array(
-		'title'    => __('Packaging refresh', 'reacon-group'),
+		'title' => __('Packaging refresh', 'reacon-group'),
 		'category' => __('Packaging', 'reacon-group'),
-		'image'    => $works_placeholder . '800x560/0A4E57/FFFFFF/png?text=Project+02',
-		'excerpt'  => __('Structural design support, colour-managed production, and quality-controlled runs for retail shelves.', 'reacon-group'),
+		'image' => $works_placeholder . '800x560/0A4E57/FFFFFF/png?text=Project+02',
+		'excerpt' => __('Structural design support, colour-managed production, and quality-controlled runs for retail shelves.', 'reacon-group'),
 	),
 	array(
-		'title'    => __('Brand launch kit', 'reacon-group'),
+		'title' => __('Brand launch kit', 'reacon-group'),
 		'category' => __('Commercial print', 'reacon-group'),
-		'image'    => $works_placeholder . '800x560/0A969B/FFFFFF/png?text=Project+03',
-		'excerpt'  => __('Unified launch assets from prototypes through to scaled print and global distribution.', 'reacon-group'),
+		'image' => $works_placeholder . '800x560/0A969B/FFFFFF/png?text=Project+03',
+		'excerpt' => __('Unified launch assets from prototypes through to scaled print and global distribution.', 'reacon-group'),
 	),
 	array(
-		'title'    => __('Event & activation', 'reacon-group'),
+		'title' => __('Event & activation', 'reacon-group'),
 		'category' => __('Activation', 'reacon-group'),
-		'image'    => $works_placeholder . '800x560/1E293B/CBD5E1/png?text=Project+04',
-		'excerpt'  => __('High-impact graphics, modular builds, and rapid turnaround for multi-city activations.', 'reacon-group'),
+		'image' => $works_placeholder . '800x560/1E293B/CBD5E1/png?text=Project+04',
+		'excerpt' => __('High-impact graphics, modular builds, and rapid turnaround for multi-city activations.', 'reacon-group'),
 	),
 	array(
-		'title'    => __('Direct mail programme', 'reacon-group'),
+		'title' => __('Direct mail programme', 'reacon-group'),
 		'category' => __('Data-driven print', 'reacon-group'),
-		'image'    => $works_placeholder . '800x560/383B43/FFFFFF/png?text=Project+05',
-		'excerpt'  => __('Personalised communications with workflow automation and proofing gates for brand compliance.', 'reacon-group'),
+		'image' => $works_placeholder . '800x560/383B43/FFFFFF/png?text=Project+05',
+		'excerpt' => __('Personalised communications with workflow automation and proofing gates for brand compliance.', 'reacon-group'),
 	),
 	array(
-		'title'    => __('Global kitting', 'reacon-group'),
+		'title' => __('Global kitting', 'reacon-group'),
 		'category' => __('Warehousing', 'reacon-group'),
-		'image'    => $works_placeholder . '800x560/4B5058/FFFFFF/png?text=Project+06',
-		'excerpt'  => __('Pick-pack, custom kit assembly, and logistics orchestration to keep teams stocked and on-brand.', 'reacon-group'),
+		'image' => $works_placeholder . '800x560/4B5058/FFFFFF/png?text=Project+06',
+		'excerpt' => __('Pick-pack, custom kit assembly, and logistics orchestration to keep teams stocked and on-brand.', 'reacon-group'),
 	),
 );
 ?>
@@ -90,39 +89,73 @@ $works_projects = array(
 	</section>
 
 	<!-- Project grid -->
-	<section class="bg-[#FAFAFA] px-4 py-12 sm:px-6 sm:py-14 lg:px-8 lg:py-16" aria-label="<?php esc_attr_e('Featured projects', 'reacon-group'); ?>">
-		<div class="mx-auto grid w-full max-w-7xl grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3 lg:gap-8">
-			<?php foreach ($works_projects as $project) : ?>
-				<article class="group flex flex-col overflow-hidden rounded-2xl border border-[#ECEFF2] bg-white shadow-[0_8px_30px_rgba(15,23,42,0.06)] transition-shadow duration-300 hover:shadow-[0_12px_40px_rgba(15,23,42,0.09)]">
-					<div class="relative aspect-[16/11] overflow-hidden bg-[#ECEFF2]">
+<section class="bg-slate-50 px-4 py-12 sm:px-6 sm:py-16 lg:px-8" aria-label="<?php esc_attr_e('Featured projects', 'reacon-group'); ?>">
+	<div class="mx-auto w-full max-w-7xl">
+		
+		<!-- Optional: Enterprise-style section header could go here -->
+		
+		<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10">
+			<?php foreach ($works_projects as $project): ?>
+				<!-- Card acts as a static display panel, not a clickable link -->
+				<article class="group flex flex-col overflow-hidden rounded-2xl border border-slate-200/70 bg-white shadow-[0_1px_2px_rgba(15,23,42,0.04)] transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-0.5 hover:border-slate-300/90 hover:shadow-[0_10px_30px_rgba(15,23,42,0.08)]">
+					
+					<!-- Image Container -->
+					<div class="relative aspect-[16/10] w-full overflow-hidden bg-slate-100">
 						<img
 							src="<?php echo esc_url($project['image']); ?>"
-							alt=""
-							class="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.03]"
+							alt="<?php echo esc_attr($project['title']); ?>"
+							class="h-full w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.04]"
 							loading="lazy"
-							decoding="async" />
+							decoding="async" 
+						/>
+						<!-- Subtle gradient overlay on hover for premium feel -->
+						<div class="absolute inset-0 bg-gradient-to-t from-slate-900/18 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none"></div>
 					</div>
-					<div class="flex flex-1 flex-col p-5 sm:p-6">
-						<p class="font-sans text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">
-							<?php echo esc_html($project['category']); ?>
-						</p>
-						<h3 class="mt-2 font-display text-[20px] font-semibold leading-snug text-[#1E293B] sm:text-[22px]">
+
+					<!-- Content Area -->
+					<div class="flex flex-1 flex-col p-5 sm:p-6 lg:p-7">
+						
+						<!-- Sleek Category Label with "Status" Dot -->
+						<div class="flex items-center gap-2">
+							<span class="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden="true"></span>
+							<p class="font-sans text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500">
+								<?php echo esc_html($project['category']); ?>
+							</p>
+						</div>
+
+						<!-- Title -->
+						<h3 class="mt-4 font-display text-[18px] font-semibold tracking-tight text-slate-900 sm:text-[20px]">
 							<?php echo esc_html($project['title']); ?>
 						</h3>
-						<p class="mt-3 flex-1 font-sans text-[14px] leading-[1.5] text-[#4B5058] sm:text-[15px]">
+
+						<!-- Excerpt -->
+						<p class="mt-2 flex-1 font-sans text-sm leading-relaxed text-slate-600">
 							<?php echo esc_html($project['excerpt']); ?>
 						</p>
+
+					</div>
+
+					<!-- Dedicated Call-to-Action Footer -->
+					<div class="border-t border-slate-100 bg-white/60 px-5 py-3.5 sm:px-6 transition-colors duration-300 group-hover:bg-slate-50">
 						<a
 							href="<?php echo esc_url(home_url('/contact/')); ?>"
-							class="mt-4 inline-flex items-center gap-1 font-sans text-[14px] font-medium text-primary transition-colors hover:text-secondary">
-							<?php esc_html_e('Discuss this type of project', 'reacon-group'); ?>
-							<i class="ph ph-arrow-up-right text-base" aria-hidden="true"></i>
+							class="group/link flex items-center justify-between font-sans text-sm font-semibold text-slate-900 transition-colors hover:text-primary focus:outline-none"
+							aria-label="<?php esc_attr_e('Discuss this type of project', 'reacon-group'); ?>"
+						>
+							<span><?php esc_html_e('Discuss this capability', 'reacon-group'); ?></span>
+							
+							<!-- Arrow animates to the right to indicate moving forward/contacting -->
+							<span class="flex h-8 w-8 items-center justify-center rounded-full bg-white border border-slate-200 text-slate-400 transition-all duration-300 group-hover/link:border-primary group-hover/link:bg-primary group-hover/link:text-white group-hover/link:translate-x-1 shadow-sm">
+								<i class="ph ph-arrow-right text-sm" aria-hidden="true"></i>
+							</span>
 						</a>
 					</div>
+					
 				</article>
 			<?php endforeach; ?>
 		</div>
-	</section>
+	</div>
+</section>
 
 	<!-- Capabilities strip -->
 	<section class="bg-white px-4 py-12 sm:px-6 sm:py-14 lg:px-8 lg:py-16" aria-labelledby="our-works-capabilities-heading">
