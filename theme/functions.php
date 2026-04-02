@@ -641,6 +641,10 @@ if (!class_exists('Reacon_Group_Header_Mobile_Walker')) {
 	class Reacon_Group_Header_Mobile_Walker extends Walker_Nav_Menu
 	{
 		private array $children_by_parent_id;
+		private int $current_parent_id = 0;
+		private bool $current_parent_is_solutions = false;
+		private int $current_parent_split_index = 0;
+		private int $current_parent_child_index = 0;
 
 		public function __construct(array $children_by_parent_id = array())
 		{
@@ -674,10 +678,29 @@ if (!class_exists('Reacon_Group_Header_Mobile_Walker')) {
 			if ((int) $depth === 0) {
 				$output .= '<li>';
 				if ($has_children) {
+					// Track current parent context for depth-1 rendering (headings, etc.).
+					$this->current_parent_id = (int) $item->ID;
+					$this->current_parent_child_index = 0;
+
+					$slug_l = strtolower(is_string($item->post_name) ? (string) $item->post_name : '');
+					$title_l = strtolower((string) $item->title);
+					$this->current_parent_is_solutions = (
+						$slug_l === 'solutions' ||
+						$title_l === 'solutions' ||
+						($slug_l !== '' && str_contains($slug_l, 'solutions')) ||
+						str_contains($title_l, 'solutions')
+					);
+
+					$children_for_parent = $this->children_by_parent_id[$this->current_parent_id] ?? array();
+					$this->current_parent_split_index = (int) ceil(count($children_for_parent) / 2);
+
 					$output .= '<button type="button" class="flex w-full items-center justify-between rounded-xl px-4 py-3 font-sans text-base font-medium ' . esc_attr($active_cls) . ' transition-colors mobile-submenu-toggle" aria-expanded="false">';
 					$output .= esc_html((string) $item->title);
-					// Keep the arrow always visible; JS will rotate it when submenu opens/closes.
-					$output .= '<i class="ph-bold ph-arrow-up text-sm opacity-70 transition-transform duration-200" aria-hidden="true"></i>';
+					// Caret icon (down when closed, up when open).
+					$output .= '<span class="ml-3 inline-flex items-center gap-0.5">';
+					$output .= '<i class="mobile-parent-caret-down ph-bold ph-caret-down text-sm opacity-70" aria-hidden="true"></i>';
+					$output .= '<i class="mobile-parent-caret-up ph-bold ph-caret-up text-sm opacity-70 hidden" aria-hidden="true"></i>';
+					$output .= '</span>';
 					$output .= '</button>';
 				} else {
 					$output .= '<a href="' . esc_url($item->url) . '" class="block rounded-xl px-4 py-3 font-sans text-base font-medium no-underline transition-colors ' . esc_attr($active_cls) . '">';
@@ -689,9 +712,31 @@ if (!class_exists('Reacon_Group_Header_Mobile_Walker')) {
 
 			// Depth 1 (children) render as list items inside the submenu.
 			if ((int) $depth === 1) {
+				$parent_id = (int) $item->menu_item_parent;
+				if (
+					$this->current_parent_is_solutions &&
+					$this->current_parent_id > 0 &&
+					$parent_id === $this->current_parent_id
+				) {
+					// Insert headings to match the original mobile dropdown structure.
+					if ($this->current_parent_child_index === 0) {
+						$output .= '<li class="px-4 pb-1 pt-3 font-sans text-[11px] font-semibold tracking-wider text-white/50">' . esc_html(__('CONTENT STUDIO', 'reacon-group')) . '</li>';
+					} elseif ($this->current_parent_split_index > 0 && $this->current_parent_child_index === $this->current_parent_split_index) {
+						$output .= '<li class="px-4 pb-1 pt-4 font-sans text-[11px] font-semibold tracking-wider text-white/50">' . esc_html(__('PRODUCTION & FULFILMENT', 'reacon-group')) . '</li>';
+					}
+				}
+
 				$output .= '<li><a href="' . esc_url($item->url) . '" class="block rounded-lg px-3 py-2 text-sm text-white/80 no-underline hover:bg-white/10 hover:text-white">';
 				$output .= esc_html((string) $item->title);
 				$output .= '</a></li>';
+
+				if (
+					$this->current_parent_is_solutions &&
+					$this->current_parent_id > 0 &&
+					$parent_id === $this->current_parent_id
+				) {
+					$this->current_parent_child_index++;
+				}
 				return;
 			}
 		}

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Template part: Site header / navigation (dynamic mega menu).
  *
@@ -7,7 +8,6 @@
  *
  * @package reacon-group
  */
-
 $site_name = esc_html(get_bloginfo('name'));
 
 $default_logo_src = get_template_directory_uri() . '/public/image/Reacon Logo 2.svg';
@@ -94,7 +94,7 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 			</a>
 		</div>
 
-		<button id="mobile-menu-toggle" type="button" class="relative z-[60] flex h-10 w-10 items-center justify-center rounded-lg text-white lg:hidden" aria-controls="mobile-menu" aria-expanded="false" aria-label="<?php esc_attr_e('Toggle menu', 'reacon-group'); ?>">
+		<button id="mobile-menu-toggle" type="button" class="relative z-[60] flex h-10 w-10 justify-self-end items-center justify-center rounded-lg text-white lg:hidden" aria-controls="mobile-menu" aria-expanded="false" aria-label="<?php esc_attr_e('Toggle menu', 'reacon-group'); ?>">
 			<i class="ph ph-list text-2xl" aria-hidden="true" id="hamburger-icon"></i>
 			<i class="ph ph-x text-2xl hidden" aria-hidden="true" id="close-icon"></i>
 		</button>
@@ -226,11 +226,13 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 		function closeAllSubmenus() {
 			subToggles.forEach(function(btn) {
 				var sub = btn.nextElementSibling;
-				var icon = btn.querySelector('i');
+				var down = btn.querySelector('.mobile-parent-caret-down');
+				var up = btn.querySelector('.mobile-parent-caret-up');
 				if (!sub) return;
 				sub.classList.add('hidden');
 				btn.setAttribute('aria-expanded', 'false');
-				if (icon) icon.style.transform = '';
+				if (down) down.classList.remove('hidden');
+				if (up) up.classList.add('hidden');
 			});
 		}
 
@@ -264,7 +266,8 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 		subToggles.forEach(function(btn) {
 			btn.addEventListener('click', function() {
 				var sub = btn.nextElementSibling;
-				var icon = btn.querySelector('i');
+				var down = btn.querySelector('.mobile-parent-caret-down');
+				var up = btn.querySelector('.mobile-parent-caret-up');
 				if (!sub) return;
 
 				var willOpen = sub.classList.contains('hidden');
@@ -273,7 +276,8 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 				if (willOpen) {
 					sub.classList.remove('hidden');
 					btn.setAttribute('aria-expanded', 'true');
-					if (icon) icon.style.transform = 'rotate(180deg)';
+					if (down) down.classList.add('hidden');
+					if (up) up.classList.remove('hidden');
 				}
 			});
 		});
