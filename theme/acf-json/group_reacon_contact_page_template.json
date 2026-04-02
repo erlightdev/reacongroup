@@ -1,0 +1,805 @@
+{
+    "key": "group_reacon_contact_page_template",
+    "title": "Contact Page Template Content",
+    "fields": [
+        {
+            "key": "field_contact_tab_hero",
+            "label": "Hero",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_contact_enable_hero",
+            "label": "Enable hero section",
+            "name": "contact_enable_hero",
+            "type": "true_false",
+            "ui": 1,
+            "default_value": 0
+        },
+        {
+            "key": "field_contact_hero",
+            "label": "Hero content",
+            "name": "contact_hero",
+            "type": "group",
+            "layout": "block",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_contact_enable_hero",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "sub_fields": [
+                {
+                    "key": "field_contact_hero_background",
+                    "label": "Background image",
+                    "name": "background_image",
+                    "type": "image",
+                    "return_format": "url",
+                    "preview_size": "medium",
+                    "library": "all"
+                },
+                {
+                    "key": "field_contact_hero_eyebrow",
+                    "label": "Eyebrow (upper label)",
+                    "name": "eyebrow",
+                    "type": "text"
+                },
+                {
+                    "key": "field_contact_hero_title",
+                    "label": "Title (H1)",
+                    "name": "title",
+                    "type": "text"
+                },
+                {
+                    "key": "field_contact_hero_description",
+                    "label": "Description",
+                    "name": "description",
+                    "type": "textarea",
+                    "rows": 3,
+                    "new_lines": ""
+                },
+                {
+                    "key": "field_contact_hero_overlay",
+                    "label": "Overlay intensity",
+                    "name": "overlay_intensity",
+                    "type": "select",
+                    "choices": {
+                        "default": "Default",
+                        "strong": "Stronger (darker)",
+                        "soft": "Softer (lighter)"
+                    },
+                    "default_value": "default",
+                    "return_format": "value"
+                }
+            ]
+        },
+        {
+            "key": "field_contact_tab_main",
+            "label": "Intro & form",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_contact_enable_main",
+            "label": "Enable intro & form section",
+            "name": "contact_enable_main",
+            "type": "true_false",
+            "ui": 1,
+            "default_value": 0
+        },
+        {
+            "key": "field_contact_intro",
+            "label": "Intro column",
+            "name": "contact_intro",
+            "type": "group",
+            "layout": "block",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_contact_enable_main",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "sub_fields": [
+                {
+                    "key": "field_contact_intro_title",
+                    "label": "Heading (H2)",
+                    "name": "title",
+                    "type": "text"
+                },
+                {
+                    "key": "field_contact_intro_body",
+                    "label": "Body text",
+                    "name": "body",
+                    "type": "textarea",
+                    "rows": 4,
+                    "new_lines": ""
+                }
+            ]
+        },
+        {
+            "key": "field_contact_email_link",
+            "label": "Email row \u2014 link",
+            "name": "contact_email_link",
+            "type": "link",
+            "return_format": "array",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_contact_enable_main",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ]
+        },
+        {
+            "key": "field_contact_email_icon",
+            "label": "Email row \u2014 icon",
+            "name": "contact_email_icon",
+            "type": "group",
+            "layout": "block",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_contact_enable_main",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "sub_fields": [
+                {
+                    "key": "field_contact_email_icon_source",
+                    "label": "Icon source",
+                    "name": "icon_source",
+                    "type": "select",
+                    "choices": {
+                        "phosphor": "Phosphor (icon preset)",
+                        "lucide": "Lucide (icon preset)",
+                        "svg_inline": "Inline SVG (markup)",
+                        "svg_asset": "SVG file / theme path",
+                        "image": "Image"
+                    },
+                    "default_value": "phosphor",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_contact_email_phosphor_icon",
+                    "label": "Phosphor icon",
+                    "name": "phosphor_icon",
+                    "type": "select",
+                    "instructions": "Pick an icon. Use Custom only if you need a class string not listed.",
+                    "choices": {
+                        "envelope-simple": "Envelope \u2014 simple",
+                        "envelope": "Envelope",
+                        "envelope-open": "Envelope open",
+                        "at": "At / email",
+                        "phone": "Phone",
+                        "phone-call": "Phone call",
+                        "whatsapp-logo": "WhatsApp",
+                        "map-pin": "Map pin",
+                        "map-pin-line": "Map pin (line)",
+                        "chats": "Chats",
+                        "chat-circle-text": "Chat circle",
+                        "user": "User",
+                        "users": "Users",
+                        "buildings": "Buildings",
+                        "globe": "Globe",
+                        "paper-plane-tilt": "Paper plane",
+                        "custom": "Custom (type classes below)"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 1,
+                    "multiple": 0,
+                    "ui": 1,
+                    "ajax": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_contact_email_icon_source",
+                                "operator": "==",
+                                "value": "phosphor"
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "key": "field_contact_email_phosphor_class",
+                    "label": "Phosphor custom classes",
+                    "name": "phosphor_class",
+                    "type": "text",
+                    "instructions": "Only when Phosphor icon is Custom. Example: ph ph-envelope-simple",
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_contact_email_icon_source",
+                                "operator": "==",
+                                "value": "phosphor"
+                            },
+                            {
+                                "field": "field_contact_email_phosphor_icon",
+                                "operator": "==",
+                                "value": "custom"
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "key": "field_contact_email_lucide_icon",
+                    "label": "Lucide icon",
+                    "name": "lucide_icon",
+                    "type": "select",
+                    "instructions": "Pick an icon. Use Custom for any other Lucide name.",
+                    "choices": {
+                        "mail": "Mail",
+                        "inbox": "Inbox",
+                        "phone": "Phone",
+                        "phone-call": "Phone call",
+                        "map-pin": "Map pin",
+                        "message-circle": "Message circle",
+                        "users": "Users",
+                        "building-2": "Building",
+                        "globe": "Globe",
+                        "send": "Send",
+                        "custom": "Custom (type name below)"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 1,
+                    "multiple": 0,
+                    "ui": 1,
+                    "ajax": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_contact_email_icon_source",
+                                "operator": "==",
+                                "value": "lucide"
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "key": "field_contact_email_lucide_name",
+                    "label": "Lucide custom name",
+                    "name": "lucide_name",
+                    "type": "text",
+                    "instructions": "Only when Lucide icon is Custom (e.g. mail-open).",
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_contact_email_icon_source",
+                                "operator": "==",
+                                "value": "lucide"
+                            },
+                            {
+                                "field": "field_contact_email_lucide_icon",
+                                "operator": "==",
+                                "value": "custom"
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "key": "field_contact_email_icon_svg_inline",
+                    "label": "Inline SVG code",
+                    "name": "svg_inline",
+                    "type": "textarea",
+                    "rows": 4,
+                    "new_lines": "",
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_contact_email_icon_source",
+                                "operator": "==",
+                                "value": "svg_inline"
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "key": "field_contact_email_icon_svg_asset",
+                    "label": "SVG file or path",
+                    "name": "svg_asset",
+                    "type": "text",
+                    "instructions": "Media URL or theme-relative path passed to inline SVG helper.",
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_contact_email_icon_source",
+                                "operator": "==",
+                                "value": "svg_asset"
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "key": "field_contact_email_icon_image",
+                    "label": "Icon image",
+                    "name": "icon_image",
+                    "type": "image",
+                    "return_format": "url",
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_contact_email_icon_source",
+                                "operator": "==",
+                                "value": "image"
+                            }
+                        ]
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "field_contact_phone_link",
+            "label": "Phone row \u2014 link",
+            "name": "contact_phone_link",
+            "type": "link",
+            "return_format": "array",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_contact_enable_main",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ]
+        },
+        {
+            "key": "field_contact_phone_icon",
+            "label": "Phone row \u2014 icon",
+            "name": "contact_phone_icon",
+            "type": "group",
+            "layout": "block",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_contact_enable_main",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "sub_fields": [
+                {
+                    "key": "field_contact_phone_icon_source",
+                    "label": "Icon source",
+                    "name": "icon_source",
+                    "type": "select",
+                    "choices": {
+                        "phosphor": "Phosphor (icon preset)",
+                        "lucide": "Lucide (icon preset)",
+                        "svg_inline": "Inline SVG (markup)",
+                        "svg_asset": "SVG file / theme path",
+                        "image": "Image"
+                    },
+                    "default_value": "phosphor",
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_contact_phone_phosphor_icon",
+                    "label": "Phosphor icon",
+                    "name": "phosphor_icon",
+                    "type": "select",
+                    "instructions": "Pick an icon. Use Custom only if you need a class string not listed.",
+                    "choices": {
+                        "envelope-simple": "Envelope \u2014 simple",
+                        "envelope": "Envelope",
+                        "envelope-open": "Envelope open",
+                        "at": "At / email",
+                        "phone": "Phone",
+                        "phone-call": "Phone call",
+                        "whatsapp-logo": "WhatsApp",
+                        "map-pin": "Map pin",
+                        "map-pin-line": "Map pin (line)",
+                        "chats": "Chats",
+                        "chat-circle-text": "Chat circle",
+                        "user": "User",
+                        "users": "Users",
+                        "buildings": "Buildings",
+                        "globe": "Globe",
+                        "paper-plane-tilt": "Paper plane",
+                        "custom": "Custom (type classes below)"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 1,
+                    "multiple": 0,
+                    "ui": 1,
+                    "ajax": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_contact_phone_icon_source",
+                                "operator": "==",
+                                "value": "phosphor"
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "key": "field_contact_phone_phosphor_class",
+                    "label": "Phosphor custom classes",
+                    "name": "phosphor_class",
+                    "type": "text",
+                    "instructions": "Only when Phosphor icon is Custom. Example: ph ph-phone",
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_contact_phone_icon_source",
+                                "operator": "==",
+                                "value": "phosphor"
+                            },
+                            {
+                                "field": "field_contact_phone_phosphor_icon",
+                                "operator": "==",
+                                "value": "custom"
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "key": "field_contact_phone_lucide_icon",
+                    "label": "Lucide icon",
+                    "name": "lucide_icon",
+                    "type": "select",
+                    "instructions": "Pick an icon. Use Custom for any other Lucide name.",
+                    "choices": {
+                        "mail": "Mail",
+                        "inbox": "Inbox",
+                        "phone": "Phone",
+                        "phone-call": "Phone call",
+                        "map-pin": "Map pin",
+                        "message-circle": "Message circle",
+                        "users": "Users",
+                        "building-2": "Building",
+                        "globe": "Globe",
+                        "send": "Send",
+                        "custom": "Custom (type name below)"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 1,
+                    "multiple": 0,
+                    "ui": 1,
+                    "ajax": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_contact_phone_icon_source",
+                                "operator": "==",
+                                "value": "lucide"
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "key": "field_contact_phone_lucide_name",
+                    "label": "Lucide custom name",
+                    "name": "lucide_name",
+                    "type": "text",
+                    "instructions": "Only when Lucide icon is Custom (e.g. phone-forwarded).",
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_contact_phone_icon_source",
+                                "operator": "==",
+                                "value": "lucide"
+                            },
+                            {
+                                "field": "field_contact_phone_lucide_icon",
+                                "operator": "==",
+                                "value": "custom"
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "key": "field_contact_phone_icon_svg_inline",
+                    "label": "Inline SVG code",
+                    "name": "svg_inline",
+                    "type": "textarea",
+                    "rows": 4,
+                    "new_lines": "",
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_contact_phone_icon_source",
+                                "operator": "==",
+                                "value": "svg_inline"
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "key": "field_contact_phone_icon_svg_asset",
+                    "label": "SVG file or path",
+                    "name": "svg_asset",
+                    "type": "text",
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_contact_phone_icon_source",
+                                "operator": "==",
+                                "value": "svg_asset"
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "key": "field_contact_phone_icon_image",
+                    "label": "Icon image",
+                    "name": "icon_image",
+                    "type": "image",
+                    "return_format": "url",
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_contact_phone_icon_source",
+                                "operator": "==",
+                                "value": "image"
+                            }
+                        ]
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "field_contact_form_block",
+            "label": "Form column",
+            "name": "contact_form_block",
+            "type": "group",
+            "layout": "block",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_contact_enable_main",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "sub_fields": [
+                {
+                    "key": "field_contact_form_title",
+                    "label": "Form card heading (H2)",
+                    "name": "title",
+                    "type": "text"
+                },
+                {
+                    "key": "field_contact_form_select",
+                    "label": "Select Contact Form 7 form",
+                    "name": "cf7_form",
+                    "type": "post_object",
+                    "instructions": "Choose the Contact Form 7 form to render in this card.",
+                    "post_type": [
+                        "wpcf7_contact_form"
+                    ],
+                    "return_format": "id",
+                    "ui": 1,
+                    "allow_null": 1,
+                    "multiple": 0
+                }
+            ]
+        },
+        {
+            "key": "field_contact_tab_apac",
+            "label": "Asia Pacific accordion",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_contact_enable_apac",
+            "label": "Enable Asia Pacific section",
+            "name": "contact_enable_apac",
+            "type": "true_false",
+            "ui": 1,
+            "default_value": 0
+        },
+        {
+            "key": "field_contact_apac",
+            "label": "Asia Pacific content",
+            "name": "contact_apac",
+            "type": "group",
+            "layout": "block",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_contact_enable_apac",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "sub_fields": [
+                {
+                    "key": "field_contact_apac_title",
+                    "label": "Section heading (H3)",
+                    "name": "section_title",
+                    "type": "text"
+                },
+                {
+                    "key": "field_contact_apac_list_aria_label",
+                    "label": "Accordion list accessible label",
+                    "name": "list_aria_label",
+                    "type": "text",
+                    "instructions": "Short label for screen readers on the accordion list."
+                },
+                {
+                    "key": "field_contact_apac_decor_image",
+                    "label": "Decorative side graphic (optional)",
+                    "name": "decor_image",
+                    "type": "image",
+                    "return_format": "url",
+                    "preview_size": "medium",
+                    "library": "all"
+                },
+                {
+                    "key": "field_contact_apac_items",
+                    "label": "Locations",
+                    "name": "items",
+                    "type": "repeater",
+                    "layout": "block",
+                    "button_label": "Add location",
+                    "sub_fields": [
+                        {
+                            "key": "field_contact_apac_item_label",
+                            "label": "Location label (button text)",
+                            "name": "location_label",
+                            "type": "text",
+                            "parent_repeater": "field_contact_apac_items"
+                        },
+                        {
+                            "key": "field_contact_apac_item_panel",
+                            "label": "Expanded panel text",
+                            "name": "panel_text",
+                            "type": "textarea",
+                            "rows": 3,
+                            "new_lines": "",
+                            "parent_repeater": "field_contact_apac_items"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "field_contact_tab_faq",
+            "label": "FAQ",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_contact_enable_faq",
+            "label": "Enable FAQ section",
+            "name": "contact_enable_faq",
+            "type": "true_false",
+            "ui": 1,
+            "default_value": 0
+        },
+        {
+            "key": "field_contact_faq_section",
+            "label": "FAQ content",
+            "name": "contact_faq_section",
+            "type": "group",
+            "layout": "block",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_contact_enable_faq",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "sub_fields": [
+                {
+                    "key": "field_contact_faq_heading",
+                    "label": "Heading",
+                    "name": "heading",
+                    "type": "text"
+                },
+                {
+                    "key": "field_contact_faq_description",
+                    "label": "Description",
+                    "name": "description",
+                    "type": "textarea",
+                    "rows": 3,
+                    "new_lines": ""
+                },
+                {
+                    "key": "field_contact_faq_items",
+                    "label": "FAQ items",
+                    "name": "items",
+                    "type": "repeater",
+                    "layout": "block",
+                    "button_label": "Add FAQ item",
+                    "sub_fields": [
+                        {
+                            "key": "field_contact_faq_item_question",
+                            "label": "Question",
+                            "name": "question",
+                            "type": "text",
+                            "parent_repeater": "field_contact_faq_items"
+                        },
+                        {
+                            "key": "field_contact_faq_item_answer",
+                            "label": "Answer",
+                            "name": "answer",
+                            "type": "textarea",
+                            "rows": 4,
+                            "new_lines": "",
+                            "parent_repeater": "field_contact_faq_items"
+                        }
+                    ]
+                },
+                {
+                    "key": "field_contact_faq_cta_group",
+                    "label": "Bottom CTA block",
+                    "name": "faq_cta",
+                    "type": "group",
+                    "layout": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_contact_faq_cta_title",
+                            "label": "CTA title",
+                            "name": "title",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_contact_faq_cta_text",
+                            "label": "CTA text",
+                            "name": "text",
+                            "type": "textarea",
+                            "rows": 2,
+                            "new_lines": ""
+                        },
+                        {
+                            "key": "field_contact_faq_cta_link",
+                            "label": "CTA link",
+                            "name": "link",
+                            "type": "link",
+                            "return_format": "array"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "page-templates/contact-page-template.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+        "the_content"
+    ],
+    "active": true,
+    "description": "Dynamic fields for Contact page template.",
+    "show_in_rest": 0
+}
