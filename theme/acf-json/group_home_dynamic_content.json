@@ -1,0 +1,832 @@
+{
+    "key": "group_home_dynamic_content",
+    "title": "Home Page Sections",
+    "fields": [
+        {
+            "key": "field_tab_hero_section",
+            "label": "Hero Section",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_enable_hero_section",
+            "label": "Enable Hero Section",
+            "name": "enable_hero_section",
+            "type": "true_false",
+            "default_value": 1,
+            "ui": 1
+        },
+        {
+            "key": "field_home_hero_section",
+            "label": "Hero Content",
+            "name": "home_hero_section",
+            "type": "group",
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_hero_eyebrow",
+                    "label": "Eyebrow",
+                    "name": "eyebrow",
+                    "type": "text"
+                },
+                {
+                    "key": "field_hero_heading",
+                    "label": "Heading",
+                    "name": "heading",
+                    "type": "text"
+                },
+                {
+                    "key": "field_hero_description",
+                    "label": "Description",
+                    "name": "description",
+                    "type": "textarea",
+                    "rows": 3
+                },
+                {
+                    "key": "field_hero_cta",
+                    "label": "CTA Button",
+                    "name": "cta",
+                    "type": "link",
+                    "return_format": "array"
+                },
+                {
+                    "key": "field_hero_bg_type",
+                    "label": "Background Type",
+                    "name": "bg_type",
+                    "type": "radio",
+                    "choices": {
+                        "video": "Video",
+                        "image": "Image"
+                    },
+                    "default_value": "video",
+                    "layout": "horizontal"
+                },
+                {
+                    "key": "field_hero_bg_video",
+                    "label": "Background Video",
+                    "name": "bg_video",
+                    "type": "file",
+                    "return_format": "url",
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_hero_bg_type",
+                                "operator": "==",
+                                "value": "video"
+                            }
+                        ]
+                    ]
+                },
+                {
+                    "key": "field_hero_bg_image",
+                    "label": "Background Image Fallback (WebP/PNG)",
+                    "name": "bg_image",
+                    "type": "image",
+                    "return_format": "url"
+                },
+                {
+                    "key": "field_hero_stat",
+                    "label": "Hero Stat",
+                    "name": "hero_stat",
+                    "type": "group",
+                    "layout": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_hero_stat_value",
+                            "label": "Value",
+                            "name": "value",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_hero_stat_label",
+                            "label": "Label",
+                            "name": "label",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_hero_stat_description",
+                            "label": "Description",
+                            "name": "description",
+                            "type": "textarea",
+                            "rows": 2
+                        },
+                        {
+                            "key": "field_hero_stat_icon",
+                            "label": "Stat Icon",
+                            "name": "icon",
+                            "type": "image",
+                            "return_format": "url"
+                        }
+                    ]
+                }
+            ],
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_enable_hero_section",
+                        "operator": "==",
+                        "value": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "key": "field_tab_partners_section",
+            "label": "Partners Section",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_enable_partners_section",
+            "label": "Enable Partners Section",
+            "name": "enable_partners_section",
+            "type": "true_false",
+            "default_value": 1,
+            "ui": 1
+        },
+        {
+            "key": "field_home_partners_logos",
+            "label": "Partner Logos",
+            "name": "home_partners_logos",
+            "type": "repeater",
+            "layout": "table",
+            "button_label": "Add Logo",
+            "sub_fields": [
+                {
+                    "key": "field_partner_logo_img",
+                    "label": "Logo Image",
+                    "name": "logo",
+                    "type": "image",
+                    "return_format": "url"
+                },
+                {
+                    "key": "field_partner_logo_alt",
+                    "label": "Alt Text",
+                    "name": "alt",
+                    "type": "text"
+                }
+            ],
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_enable_partners_section",
+                        "operator": "==",
+                        "value": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "key": "field_tab_brand_intro",
+            "label": "Brand Intro",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_enable_brand_intro_section",
+            "label": "Enable Brand Intro Section",
+            "name": "enable_brand_intro_section",
+            "type": "true_false",
+            "default_value": 1,
+            "ui": 1
+        },
+        {
+            "key": "field_home_brand_intro_section",
+            "label": "Brand Intro Content",
+            "name": "home_brand_intro_section",
+            "type": "group",
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_bi_heading",
+                    "label": "Heading Full Text",
+                    "name": "heading",
+                    "type": "textarea",
+                    "rows": 2
+                },
+                {
+                    "key": "field_bi_heading_highlight",
+                    "label": "Heading Highlight Words",
+                    "name": "heading_highlight",
+                    "type": "text"
+                },
+                {
+                    "key": "field_bi_description",
+                    "label": "Description",
+                    "name": "description",
+                    "type": "textarea",
+                    "rows": 3
+                },
+                {
+                    "key": "field_bi_cards",
+                    "label": "Cards",
+                    "name": "cards",
+                    "type": "repeater",
+                    "layout": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_bic_title",
+                            "label": "Title",
+                            "name": "title",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_bic_description",
+                            "label": "Description",
+                            "name": "description",
+                            "type": "textarea",
+                            "rows": 3
+                        },
+                        {
+                            "key": "field_bic_logo",
+                            "label": "Card Logo",
+                            "name": "logo",
+                            "type": "image",
+                            "return_format": "url"
+                        },
+                        {
+                            "key": "field_bic_logo_alt",
+                            "label": "Logo Alt Text",
+                            "name": "logo_alt",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_bic_logo_class",
+                            "label": "Logo CSS Classes",
+                            "name": "logo_class",
+                            "type": "text",
+                            "default_value": "h-full w-auto object-contain"
+                        },
+                        {
+                            "key": "field_bic_url",
+                            "label": "Card Link",
+                            "name": "url",
+                            "type": "link",
+                            "return_format": "array"
+                        }
+                    ]
+                }
+            ],
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_enable_brand_intro_section",
+                        "operator": "==",
+                        "value": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "key": "field_tab_content_section",
+            "label": "Content Section",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_enable_content_section",
+            "label": "Enable Content Section",
+            "name": "enable_content_section",
+            "type": "true_false",
+            "default_value": 1,
+            "ui": 1
+        },
+        {
+            "key": "field_home_content_section",
+            "label": "Content Area",
+            "name": "home_content_section",
+            "type": "group",
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_cs_heading",
+                    "label": "Heading",
+                    "name": "heading",
+                    "type": "text"
+                },
+                {
+                    "key": "field_cs_description",
+                    "label": "Description",
+                    "name": "description",
+                    "type": "textarea",
+                    "rows": 3
+                },
+                {
+                    "key": "field_cs_rows",
+                    "label": "Content Rows",
+                    "name": "rows",
+                    "type": "repeater",
+                    "layout": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_csr_eyebrow",
+                            "label": "Eyebrow",
+                            "name": "eyebrow",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_csr_prefix",
+                            "label": "Title Prefix",
+                            "name": "title_prefix",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_csr_highlight",
+                            "label": "Title Highlight",
+                            "name": "title_highlight",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_csr_p1",
+                            "label": "Paragraph 1",
+                            "name": "paragraph_1",
+                            "type": "textarea",
+                            "rows": 3
+                        },
+                        {
+                            "key": "field_csr_p2",
+                            "label": "Paragraph 2",
+                            "name": "paragraph_2",
+                            "type": "textarea",
+                            "rows": 3
+                        },
+                        {
+                            "key": "field_csr_items",
+                            "label": "List Items",
+                            "name": "items",
+                            "type": "repeater",
+                            "layout": "table",
+                            "sub_fields": [
+                                {
+                                    "key": "field_csri_text",
+                                    "label": "Item Text",
+                                    "name": "text",
+                                    "type": "text"
+                                }
+                            ]
+                        },
+                        {
+                            "key": "field_csr_btn",
+                            "label": "Button",
+                            "name": "button",
+                            "type": "link",
+                            "return_format": "array"
+                        },
+                        {
+                            "key": "field_csr_img_main",
+                            "label": "Primary Image",
+                            "name": "primary_image",
+                            "type": "image",
+                            "return_format": "url"
+                        },
+                        {
+                            "key": "field_csr_img_main_alt",
+                            "label": "Primary Image Alt",
+                            "name": "primary_image_alt",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_csr_img_sec",
+                            "label": "Secondary Image",
+                            "name": "secondary_image",
+                            "type": "image",
+                            "return_format": "url"
+                        },
+                        {
+                            "key": "field_csr_img_right",
+                            "label": "Image on Right?",
+                            "name": "image_right",
+                            "type": "true_false",
+                            "ui": 1,
+                            "default_value": 1
+                        },
+                        {
+                            "key": "field_csr_desk_rev",
+                            "label": "Desktop Reverse Direction?",
+                            "name": "desktop_reverse",
+                            "type": "true_false",
+                            "ui": 1,
+                            "default_value": 0
+                        }
+                    ]
+                }
+            ],
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_enable_content_section",
+                        "operator": "==",
+                        "value": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "key": "field_tab_industries",
+            "label": "Industries",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_enable_industries_section",
+            "label": "Enable Industries Section",
+            "name": "enable_industries_section",
+            "type": "true_false",
+            "default_value": 1,
+            "ui": 1
+        },
+        {
+            "key": "field_home_industries_section",
+            "label": "Industries Content",
+            "name": "home_industries_section",
+            "type": "group",
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_ind_heading",
+                    "label": "Heading",
+                    "name": "heading",
+                    "type": "text"
+                },
+                {
+                    "key": "field_ind_description",
+                    "label": "Description",
+                    "name": "description",
+                    "type": "textarea",
+                    "rows": 3
+                },
+                {
+                    "key": "field_ind_cards",
+                    "label": "Industry Cards",
+                    "name": "cards",
+                    "type": "repeater",
+                    "layout": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_indc_title",
+                            "label": "Title",
+                            "name": "title",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_indc_desc",
+                            "label": "Description",
+                            "name": "desc",
+                            "type": "textarea",
+                            "rows": 3
+                        },
+                        {
+                            "key": "field_indc_img",
+                            "label": "Background Image",
+                            "name": "img",
+                            "type": "image",
+                            "return_format": "url"
+                        },
+                        {
+                            "key": "field_indc_alt",
+                            "label": "Image Alt",
+                            "name": "alt",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_indc_href",
+                            "label": "Button Link",
+                            "name": "link",
+                            "type": "link",
+                            "return_format": "array"
+                        },
+                        {
+                            "key": "field_indc_color",
+                            "label": "Text Color Class",
+                            "name": "text_color",
+                            "type": "select",
+                            "choices": {
+                                "text-white": "White",
+                                "text-foreground": "Foreground / Dark"
+                            },
+                            "default_value": "text-white"
+                        }
+                    ]
+                }
+            ],
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_enable_industries_section",
+                        "operator": "==",
+                        "value": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "key": "field_tab_testimonials",
+            "label": "Testimonials",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_enable_testimonials_section",
+            "label": "Enable Testimonials Section",
+            "name": "enable_testimonials_section",
+            "type": "true_false",
+            "default_value": 1,
+            "ui": 1
+        },
+        {
+            "key": "field_home_testimonials_section",
+            "label": "Testimonials Content",
+            "name": "home_testimonials_section",
+            "type": "group",
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_testi_heading",
+                    "label": "Heading",
+                    "name": "heading",
+                    "type": "text"
+                },
+                {
+                    "key": "field_testi_desc",
+                    "label": "Description",
+                    "name": "description",
+                    "type": "textarea",
+                    "rows": 3
+                },
+                {
+                    "key": "field_testi_row1",
+                    "label": "Row 1 Testimonials",
+                    "name": "row_1",
+                    "type": "repeater",
+                    "layout": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_t1_quote",
+                            "label": "Quote",
+                            "name": "quote",
+                            "type": "textarea",
+                            "rows": 3
+                        },
+                        {
+                            "key": "field_t1_name",
+                            "label": "Name",
+                            "name": "name",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_t1_role",
+                            "label": "Role",
+                            "name": "role",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_t1_img",
+                            "label": "Author Image",
+                            "name": "img",
+                            "type": "image",
+                            "return_format": "url",
+                            "preview_size": "thumbnail",
+                            "library": "all"
+                        }
+                    ]
+                },
+                {
+                    "key": "field_testi_row2",
+                    "label": "Row 2 Testimonials",
+                    "name": "row_2",
+                    "type": "repeater",
+                    "layout": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_t2_quote",
+                            "label": "Quote",
+                            "name": "quote",
+                            "type": "textarea",
+                            "rows": 3
+                        },
+                        {
+                            "key": "field_t2_name",
+                            "label": "Name",
+                            "name": "name",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_t2_role",
+                            "label": "Role",
+                            "name": "role",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_t2_img",
+                            "label": "Author Image",
+                            "name": "img",
+                            "type": "image",
+                            "return_format": "url",
+                            "preview_size": "thumbnail",
+                            "library": "all"
+                        }
+                    ]
+                }
+            ],
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_enable_testimonials_section",
+                        "operator": "==",
+                        "value": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "key": "field_tab_cta_section",
+            "label": "CTA Section",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_enable_cta_section",
+            "label": "Enable CTA Section",
+            "name": "enable_cta_section",
+            "type": "true_false",
+            "default_value": 1,
+            "ui": 1
+        },
+        {
+            "key": "field_home_cta_section",
+            "label": "CTA Content",
+            "name": "home_cta_section",
+            "type": "group",
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_cta_heading",
+                    "label": "Heading",
+                    "name": "heading",
+                    "type": "text"
+                },
+                {
+                    "key": "field_cta_desc",
+                    "label": "Description",
+                    "name": "description",
+                    "type": "textarea",
+                    "rows": 3
+                },
+                {
+                    "key": "field_cta_primary",
+                    "label": "Primary Button",
+                    "name": "primary",
+                    "type": "link",
+                    "return_format": "array"
+                },
+                {
+                    "key": "field_cta_secondary",
+                    "label": "Secondary Button",
+                    "name": "secondary",
+                    "type": "link",
+                    "return_format": "array"
+                }
+            ],
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_enable_cta_section",
+                        "operator": "==",
+                        "value": 1
+                    }
+                ]
+            ]
+        },
+        {
+            "key": "field_tab_faq_section",
+            "label": "FAQ Section",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_enable_faq_section",
+            "label": "Enable FAQ Section",
+            "name": "enable_faq_section",
+            "type": "true_false",
+            "default_value": 1,
+            "ui": 1
+        },
+        {
+            "key": "field_home_faq_section",
+            "label": "FAQ Content",
+            "name": "home_faq_section",
+            "type": "group",
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_faq_heading",
+                    "label": "Heading",
+                    "name": "heading",
+                    "type": "text"
+                },
+                {
+                    "key": "field_faq_desc",
+                    "label": "Description",
+                    "name": "description",
+                    "type": "textarea",
+                    "rows": 3
+                },
+                {
+                    "key": "field_faq_items",
+                    "label": "Questions",
+                    "name": "items",
+                    "type": "repeater",
+                    "layout": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_faqi_q",
+                            "label": "Question",
+                            "name": "question",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_faqi_a",
+                            "label": "Answer",
+                            "name": "answer",
+                            "type": "textarea",
+                            "rows": 4
+                        }
+                    ]
+                },
+                {
+                    "key": "field_faq_cta",
+                    "label": "FAQ Outer CTA Box",
+                    "name": "faq_cta",
+                    "type": "group",
+                    "layout": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_fc_title",
+                            "label": "Title",
+                            "name": "title",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_fc_text",
+                            "label": "Text",
+                            "name": "text",
+                            "type": "textarea",
+                            "rows": 3
+                        },
+                        {
+                            "key": "field_fc_link",
+                            "label": "Link",
+                            "name": "link",
+                            "type": "link",
+                            "return_format": "array"
+                        }
+                    ]
+                }
+            ],
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_enable_faq_section",
+                        "operator": "==",
+                        "value": 1
+                    }
+                ]
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "page-templates/home-page-template.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Dynamic sections for the Home Page.",
+    "show_in_rest": 0,
+    "modified": 1775097965
+}

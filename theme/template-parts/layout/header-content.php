@@ -286,13 +286,13 @@ $nav_items = array(
 		<div class="hidden items-center gap-2 lg:flex">
 			<a
 				href="<?php echo esc_url(home_url('/start-an-order/')); ?>"
-				class="rounded-full border border-white/40 bg-[#07212c]/55 px-4 py-2.5 font-display text-[13px] font-bold text-white no-underline backdrop-blur-sm transition-all duration-200 hover:-translate-y-px hover:bg-[#07212c]/75 hover:border-white/60 xl:px-6 xl:text-sm">
+				class="rounded-full border border-white/40 bg-[#07212c]/55 px-4 py-3.5 font-display text-[13px] font-bold text-white no-underline backdrop-blur-sm transition-all duration-200 hover:-translate-y-px hover:bg-[#07212c]/75 hover:border-white/60 xl:px-6 xl:text-sm">
 				<?php esc_html_e('Start an Order', 'reacon-group'); ?>
 			</a>
 
 			<a
 				href="<?php echo esc_url(home_url('/contact-us/')); ?>"
-				class="inline-flex items-center gap-1.5 rounded-full bg-primary py-2 pl-4 pr-1.5 font-display text-[13px] font-bold text-white no-underline shadow-[0_8px_20px_rgba(30,202,211,0.5)] transition-all duration-200 hover:-translate-y-px hover:brightness-105 xl:gap-2 xl:pl-5 xl:pr-2 xl:text-sm">
+				class="inline-flex items-center gap-1.5 rounded-full bg-primary py-2 pl-4 pr-1.5 font-display text-[13px] font-bold text-white no-underline  transition-all duration-200 hover:-translate-y-px hover:brightness-105 xl:gap-2 xl:pl-5 xl:pr-2 xl:text-sm">
 				<?php esc_html_e('Contact Us', 'reacon-group'); ?>
 				<span
 					aria-hidden="true"
