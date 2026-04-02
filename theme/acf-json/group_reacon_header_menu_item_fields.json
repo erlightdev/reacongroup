@@ -1,0 +1,98 @@
+{
+	"key": "group_reacon_header_menu_item_fields",
+	"title": "Header Mega Menu Item Fields",
+	"fields": [
+		{
+			"key": "field_reacon_header_menu_icon_source",
+			"label": "Icon source",
+			"name": "header_menu_icon_source",
+			"type": "select",
+			"return_format": "value",
+			"default_value": "svg_asset",
+			"choices": {
+				"svg_asset": "SVG file / theme path",
+				"image": "Image"
+			},
+			"required": 0
+		},
+		{
+			"key": "field_reacon_header_menu_icon_svg",
+			"label": "Icon SVG asset / theme path",
+			"name": "header_menu_icon_svg_asset",
+			"type": "text",
+			"instructions": "Theme-relative SVG path or an attachment path supported by reacon_group_inline_svg().",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_reacon_header_menu_icon_source",
+						"operator": "==",
+						"value": "svg_asset"
+					}
+				]
+			]
+		},
+		{
+			"key": "field_reacon_header_menu_icon_image",
+			"label": "Icon image",
+			"name": "header_menu_icon_image",
+			"type": "image",
+			"return_format": "url",
+			"preview_size": "thumbnail",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_reacon_header_menu_icon_source",
+						"operator": "==",
+						"value": "image"
+					}
+				]
+			]
+		},
+		{
+			"key": "field_reacon_header_menu_description",
+			"label": "Menu item description (mega card)",
+			"name": "header_menu_description",
+			"type": "textarea",
+			"rows": 2,
+			"new_lines": "",
+			"required": 0
+		},
+		{
+			"key": "field_reacon_header_mega_feature_image",
+			"label": "Mega panel feature image (parent items only)",
+			"name": "header_mega_feature_image",
+			"type": "image",
+			"return_format": "url",
+			"preview_size": "thumbnail",
+			"required": 0
+		},
+		{
+			"key": "field_reacon_header_mega_feature_image_alt",
+			"label": "Feature image alt text",
+			"name": "header_mega_feature_image_alt",
+			"type": "text",
+			"required": 0
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "nav_menu_item",
+				"operator": "==",
+				"value": "all"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"hide_on_screen": "",
+	"active": true,
+	"show_in_rest": 0,
+	"description": "ACF fields attached to Appearance → Menus items for the header mega menu."
+}
+

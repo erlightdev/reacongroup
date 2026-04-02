@@ -1,0 +1,49 @@
+{
+	"key": "group_reacon_header_settings",
+	"title": "Header settings",
+	"fields": [
+		{
+			"key": "field_reacon_header_logo",
+			"label": "Header logo (optional override)",
+			"name": "header_logo",
+			"type": "image",
+			"return_format": "url",
+			"required": 0
+		},
+		{
+			"key": "field_reacon_header_cta_start_order",
+			"label": "Start an Order CTA link",
+			"name": "header_cta_start_order_link",
+			"type": "link",
+			"return_format": "array",
+			"required": 0
+		},
+		{
+			"key": "field_reacon_header_cta_contact_us",
+			"label": "Contact Us CTA link",
+			"name": "header_cta_contact_us_link",
+			"type": "link",
+			"return_format": "array",
+			"required": 0
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "options_page",
+				"operator": "==",
+				"value": "header-settings"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"hide_on_screen": "",
+	"active": true,
+	"show_in_rest": 0,
+	"description": "ACF fields for Header Settings options page."
+}
+

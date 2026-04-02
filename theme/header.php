@@ -26,6 +26,6 @@
 <div id="page">
 	<a href="#content" class="sr-only"><?php esc_html_e( 'Skip to content', 'reacon-group' ); ?></a>
 
-	<?php get_template_part( 'template-parts/layout/header', 'content' ); ?>
+<?php get_template_part( 'template-parts/layout/header', 'content-dynamic' ); ?>
 
 	<div id="content">
