@@ -11,45 +11,39 @@
  * @package reacon-group
  */
 get_header();
+
+$industries_hero_bg = get_template_directory_uri() . '/public/industries/industries-hero-subtract.png';
 ?>
 <main id="primary" class="overflow-x-hidden" role="main">
-	<?php
-    $industries_hero_bg = get_template_directory_uri() . '/public/industries/industries-hero-subtract.png';
-    ?>
 	<!-- Major Section: Industries Hero -->
 	<section
 		id="industries-hero"
-		class="relative w-full p-4 sm:p-5 lg:p-6"
+		class="relative w-full p-1.5 md:p-2.5"
 		aria-label="<?php esc_attr_e('Industries hero', 'reacon-group'); ?>">
-		<div class="relative flex w-full flex-col overflow-hidden rounded-[31px] bg-foreground">
+		<div class="reacon-about-hero-card relative min-h-[255px] overflow-hidden rounded-[24px] bg-[#062B53] sm:min-h-[300px] lg:min-h-[380px] lg:rounded-[31px]">
 			<img
 				src="<?php echo esc_url($industries_hero_bg); ?>"
 				alt=""
 				aria-hidden="true"
-				class="absolute inset-0 h-full w-full object-cover object-center"
+				class="pointer-events-none absolute inset-0 h-full w-full object-cover object-center"
+				fetchpriority="high"
 				loading="eager"
-				decoding="async"
-				fetchpriority="high" />
+				decoding="async" />
 
-			<!-- Dark overlay to keep typography readable over the image -->
-			<div
-				class="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.55)_0%,rgba(0,0,0,0.25)_55%,rgba(0,0,0,0.55)_100%)]"
-				aria-hidden="true"></div>
+			<div class="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,10,33,0.28)_0%,rgba(0,10,33,0.18)_45%,rgba(0,10,33,0.28)_100%)]" aria-hidden="true"></div>
 
-			<div class="relative z-10 mx-auto flex w-full flex-1 flex-col items-center justify-center px-5 py-24 text-center sm:px-6 lg:px-10">
-				<div class="flex max-w-[900px] flex-col items-center">
-					<p class="w-full font-sans text-[14px] font-normal leading-[22.72px] text-white/80 sm:text-[16px]">
-						<?php esc_html_e('Industries', 'reacon-group'); ?>
-					</p>
+			<div class="relative z-10 mx-auto flex min-h-[255px] w-full max-w-[1200px] flex-col items-center justify-center px-5 pb-10 pt-28 text-center sm:min-h-[300px] sm:px-6 sm:pt-32 lg:min-h-[380px] lg:px-10 lg:pb-14 lg:pt-36">
+				<p class="mb-4 font-sans text-[11px] font-medium uppercase tracking-[0.18em] text-white/85 lg:mb-5">
+					<?php esc_html_e('Industries', 'reacon-group'); ?>
+				</p>
 
-					<h1 class="mt-3 font-display text-[40px] font-semibold leading-tight text-white sm:text-[48px] lg:text-[56px] lg:leading-[73.92px]">
-						<?php esc_html_e('Industries We Empower', 'reacon-group'); ?>
-					</h1>
+				<h1 class="max-w-[860px] font-display text-[30px] font-bold leading-[1.16] text-white sm:text-[40px] lg:text-[56px]">
+					<?php esc_html_e('Industries We Empower', 'reacon-group'); ?>
+				</h1>
 
-					<p class="mt-5 max-w-[820px] font-sans text-[16px] leading-[22.72px] text-white/80">
-						<?php esc_html_e('Expert execution tailored to the needs of every sector we serve.', 'reacon-group'); ?>
-					</p>
-				</div>
+				<p class="mt-4 max-w-[780px] font-sans text-[13px] leading-[1.45] text-white/90 sm:text-[15px] lg:mt-5 lg:text-base">
+					<?php esc_html_e('Expert execution tailored to the needs of every sector we serve.', 'reacon-group'); ?>
+				</p>
 			</div>
 		</div>
 	</section>
@@ -57,11 +51,11 @@ get_header();
 
 	<!-- Major Section: Industries Approach -->
 	<?php
-    $industries_approach_vector_src = get_template_directory_uri() . '/public/industries/industries-approach-vector.svg';
-    $industries_approach_img1 = get_template_directory_uri() . '/public/industries/industries-approach-image-1.png';
-    $industries_approach_img2 = get_template_directory_uri() . '/public/industries/industries-approach-image-2.png';
-    $industries_approach_img3 = get_template_directory_uri() . '/public/industries/industries-approach-image-3.png';
-    ?>
+	$industries_approach_vector_src = get_template_directory_uri() . '/public/industries/industries-approach-vector.svg';
+	$industries_approach_img1 = get_template_directory_uri() . '/public/industries/industries-approach-image-1.png';
+	$industries_approach_img2 = get_template_directory_uri() . '/public/industries/industries-approach-image-2.png';
+	$industries_approach_img3 = get_template_directory_uri() . '/public/industries/industries-approach-image-3.png';
+	?>
 	<section
 		id="industries-approach"
 		class="relative overflow-hidden py-16 sm:py-20 lg:py-16"
@@ -71,22 +65,22 @@ get_header();
 				<div class="relative w-full">
 					<h2
 						id="industries-approach-title"
-						class="font-display text-[24px] px-4 sm:text-[32px] md:text-[40px] lg:text-[48px] font-semibold leading-[73.92px] sm:leading-[48px] md:leading-[58.08px] lg:leading-[73.92px] text-foreground max-w-[1200px]">
+						class="font-display text-[24px]  sm:text-[32px] md:text-[40px] lg:text-[48px] font-semibold  text-foreground max-w-[1200px]">
 						<?php esc_html_e('Our nimble industry agnostic approach is helping brands the world over.', 'reacon-group'); ?>
 					</h2>
 
 					<div class="mt-[16px] max-w-[900px] font-sans text-[16px] leading-[22.72px] text-foreground">
 						<p>
 							<?php esc_html_e(
-                                "We do not underestimate the value of providing social proof, we don't like blowing our own trumpet, but hey if we've done something good for our brand partners, no harm in making everyone aware of it, right? Brands have discovered and unlocked great value from our outcomes based approach as we've journeyed with them from one campaign to the next. ",
-                                'reacon-group'
-                            ); ?>
+								"We do not underestimate the value of providing social proof, we don't like blowing our own trumpet, but hey if we've done something good for our brand partners, no harm in making everyone aware of it, right? Brands have discovered and unlocked great value from our outcomes based approach as we've journeyed with them from one campaign to the next. ",
+								'reacon-group'
+							); ?>
 						</p>
 						<p class="mt-4">
 							<?php esc_html_e(
-                                "Below are a few brand journey's that have validated our approach, people and technologies with the ultimate goal of getting brands in front of the customers they want, harnessing our marketing execution strengths and extending this with access to regional markets, cutting technology and most importantly measurable results.",
-                                'reacon-group'
-                            ); ?>
+								"Below are a few brand journey's that have validated our approach, people and technologies with the ultimate goal of getting brands in front of the customers they want, harnessing our marketing execution strengths and extending this with access to regional markets, cutting technology and most importantly measurable results.",
+								'reacon-group'
+							); ?>
 						</p>
 					</div>
 
@@ -140,8 +134,8 @@ get_header();
 		id="industries-challenges"
 		class="w-full py-[60px]"
 		aria-labelledby="industries-challenges-title">
-		<div class="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12">
-			<div class="mx-auto w-full max-w-[1162px] text-center">
+		<div class="mx-auto w-full  px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12">
+			<div class="mx-auto w-full max-w-7xl text-center">
 				<h2
 					id="industries-challenges-title"
 					class="font-display text-[32px] font-medium leading-[42.24px] text-foreground sm:text-[36px] sm:leading-[48px] md:text-[44px] md:leading-[58.08px]">
@@ -158,18 +152,18 @@ get_header();
 	<!-- Major Section: Industries We Work With -->
 	<section
 		id="industries-work-with"
-		class="bg-background pt-16 pb-20"
+		class="bg-background py-12"
 		aria-labelledby="industries-work-with-title">
-		<div class="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12">
+		<div class="mx-auto w-full  px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12">
 			<div class="flex flex-col gap-[42px] items-start lg:flex-row">
 				<!-- Left: Nav -->
 				<div class="flex flex-col gap-[23px] items-start w-full lg:w-[420px] lg:shrink-0">
 					<div class="w-full flex items-center justify-center">
 						<h2
 							id="industries-work-with-title"
-							class="font-display text-[44px] leading-[58.08px] font-medium text-foreground sm:text-[56px] sm:leading-[73.92px] text-center sm:text-left">
-							<span class="block">Industries</span>
-							<span class="block">We Work With</span>
+							class="font-display text-[24px] md:text-[44px]  font-medium text-foreground sm:text-[56px]  text-center sm:text-left">
+							<span class="block">Industries We Work With</span>
+							<!-- <span class="block"></span> -->
 						</h2>
 					</div>
 
@@ -177,37 +171,37 @@ get_header();
 						<button
 							type="button"
 							data-industries-slide="0"
-							class="bg-primary text-white flex items-center px-[16px] py-[12px] rounded-full font-sans text-[16px] leading-[22.72px] w-full justify-start">
+							class="bg-primary text-white cursor-pointer flex items-center px-[16px] py-[12px] rounded-full font-sans text-[16px] leading-[22.72px] w-full justify-start">
 							Banking &amp; Finance
 						</button>
 						<button
 							type="button"
 							data-industries-slide="1"
-							class="bg-transparent text-muted-foreground flex items-center px-[16px] py-[12px] rounded-full font-sans text-[16px] leading-[22.72px] w-full justify-start">
+							class="bg-transparent text-muted-foreground cursor-pointer flex items-center px-[16px] py-[12px] rounded-full font-sans text-[16px] leading-[22.72px] w-full justify-start">
 							Charities &amp; Not-For-Profits
 						</button>
 						<button
 							type="button"
 							data-industries-slide="2"
-							class="bg-transparent text-muted-foreground flex items-center px-[16px] py-[12px] rounded-full font-sans text-[16px] leading-[22.72px] w-full justify-start">
+							class="bg-transparent text-muted-foreground cursor-pointer flex items-center px-[16px] py-[12px] rounded-full font-sans text-[16px] leading-[22.72px] w-full justify-start">
 							Health &amp; Pharmaceuticals
 						</button>
 						<button
 							type="button"
 							data-industries-slide="3"
-							class="bg-transparent text-muted-foreground flex items-center px-[16px] py-[12px] rounded-full font-sans text-[16px] leading-[22.72px] w-full justify-start">
+							class="bg-transparent text-muted-foreground cursor-pointer flex items-center px-[16px] py-[12px] rounded-full font-sans text-[16px] leading-[22.72px] w-full justify-start">
 							E-Commerce
 						</button>
 						<button
 							type="button"
 							data-industries-slide="4"
-							class="bg-transparent text-muted-foreground flex items-center px-[16px] py-[12px] rounded-full font-sans text-[16px] leading-[22.72px] w-full justify-start">
+							class="bg-transparent text-muted-foreground cursor-pointer flex items-center px-[16px] py-[12px] rounded-full font-sans text-[16px] leading-[22.72px] w-full justify-start">
 							Government
 						</button>
 						<button
 							type="button"
 							data-industries-slide="5"
-							class="bg-transparent text-muted-foreground flex items-center px-[16px] py-[12px] rounded-full font-sans text-[16px] leading-[22.72px] w-full justify-start">
+							class="bg-transparent text-muted-foreground cursor-pointer flex items-center px-[16px] py-[12px] rounded-full font-sans text-[16px] leading-[22.72px] w-full justify-start">
 							Hospitality
 						</button>
 					</div>
@@ -216,47 +210,47 @@ get_header();
 				<!-- Right: Swiper -->
 				<div class="w-full min-w-0"> <!-- ADDED: min-w-0 is critical for Swiper inside a flex-row -->
 					<?php
-                    $industries_arrow_right = get_template_directory_uri() . '/public/industries/industries-card-arrow-right.svg';
-                    $industries_work_cards = array(
-                        array(
-                            'title' => __('Banking & Finance', 'reacon-group'),
-                            'excerpt' => __('The financial services landscape is highly competitive and regulated. Denoted by increasing costs per acquisition, digital savvy audiences and new challenger banks, neo banks and aggregator services encourage customers to seek better deals.', 'reacon-group'),
-                            'image_src' => get_template_directory_uri() . '/public/industries/industries-card-banking.png',
-                            'type' => 'single',
-                        ),
-                        array(
-                            'title' => __('Charities & Not-For-Profits', 'reacon-group'),
-                            'excerpt' => __('Early in 2022, the Charities Aid Foundation ranks Australia as the eighth highest of more than 140 countries over 10 years (2009 to 2018) of the World Giving Index, with 60% of all Australians making a financial donation to a charity.', 'reacon-group'),
-                            'image_src' => get_template_directory_uri() . '/public/industries/industries-card-charities.png',
-                            'type' => 'single',
-                        ),
-                        array(
-                            'title' => __('Health & Pharmaceuticals', 'reacon-group'),
-                            'excerpt' => __('We understand that marketing approaches in heavily regulated sectors must be cognisant of the risks and have expertise of the rules, processes and systems that underpin them.', 'reacon-group'),
-                            'image_src' => get_template_directory_uri() . '/public/industries/industries-card-health.png',
-                            'type' => 'single',
-                        ),
-                        array(
-                            'title' => __('E-Commerce', 'reacon-group'),
-                            'excerpt' => __('We understand that marketing approaches in heavily regulated sectors must be cognisant of the risks and have expertise of the rules, processes and systems that underpin them.', 'reacon-group'),
-                            'image_src' => get_template_directory_uri() . '/public/industries/industries-card-ecommerce.png',
-                            'type' => 'single',
-                        ),
-                        array(
-                            'title' => __('Government', 'reacon-group'),
-                            'excerpt' => __('We understand that marketing approaches in heavily regulated sectors must be cognisant of the risks and have expertise of the rules, processes and systems that underpin them.', 'reacon-group'),
-                            'image_src' => get_template_directory_uri() . '/public/industries/industries-card-government.png',
-                            'overlay_src' => get_template_directory_uri() . '/public/industries/industries-card-government-overlay.png',
-                            'type' => 'overlay',
-                        ),
-                        array(
-                            'title' => __('Hospitality', 'reacon-group'),
-                            'excerpt' => __('Early in 2022, the Charities Aid Foundation ranks Australia as the eighth highest of more than 140 countries over 10 years (2009 to 2018) of the World Giving Index, with 60% of all Australians making a financial donation to a charity.', 'reacon-group'),
-                            'image_src' => get_template_directory_uri() . '/public/industries/industries-card-hospitality.png',
-                            'type' => 'single',
-                        ),
-                    );
-                    ?>
+					$industries_arrow_right = get_template_directory_uri() . '/public/industries/industries-card-arrow-right.svg';
+					$industries_work_cards = array(
+						array(
+							'title' => __('Banking & Finance', 'reacon-group'),
+							'excerpt' => __('The financial services landscape is highly competitive and regulated. Denoted by increasing costs per acquisition, digital savvy audiences and new challenger banks, neo banks and aggregator services encourage customers to seek better deals.', 'reacon-group'),
+							'image_src' => get_template_directory_uri() . '/public/industries/industries-card-banking.png',
+							'type' => 'single',
+						),
+						array(
+							'title' => __('Charities & Not-For-Profits', 'reacon-group'),
+							'excerpt' => __('Early in 2022, the Charities Aid Foundation ranks Australia as the eighth highest of more than 140 countries over 10 years (2009 to 2018) of the World Giving Index, with 60% of all Australians making a financial donation to a charity.', 'reacon-group'),
+							'image_src' => get_template_directory_uri() . '/public/industries/industries-card-charities.png',
+							'type' => 'single',
+						),
+						array(
+							'title' => __('Health & Pharmaceuticals', 'reacon-group'),
+							'excerpt' => __('We understand that marketing approaches in heavily regulated sectors must be cognisant of the risks and have expertise of the rules, processes and systems that underpin them.', 'reacon-group'),
+							'image_src' => get_template_directory_uri() . '/public/industries/industries-card-health.png',
+							'type' => 'single',
+						),
+						array(
+							'title' => __('E-Commerce', 'reacon-group'),
+							'excerpt' => __('We understand that marketing approaches in heavily regulated sectors must be cognisant of the risks and have expertise of the rules, processes and systems that underpin them.', 'reacon-group'),
+							'image_src' => get_template_directory_uri() . '/public/industries/industries-card-ecommerce.png',
+							'type' => 'single',
+						),
+						array(
+							'title' => __('Government', 'reacon-group'),
+							'excerpt' => __('We understand that marketing approaches in heavily regulated sectors must be cognisant of the risks and have expertise of the rules, processes and systems that underpin them.', 'reacon-group'),
+							'image_src' => get_template_directory_uri() . '/public/industries/industries-card-government.png',
+							'overlay_src' => get_template_directory_uri() . '/public/industries/industries-card-government-overlay.png',
+							'type' => 'overlay',
+						),
+						array(
+							'title' => __('Hospitality', 'reacon-group'),
+							'excerpt' => __('Early in 2022, the Charities Aid Foundation ranks Australia as the eighth highest of more than 140 countries over 10 years (2009 to 2018) of the World Giving Index, with 60% of all Australians making a financial donation to a charity.', 'reacon-group'),
+							'image_src' => get_template_directory_uri() . '/public/industries/industries-card-hospitality.png',
+							'type' => 'single',
+						),
+					);
+					?>
 
 					<div class="swiper js-industries-work-swiper w-full overflow-hidden">
 						<div class="swiper-wrapper">
@@ -328,19 +322,19 @@ get_header();
 
    <!-- Cta Section: strategic call-to-action banner. -->
 		<?php
-        $solution_cta = array(
-            'heading' => __('Print Smarter. Move Faster. Deliver Everywhere.', 'reacon-group'),
-            'description' => __('Reacon connects creativity, automation, and logistics to help brands operate at global speed.', 'reacon-group'),
-            'primary' => array(
-                'label' => __('Contact Us', 'reacon-group'),
-                'url' => home_url('/contact/'),
-            ),
-            'secondary' => array(
-                'label' => __('Talk to Our Team', 'reacon-group'),
-                'url' => home_url('/contact/'),
-            ),
-        );
-        ?>
+		$solution_cta = array(
+			'heading' => __('Print Smarter. Move Faster. Deliver Everywhere.', 'reacon-group'),
+			'description' => __('Reacon connects creativity, automation, and logistics to help brands operate at global speed.', 'reacon-group'),
+			'primary' => array(
+				'label' => __('Contact Us', 'reacon-group'),
+				'url' => home_url('/contact/'),
+			),
+			'secondary' => array(
+				'label' => __('Talk to Our Team', 'reacon-group'),
+				'url' => home_url('/contact/'),
+			),
+		);
+		?>
 		<section
 			id="solution-cta"
 			class="py-10 sm:py-12 lg:py-14"
@@ -477,6 +471,91 @@ get_header();
 		});
 	</script>
 </main>
+
+<style>
+	/* Desktop-only top notch — matches About / Contact hero header recess. */
+	@media (min-width: 1024px) {
+		#industries-hero .reacon-about-hero-card {
+			--hero-notch-width: clamp(560px, 48vw, 720px);
+			--hero-notch-radius: 40px;
+			--hero-notch-height: 86px;
+			--hero-notch-swoop: 40px;
+		}
+
+		#industries-hero .reacon-about-hero-card::before {
+			content: "";
+			position: absolute;
+			left: 50%;
+			top: 0;
+			transform: translateX(calc(-50% + var(--hero-notch-shift, 0px)));
+			width: var(--hero-notch-width);
+			height: var(--hero-notch-height);
+			background: #fff;
+			border-bottom-left-radius: var(--hero-notch-radius);
+			border-bottom-right-radius: var(--hero-notch-radius);
+			z-index: 3;
+			pointer-events: none;
+		}
+
+		#industries-hero .reacon-about-hero-card::after {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 50%;
+			transform: translateX(calc(-50% + var(--hero-notch-shift, 0px)));
+			width: calc(var(--hero-notch-width) + (var(--hero-notch-swoop) * 2));
+			height: var(--hero-notch-swoop);
+			background:
+				radial-gradient(circle at 0% 100%, transparent var(--hero-notch-swoop), #fff calc(var(--hero-notch-swoop) + 1px)) no-repeat left bottom / var(--hero-notch-swoop) var(--hero-notch-swoop),
+				radial-gradient(circle at 100% 100%, transparent var(--hero-notch-swoop), #fff calc(var(--hero-notch-swoop) + 1px)) no-repeat right bottom / var(--hero-notch-swoop) var(--hero-notch-swoop);
+			z-index: 4;
+			pointer-events: none;
+		}
+	}
+</style>
+
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		const syncIndustriesHeroNotchToDesktopMenu = () => {
+			const heroCard = document.querySelector('#industries-hero .reacon-about-hero-card');
+			const navPill = document.querySelector('#site-navigation > ul');
+			if (!heroCard || !navPill) return;
+
+			if (window.innerWidth < 1024) {
+				heroCard.style.removeProperty('--hero-notch-width');
+				heroCard.style.removeProperty('--hero-notch-shift');
+				return;
+			}
+
+			const heroRect = heroCard.getBoundingClientRect();
+			const navRect = navPill.getBoundingClientRect();
+			const navWidth = Math.round(navRect.width);
+			if (!navWidth) return;
+
+			const heroCenterX = heroRect.left + (heroRect.width / 2);
+			const navCenterX = navRect.left + (navRect.width / 2);
+			const notchShift = Math.round(navCenterX - heroCenterX);
+
+			heroCard.style.setProperty('--hero-notch-width', `${navWidth + 18}px`);
+			heroCard.style.setProperty('--hero-notch-shift', `${notchShift}px`);
+		};
+
+		let industriesNotchSyncRaf = null;
+		const scheduleIndustriesNotchSync = () => {
+			if (industriesNotchSyncRaf) {
+				cancelAnimationFrame(industriesNotchSyncRaf);
+			}
+			industriesNotchSyncRaf = requestAnimationFrame(syncIndustriesHeroNotchToDesktopMenu);
+		};
+
+		scheduleIndustriesNotchSync();
+		window.addEventListener('resize', scheduleIndustriesNotchSync);
+		window.addEventListener('load', scheduleIndustriesNotchSync);
+		if (document.fonts && document.fonts.ready) {
+			document.fonts.ready.then(scheduleIndustriesNotchSync).catch(() => {});
+		}
+	});
+</script>
 <?php
 get_footer();
 ?>
