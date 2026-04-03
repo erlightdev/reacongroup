@@ -207,7 +207,7 @@ function reacon_group_scripts()
 		true
 	);
 
-	if (is_singular('post') || is_page_template('page-templates/industries-page-template.php')) {
+	if (is_singular('post') || is_page_template('page-templates/industries-page-template.php') || is_post_type_archive('industry')) {
 		wp_enqueue_style(
 			'reacon-group-swiper-style',
 			'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css',
@@ -223,6 +223,7 @@ function reacon_group_scripts()
 			true
 		);
 	}
+
 
 	if (is_singular() && comments_open() && get_option('thread_comments')) {
 		wp_enqueue_script('comment-reply');
@@ -387,7 +388,7 @@ if (!function_exists('reacon_group_header_render_nav_menu_icon')) {
  *
  * This is purely for admin usability on Appearance → Menus.
  */
-add_action('admin_head', static function() {
+add_action('admin_head', static function () {
 	global $pagenow;
 	if (!isset($pagenow) || 'nav-menus.php' !== $pagenow) {
 		return;
@@ -545,7 +546,7 @@ if (!class_exists('Reacon_Group_Header_Desktop_Walker')) {
 
 				$output .= '<div class="flex flex-col gap-[25px]">';
 
-				$render_children_cards = static function(array $cards) use (&$output) {
+				$render_children_cards = static function (array $cards) use (&$output) {
 					$output .= '<div class="grid grid-cols-2 gap-4">';
 
 					foreach ($cards as $child) {
