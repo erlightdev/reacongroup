@@ -1,151 +1,325 @@
 <?php
 
 /**
- * Template part for displaying industry single posts
+ * Template part for displaying single industry posts.
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
  * @package reacon-group
  */
 
-$industries_assets_uri  = get_template_directory_uri() . '/public/industries';
-$industries_assets_path = get_template_directory() . '/public/industries';
+$industry_id = (int) get_the_ID();
 
-$industry_hero_fallback_rel_paths = array(
-    '/industry-hero-bg.png',
-    '/banking-finance-hero-bg.png',
-);
+if (!function_exists('reacon_group_industry_single_link_data')) {
+    /**
+     * Normalize ACF link arrays.
+     *
+     * @param mixed $link ACF link field value.
+     * @return array<string,string>|null
+     */
+    function reacon_group_industry_single_link_data($link)
+    {
+        if (!is_array($link) || empty($link['url'])) {
+            return null;
+        }
 
-$industry_hero_image_uri = get_the_post_thumbnail_url(get_the_ID(), 'full');
+        return array(
+            'url' => (string) $link['url'],
+            'title' => isset($link['title']) ? (string) $link['title'] : '',
+            'target' => !empty($link['target']) ? (string) $link['target'] : '_self',
+        );
+    }
+}
 
-if (!$industry_hero_image_uri) {
-    foreach ($industry_hero_fallback_rel_paths as $hero_rel_path) {
-        if (file_exists($industries_assets_path . $hero_rel_path)) {
-            $industry_hero_image_uri = $industries_assets_uri . $hero_rel_path;
-            break;
+if (!function_exists('reacon_group_industry_single_image_url')) {
+    /**
+     * Normalize ACF image field value to a URL.
+     *
+     * @param mixed $image ACF image field value.
+     * @return string
+     */
+    function reacon_group_industry_single_image_url($image)
+    {
+        if (is_string($image)) {
+            return $image;
+        }
+
+        if (is_array($image) && !empty($image['url'])) {
+            return (string) $image['url'];
+        }
+
+        if (is_numeric($image)) {
+            $url = wp_get_attachment_image_url((int) $image, 'full');
+            return $url ? (string) $url : '';
+        }
+
+        return '';
+    }
+}
+
+if (!function_exists('reacon_group_industry_single_phosphor_map')) {
+    /**
+     * Preset slug to Phosphor class map.
+     *
+     * @return array<string,string>
+     */
+    function reacon_group_industry_single_phosphor_map()
+    {
+        return array(
+            'arrow-up-right' => 'ph-bold ph-arrow-up-right',
+            'arrow-right' => 'ph-bold ph-arrow-right',
+            'arrow-down-right' => 'ph-bold ph-arrow-down-right',
+            'arrow-up' => 'ph-bold ph-arrow-up',
+        );
+    }
+}
+
+if (!function_exists('reacon_group_industry_single_lucide_map')) {
+    /**
+     * Preset slug to Lucide icon name map.
+     *
+     * @return array<string,string>
+     */
+    function reacon_group_industry_single_lucide_map()
+    {
+        return array(
+            'arrow-up-right' => 'arrow-up-right',
+            'arrow-right' => 'arrow-right',
+            'arrow-down-right' => 'arrow-down-right',
+            'arrow-up' => 'arrow-up',
+        );
+    }
+}
+
+if (!function_exists('reacon_group_industry_single_render_icon')) {
+    /**
+     * Render an icon from the configured ACF source.
+     *
+     * @param mixed  $icon_group Icon field group.
+     * @param string $class      CSS classes for the rendered icon.
+     */
+    function reacon_group_industry_single_render_icon($icon_group, $class = '')
+    {
+        if (!is_array($icon_group)) {
+            return;
+        }
+
+        $source = isset($icon_group['icon_source']) ? (string) $icon_group['icon_source'] : '';
+        $class  = trim((string) $class);
+
+        if ('phosphor' === $source) {
+            $preset = isset($icon_group['phosphor_icon']) ? (string) $icon_group['phosphor_icon'] : '';
+            $map    = reacon_group_industry_single_phosphor_map();
+
+            if ('custom' === $preset) {
+                $custom = isset($icon_group['phosphor_class']) ? trim((string) $icon_group['phosphor_class']) : '';
+                if ($custom !== '') {
+                    echo '<i class="' . esc_attr(trim($custom . ' ' . $class)) . '" aria-hidden="true"></i>';
+                }
+                return;
+            }
+
+            if (isset($map[$preset])) {
+                echo '<i class="' . esc_attr(trim($map[$preset] . ' ' . $class)) . '" aria-hidden="true"></i>';
+            }
+            return;
+        }
+
+        if ('lucide' === $source) {
+            $preset = isset($icon_group['lucide_icon']) ? (string) $icon_group['lucide_icon'] : '';
+            $map    = reacon_group_industry_single_lucide_map();
+            $name   = 'custom' === $preset ? (isset($icon_group['lucide_name']) ? (string) $icon_group['lucide_name'] : '') : (isset($map[$preset]) ? $map[$preset] : '');
+
+            if ($name !== '') {
+                echo '<i data-lucide="' . esc_attr($name) . '" class="' . esc_attr($class) . '" aria-hidden="true"></i>';
+            }
+            return;
+        }
+
+        if ('svg_asset' === $source) {
+            $svg = isset($icon_group['svg_asset']) ? $icon_group['svg_asset'] : '';
+            if ($svg !== '' && function_exists('reacon_group_inline_svg')) {
+                $svg_markup = reacon_group_inline_svg($svg, $class);
+                if ($svg_markup) {
+                    echo $svg_markup; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                }
+            }
+            return;
+        }
+
+        if ('image' === $source) {
+            $image_url = reacon_group_industry_single_image_url(isset($icon_group['image']) ? $icon_group['image'] : '');
+            if ($image_url !== '') {
+                echo '<img src="' . esc_url($image_url) . '" alt="" aria-hidden="true" class="' . esc_attr($class) . '" loading="lazy" decoding="async" />';
+            }
         }
     }
 }
 
-$industry_hero_kicker = __('Industries We Empower', 'reacon-group');
-$industry_hero_title = get_the_title();
-$industry_hero_summary = get_the_excerpt();
+$hero_enabled = function_exists('get_field') ? (bool) get_field('industry_single_enable_hero_section', $industry_id) : false;
+$hero         = function_exists('get_field') ? get_field('industry_single_hero', $industry_id) : array();
+$hero         = is_array($hero) ? $hero : array();
 
-if (!$industry_hero_summary) {
-    $industry_hero_summary = __('Discover how Reacon helps this industry with scalable production, logistics, and data-driven execution.', 'reacon-group');
+$main_enabled = function_exists('get_field') ? (bool) get_field('industry_single_enable_main_content_section', $industry_id) : false;
+$main         = function_exists('get_field') ? get_field('industry_single_main_content', $industry_id) : array();
+$main         = is_array($main) ? $main : array();
+
+$partners_enabled = function_exists('get_field') ? (bool) get_field('industry_single_enable_partners_section', $industry_id) : false;
+$partners         = function_exists('get_field') ? get_field('industry_single_partners', $industry_id) : array();
+$partners         = is_array($partners) ? $partners : array();
+
+$cta_enabled = function_exists('get_field') ? (bool) get_field('industry_single_enable_cta_section', $industry_id) : false;
+$cta         = function_exists('get_field') ? get_field('industry_single_cta', $industry_id) : array();
+$cta         = is_array($cta) ? $cta : array();
+
+$faq_enabled = function_exists('get_field') ? (bool) get_field('industry_single_enable_faq_section', $industry_id) : false;
+$faq         = function_exists('get_field') ? get_field('industry_single_faq', $industry_id) : array();
+$faq         = is_array($faq) ? $faq : array();
+
+$hero_image_url       = reacon_group_industry_single_image_url(isset($hero['background_image']) ? $hero['background_image'] : '');
+$hero_kicker          = isset($hero['eyebrow']) ? trim((string) $hero['eyebrow']) : '';
+$hero_title           = isset($hero['title']) ? trim((string) $hero['title']) : '';
+$hero_summary         = isset($hero['description']) ? trim((string) $hero['description']) : '';
+$hero_bg_color        = isset($hero['hero_card_bg_color']) ? (string) $hero['hero_card_bg_color'] : '';
+$hero_overlay         = isset($hero['hero_overlay_gradient']) ? (string) $hero['hero_overlay_gradient'] : '';
+$hero_is_ready        = $hero_image_url !== '' && $hero_kicker !== '' && $hero_title !== '' && $hero_summary !== '' && $hero_bg_color !== '' && $hero_overlay !== '';
+
+$main_content = isset($main['content']) ? (string) $main['content'] : '';
+$main_is_ready = trim(wp_strip_all_tags($main_content)) !== '';
+
+$partners_label = __('Our partners', 'reacon-group');
+$partner_logos  = !empty($partners['logos']) && is_array($partners['logos']) ? array_values($partners['logos']) : array();
+$partner_items  = array();
+
+foreach ($partner_logos as $partner_logo) {
+    if (!is_array($partner_logo)) {
+        continue;
+    }
+
+    $logo_url = reacon_group_industry_single_image_url(isset($partner_logo['logo']) ? $partner_logo['logo'] : '');
+    $logo_alt = isset($partner_logo['alt']) ? trim((string) $partner_logo['alt']) : '';
+
+    if ($logo_url === '') {
+        continue;
+    }
+
+    if ($logo_alt === '') {
+        $logo_alt = __('Partner logo', 'reacon-group');
+    }
+
+    $partner_items[] = array(
+        'url' => $logo_url,
+        'alt' => $logo_alt,
+    );
 }
 
-$partner_logo_dir = get_template_directory() . '/public/partner-logo';
-$partner_logo_uri = get_template_directory_uri() . '/public/partner-logo';
-$partner_logo_files = glob($partner_logo_dir . '/partner-logo-*.{png,jpg,jpeg,webp,svg}', GLOB_BRACE);
+$partners_is_ready = !empty($partner_items);
 
-if (is_array($partner_logo_files) && !empty($partner_logo_files)) {
-    natsort($partner_logo_files);
-    $partner_logo_files = array_values($partner_logo_files);
-} else {
-    $partner_logo_files = array();
+$cta_heading            = isset($cta['heading']) ? trim((string) $cta['heading']) : '';
+$cta_description        = isset($cta['description']) ? trim((string) $cta['description']) : '';
+$cta_primary_link       = reacon_group_industry_single_link_data(isset($cta['primary_link']) ? $cta['primary_link'] : null);
+$cta_secondary_link     = reacon_group_industry_single_link_data(isset($cta['secondary_link']) ? $cta['secondary_link'] : null);
+$cta_primary_icon       = isset($cta['primary_icon']) && is_array($cta['primary_icon']) ? $cta['primary_icon'] : array('icon_source' => 'phosphor', 'phosphor_icon' => 'arrow-up-right');
+$cta_bg_base            = '#062b2d';
+$cta_gradient_start     = '#0F3D47';
+$cta_gradient_end       = '#062B2D';
+$cta_primary_text_color = '#062b2d';
+$cta_primary_icon_bg    = '#dbeef1';
+$cta_is_ready           = $cta_heading !== '' && $cta_description !== '';
+
+$faq_title           = isset($faq['title']) ? trim((string) $faq['title']) : '';
+$faq_description     = isset($faq['description']) ? trim((string) $faq['description']) : '';
+$faq_items_raw       = !empty($faq['items']) && is_array($faq['items']) ? array_values($faq['items']) : array();
+$faq_items           = array();
+$faq_cta_heading     = isset($faq['cta_heading']) ? trim((string) $faq['cta_heading']) : '';
+$faq_cta_description = isset($faq['cta_description']) ? trim((string) $faq['cta_description']) : '';
+$faq_cta_link        = reacon_group_industry_single_link_data(isset($faq['cta_link']) ? $faq['cta_link'] : null);
+$faq_cta_card_bg     = isset($faq['cta_card_bg_color']) ? (string) $faq['cta_card_bg_color'] : '';
+$faq_cta_link_color  = isset($faq['cta_link_color']) ? (string) $faq['cta_link_color'] : '';
+
+foreach ($faq_items_raw as $faq_item) {
+    if (!is_array($faq_item)) {
+        continue;
+    }
+
+    $question = isset($faq_item['question']) ? trim((string) $faq_item['question']) : '';
+    $answer   = isset($faq_item['answer']) ? trim((string) $faq_item['answer']) : '';
+
+    if ($question === '' || $answer === '') {
+        continue;
+    }
+
+    $faq_items[] = array(
+        'question' => $question,
+        'answer'   => $answer,
+    );
 }
 
-$industry_cta = array(
-    'heading' => __('Print Smarter. Move Faster. Deliver Everywhere.', 'reacon-group'),
-    'description' => __('Reacon connects creativity, automation, and logistics to help brands operate at global speed.', 'reacon-group'),
-    'primary' => array(
-        'label' => __('Contact Us', 'reacon-group'),
-        'url' => home_url('/contact/'),
-    ),
-    'secondary' => array(
-        'label' => __('Talk to Our Team', 'reacon-group'),
-        'url' => home_url('/contact/'),
-    ),
-);
-
+$faq_is_ready = $faq_title !== '' && $faq_description !== '' && !empty($faq_items) && $faq_cta_heading !== '' && $faq_cta_description !== '' && null !== $faq_cta_link && $faq_cta_card_bg !== '' && $faq_cta_link_color !== '';
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-    <!-- Start: Industry Hero Section -->
-    <section
-        id="industry-hero"
-        class="relative w-full p-1.5 md:p-2.5"
-        aria-labelledby="industry-hero-title">
+    <?php if ($hero_enabled && $hero_is_ready) : ?>
+        <!-- Start: Industry Hero Section -->
+        <section
+            id="industry-hero"
+            class="relative w-full p-1.5 md:p-2.5"
+            aria-labelledby="industry-hero-title">
 
-        <div class="reacon-about-hero-card relative min-h-[255px] overflow-hidden rounded-[24px] bg-[#062B53] sm:min-h-[300px] lg:min-h-[380px] lg:rounded-[31px]">
-            <?php if ($industry_hero_image_uri): ?>
+            <div class="reacon-about-hero-card relative min-h-[255px] overflow-hidden rounded-[24px] sm:min-h-[300px] lg:min-h-[380px] lg:rounded-[31px]" style="background-color: <?php echo esc_attr($hero_bg_color); ?>;">
                 <img
-                    src="<?php echo esc_url($industry_hero_image_uri); ?>"
+                    src="<?php echo esc_url($hero_image_url); ?>"
                     alt=""
                     aria-hidden="true"
                     class="pointer-events-none absolute inset-0 h-full w-full object-cover object-center"
                     fetchpriority="high"
                     loading="eager"
                     decoding="async" />
-            <?php endif; ?>
 
-            <div class="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,10,33,0.28)_0%,rgba(0,10,33,0.18)_45%,rgba(0,10,33,0.28)_100%)]" aria-hidden="true"></div>
+                <div class="pointer-events-none absolute inset-0" aria-hidden="true" style="background: <?php echo esc_attr($hero_overlay); ?>;"></div>
 
-            <div class="relative z-10 mx-auto flex min-h-[255px] w-full max-w-[1200px] flex-col items-center justify-center px-5 pb-10 pt-28 text-center sm:min-h-[300px] sm:px-6 sm:pt-32 lg:min-h-[380px] lg:px-10 lg:pb-14 lg:pt-36">
-                <p class="mb-4 font-sans text-[11px] font-medium uppercase tracking-[0.18em] text-white/85 lg:mb-5">
-                    <?php echo esc_html($industry_hero_kicker); ?>
-                </p>
+                <div class="relative z-10 mx-auto flex min-h-[255px] w-full max-w-[1200px] flex-col items-center justify-center px-5 pb-10 pt-28 text-center sm:min-h-[300px] sm:px-6 sm:pt-32 lg:min-h-[380px] lg:px-10 lg:pb-14 lg:pt-36">
+                    <p class="mb-4 font-sans text-[11px] font-medium uppercase tracking-[0.18em] text-white/85 lg:mb-5">
+                        <?php echo esc_html($hero_kicker); ?>
+                    </p>
 
-                <h1 id="industry-hero-title" class="max-w-[860px] font-display text-[30px] font-bold leading-[1.16] text-white sm:text-[40px] lg:text-[56px]">
-                    <?php echo esc_html($industry_hero_title); ?>
-                </h1>
+                    <h1 id="industry-hero-title" class="max-w-[860px] font-display text-[30px] font-bold leading-[1.16] text-white sm:text-[40px] lg:text-[56px]">
+                        <?php echo esc_html($hero_title); ?>
+                    </h1>
 
-                <p class="mt-4 max-w-[780px] font-sans text-[13px] leading-[1.45] text-white/90 sm:text-[15px] lg:mt-5 lg:text-base">
-                    <?php echo esc_html($industry_hero_summary); ?>
-                </p>
+                    <p class="mt-4 max-w-[780px] font-sans text-[13px] leading-[1.45] text-white/90 sm:text-[15px] lg:mt-5 lg:text-base">
+                        <?php echo esc_html($hero_summary); ?>
+                    </p>
+                </div>
             </div>
+        </section>
+        <!-- End: Industry Hero Section -->
+    <?php endif; ?>
+
+    <?php if ($main_enabled && $main_is_ready) : ?>
+        <!-- Start: Main Content Section -->
+        <div <?php reacon_group_content_class('entry-content mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8'); ?>>
+            <?php echo apply_filters('the_content', $main_content); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
+            ?>
         </div>
-    </section>
-    <!-- End: Industry Hero Section -->
+        <!-- End: Main Content Section -->
+    <?php endif; ?>
 
-    <!-- Start: Main Content Section -->
-    <div <?php reacon_group_content_class('entry-content mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8'); ?>>
-        <?php
-        the_content(
-            sprintf(
-                wp_kses(
-                    /* translators: %s: Name of current post. Only visible to screen readers. */
-                    __('Continue reading<span class="sr-only"> "%s"</span>', 'reacon-group'),
-                    array(
-                        'span' => array(
-                            'class' => array(),
-                        ),
-                    )
-                ),
-                get_the_title()
-            )
-        );
+    <?php if ($partners_enabled && $partners_is_ready) : ?>
+        <!-- Start: Partners Marquee Section -->
+        <section id="industry-partners" class="relative w-full bg-white py-4 sm:py-5" aria-label="<?php echo esc_attr($partners_label); ?>">
+            <div class="pointer-events-none absolute inset-y-0 left-0 z-10 w-8 bg-gradient-to-r from-white to-transparent sm:w-10 lg:w-12" aria-hidden="true"></div>
+            <div class="pointer-events-none absolute inset-y-0 right-0 z-10 w-8 bg-gradient-to-l from-white to-transparent sm:w-10 lg:w-12" aria-hidden="true"></div>
 
-        wp_link_pages(
-            array(
-                'before' => '<div>' . __('Pages:', 'reacon-group'),
-                'after'  => '</div>',
-            )
-        );
-        ?>
-    </div>
-    <!-- End: Main Content Section -->
-
-    <!-- Start: Partners Marquee Section -->
-    <section id="industry-partners" class="relative w-full bg-white py-4 sm:py-5" aria-label="<?php esc_attr_e('Our partners', 'reacon-group'); ?>">
-        <div class="pointer-events-none absolute inset-y-0 left-0 z-10 w-8 bg-gradient-to-r from-white to-transparent sm:w-10 lg:w-12" aria-hidden="true"></div>
-        <div class="pointer-events-none absolute inset-y-0 right-0 z-10 w-8 bg-gradient-to-l from-white to-transparent sm:w-10 lg:w-12" aria-hidden="true"></div>
-
-        <div class="mx-auto w-full max-w-[1320px] px-4 sm:px-6 lg:px-8">
-            <?php if (!empty($partner_logo_files)): ?>
+            <div class="mx-auto w-full max-w-[1320px] px-4 sm:px-6 lg:px-8">
                 <div class="reacon-partner-track-wrap">
                     <div class="reacon-partner-track">
-                        <?php for ($rep = 0; $rep < 2; $rep++): ?>
-                            <?php foreach ($partner_logo_files as $partner_logo_file): ?>
-                                <?php
-                                $partner_logo_name = pathinfo($partner_logo_file, PATHINFO_FILENAME);
-                                $partner_logo_alt = ucwords(str_replace(array('-', '_'), ' ', $partner_logo_name));
-                                ?>
+                        <?php for ($rep = 0; $rep < 2; $rep++) : ?>
+                            <?php foreach ($partner_items as $partner_item) : ?>
                                 <div class="flex h-10 w-24 shrink-0 items-center justify-center sm:h-11 sm:w-28 lg:h-12 lg:w-32">
                                     <img
-                                        src="<?php echo esc_url($partner_logo_uri . '/' . basename($partner_logo_file)); ?>"
-                                        alt="<?php echo esc_attr($rep > 0 ? '' : $partner_logo_alt); ?>"
+                                        src="<?php echo esc_url($partner_item['url']); ?>"
+                                        alt="<?php echo esc_attr($rep > 0 ? '' : $partner_item['alt']); ?>"
                                         <?php echo $rep > 0 ? 'aria-hidden="true"' : ''; ?>
                                         class="h-full w-full object-contain"
                                         loading="lazy"
@@ -155,83 +329,168 @@ $industry_cta = array(
                         <?php endfor; ?>
                     </div>
                 </div>
-            <?php else: ?>
-                <p class="py-3 text-center font-sans text-sm text-muted-foreground">
-                    <?php esc_html_e('Partner logos are not available yet.', 'reacon-group'); ?>
-                </p>
-            <?php endif; ?>
-        </div>
-    </section>
-    <!-- End: Partners Marquee Section -->
+            </div>
+        </section>
+        <!-- End: Partners Marquee Section -->
+    <?php endif; ?>
 
-    <!-- Start: Industry CTA Section -->
-    <section id="industry-cta" class="py-10" aria-labelledby="industry-cta-heading">
-        <div class="mx-auto w-full px-5 sm:px-6 lg:px-10">
-            <div class="relative overflow-hidden rounded-[22px] bg-[#062b2d] px-5 py-14 sm:px-8 sm:py-16 lg:rounded-[24px] lg:px-12 lg:py-[70px]">
-                <!-- Start: CTA Background Decorations -->
-                <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_100%_at_50%_10%,rgba(30,202,211,0.08)_0%,rgba(30,202,211,0)_58%)]" aria-hidden="true"></div>
-                <div class="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,#0F3D47_0%,#062B2D_100%)] opacity-75" aria-hidden="true"></div>
+    <?php if ($cta_enabled && $cta_is_ready) : ?>
+        <!-- Start: Industry CTA Section -->
+        <section id="industry-cta" class="py-10" aria-labelledby="industry-cta-heading">
+            <div class="mx-auto w-full px-5 sm:px-6 lg:px-10">
+                <div class="relative overflow-hidden rounded-[22px] px-5 py-14 sm:px-8 sm:py-16 lg:rounded-[24px] lg:px-12 lg:py-[70px]" style="background-color: <?php echo esc_attr($cta_bg_base); ?>;">
+                    <!-- Start: CTA Background Decorations -->
+                    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_100%_at_50%_10%,rgba(30,202,211,0.08)_0%,rgba(30,202,211,0)_58%)]" aria-hidden="true"></div>
+                    <div class="pointer-events-none absolute inset-0 opacity-75" aria-hidden="true" style="background: linear-gradient(180deg, <?php echo esc_attr($cta_gradient_start); ?> 0%, <?php echo esc_attr($cta_gradient_end); ?> 100%);"></div>
 
-                <div class="pointer-events-none absolute left-16 top-0 h-[205px] w-[1566px]" aria-hidden="true">
-                    <svg viewBox="0 0 1566 205" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-full w-full">
-                        <path
-                            d="M278.503 205L1566 -538.596L-556 -586L278.503 205Z"
-                            fill="url(#industryCtaShardLeftGradient)"
-                            fill-opacity="0.15" />
-                        <defs>
-                            <linearGradient id="industryCtaShardLeftGradient" x1="504.197" y1="170.056" x2="505.001" y2="-586" gradientUnits="userSpaceOnUse">
-                                <stop stop-color="#1ECAD3" />
-                                <stop offset="1" stop-color="#1ECAD3" stop-opacity="0" />
-                            </linearGradient>
-                        </defs>
-                    </svg>
+                    <div class="pointer-events-none absolute left-16 top-0 h-[205px] w-[1566px]" aria-hidden="true">
+                        <svg viewBox="0 0 1566 205" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-full w-full">
+                            <path
+                                d="M278.503 205L1566 -538.596L-556 -586L278.503 205Z"
+                                fill="url(#industryCtaShardLeftGradient)"
+                                fill-opacity="0.15" />
+                            <defs>
+                                <linearGradient id="industryCtaShardLeftGradient" x1="504.197" y1="170.056" x2="505.001" y2="-586" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#1ECAD3" />
+                                    <stop offset="1" stop-color="#1ECAD3" stop-opacity="0" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+
+                    <div class="pointer-events-none absolute right-[-955px] h-[791px] w-[2122px]" aria-hidden="true">
+                        <svg width="2122" height="791" viewBox="0 0 2122 791" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-full w-full">
+                            <path d="M1287.5 -60L0 683.596L2122 731L1287.5 -60Z" fill="url(#industryCtaShardGradient)" fill-opacity="0.15" />
+                            <defs>
+                                <linearGradient id="industryCtaShardGradient" x1="1061.8" y1="-25.0558" x2="1061" y2="731" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#1ECAD3" />
+                                    <stop offset="1" stop-color="#1ECAD3" stop-opacity="0" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <!-- End: CTA Background Decorations -->
+
+                    <div class="relative z-10 mx-auto flex max-w-[760px] flex-col items-center text-center">
+                        <h2 id="industry-cta-heading" class="font-display text-[34px] font-semibold leading-[1.16] text-white sm:text-[46px] lg:text-[56px] lg:leading-[1.12]">
+                            <?php echo esc_html($cta_heading); ?>
+                        </h2>
+
+                        <p class="mt-4 max-w-[560px] font-sans text-[14px] leading-[1.42] text-white/85 sm:text-[16px] sm:leading-[22.72px]">
+                            <?php echo esc_html($cta_description); ?>
+                        </p>
+
+                        <div class="mt-6 flex flex-wrap items-center justify-center gap-3 sm:mt-7">
+                            <?php if (null !== $cta_primary_link) : ?>
+                                <a
+                                    href="<?php echo esc_url($cta_primary_link['url']); ?>"
+                                    target="<?php echo esc_attr($cta_primary_link['target']); ?>"
+                                    class="inline-flex items-center gap-2 rounded-full bg-white py-1.5 pl-4 pr-1.5 font-sans text-[13px] font-medium no-underline transition hover:bg-white/90 sm:pl-5 sm:pr-2"
+                                    style="color: <?php echo esc_attr($cta_primary_text_color); ?>;">
+                                    <span><?php echo esc_html($cta_primary_link['title']); ?></span>
+                                    <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full" style="background-color: <?php echo esc_attr($cta_primary_icon_bg); ?>;" aria-hidden="true">
+                                        <?php reacon_group_industry_single_render_icon($cta_primary_icon, 'text-[12px]'); ?>
+                                    </span>
+                                </a>
+                            <?php endif; ?>
+
+                            <?php if (null !== $cta_secondary_link) : ?>
+                                <a
+                                    href="<?php echo esc_url($cta_secondary_link['url']); ?>"
+                                    target="<?php echo esc_attr($cta_secondary_link['target']); ?>"
+                                    class="inline-flex items-center rounded-full border border-white/65 px-5 py-2.5 font-sans text-[13px] font-normal text-white no-underline transition hover:bg-white/10">
+                                    <?php echo esc_html($cta_secondary_link['title']); ?>
+                                </a>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End: Industry CTA Section -->
+    <?php endif; ?>
+
+    <?php if ($faq_enabled && $faq_is_ready) : ?>
+        <section
+            id="reacon-faq-section"
+            class="w-full bg-white py-16"
+            aria-labelledby="reacon-faq-heading"
+            itemscope
+            itemtype="https://schema.org/FAQPage"
+            x-data="{ activeIndex: 0 }">
+
+            <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+                    <div class="flex flex-col gap-6">
+                        <h2
+                            id="reacon-faq-heading"
+                            class="font-sans text-3xl font-semibold leading-tight text-black sm:text-4xl lg:text-5xl">
+                            <?php echo esc_html($faq_title); ?>
+                        </h2>
+                        <p class="max-w-4xl text-base leading-snug text-black">
+                            <?php echo esc_html($faq_description); ?>
+                        </p>
+                    </div>
                 </div>
 
-                <div class="pointer-events-none absolute right-[-955px] h-[791px] w-[2122px]" aria-hidden="true">
-                    <svg width="2122" height="791" viewBox="0 0 2122 791" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-full w-full">
-                        <path d="M1287.5 -60L0 683.596L2122 731L1287.5 -60Z" fill="url(#industryCtaShardGradient)" fill-opacity="0.15" />
-                        <defs>
-                            <linearGradient id="industryCtaShardGradient" x1="1061.8" y1="-25.0558" x2="1061" y2="731" gradientUnits="userSpaceOnUse">
-                                <stop stop-color="#1ECAD3" />
-                                <stop offset="1" stop-color="#1ECAD3" stop-opacity="0" />
-                            </linearGradient>
-                        </defs>
-                    </svg>
-                </div>
-                <!-- End: CTA Background Decorations -->
+                <div class="mt-10 flex flex-col gap-3 sm:mt-12 lg:mt-14" aria-label="<?php esc_attr_e('Frequently asked questions list', 'reacon-group'); ?>">
+                    <?php foreach ($faq_items as $index => $faq_item) : ?>
+                        <div
+                            class="transition-colors duration-300 rounded-2xl p-5 sm:p-6"
+                            :class="activeIndex === <?php echo esc_attr((string) $index); ?> ? 'bg-[#F9FAFB]' : 'border border-[#E7E7E7]'"
+                            itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                            <button
+                                type="button"
+                                @click="activeIndex = activeIndex === <?php echo esc_attr((string) $index); ?> ? null : <?php echo esc_attr((string) $index); ?>"
+                                :aria-expanded="activeIndex === <?php echo esc_attr((string) $index); ?>"
+                                aria-controls="faq-answer-<?php echo esc_attr((string) $index); ?>"
+                                class="flex w-full cursor-pointer items-center justify-between gap-4 rounded-md text-left outline-none focus-visible:ring-2 focus-visible:ring-[#0A969B] focus-visible:ring-offset-2">
+                                <span itemprop="name" class="font-sans text-sm font-medium leading-tight text-[#383B43] sm:text-xl">
+                                    <?php echo esc_html($faq_item['question']); ?>
+                                </span>
+                                <span class="select-none text-xl leading-none text-[#383B43]" aria-hidden="true" x-text="activeIndex === <?php echo esc_attr((string) $index); ?> ? '-' : '+'"></span>
+                            </button>
+                            <div
+                                id="faq-answer-<?php echo esc_attr((string) $index); ?>"
+                                x-show="activeIndex === <?php echo esc_attr((string) $index); ?>"
+                                x-transition:enter="transition-all duration-300 ease-in-out"
+                                x-transition:enter-start="max-h-0 opacity-0 -translate-y-1"
+                                x-transition:enter-end="max-h-96 opacity-100 translate-y-0"
+                                x-transition:leave="transition-all duration-250 ease-in-out"
+                                x-transition:leave-start="max-h-96 opacity-100 translate-y-0"
+                                x-transition:leave-end="max-h-0 opacity-0 -translate-y-1"
+                                class="overflow-hidden"
+                                itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                                <p itemprop="text" class="mt-4 text-base leading-snug text-[#666666] sm:mt-5">
+                                    <?php echo esc_html($faq_item['answer']); ?>
+                                </p>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
 
-                <div class="relative z-10 mx-auto flex max-w-[760px] flex-col items-center text-center">
-                    <h2 id="industry-cta-heading" class="font-display text-[34px] font-semibold leading-[1.16] text-white sm:text-[46px] lg:text-[56px] lg:leading-[1.12]">
-                        <?php echo esc_html($industry_cta['heading']); ?>
-                    </h2>
-
-                    <p class="mt-4 max-w-[560px] font-sans text-[14px] leading-[1.42] text-white/85 sm:text-[16px] sm:leading-[22.72px]">
-                        <?php echo esc_html($industry_cta['description']); ?>
-                    </p>
-
-                    <div class="mt-6 flex flex-wrap items-center justify-center gap-3 sm:mt-7">
+                    <div class="mt-1 rounded-2xl p-5 sm:p-6" style="background-color: <?php echo esc_attr($faq_cta_card_bg); ?>;">
+                        <div class="flex flex-col gap-2">
+                            <p class="text-base font-medium leading-snug text-[#383B43]">
+                                <?php echo esc_html($faq_cta_heading); ?>
+                            </p>
+                            <p class="text-base leading-snug text-[#666666]">
+                                <?php echo esc_html($faq_cta_description); ?>
+                            </p>
+                        </div>
+                        <div class="my-4 h-px w-full bg-[#ECEFF2] sm:my-5" aria-hidden="true"></div>
                         <a
-                            href="<?php echo esc_url($industry_cta['primary']['url']); ?>"
-                            class="inline-flex items-center gap-2 rounded-full bg-white py-1.5 pl-4 pr-1.5 font-sans text-[13px] font-medium text-[#062b2d] no-underline transition hover:bg-white/90 sm:pl-5 sm:pr-2">
-                            <span><?php echo esc_html($industry_cta['primary']['label']); ?></span>
-                            <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#dbeef1]" aria-hidden="true">
-                                <i class="ph-bold ph-arrow-up-right text-[12px] text-[#062b2d]"></i>
-                            </span>
-                        </a>
-
-                        <a
-                            href="<?php echo esc_url($industry_cta['secondary']['url']); ?>"
-                            class="inline-flex items-center rounded-full border border-white/65 px-5 py-2.5 font-sans text-[13px] font-normal text-white no-underline transition hover:bg-white/10">
-                            <?php echo esc_html($industry_cta['secondary']['label']); ?>
+                            href="<?php echo esc_url($faq_cta_link['url']); ?>"
+                            target="<?php echo esc_attr($faq_cta_link['target']); ?>"
+                            class="group flex w-full items-center justify-between gap-4 rounded-md text-base font-medium leading-snug transition-colors duration-300 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0A969B] focus-visible:ring-offset-2"
+                            style="color: <?php echo esc_attr($faq_cta_link_color); ?>;">
+                            <span><?php echo esc_html($faq_cta_link['title']); ?></span>
+                            <?php reacon_group_industry_single_render_icon(isset($faq['cta_icon']) ? $faq['cta_icon'] : array(), 'transition-transform duration-300 group-hover:translate-x-1'); ?>
                         </a>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <!-- End: Industry CTA Section -->
-
-    <?php get_template_part('template-parts/components/component', 'faq'); ?>
+        </section>
+    <?php endif; ?>
 
     <footer class="entry-footer">
         <?php reacon_group_entry_footer(); ?>
@@ -359,7 +618,11 @@ $industry_cta = array(
             if (document.fonts && document.fonts.ready) {
                 document.fonts.ready.then(scheduleIndustryNotchSync).catch(() => {});
             }
+
+            if (window.lucide && typeof window.lucide.createIcons === 'function') {
+                window.lucide.createIcons();
+            }
         });
     </script>
 
-</article><!-- #post-${ID} -->
+</article><!-- #post-<?php the_ID(); ?> -->
