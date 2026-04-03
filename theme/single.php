@@ -10,41 +10,44 @@
 get_header();
 ?>
 
-	<section id="primary">
-		<main id="main">
+<section id="primary">
+	<main id="main">
 
-			<?php
-			/* Start the Loop */
-			while (have_posts()):
-				the_post();
+		<?php
+		/* Start the Loop */
+		while (have_posts()):
+			the_post();
+			if (get_post_type() === 'industry') {
+				get_template_part('template-parts/content/content', 'industry');
+			} else {
 				get_template_part('template-parts/content/content', 'blog');
+			}
+		// if (is_singular('post')) {
+		// 	// Previous/next post navigation.
+		// 	the_post_navigation(
+		// 		array(
+		// 			'next_text' => '<span aria-hidden="true">' . __('Next Post', 'reacon-group') . '</span> '
+		// 				. '<span class="sr-only">' . __('Next post:', 'reacon-group') . '</span> <br/>'
+		// 				. '<span>%title</span>',
+		// 			'prev_text' => '<span aria-hidden="true">' . __('Previous Post', 'reacon-group') . '</span> '
+		// 				. '<span class="sr-only">' . __('Previous post:', 'reacon-group') . '</span> <br/>'
+		// 				. '<span>%title</span>',
+		// 		)
+		// 	);
+		// }
 
-				// if (is_singular('post')) {
-				// 	// Previous/next post navigation.
-				// 	the_post_navigation(
-				// 		array(
-				// 			'next_text' => '<span aria-hidden="true">' . __('Next Post', 'reacon-group') . '</span> '
-				// 				. '<span class="sr-only">' . __('Next post:', 'reacon-group') . '</span> <br/>'
-				// 				. '<span>%title</span>',
-				// 			'prev_text' => '<span aria-hidden="true">' . __('Previous Post', 'reacon-group') . '</span> '
-				// 				. '<span class="sr-only">' . __('Previous post:', 'reacon-group') . '</span> <br/>'
-				// 				. '<span>%title</span>',
-				// 		)
-				// 	);
-				// }
+		// If comments are open, or we have at least one comment, load
+		// the comment template.
+		// if (comments_open() || get_comments_number()) {
+		// 	comments_template();
+		// }
 
-				// If comments are open, or we have at least one comment, load
-				// the comment template.
-				// if (comments_open() || get_comments_number()) {
-				// 	comments_template();
-				// }
+		// End the loop.
+		endwhile;
+		?>
 
-				// End the loop.
-			endwhile;
-			?>
-
-		</main><!-- #main -->
-	</section><!-- #primary -->
+	</main><!-- #main -->
+</section><!-- #primary -->
 
 <?php
 get_footer();

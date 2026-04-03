@@ -46,46 +46,36 @@ $banking_nav_items = array(
     <!-- Start: Banking & Finance Hero Section -->
     <section
         id="banking-finance-hero"
-        class="px-3 pb-6 pt-3 sm:px-4 sm:pb-8 md:px-6 md:pb-10 xl:px-8"
+        class="relative w-full p-1.5 md:p-2.5"
         aria-labelledby="banking-finance-title">
 
-        <div class="relative overflow-hidden rounded-[24px] bg-foreground sm:rounded-[28px] xl:rounded-[32px]">
-
-            <!-- Start: Hero Background Media -->
+        <div class="reacon-about-hero-card relative min-h-[255px] overflow-hidden rounded-[24px] bg-[#062B53] sm:min-h-[300px] lg:min-h-[380px] lg:rounded-[31px]">
             <?php if ($has_banking_hero_image): ?>
-                <picture class="pointer-events-none absolute inset-0" aria-hidden="true">
-                    <img
-                        src="<?php echo esc_url($banking_hero_image_uri); ?>"
-                        alt=""
-                        class="h-full w-full object-cover object-center"
-                        fetchpriority="high"
-                        loading="eager"
-                        decoding="async" />
-                </picture>
+                <img
+                    src="<?php echo esc_url($banking_hero_image_uri); ?>"
+                    alt=""
+                    aria-hidden="true"
+                    class="pointer-events-none absolute inset-0 h-full w-full object-cover object-center"
+                    fetchpriority="high"
+                    loading="eager"
+                    decoding="async" />
             <?php endif; ?>
 
-            <div class="pointer-events-none absolute inset-0 bg-black/45 sm:bg-black/50" aria-hidden="true"></div>
-            <!-- End: Hero Background Media -->
+            <div class="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,10,33,0.28)_0%,rgba(0,10,33,0.18)_45%,rgba(0,10,33,0.28)_100%)]" aria-hidden="true"></div>
 
-            <!-- Start: Hero Content -->
-            <div class="relative z-10 flex  flex-col items-center justify-center px-4 pb-16 pt-28 text-center text-primary-foreground  sm:px-8 sm:pb-20 sm:pt-36 md:px-12 md:pb-24 md:pt-40  lg:px-16 lg:pb-20 lg:pt-44  xl:px-20 xl:pt-48  2xl:px-24 2xl:pt-52 min-h-[320px]">
-                <header class="mx-auto flex w-full max-w-[980px] flex-col items-center gap-3 sm:gap-4 md:gap-5">
-                    <p class="font-sans text-sm leading-relaxed sm:text-base">
-                        <?php echo esc_html($banking_hero_kicker); ?>
-                    </p>
+            <div class="relative z-10 mx-auto flex min-h-[255px] w-full max-w-[1200px] flex-col items-center justify-center px-5 pb-10 pt-28 text-center sm:min-h-[300px] sm:px-6 sm:pt-32 lg:min-h-[380px] lg:px-10 lg:pb-14 lg:pt-36">
+                <p class="mb-4 font-sans text-[11px] font-medium uppercase tracking-[0.18em] text-white/85 lg:mb-5">
+                    <?php echo esc_html($banking_hero_kicker); ?>
+                </p>
 
-                    <h1
-                        id="banking-finance-title"
-                        class="font-display text-[34px] font-semibold leading-tight tracking-tight sm:text-5xl md:text-[56px] md:leading-[1.12]">
-                        <?php echo esc_html($banking_hero_title); ?>
-                    </h1>
-                </header>
+                <h1 id="banking-finance-title" class="max-w-[860px] font-display text-[30px] font-bold leading-[1.16] text-white sm:text-[40px] lg:text-[56px]">
+                    <?php echo esc_html($banking_hero_title); ?>
+                </h1>
 
-                <p class="mx-auto mt-4 max-w-[920px] font-sans text-sm leading-relaxed text-primary-foreground/95 sm:mt-5 sm:text-base md:mt-6 lg:text-[17px] xl:text-lg">
+                <p class="mt-4 max-w-[780px] font-sans text-[13px] leading-[1.45] text-white/90 sm:text-[15px] lg:mt-5 lg:text-base">
                     <?php echo esc_html($banking_hero_summary); ?>
                 </p>
             </div>
-            <!-- End: Hero Content -->
 
         </div>
     </section>
@@ -186,5 +176,90 @@ $banking_nav_items = array(
 
 
 </main>
+
+<style>
+    /* Desktop-only top notch that lets the fixed header recess into the hero. */
+    @media (min-width: 1024px) {
+        #banking-finance-hero .reacon-about-hero-card {
+            --hero-notch-width: clamp(560px, 48vw, 720px);
+            --hero-notch-radius: 40px;
+            --hero-notch-height: 86px;
+            --hero-notch-swoop: 40px;
+        }
+
+        #banking-finance-hero .reacon-about-hero-card::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translateX(calc(-50% + var(--hero-notch-shift, 0px)));
+            width: var(--hero-notch-width);
+            height: var(--hero-notch-height);
+            background: #fff;
+            border-bottom-left-radius: var(--hero-notch-radius);
+            border-bottom-right-radius: var(--hero-notch-radius);
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        #banking-finance-hero .reacon-about-hero-card::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(calc(-50% + var(--hero-notch-shift, 0px)));
+            width: calc(var(--hero-notch-width) + (var(--hero-notch-swoop) * 2));
+            height: var(--hero-notch-swoop);
+            background:
+                radial-gradient(circle at 0% 100%, transparent var(--hero-notch-swoop), #fff calc(var(--hero-notch-swoop) + 1px)) no-repeat left bottom / var(--hero-notch-swoop) var(--hero-notch-swoop),
+                radial-gradient(circle at 100% 100%, transparent var(--hero-notch-swoop), #fff calc(var(--hero-notch-swoop) + 1px)) no-repeat right bottom / var(--hero-notch-swoop) var(--hero-notch-swoop);
+            z-index: 4;
+            pointer-events: none;
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const syncBankingHeroNotchToDesktopMenu = () => {
+            const heroCard = document.querySelector('#banking-finance-hero .reacon-about-hero-card');
+            const navPill = document.querySelector('#site-navigation > ul');
+            if (!heroCard || !navPill) return;
+
+            if (window.innerWidth < 1024) {
+                heroCard.style.removeProperty('--hero-notch-width');
+                heroCard.style.removeProperty('--hero-notch-shift');
+                return;
+            }
+
+            const heroRect = heroCard.getBoundingClientRect();
+            const navRect = navPill.getBoundingClientRect();
+            const navWidth = Math.round(navRect.width);
+            if (!navWidth) return;
+
+            const heroCenterX = heroRect.left + (heroRect.width / 2);
+            const navCenterX = navRect.left + (navRect.width / 2);
+            const notchShift = Math.round(navCenterX - heroCenterX);
+
+            heroCard.style.setProperty('--hero-notch-width', `${navWidth + 18}px`);
+            heroCard.style.setProperty('--hero-notch-shift', `${notchShift}px`);
+        };
+
+        let bankingNotchSyncRaf = null;
+        const scheduleBankingNotchSync = () => {
+            if (bankingNotchSyncRaf) {
+                cancelAnimationFrame(bankingNotchSyncRaf);
+            }
+            bankingNotchSyncRaf = requestAnimationFrame(syncBankingHeroNotchToDesktopMenu);
+        };
+
+        scheduleBankingNotchSync();
+        window.addEventListener('resize', scheduleBankingNotchSync);
+        window.addEventListener('load', scheduleBankingNotchSync);
+        if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(scheduleBankingNotchSync).catch(() => {});
+        }
+    });
+</script>
 
 <?php get_footer();
