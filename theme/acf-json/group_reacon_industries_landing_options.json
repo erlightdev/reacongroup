@@ -1,0 +1,641 @@
+{
+    "key": "group_reacon_industries_landing_options",
+    "title": "Industries Landing Content",
+    "fields": [
+        {
+            "key": "field_ind_landing_tab_hero",
+            "label": "Hero",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_ind_landing_enable_hero",
+            "label": "Enable hero section",
+            "name": "industries_landing_enable_hero_section",
+            "type": "true_false",
+            "ui": 1,
+            "default_value": 0
+        },
+        {
+            "key": "field_ind_landing_hero_group",
+            "label": "Hero content",
+            "name": "industries_landing_hero",
+            "type": "group",
+            "layout": "block",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_ind_landing_enable_hero",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "sub_fields": [
+                {
+                    "key": "field_ind_landing_hero_bg",
+                    "label": "Background image",
+                    "name": "background_image",
+                    "type": "image",
+                    "return_format": "url",
+                    "preview_size": "medium",
+                    "required": 1
+                },
+                {
+                    "key": "field_ind_landing_hero_eyebrow",
+                    "label": "Eyebrow",
+                    "name": "eyebrow",
+                    "type": "text",
+                    "required": 1
+                },
+                {
+                    "key": "field_ind_landing_hero_title",
+                    "label": "Heading (H1)",
+                    "name": "title",
+                    "type": "text",
+                    "required": 1
+                },
+                {
+                    "key": "field_ind_landing_hero_desc",
+                    "label": "Description",
+                    "name": "description",
+                    "type": "textarea",
+                    "rows": 3,
+                    "new_lines": "",
+                    "required": 1
+                },
+                {
+                    "key": "field_ind_landing_hero_card_bg_color",
+                    "label": "Hero card background color",
+                    "name": "hero_card_bg_color",
+                    "type": "select",
+                    "choices": {
+                        "#062B53": "Deep Navy (#062B53)",
+                        "#0A4E57": "Ocean Teal (#0A4E57)",
+                        "#0E6D77": "Brand Teal (#0E6D77)"
+                    },
+                    "return_format": "value",
+                    "required": 1
+                },
+                {
+                    "key": "field_ind_landing_hero_overlay_gradient",
+                    "label": "Hero overlay gradient",
+                    "name": "hero_overlay_gradient",
+                    "type": "select",
+                    "choices": {
+                        "linear-gradient(180deg,rgba(0,10,33,0.28) 0%,rgba(0,10,33,0.18) 45%,rgba(0,10,33,0.28) 100%)": "Default dark overlay",
+                        "linear-gradient(180deg,rgba(14,109,119,0.26) 0%,rgba(10,78,87,0.20) 45%,rgba(14,109,119,0.26) 100%)": "Teal overlay",
+                        "linear-gradient(180deg,rgba(0,0,0,0.34) 0%,rgba(0,0,0,0.22) 45%,rgba(0,0,0,0.34) 100%)": "Strong dark overlay"
+                    },
+                    "return_format": "value",
+                    "required": 1
+                }
+            ]
+        },
+        {
+            "key": "field_ind_landing_tab_approach",
+            "label": "Approach",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_ind_landing_enable_approach",
+            "label": "Enable approach section",
+            "name": "industries_landing_enable_approach_section",
+            "type": "true_false",
+            "ui": 1,
+            "default_value": 0
+        },
+        {
+            "key": "field_ind_landing_approach_group",
+            "label": "Approach content",
+            "name": "industries_landing_approach",
+            "type": "group",
+            "layout": "block",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_ind_landing_enable_approach",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "sub_fields": [
+                {
+                    "key": "field_ind_landing_approach_title",
+                    "label": "Heading",
+                    "name": "title",
+                    "type": "text",
+                    "required": 1
+                },
+                {
+                    "key": "field_ind_landing_approach_p1",
+                    "label": "Paragraph one",
+                    "name": "paragraph_one",
+                    "type": "textarea",
+                    "rows": 4,
+                    "new_lines": "",
+                    "required": 1
+                },
+                {
+                    "key": "field_ind_landing_approach_p2",
+                    "label": "Paragraph two",
+                    "name": "paragraph_two",
+                    "type": "textarea",
+                    "rows": 4,
+                    "new_lines": "",
+                    "required": 1
+                },
+                {
+                    "key": "field_ind_landing_approach_img1",
+                    "label": "Grid image one",
+                    "name": "image_one",
+                    "type": "image",
+                    "return_format": "url",
+                    "preview_size": "medium",
+                    "required": 1
+                },
+                {
+                    "key": "field_ind_landing_approach_img2",
+                    "label": "Grid image two",
+                    "name": "image_two",
+                    "type": "image",
+                    "return_format": "url",
+                    "preview_size": "medium",
+                    "required": 1
+                },
+                {
+                    "key": "field_ind_landing_approach_img3",
+                    "label": "Grid image three",
+                    "name": "image_three",
+                    "type": "image",
+                    "return_format": "url",
+                    "preview_size": "medium",
+                    "required": 1
+                }
+            ]
+        },
+        {
+            "key": "field_ind_landing_tab_challenges",
+            "label": "Challenges",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_ind_landing_enable_challenges",
+            "label": "Enable challenges section",
+            "name": "industries_landing_enable_challenges_section",
+            "type": "true_false",
+            "ui": 1,
+            "default_value": 0
+        },
+        {
+            "key": "field_ind_landing_challenges_group",
+            "label": "Challenges content",
+            "name": "industries_landing_challenges",
+            "type": "group",
+            "layout": "block",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_ind_landing_enable_challenges",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "sub_fields": [
+                {
+                    "key": "field_ind_landing_challenges_title",
+                    "label": "Title line",
+                    "name": "title",
+                    "type": "text",
+                    "required": 1
+                },
+                {
+                    "key": "field_ind_landing_challenges_subtitle",
+                    "label": "Subtitle line",
+                    "name": "subtitle",
+                    "type": "text",
+                    "required": 1
+                }
+            ]
+        },
+        {
+            "key": "field_ind_landing_tab_work",
+            "label": "Industries We Work With",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_ind_landing_enable_work",
+            "label": "Enable industries work-with section",
+            "name": "industries_landing_enable_work_with_section",
+            "type": "true_false",
+            "ui": 1,
+            "default_value": 0
+        },
+        {
+            "key": "field_ind_landing_work_group",
+            "label": "Industries work-with content",
+            "name": "industries_landing_work_with",
+            "type": "group",
+            "layout": "block",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_ind_landing_enable_work",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "sub_fields": [
+                {
+                    "key": "field_ind_landing_work_heading",
+                    "label": "Section heading",
+                    "name": "heading",
+                    "type": "text",
+                    "required": 1
+                },
+                {
+                    "key": "field_ind_landing_work_cards",
+                    "label": "Industry cards",
+                    "name": "cards",
+                    "type": "repeater",
+                    "layout": "block",
+                    "min": 1,
+                    "button_label": "Add card",
+                    "sub_fields": [
+                        {
+                            "key": "field_ind_landing_work_card_title",
+                            "label": "Card title",
+                            "name": "title",
+                            "type": "text",
+                            "required": 1
+                        },
+                        {
+                            "key": "field_ind_landing_work_card_excerpt",
+                            "label": "Card description",
+                            "name": "excerpt",
+                            "type": "textarea",
+                            "rows": 3,
+                            "new_lines": "",
+                            "required": 1
+                        },
+                        {
+                            "key": "field_ind_landing_work_card_image_type",
+                            "label": "Image type",
+                            "name": "image_type",
+                            "type": "select",
+                            "choices": {
+                                "single": "Single image",
+                                "overlay": "Overlay image"
+                            },
+                            "return_format": "value",
+                            "required": 1
+                        },
+                        {
+                            "key": "field_ind_landing_work_card_image",
+                            "label": "Card image",
+                            "name": "image",
+                            "type": "image",
+                            "return_format": "url",
+                            "preview_size": "medium",
+                            "required": 1
+                        },
+                        {
+                            "key": "field_ind_landing_work_card_overlay_image",
+                            "label": "Overlay image",
+                            "name": "overlay_image",
+                            "type": "image",
+                            "return_format": "url",
+                            "preview_size": "medium",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_ind_landing_work_card_image_type",
+                                        "operator": "==",
+                                        "value": "overlay"
+                                    }
+                                ]
+                            ]
+                        },
+                        {
+                            "key": "field_ind_landing_work_card_link",
+                            "label": "Card Link Button",
+                            "name": "link",
+                            "type": "link",
+                            "return_format": "array",
+                            "required": 1
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "field_ind_landing_tab_cta",
+            "label": "CTA",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_ind_landing_enable_cta",
+            "label": "Enable CTA section",
+            "name": "industries_landing_enable_cta_section",
+            "type": "true_false",
+            "ui": 1,
+            "default_value": 0
+        },
+        {
+            "key": "field_ind_landing_cta_group",
+            "label": "CTA content",
+            "name": "industries_landing_cta",
+            "type": "group",
+            "layout": "block",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_ind_landing_enable_cta",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "sub_fields": [
+                {
+                    "key": "field_ind_landing_cta_heading",
+                    "label": "Heading",
+                    "name": "heading",
+                    "type": "text",
+                    "required": 1
+                },
+                {
+                    "key": "field_ind_landing_cta_description",
+                    "label": "Description",
+                    "name": "description",
+                    "type": "textarea",
+                    "rows": 3,
+                    "new_lines": "",
+                    "required": 1
+                },
+                {
+                    "key": "field_ind_landing_cta_primary_link",
+                    "label": "Primary CTA link",
+                    "name": "primary_link",
+                    "type": "link",
+                    "return_format": "array",
+                    "required": 1
+                },
+                {
+                    "key": "field_ind_landing_cta_secondary_link",
+                    "label": "Secondary CTA link",
+                    "name": "secondary_link",
+                    "type": "link",
+                    "return_format": "array",
+                    "required": 1
+                },
+                {
+                    "key": "field_ind_landing_cta_icon_group",
+                    "label": "Primary CTA icon",
+                    "name": "primary_icon",
+                    "type": "group",
+                    "layout": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_ind_landing_cta_icon_source",
+                            "label": "Icon source",
+                            "name": "icon_source",
+                            "type": "select",
+                            "choices": {
+                                "phosphor": "Phosphor",
+                                "lucide": "Lucide",
+                                "svg_asset": "SVG file / theme path",
+                                "image": "Image"
+                            },
+                            "return_format": "value",
+                            "required": 1
+                        },
+                        {
+                            "key": "field_ind_landing_cta_phosphor_icon",
+                            "label": "Phosphor icon",
+                            "name": "phosphor_icon",
+                            "type": "select",
+                            "choices": {
+                                "arrow-up-right": "Arrow up right",
+                                "arrow-right": "Arrow right",
+                                "arrow-down-right": "Arrow down right",
+                                "custom": "Custom classes"
+                            },
+                            "return_format": "value",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_ind_landing_cta_icon_source",
+                                        "operator": "==",
+                                        "value": "phosphor"
+                                    }
+                                ]
+                            ]
+                        },
+                        {
+                            "key": "field_ind_landing_cta_phosphor_class",
+                            "label": "Phosphor custom classes",
+                            "name": "phosphor_class",
+                            "type": "text",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_ind_landing_cta_icon_source",
+                                        "operator": "==",
+                                        "value": "phosphor"
+                                    },
+                                    {
+                                        "field": "field_ind_landing_cta_phosphor_icon",
+                                        "operator": "==",
+                                        "value": "custom"
+                                    }
+                                ]
+                            ]
+                        },
+                        {
+                            "key": "field_ind_landing_cta_lucide_icon",
+                            "label": "Lucide icon",
+                            "name": "lucide_icon",
+                            "type": "select",
+                            "choices": {
+                                "arrow-up-right": "Arrow up right",
+                                "arrow-right": "Arrow right",
+                                "arrow-down-right": "Arrow down right",
+                                "custom": "Custom name"
+                            },
+                            "return_format": "value",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_ind_landing_cta_icon_source",
+                                        "operator": "==",
+                                        "value": "lucide"
+                                    }
+                                ]
+                            ]
+                        },
+                        {
+                            "key": "field_ind_landing_cta_lucide_name",
+                            "label": "Lucide custom name",
+                            "name": "lucide_name",
+                            "type": "text",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_ind_landing_cta_icon_source",
+                                        "operator": "==",
+                                        "value": "lucide"
+                                    },
+                                    {
+                                        "field": "field_ind_landing_cta_lucide_icon",
+                                        "operator": "==",
+                                        "value": "custom"
+                                    }
+                                ]
+                            ]
+                        },
+                        {
+                            "key": "field_ind_landing_cta_svg_asset",
+                            "label": "SVG asset / path",
+                            "name": "svg_asset",
+                            "type": "text",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_ind_landing_cta_icon_source",
+                                        "operator": "==",
+                                        "value": "svg_asset"
+                                    }
+                                ]
+                            ]
+                        },
+                        {
+                            "key": "field_ind_landing_cta_icon_image",
+                            "label": "Icon image",
+                            "name": "image",
+                            "type": "image",
+                            "return_format": "url",
+                            "preview_size": "thumbnail",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_ind_landing_cta_icon_source",
+                                        "operator": "==",
+                                        "value": "image"
+                                    }
+                                ]
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "key": "field_ind_landing_cta_bg_base",
+                    "label": "CTA base background color",
+                    "name": "cta_bg_base",
+                    "type": "select",
+                    "choices": {
+                        "#0D6B75": "Brand teal (#0D6B75)",
+                        "#062B53": "Deep navy (#062B53)",
+                        "#0A4E57": "Ocean teal (#0A4E57)"
+                    },
+                    "return_format": "value",
+                    "required": 1
+                },
+                {
+                    "key": "field_ind_landing_cta_gradient_start",
+                    "label": "CTA gradient start color",
+                    "name": "cta_gradient_start",
+                    "type": "select",
+                    "choices": {
+                        "#0E6D77": "Brand teal (#0E6D77)",
+                        "#1ECAD3": "Bright cyan (#1ECAD3)",
+                        "#062B53": "Deep navy (#062B53)"
+                    },
+                    "return_format": "value",
+                    "required": 1
+                },
+                {
+                    "key": "field_ind_landing_cta_gradient_end",
+                    "label": "CTA gradient end color",
+                    "name": "cta_gradient_end",
+                    "type": "select",
+                    "choices": {
+                        "#0A4E57": "Ocean teal (#0A4E57)",
+                        "#062B53": "Deep navy (#062B53)",
+                        "#0E6D77": "Brand teal (#0E6D77)"
+                    },
+                    "return_format": "value",
+                    "required": 1
+                },
+                {
+                    "key": "field_ind_landing_cta_primary_text_color",
+                    "label": "Primary CTA text color",
+                    "name": "cta_primary_text_color",
+                    "type": "select",
+                    "choices": {
+                        "#0B6A74": "Teal (#0B6A74)",
+                        "#062B53": "Navy (#062B53)",
+                        "#0A4E57": "Ocean teal (#0A4E57)"
+                    },
+                    "return_format": "value",
+                    "required": 1
+                },
+                {
+                    "key": "field_ind_landing_cta_primary_icon_bg",
+                    "label": "Primary CTA icon circle background",
+                    "name": "cta_primary_icon_circle_bg",
+                    "type": "select",
+                    "choices": {
+                        "#dbeef1": "Soft blue (#dbeef1)",
+                        "#ffffff": "White (#ffffff)",
+                        "#cfe7ea": "Light teal (#cfe7ea)"
+                    },
+                    "return_format": "value",
+                    "required": 1
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "industries-landing"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "show_in_rest": 0,
+    "description": "Industries landing page content controlled via ACF options."
+}
