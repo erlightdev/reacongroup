@@ -1,258 +1,218 @@
 <section
   id="reacon-faq-section"
-  class="w-full bg-white py-[72px] sm:py-[96px] lg:py-16"
+  class="w-full bg-white py-16"
   aria-labelledby="reacon-faq-heading"
->
-  <div class="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-0">
+  itemscope
+  itemtype="https://schema.org/FAQPage"
+  x-data="{ activeIndex: 0 }">
+
+  <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
     <!-- Header -->
-    <div class="flex flex-col gap-[24px] lg:flex-row lg:items-end lg:justify-between">
-      <div class="flex flex-col gap-[24px]">
+    <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+      <div class="flex flex-col gap-6">
         <h2
           id="reacon-faq-heading"
-          class="text-[28px] font-semibold leading-[1.32] text-black sm:text-[36px] lg:text-[44px]"
-          style="font-family: 'Plus Jakarta Sans','Graphik Trial',ui-sans-serif,system-ui"
-        >
+          class="font-sans text-3xl font-semibold leading-tight text-black sm:text-4xl lg:text-5xl">
           Frequently Asked Questions
         </h2>
-        <p
-          class="max-w-[1177px] text-[15px] leading-[1.42] text-black sm:text-[16px]"
-        >
+        <p class="max-w-4xl text-base leading-snug text-black">
           Find quick answers to how Reacon works, what we deliver, and how we
           support brands across print, production, and data-driven automation.
         </p>
       </div>
     </div>
 
-    <!-- FAQ items -->
-    <div
-      class="mt-[40px] flex flex-col gap-[12px] sm:mt-[48px] lg:mt-[56px]"
-      aria-label="Frequently asked questions list"
-    >
-      <!-- Item 1 (open) -->
-      <details
-        open
-        class="transition-colors duration-300 rounded-[16px] bg-[#F9FAFB] px-[20px] py-[18px] sm:px-[24px] sm:py-[20px]"
-      >
-        <summary class="flex cursor-pointer list-none items-center justify-between gap-4 outline-none focus-visible:ring-2 focus-visible:ring-[var(--reacon-teal)] focus-visible:ring-offset-2 rounded-md">
-          <span
-            class="text-[18px] font-medium leading-[1.32] text-[#383B43] sm:text-[20px]"
-            style="font-family: 'Plus Jakarta Sans','Graphik Trial',ui-sans-serif,system-ui"
-          >
+    <!-- FAQ Items -->
+    <div class="mt-10 flex flex-col gap-3 sm:mt-12 lg:mt-14" aria-label="Frequently asked questions list">
+
+      <!-- Item 1 -->
+      <div
+        class="transition-colors duration-300 rounded-2xl p-5 sm:p-6"
+        :class="activeIndex === 0 ? 'bg-[#F9FAFB]' : 'border border-[#E7E7E7]'"
+        itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button
+          type="button"
+          @click="activeIndex = activeIndex === 0 ? null : 0"
+          :aria-expanded="activeIndex === 0"
+          aria-controls="faq-answer-0"
+          class="flex w-full cursor-pointer items-center justify-between gap-4 rounded-md text-left outline-none focus-visible:ring-2 focus-visible:ring-[#0A969B] focus-visible:ring-offset-2">
+          <span itemprop="name" class="font-sans text-sm font-medium leading-tight text-[#383B43] sm:text-xl">
             What services does Reacon provide?
           </span>
-          <span class="text-[20px] leading-none text-[#383B43] select-none" aria-hidden="true">
-            −
-          </span>
-        </summary>
-        <p class="mt-[14px] text-[15px] leading-[1.42] text-[#666666] sm:mt-[20px] sm:text-[16px]">
-          Reacon delivers end-to-end brand execution including content design,
-          printing, packaging, warehousing, fulfilment, logistics, and
-          data-driven communication systems.
-        </p>
-      </details>
+          <span class="text-xl leading-none text-[#383B43] select-none" aria-hidden="true" x-text="activeIndex === 0 ? '−' : '+'"></span>
+        </button>
+        <div
+          id="faq-answer-0"
+          x-show="activeIndex === 0"
+          x-transition:enter="transition-all duration-300 ease-in-out"
+          x-transition:enter-start="max-h-0 opacity-0 -translate-y-1"
+          x-transition:enter-end="max-h-96 opacity-100 translate-y-0"
+          x-transition:leave="transition-all duration-250 ease-in-out"
+          x-transition:leave-start="max-h-96 opacity-100 translate-y-0"
+          x-transition:leave-end="max-h-0 opacity-0 -translate-y-1"
+          class="overflow-hidden"
+          itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text" class="mt-4 text-base leading-snug text-[#666666] sm:mt-5">
+            Reacon delivers end-to-end brand execution including content design,
+            printing, packaging, warehousing, fulfilment, logistics, and
+            data-driven communication systems.
+          </p>
+        </div>
+      </div>
 
       <!-- Item 2 -->
-      <details
-        class="transition-colors duration-300 rounded-[16px] border border-[#E7E7E7] px-[20px] py-[18px] sm:px-[24px] sm:py-[20px]"
-      >
-        <summary class="flex cursor-pointer list-none items-center justify-between gap-4 outline-none focus-visible:ring-2 focus-visible:ring-[var(--reacon-teal)] focus-visible:ring-offset-2 rounded-md">
-          <span
-            class="text-[18px] font-medium leading-[1.32] text-[#383B43] sm:text-[20px]"
-            style="font-family: 'Plus Jakarta Sans','Graphik Trial',ui-sans-serif,system-ui"
-          >
+      <div
+        class="transition-colors duration-300 rounded-2xl p-5 sm:p-6"
+        :class="activeIndex === 1 ? 'bg-[#F9FAFB]' : 'border border-[#E7E7E7]'"
+        itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button
+          type="button"
+          @click="activeIndex = activeIndex === 1 ? null : 1"
+          :aria-expanded="activeIndex === 1"
+          aria-controls="faq-answer-1"
+          class="flex w-full cursor-pointer items-center justify-between gap-4 rounded-md text-left outline-none focus-visible:ring-2 focus-visible:ring-[#0A969B] focus-visible:ring-offset-2">
+          <span itemprop="name" class="font-sans text-sm font-medium leading-tight text-[#383B43] sm:text-xl">
             Does Reacon offer project management solutions?
           </span>
-          <span class="text-[20px] leading-none text-[#383B43] select-none" aria-hidden="true">
-            +
-          </span>
-        </summary>
-        <p class="mt-[14px] text-[15px] leading-[1.42] text-[#666666] sm:mt-[20px] sm:text-[16px]">
-          Yes, we provide end-to-end project management. Our team coordinates everything from initial design and planning to production and final delivery, ensuring your campaigns run smoothly and on budget.
-        </p>
-      </details>
+          <span class="text-xl leading-none text-[#383B43] select-none" aria-hidden="true" x-text="activeIndex === 1 ? '−' : '+'"></span>
+        </button>
+        <div
+          id="faq-answer-1"
+          x-show="activeIndex === 1"
+          x-transition:enter="transition-all duration-300 ease-in-out"
+          x-transition:enter-start="max-h-0 opacity-0 -translate-y-1"
+          x-transition:enter-end="max-h-96 opacity-100 translate-y-0"
+          x-transition:leave="transition-all duration-250 ease-in-out"
+          x-transition:leave-start="max-h-96 opacity-100 translate-y-0"
+          x-transition:leave-end="max-h-0 opacity-0 -translate-y-1"
+          class="overflow-hidden"
+          itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text" class="mt-4 text-base leading-snug text-[#666666] sm:mt-5">
+            Yes, we provide end-to-end project management. Our team coordinates everything from initial design and planning to production and final delivery, ensuring your campaigns run smoothly and on budget.
+          </p>
+        </div>
+      </div>
 
       <!-- Item 3 -->
-      <details
-        class="transition-colors duration-300 rounded-[16px] border border-[#E7E7E7] px-[20px] py-[18px] sm:px-[24px] sm:py-[20px]"
-      >
-        <summary class="flex cursor-pointer list-none items-center justify-between gap-4 outline-none focus-visible:ring-2 focus-visible:ring-[var(--reacon-teal)] focus-visible:ring-offset-2 rounded-md">
-          <span
-            class="text-[18px] font-medium leading-[1.32] text-[#383B43] sm:text-[20px]"
-            style="font-family: 'Plus Jakarta Sans','Graphik Trial',ui-sans-serif,system-ui"
-          >
+      <div
+        class="transition-colors duration-300 rounded-2xl p-5 sm:p-6"
+        :class="activeIndex === 2 ? 'bg-[#F9FAFB]' : 'border border-[#E7E7E7]'"
+        itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button
+          type="button"
+          @click="activeIndex = activeIndex === 2 ? null : 2"
+          :aria-expanded="activeIndex === 2"
+          aria-controls="faq-answer-2"
+          class="flex w-full cursor-pointer items-center justify-between gap-4 rounded-md text-left outline-none focus-visible:ring-2 focus-visible:ring-[#0A969B] focus-visible:ring-offset-2">
+          <span itemprop="name" class="font-sans text-sm font-medium leading-tight text-[#383B43] sm:text-xl">
             What digital marketing strategies do you specialize in?
           </span>
-          <span class="text-[20px] leading-none text-[#383B43] select-none" aria-hidden="true">
-            +
-          </span>
-        </summary>
-        <p class="mt-[14px] text-[15px] leading-[1.42] text-[#666666] sm:mt-[20px] sm:text-[16px]">
-          Absolutely. Our digital marketing experts craft data-driven strategies spanning SEO, paid media, email automation, and social media to maximize your brand's reach and return on investment.
-        </p>
-      </details>
+          <span class="text-xl leading-none text-[#383B43] select-none" aria-hidden="true" x-text="activeIndex === 2 ? '−' : '+'"></span>
+        </button>
+        <div
+          id="faq-answer-2"
+          x-show="activeIndex === 2"
+          x-transition:enter="transition-all duration-300 ease-in-out"
+          x-transition:enter-start="max-h-0 opacity-0 -translate-y-1"
+          x-transition:enter-end="max-h-96 opacity-100 translate-y-0"
+          x-transition:leave="transition-all duration-250 ease-in-out"
+          x-transition:leave-start="max-h-96 opacity-100 translate-y-0"
+          x-transition:leave-end="max-h-0 opacity-0 -translate-y-1"
+          class="overflow-hidden"
+          itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text" class="mt-4 text-base leading-snug text-[#666666] sm:mt-5">
+            Absolutely. Our digital marketing experts craft data-driven strategies spanning SEO, paid media, email automation, and social media to maximize your brand's reach and return on investment.
+          </p>
+        </div>
+      </div>
 
       <!-- Item 4 -->
-      <details
-        class="transition-colors duration-300 rounded-[16px] border border-[#E7E7E7] px-[20px] py-[18px] sm:px-[24px] sm:py-[20px]"
-      >
-        <summary class="flex cursor-pointer list-none items-center justify-between gap-4 outline-none focus-visible:ring-2 focus-visible:ring-[var(--reacon-teal)] focus-visible:ring-offset-2 rounded-md">
-          <span
-            class="text-[18px] font-medium leading-[1.32] text-[#383B43] sm:text-[20px]"
-            style="font-family: 'Plus Jakarta Sans','Graphik Trial',ui-sans-serif,system-ui"
-          >
+      <div
+        class="transition-colors duration-300 rounded-2xl p-5 sm:p-6"
+        :class="activeIndex === 3 ? 'bg-[#F9FAFB]' : 'border border-[#E7E7E7]'"
+        itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button
+          type="button"
+          @click="activeIndex = activeIndex === 3 ? null : 3"
+          :aria-expanded="activeIndex === 3"
+          aria-controls="faq-answer-3"
+          class="flex w-full cursor-pointer items-center justify-between gap-4 rounded-md text-left outline-none focus-visible:ring-2 focus-visible:ring-[#0A969B] focus-visible:ring-offset-2">
+          <span itemprop="name" class="font-sans text-sm font-medium leading-tight text-[#383B43] sm:text-xl">
             Do you offer innovative solutions in software development?
           </span>
-          <span class="text-[20px] leading-none text-[#383B43] select-none" aria-hidden="true">
-            +
-          </span>
-        </summary>
-        <p class="mt-[14px] text-[15px] leading-[1.42] text-[#666666] sm:mt-[20px] sm:text-[16px]">
-          Yes, our technology teams build scalable custom software, powerful web applications, and seamless system integrations tailored to support your specific operational and marketing needs.
-        </p>
-      </details>
+          <span class="text-xl leading-none text-[#383B43] select-none" aria-hidden="true" x-text="activeIndex === 3 ? '−' : '+'"></span>
+        </button>
+        <div
+          id="faq-answer-3"
+          x-show="activeIndex === 3"
+          x-transition:enter="transition-all duration-300 ease-in-out"
+          x-transition:enter-start="max-h-0 opacity-0 -translate-y-1"
+          x-transition:enter-end="max-h-96 opacity-100 translate-y-0"
+          x-transition:leave="transition-all duration-250 ease-in-out"
+          x-transition:leave-start="max-h-96 opacity-100 translate-y-0"
+          x-transition:leave-end="max-h-0 opacity-0 -translate-y-1"
+          class="overflow-hidden"
+          itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text" class="mt-4 text-base leading-snug text-[#666666] sm:mt-5">
+            Yes, our technology teams build scalable custom software, powerful web applications, and seamless system integrations tailored to support your specific operational and marketing needs.
+          </p>
+        </div>
+      </div>
 
       <!-- Item 5 -->
-      <details
-        class="transition-colors duration-300 rounded-[16px] border border-[#E7E7E7] px-[20px] py-[18px] sm:px-[24px] sm:py-[20px]"
-      >
-        <summary class="flex cursor-pointer list-none items-center justify-between gap-4 outline-none focus-visible:ring-2 focus-visible:ring-[var(--reacon-teal)] focus-visible:ring-offset-2 rounded-md">
-          <span
-            class="text-[18px] font-medium leading-[1.32] text-[#383B43] sm:text-[20px]"
-            style="font-family: 'Plus Jakarta Sans','Graphik Trial',ui-sans-serif,system-ui"
-          >
+      <div
+        class="transition-colors duration-300 rounded-2xl p-5 sm:p-6"
+        :class="activeIndex === 4 ? 'bg-[#F9FAFB]' : 'border border-[#E7E7E7]'"
+        itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button
+          type="button"
+          @click="activeIndex = activeIndex === 4 ? null : 4"
+          :aria-expanded="activeIndex === 4"
+          aria-controls="faq-answer-4"
+          class="flex w-full cursor-pointer items-center justify-between gap-4 rounded-md text-left outline-none focus-visible:ring-2 focus-visible:ring-[#0A969B] focus-visible:ring-offset-2">
+          <span itemprop="name" class="font-sans text-sm font-medium leading-tight text-[#383B43] sm:text-xl">
             How does Reacon approach sustainable product design?
           </span>
-          <span class="text-[20px] leading-none text-[#383B43] select-none" aria-hidden="true">
-            +
-          </span>
-        </summary>
-        <p class="mt-[14px] text-[15px] leading-[1.42] text-[#666666] sm:mt-[20px] sm:text-[16px]">
-          We are deeply committed to sustainability. Our eco-friendly practices encompass sustainable packaging design, responsible material sourcing, and waste-reducing production methods.
-        </p>
-      </details>
+          <span class="text-xl leading-none text-[#383B43] select-none" aria-hidden="true" x-text="activeIndex === 4 ? '−' : '+'"></span>
+        </button>
+        <div
+          id="faq-answer-4"
+          x-show="activeIndex === 4"
+          x-transition:enter="transition-all duration-300 ease-in-out"
+          x-transition:enter-start="max-h-0 opacity-0 -translate-y-1"
+          x-transition:enter-end="max-h-96 opacity-100 translate-y-0"
+          x-transition:leave="transition-all duration-250 ease-in-out"
+          x-transition:leave-start="max-h-96 opacity-100 translate-y-0"
+          x-transition:leave-end="max-h-0 opacity-0 -translate-y-1"
+          class="overflow-hidden"
+          itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text" class="mt-4 text-base leading-snug text-[#666666] sm:mt-5">
+            We are deeply committed to sustainability. Our eco-friendly practices encompass sustainable packaging design, responsible material sourcing, and waste-reducing production methods.
+          </p>
+        </div>
+      </div>
 
       <!-- CTA card -->
-      <div
-        class="mt-[4px] rounded-[16px] bg-[#E9FBFC] px-[20px] py-[18px] sm:px-[24px] sm:py-[20px]"
-      >
-        <div class="flex flex-col gap-[8px]">
-          <p class="text-[15px] font-medium leading-[1.42] text-[#383B43] sm:text-[16px]">
+      <div class="mt-1 rounded-2xl bg-[#E9FBFC] p-5 sm:p-6">
+        <div class="flex flex-col gap-2">
+          <p class="text-base font-medium leading-snug text-[#383B43]">
             Have additional questions about Reacon Group?
           </p>
-          <p class="text-[15px] leading-[1.42] text-[#666666] sm:text-[16px]">
+          <p class="text-base leading-snug text-[#666666]">
             Our Australian-based customer experience team has licensed
             specialists standing by to help.
           </p>
         </div>
-        <div
-          class="my-[16px] h-px w-full bg-[#ECEFF2] sm:my-[20px]"
-          aria-hidden="true"
-        ></div>
+        <div class="my-4 h-px w-full bg-[#ECEFF2] sm:my-5" aria-hidden="true"></div>
         <a
           href="#"
-          class="flex w-full items-center justify-between gap-4 text-[15px] font-medium leading-[1.42] text-[#0A969B] hover:text-black transition-colors duration-300 sm:text-[16px]"
-        >
+          class="group flex w-full items-center justify-between gap-4 text-base font-medium leading-snug text-[#0A969B] transition-colors duration-300 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0A969B] focus-visible:ring-offset-2 rounded-md">
           <span>Contact our Lead Team</span>
-          <i class="ph ph-arrow-right"></i>
+          <!-- Added group-hover to animate the arrow dynamically on hover -->
+          <i class="ph ph-arrow-right transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true"></i>
         </a>
       </div>
+
     </div>
   </div>
 </section>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const faqSection = document.getElementById('reacon-faq-section');
-    if (!faqSection) return;
-
-    const items = faqSection.querySelectorAll('details');
-
-    items.forEach((details) => {
-      const summary = details.querySelector('summary');
-
-      summary.addEventListener('click', (e) => {
-        e.preventDefault(); 
-
-        // Lock to prevent glitching if user spam-clicks
-        if (details.dataset.isAnimating === 'true') return;
-
-        if (details.hasAttribute('open')) {
-          closeItem(details);
-        } else {
-          // Auto-close other open items safely
-          items.forEach((other) => {
-            if (other !== details && other.hasAttribute('open')) {
-              closeItem(other);
-            }
-          });
-          openItem(details);
-        }
-      });
-    });
-
-    function openItem(el) {
-      el.dataset.isAnimating = 'true';
-      const icon = el.querySelector('summary span:last-child');
-      
-      // Update Styles for "Active" state
-      el.classList.add('bg-[#F9FAFB]');
-      el.classList.remove('border', 'border-[#E7E7E7]');
-      icon.textContent = '−';
-
-      // Measure current (closed) height
-      const startHeight = el.offsetHeight;
-      
-      // Force open to measure full content height
-      el.setAttribute('open', 'true');
-      const endHeight = el.offsetHeight;
-
-      el.style.overflow = 'hidden';
-      
-      // Web Animations API
-      const anim = el.animate([
-        { height: `${startHeight}px` },
-        { height: `${endHeight}px` }
-      ], { duration: 300, easing: 'ease-in-out' });
-
-      anim.onfinish = () => {
-        el.style.height = '';       // Clean up inline styles
-        el.style.overflow = '';
-        el.dataset.isAnimating = 'false';
-      };
-    }
-
-    function closeItem(el) {
-      el.dataset.isAnimating = 'true';
-      const icon = el.querySelector('summary span:last-child');
-      
-      // Measure current (open) height
-      const startHeight = el.offsetHeight;
-
-      // Temporarily close it to measure closed height without guessing paddings
-      el.removeAttribute('open');
-      const endHeight = el.offsetHeight;
-      
-      // Re-open it to play the shrinking animation smoothly
-      el.setAttribute('open', 'true');
-      el.style.overflow = 'hidden';
-
-      const anim = el.animate([
-        { height: `${startHeight}px` },
-        { height: `${endHeight}px` }
-      ], { duration: 300, easing: 'ease-in-out' });
-
-      anim.onfinish = () => {
-        el.removeAttribute('open');
-        
-        // Revert Styles to "Inactive" state
-        el.classList.remove('bg-[#F9FAFB]');
-        el.classList.add('border', 'border-[#E7E7E7]');
-        icon.textContent = '+';
-        
-        el.style.height = '';       // Clean up inline styles
-        el.style.overflow = '';
-        el.dataset.isAnimating = 'false';
-      };
-    }
-  });
-</script>

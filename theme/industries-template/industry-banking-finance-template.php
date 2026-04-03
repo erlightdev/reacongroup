@@ -40,6 +40,17 @@ $banking_nav_items = array(
     __('Our Works', 'reacon-group'),
     __('Blogs', 'reacon-group'),
 );
+
+$partner_logo_dir = get_template_directory() . '/public/partner-logo';
+$partner_logo_uri = get_template_directory_uri() . '/public/partner-logo';
+$partner_logo_files = glob($partner_logo_dir . '/partner-logo-*.{png,jpg,jpeg,webp,svg}', GLOB_BRACE);
+
+if (is_array($partner_logo_files) && !empty($partner_logo_files)) {
+    natsort($partner_logo_files);
+    $partner_logo_files = array_values($partner_logo_files);
+} else {
+    $partner_logo_files = array();
+}
 ?>
 
 <main id="primary" class="overflow-x-hidden" role="main">
@@ -80,6 +91,44 @@ $banking_nav_items = array(
         </div>
     </section>
     <!-- End: Banking & Finance Hero Section -->
+    <!-- Main Post Content Here -->
+    <section></section>
+    <!-- End Main Post Content Here -->
+    <!-- Start: Partners Marquee Section -->
+    <section id="banking-finance-partners" class="relative w-full bg-white py-4 sm:py-5" aria-label="Our partners">
+        <div class="pointer-events-none absolute inset-y-0 left-0 z-10 w-8 bg-gradient-to-r from-white to-transparent sm:w-10 lg:w-12" aria-hidden="true"></div>
+        <div class="pointer-events-none absolute inset-y-0 right-0 z-10 w-8 bg-gradient-to-l from-white to-transparent sm:w-10 lg:w-12" aria-hidden="true"></div>
+
+        <div class="mx-auto w-full max-w-[1320px] px-4 sm:px-6 lg:px-8">
+            <?php if (!empty($partner_logo_files)): ?>
+                <div class="reacon-partner-track-wrap">
+                    <div class="reacon-partner-track">
+                        <?php for ($rep = 0; $rep < 2; $rep++): ?>
+                            <?php foreach ($partner_logo_files as $partner_logo_file): ?>
+                                <?php
+                                $partner_logo_name = pathinfo($partner_logo_file, PATHINFO_FILENAME);
+                                $partner_logo_alt = ucwords(str_replace(array('-', '_'), ' ', $partner_logo_name));
+                                ?>
+                                <div class="flex h-10 w-24 shrink-0 items-center justify-center sm:h-11 sm:w-28 lg:h-12 lg:w-32">
+                                    <img
+                                        src="<?php echo esc_url($partner_logo_uri . '/' . basename($partner_logo_file)); ?>"
+                                        alt="<?php echo esc_attr($partner_logo_alt); ?>"
+                                        class="h-full w-full object-contain"
+                                        loading="lazy"
+                                        decoding="async" />
+                                </div>
+                            <?php endforeach; ?>
+                        <?php endfor; ?>
+                    </div>
+                </div>
+            <?php else: ?>
+                <p class="py-3 text-center font-sans text-sm text-muted-foreground">
+                    <?php esc_html_e('Partner logos are not available yet.', 'reacon-group'); ?>
+                </p>
+            <?php endif; ?>
+        </div>
+    </section>
+    <!-- End: Partners Marquee Section -->
 
     <!-- Start: Banking & Finance CTA Section -->
     <?php
@@ -98,7 +147,7 @@ $banking_nav_items = array(
     ?>
     <section
         id="banking-finance-cta"
-        class="py-10 sm:py-12 lg:py-14"
+        class="py-10"
         aria-labelledby="banking-finance-cta-heading">
         <div class="mx-auto w-full  px-5 sm:px-6 lg:px-10">
             <div class="relative overflow-hidden rounded-[22px] bg-[#062b2d] px-5 py-14 sm:px-8 sm:py-16 lg:rounded-[24px] lg:px-12 lg:py-[70px]">
@@ -171,13 +220,264 @@ $banking_nav_items = array(
     <!-- End: Banking & Finance CTA Section -->
 
     <!-- Faq Section -->
-    <?php get_template_part('template-parts/components/component', 'faq'); ?>
+    <section
+        id="reacon-faq-section"
+        class="w-full bg-white py-16"
+        aria-labelledby="reacon-faq-heading"
+        itemscope
+        itemtype="https://schema.org/FAQPage"
+        x-data="{ activeIndex: 0 }">
+
+        <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+            <!-- Header -->
+            <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+                <div class="flex flex-col gap-6">
+                    <h2
+                        id="reacon-faq-heading"
+                        class="font-sans text-3xl font-semibold leading-tight text-black sm:text-4xl lg:text-5xl">
+                        Frequently Asked Questions
+                    </h2>
+                    <p class="max-w-4xl text-base leading-snug text-black">
+                        Find quick answers to how Reacon works, what we deliver, and how we
+                        support brands across print, production, and data-driven automation.
+                    </p>
+                </div>
+            </div>
+
+            <!-- FAQ Items -->
+            <div class="mt-10 flex flex-col gap-3 sm:mt-12 lg:mt-14" aria-label="Frequently asked questions list">
+
+                <!-- Item 1 -->
+                <div
+                    class="transition-colors duration-300 rounded-2xl p-5 sm:p-6"
+                    :class="activeIndex === 0 ? 'bg-[#F9FAFB]' : 'border border-[#E7E7E7]'"
+                    itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <button
+                        type="button"
+                        @click="activeIndex = activeIndex === 0 ? null : 0"
+                        :aria-expanded="activeIndex === 0"
+                        aria-controls="faq-answer-0"
+                        class="flex w-full cursor-pointer items-center justify-between gap-4 rounded-md text-left outline-none focus-visible:ring-2 focus-visible:ring-[#0A969B] focus-visible:ring-offset-2">
+                        <span itemprop="name" class="font-sans text-sm font-medium leading-tight text-[#383B43] sm:text-xl">
+                            What services does Reacon provide?
+                        </span>
+                        <span class="text-xl leading-none text-[#383B43] select-none" aria-hidden="true" x-text="activeIndex === 0 ? '−' : '+'"></span>
+                    </button>
+                    <div
+                        id="faq-answer-0"
+                        x-show="activeIndex === 0"
+                        x-transition:enter="transition-all duration-300 ease-in-out"
+                        x-transition:enter-start="max-h-0 opacity-0 -translate-y-1"
+                        x-transition:enter-end="max-h-96 opacity-100 translate-y-0"
+                        x-transition:leave="transition-all duration-250 ease-in-out"
+                        x-transition:leave-start="max-h-96 opacity-100 translate-y-0"
+                        x-transition:leave-end="max-h-0 opacity-0 -translate-y-1"
+                        class="overflow-hidden"
+                        itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <p itemprop="text" class="mt-4 text-base leading-snug text-[#666666] sm:mt-5">
+                            Reacon delivers end-to-end brand execution including content design,
+                            printing, packaging, warehousing, fulfilment, logistics, and
+                            data-driven communication systems.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div
+                    class="transition-colors duration-300 rounded-2xl p-5 sm:p-6"
+                    :class="activeIndex === 1 ? 'bg-[#F9FAFB]' : 'border border-[#E7E7E7]'"
+                    itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <button
+                        type="button"
+                        @click="activeIndex = activeIndex === 1 ? null : 1"
+                        :aria-expanded="activeIndex === 1"
+                        aria-controls="faq-answer-1"
+                        class="flex w-full cursor-pointer items-center justify-between gap-4 rounded-md text-left outline-none focus-visible:ring-2 focus-visible:ring-[#0A969B] focus-visible:ring-offset-2">
+                        <span itemprop="name" class="font-sans text-sm font-medium leading-tight text-[#383B43] sm:text-xl">
+                            Does Reacon offer project management solutions?
+                        </span>
+                        <span class="text-xl leading-none text-[#383B43] select-none" aria-hidden="true" x-text="activeIndex === 1 ? '−' : '+'"></span>
+                    </button>
+                    <div
+                        id="faq-answer-1"
+                        x-show="activeIndex === 1"
+                        x-transition:enter="transition-all duration-300 ease-in-out"
+                        x-transition:enter-start="max-h-0 opacity-0 -translate-y-1"
+                        x-transition:enter-end="max-h-96 opacity-100 translate-y-0"
+                        x-transition:leave="transition-all duration-250 ease-in-out"
+                        x-transition:leave-start="max-h-96 opacity-100 translate-y-0"
+                        x-transition:leave-end="max-h-0 opacity-0 -translate-y-1"
+                        class="overflow-hidden"
+                        itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <p itemprop="text" class="mt-4 text-base leading-snug text-[#666666] sm:mt-5">
+                            Yes, we provide end-to-end project management. Our team coordinates everything from initial design and planning to production and final delivery, ensuring your campaigns run smoothly and on budget.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div
+                    class="transition-colors duration-300 rounded-2xl p-5 sm:p-6"
+                    :class="activeIndex === 2 ? 'bg-[#F9FAFB]' : 'border border-[#E7E7E7]'"
+                    itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <button
+                        type="button"
+                        @click="activeIndex = activeIndex === 2 ? null : 2"
+                        :aria-expanded="activeIndex === 2"
+                        aria-controls="faq-answer-2"
+                        class="flex w-full cursor-pointer items-center justify-between gap-4 rounded-md text-left outline-none focus-visible:ring-2 focus-visible:ring-[#0A969B] focus-visible:ring-offset-2">
+                        <span itemprop="name" class="font-sans text-sm font-medium leading-tight text-[#383B43] sm:text-xl">
+                            What digital marketing strategies do you specialize in?
+                        </span>
+                        <span class="text-xl leading-none text-[#383B43] select-none" aria-hidden="true" x-text="activeIndex === 2 ? '−' : '+'"></span>
+                    </button>
+                    <div
+                        id="faq-answer-2"
+                        x-show="activeIndex === 2"
+                        x-transition:enter="transition-all duration-300 ease-in-out"
+                        x-transition:enter-start="max-h-0 opacity-0 -translate-y-1"
+                        x-transition:enter-end="max-h-96 opacity-100 translate-y-0"
+                        x-transition:leave="transition-all duration-250 ease-in-out"
+                        x-transition:leave-start="max-h-96 opacity-100 translate-y-0"
+                        x-transition:leave-end="max-h-0 opacity-0 -translate-y-1"
+                        class="overflow-hidden"
+                        itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <p itemprop="text" class="mt-4 text-base leading-snug text-[#666666] sm:mt-5">
+                            Absolutely. Our digital marketing experts craft data-driven strategies spanning SEO, paid media, email automation, and social media to maximize your brand's reach and return on investment.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div
+                    class="transition-colors duration-300 rounded-2xl p-5 sm:p-6"
+                    :class="activeIndex === 3 ? 'bg-[#F9FAFB]' : 'border border-[#E7E7E7]'"
+                    itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <button
+                        type="button"
+                        @click="activeIndex = activeIndex === 3 ? null : 3"
+                        :aria-expanded="activeIndex === 3"
+                        aria-controls="faq-answer-3"
+                        class="flex w-full cursor-pointer items-center justify-between gap-4 rounded-md text-left outline-none focus-visible:ring-2 focus-visible:ring-[#0A969B] focus-visible:ring-offset-2">
+                        <span itemprop="name" class="font-sans text-sm font-medium leading-tight text-[#383B43] sm:text-xl">
+                            Do you offer innovative solutions in software development?
+                        </span>
+                        <span class="text-xl leading-none text-[#383B43] select-none" aria-hidden="true" x-text="activeIndex === 3 ? '−' : '+'"></span>
+                    </button>
+                    <div
+                        id="faq-answer-3"
+                        x-show="activeIndex === 3"
+                        x-transition:enter="transition-all duration-300 ease-in-out"
+                        x-transition:enter-start="max-h-0 opacity-0 -translate-y-1"
+                        x-transition:enter-end="max-h-96 opacity-100 translate-y-0"
+                        x-transition:leave="transition-all duration-250 ease-in-out"
+                        x-transition:leave-start="max-h-96 opacity-100 translate-y-0"
+                        x-transition:leave-end="max-h-0 opacity-0 -translate-y-1"
+                        class="overflow-hidden"
+                        itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <p itemprop="text" class="mt-4 text-base leading-snug text-[#666666] sm:mt-5">
+                            Yes, our technology teams build scalable custom software, powerful web applications, and seamless system integrations tailored to support your specific operational and marketing needs.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Item 5 -->
+                <div
+                    class="transition-colors duration-300 rounded-2xl p-5 sm:p-6"
+                    :class="activeIndex === 4 ? 'bg-[#F9FAFB]' : 'border border-[#E7E7E7]'"
+                    itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <button
+                        type="button"
+                        @click="activeIndex = activeIndex === 4 ? null : 4"
+                        :aria-expanded="activeIndex === 4"
+                        aria-controls="faq-answer-4"
+                        class="flex w-full cursor-pointer items-center justify-between gap-4 rounded-md text-left outline-none focus-visible:ring-2 focus-visible:ring-[#0A969B] focus-visible:ring-offset-2">
+                        <span itemprop="name" class="font-sans text-sm font-medium leading-tight text-[#383B43] sm:text-xl">
+                            How does Reacon approach sustainable product design?
+                        </span>
+                        <span class="text-xl leading-none text-[#383B43] select-none" aria-hidden="true" x-text="activeIndex === 4 ? '−' : '+'"></span>
+                    </button>
+                    <div
+                        id="faq-answer-4"
+                        x-show="activeIndex === 4"
+                        x-transition:enter="transition-all duration-300 ease-in-out"
+                        x-transition:enter-start="max-h-0 opacity-0 -translate-y-1"
+                        x-transition:enter-end="max-h-96 opacity-100 translate-y-0"
+                        x-transition:leave="transition-all duration-250 ease-in-out"
+                        x-transition:leave-start="max-h-96 opacity-100 translate-y-0"
+                        x-transition:leave-end="max-h-0 opacity-0 -translate-y-1"
+                        class="overflow-hidden"
+                        itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <p itemprop="text" class="mt-4 text-base leading-snug text-[#666666] sm:mt-5">
+                            We are deeply committed to sustainability. Our eco-friendly practices encompass sustainable packaging design, responsible material sourcing, and waste-reducing production methods.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- CTA card -->
+                <div class="mt-1 rounded-2xl bg-[#E9FBFC] p-5 sm:p-6">
+                    <div class="flex flex-col gap-2">
+                        <p class="text-base font-medium leading-snug text-[#383B43]">
+                            Have additional questions about Reacon Group?
+                        </p>
+                        <p class="text-base leading-snug text-[#666666]">
+                            Our Australian-based customer experience team has licensed
+                            specialists standing by to help.
+                        </p>
+                    </div>
+                    <div class="my-4 h-px w-full bg-[#ECEFF2] sm:my-5" aria-hidden="true"></div>
+                    <a
+                        href="#"
+                        class="group flex w-full items-center justify-between gap-4 text-base font-medium leading-snug text-[#0A969B] transition-colors duration-300 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0A969B] focus-visible:ring-offset-2 rounded-md">
+                        <span>Contact our Lead Team</span>
+                        <!-- Added group-hover to animate the arrow dynamically on hover -->
+                        <i class="ph ph-arrow-right transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
     <!-- End Faq Section -->
 
 
 </main>
 
 <style>
+    @keyframes reacon-partner-marquee {
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+
+    #banking-finance-partners .reacon-partner-track-wrap {
+        overflow: hidden;
+    }
+
+    #banking-finance-partners .reacon-partner-track {
+        display: flex;
+        width: max-content;
+        align-items: center;
+        gap: 2.5rem;
+        will-change: transform;
+        animation: reacon-partner-marquee 28s linear infinite;
+    }
+
+    #banking-finance-partners .reacon-partner-track-wrap:hover .reacon-partner-track {
+        animation-play-state: paused;
+    }
+
+    @media (max-width: 640px) {
+        #banking-finance-partners .reacon-partner-track {
+            gap: 1.75rem;
+            animation-duration: 22s;
+        }
+    }
+
     /* Desktop-only top notch that lets the fixed header recess into the hero. */
     @media (min-width: 1024px) {
         #banking-finance-hero .reacon-about-hero-card {
