@@ -257,11 +257,23 @@ $show_faq = get_field('solution_faq_enabled');
 							$card_paragraph = $card['paragraph'] ?? '';
 							$card_image_id = $card['image'] ?? null;
 							$card_image_url = $card_image_id ? wp_get_attachment_url($card_image_id) : '';
+							$card_link = isset($card['link']) && is_array($card['link']) ? $card['link'] : array();
+							$card_link_url = !empty($card_link['url']) ? $card_link['url'] : '';
+							$card_link_target = !empty($card_link['target']) ? $card_link['target'] : '_self';
+							$card_link_rel = ('_blank' === $card_link_target) ? 'noopener noreferrer' : '';
 							$card_bullets = $card['bullets'] ?? array();
 							$tick_icon_id = get_field('solution_capabilities_tick_icon');
 							$tick_icon_url = $tick_icon_id ? wp_get_attachment_url($tick_icon_id) : '';
 							?>
 							<article class="overflow-hidden rounded-[32px] border border-[#ECEFF2] bg-card">
+								<?php if ($card_link_url): ?>
+								<a
+									href="<?php echo esc_url($card_link_url); ?>"
+									target="<?php echo esc_attr($card_link_target); ?>"
+									<?php echo $card_link_rel ? 'rel="' . esc_attr($card_link_rel) . '"' : ''; ?>
+									aria-label="<?php echo esc_attr($card_title !== '' ? $card_title : __('Open capability card', 'reacon-group')); ?>"
+									class="group block no-underline">
+								<?php endif; ?>
 								<?php if ($card_image_url): ?>
 									<div class="h-[260px] overflow-hidden rounded-t-[32px] rounded-b-[20px] bg-white">
 										<img
@@ -310,6 +322,9 @@ $show_faq = get_field('solution_faq_enabled');
 										</div>
 									<?php endif; ?>
 								</div>
+								<?php if ($card_link_url): ?>
+								</a>
+								<?php endif; ?>
 							</article>
 						<?php endforeach; ?>
 					</div>

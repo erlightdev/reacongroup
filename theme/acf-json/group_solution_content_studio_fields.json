@@ -222,6 +222,14 @@
                     "preview_size": "medium"
                 },
                 {
+                    "key": "field_capability_link",
+                    "label": "Card Link",
+                    "name": "link",
+                    "type": "link",
+                    "required": 0,
+                    "return_format": "array"
+                },
+                {
                     "key": "field_capability_bullets",
                     "label": "Bullet Points",
                     "name": "bullets",
