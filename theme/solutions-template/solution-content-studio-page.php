@@ -13,53 +13,49 @@
 get_header();
 
 $solution_hero_bg = get_template_directory_uri() . '/public/solutions/hero-content-studio-subtract.png';
+$hero_eyebrow = __('Solutions', 'reacon-group');
+$hero_title = get_the_title();
+$hero_lead = __("Reacon's Content Studio crafts high-impact content across digital, social, and physical channels. From design to video and 3D assets, we bring brand stories to life with speed and precision.", 'reacon-group');
+if (has_excerpt()) {
+	$hero_lead = wp_strip_all_tags(get_the_excerpt());
+}
 ?>
 
 <main id="primary" class="overflow-x-hidden bg-background" role="main">
-	<?php
-
-	$hero_lead = __("Reacon's Content Studio crafts high-impact content across digital, social, and physical channels. From design to video and 3D assets, we bring brand stories to life with speed and precision.", 'reacon-group');
-	if (has_excerpt()) {
-		$hero_lead = wp_strip_all_tags(get_the_excerpt());
-	}
-	?>
-	<!-- Page Header -->
+	<!-- Page Section: Hero -->
 	<section
 		id="solution-hero"
-		class="relative w-full p-4 sm:p-5 lg:p-6"
-		aria-label="<?php esc_attr_e('Solution header', 'reacon-group'); ?>">
-		<div class="relative flex  w-full flex-col overflow-hidden rounded-[31px] bg-foreground">
+		class="relative w-full p-1.5 md:p-2.5"
+		aria-label="<?php esc_attr_e('Solution page hero', 'reacon-group'); ?>">
+
+		<div class="reacon-about-hero-card relative min-h-[255px] overflow-hidden rounded-[24px] bg-[#062B53] sm:min-h-[300px] lg:min-h-[380px] lg:rounded-[31px]">
 			<img
 				src="<?php echo esc_url($solution_hero_bg); ?>"
 				alt=""
 				aria-hidden="true"
-				class="absolute inset-0 h-full w-full object-cover object-center"
+				class="pointer-events-none absolute inset-0 h-full w-full object-cover object-center"
+				fetchpriority="high"
 				loading="eager"
-				decoding="async"
-				fetchpriority="high" />
-			<!-- Dark overlay to keep typography readable over the image -->
-			<div
-				class="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.55)_0%,rgba(0,0,0,0.25)_55%,rgba(0,0,0,0.55)_100%)]"
-				aria-hidden="true"></div>
+				decoding="async" />
 
-			<div class="relative z-10 mx-auto flex w-full flex-1 flex-col items-center justify-center px-5 py-24 text-center sm:px-6 lg:px-10">
-				<div class="flex max-w-[900px] flex-col items-center">
-					<p class="w-full font-sans text-[14px] font-normal leading-[22.72px] text-white/80 sm:text-[16px]">
-						<?php esc_html_e('Solutionss', 'reacon-group'); ?>
-					</p>
+			<div class="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,10,33,0.28)_0%,rgba(0,10,33,0.18)_45%,rgba(0,10,33,0.28)_100%)]" aria-hidden="true"></div>
 
-					<h1 class="mt-3 font-display text-[40px] font-semibold leading-tight text-white sm:text-[48px] lg:text-[56px]">
-						<?php the_title(); ?>
-					</h1>
+			<div class="relative z-10 mx-auto flex min-h-[255px] w-full max-w-[1200px] flex-col items-center justify-center px-5 pb-10 pt-28 text-center sm:min-h-[300px] sm:px-6 sm:pt-32 lg:min-h-[380px] lg:px-10 lg:pb-14 lg:pt-36">
+				<p class="mb-4 font-sans text-[11px] font-medium uppercase tracking-[0.18em] text-white/85 lg:mb-5">
+					<?php echo esc_html($hero_eyebrow); ?>
+				</p>
 
-					<p class="mt-5 max-w-[820px] font-sans text-[16px] leading-[22.72px] text-white/80">
-						<?php echo esc_html($hero_lead); ?>
-					</p>
-				</div>
+				<h1 class="max-w-[860px] font-display text-[30px] font-bold leading-[1.16] text-white sm:text-[40px] lg:text-[56px]">
+					<?php echo esc_html($hero_title); ?>
+				</h1>
+
+				<p class="mt-4 max-w-[780px] font-sans text-[13px] leading-[1.45] text-white/90 sm:text-[15px] lg:mt-5 lg:text-base">
+					<?php echo esc_html($hero_lead); ?>
+				</p>
 			</div>
 		</div>
 	</section>
-	<!-- End Page Header -->
+	<!-- End Page Section: Hero -->
 	<?php
 	$reacon_solution_highlights = array(
 		'heading' => __('Scalable Creative Solutions for Every Channel', 'reacon-group'),
@@ -572,6 +568,91 @@ $solution_hero_bg = get_template_directory_uri() . '/public/solutions/hero-conte
 
 	<!-- End Main Content -->
 </main>
+
+<style>
+	/* Desktop-only top notch aligned with fixed header nav (same as About page). */
+	@media (min-width: 1024px) {
+		#solution-hero .reacon-about-hero-card {
+			--hero-notch-width: clamp(560px, 48vw, 720px);
+			--hero-notch-radius: 40px;
+			--hero-notch-height: 86px;
+			--hero-notch-swoop: 40px;
+		}
+
+		#solution-hero .reacon-about-hero-card::before {
+			content: "";
+			position: absolute;
+			left: 50%;
+			top: 0;
+			transform: translateX(calc(-50% + var(--hero-notch-shift, 0px)));
+			width: var(--hero-notch-width);
+			height: var(--hero-notch-height);
+			background: #fff;
+			border-bottom-left-radius: var(--hero-notch-radius);
+			border-bottom-right-radius: var(--hero-notch-radius);
+			z-index: 3;
+			pointer-events: none;
+		}
+
+		#solution-hero .reacon-about-hero-card::after {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 50%;
+			transform: translateX(calc(-50% + var(--hero-notch-shift, 0px)));
+			width: calc(var(--hero-notch-width) + (var(--hero-notch-swoop) * 2));
+			height: var(--hero-notch-swoop);
+			background:
+				radial-gradient(circle at 0% 100%, transparent var(--hero-notch-swoop), #fff calc(var(--hero-notch-swoop) + 1px)) no-repeat left bottom / var(--hero-notch-swoop) var(--hero-notch-swoop),
+				radial-gradient(circle at 100% 100%, transparent var(--hero-notch-swoop), #fff calc(var(--hero-notch-swoop) + 1px)) no-repeat right bottom / var(--hero-notch-swoop) var(--hero-notch-swoop);
+			z-index: 4;
+			pointer-events: none;
+		}
+	}
+</style>
+
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		const syncSolutionHeroNotchToDesktopMenu = () => {
+			const heroCard = document.querySelector('#solution-hero .reacon-about-hero-card');
+			const navPill = document.querySelector('#site-navigation > ul');
+			if (!heroCard || !navPill) return;
+
+			if (window.innerWidth < 1024) {
+				heroCard.style.removeProperty('--hero-notch-width');
+				heroCard.style.removeProperty('--hero-notch-shift');
+				return;
+			}
+
+			const heroRect = heroCard.getBoundingClientRect();
+			const navRect = navPill.getBoundingClientRect();
+			const navWidth = Math.round(navRect.width);
+			if (!navWidth) return;
+
+			const heroCenterX = heroRect.left + (heroRect.width / 2);
+			const navCenterX = navRect.left + (navRect.width / 2);
+			const notchShift = Math.round(navCenterX - heroCenterX);
+
+			heroCard.style.setProperty('--hero-notch-width', `${navWidth + 18}px`);
+			heroCard.style.setProperty('--hero-notch-shift', `${notchShift}px`);
+		};
+
+		let solutionNotchSyncRaf = null;
+		const scheduleSolutionNotchSync = () => {
+			if (solutionNotchSyncRaf) {
+				cancelAnimationFrame(solutionNotchSyncRaf);
+			}
+			solutionNotchSyncRaf = requestAnimationFrame(syncSolutionHeroNotchToDesktopMenu);
+		};
+
+		scheduleSolutionNotchSync();
+		window.addEventListener('resize', scheduleSolutionNotchSync);
+		window.addEventListener('load', scheduleSolutionNotchSync);
+		if (document.fonts && document.fonts.ready) {
+			document.fonts.ready.then(scheduleSolutionNotchSync).catch(() => {});
+		}
+	});
+</script>
 
 <?php
 get_footer();

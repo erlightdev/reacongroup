@@ -19,6 +19,8 @@ get_header();
 			the_post();
 			if (get_post_type() === 'industry') {
 				get_template_part('template-parts/content/content', 'industry');
+			} elseif (get_post_type() === 'solution') {
+				get_template_part('template-parts/content/content', 'solution');
 			} else {
 				get_template_part('template-parts/content/content', 'blog');
 			}
