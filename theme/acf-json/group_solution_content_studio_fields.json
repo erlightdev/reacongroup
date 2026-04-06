@@ -1,0 +1,407 @@
+{
+    "key": "group_solution_content_studio",
+    "title": "Solution: Content Studio",
+    "fields": [
+        {
+            "key": "field_solution_section_toggles",
+            "label": "Section Visibility",
+            "name": "solution_section_toggles",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_solution_hero_enabled",
+            "label": "Enable Hero Section",
+            "name": "solution_hero_enabled",
+            "type": "true_false",
+            "default_value": 1,
+            "ui": 1
+        },
+        {
+            "key": "field_solution_highlights_enabled",
+            "label": "Enable Highlights Section",
+            "name": "solution_highlights_enabled",
+            "type": "true_false",
+            "default_value": 1,
+            "ui": 1
+        },
+        {
+            "key": "field_solution_capabilities_enabled",
+            "label": "Enable Capabilities Section",
+            "name": "solution_capabilities_enabled",
+            "type": "true_false",
+            "default_value": 1,
+            "ui": 1
+        },
+        {
+            "key": "field_solution_cta_enabled",
+            "label": "Enable CTA Section",
+            "name": "solution_cta_enabled",
+            "type": "true_false",
+            "default_value": 1,
+            "ui": 1
+        },
+        {
+            "key": "field_solution_faq_enabled",
+            "label": "Enable FAQ Section",
+            "name": "solution_faq_enabled",
+            "type": "true_false",
+            "default_value": 1,
+            "ui": 1
+        },
+        {
+            "key": "field_solution_hero_tab",
+            "label": "Hero Section",
+            "name": "solution_hero_tab",
+            "type": "tab",
+            "placement": "top",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_solution_hero_enabled",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ]
+        },
+        {
+            "key": "field_solution_hero_background",
+            "label": "Hero Background Image",
+            "name": "solution_hero_background",
+            "type": "image",
+            "return_format": "id",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_solution_hero_eyebrow",
+            "label": "Hero Eyebrow Text",
+            "name": "solution_hero_eyebrow",
+            "type": "text",
+            "placeholder": "e.g., Solutions"
+        },
+        {
+            "key": "field_solution_hero_lead",
+            "label": "Hero Lead Text",
+            "name": "solution_hero_lead",
+            "type": "textarea",
+            "placeholder": "Hero lead/description text",
+            "rows": 4
+        },
+        {
+            "key": "field_solution_highlights_tab",
+            "label": "Highlights Section",
+            "name": "solution_highlights_tab",
+            "type": "tab",
+            "placement": "top",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_solution_highlights_enabled",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ]
+        },
+        {
+            "key": "field_solution_highlights_heading",
+            "label": "Highlights Heading",
+            "name": "solution_highlights_heading",
+            "type": "text",
+            "required": 1
+        },
+        {
+            "key": "field_solution_highlights_intro",
+            "label": "Highlights Intro Text",
+            "name": "solution_highlights_intro",
+            "type": "textarea",
+            "rows": 3
+        },
+        {
+            "key": "field_solution_highlights_body",
+            "label": "Highlights Body Text",
+            "name": "solution_highlights_body",
+            "type": "textarea",
+            "rows": 4
+        },
+        {
+            "key": "field_solution_highlights_video",
+            "label": "Highlights Video (MP4)",
+            "name": "solution_highlights_video",
+            "type": "file",
+            "library": "all"
+        },
+        {
+            "key": "field_solution_highlights_delivered_label",
+            "label": "Delivered By Label",
+            "name": "solution_highlights_delivered_label",
+            "type": "text",
+            "placeholder": "e.g., Delivered by:"
+        },
+        {
+            "key": "field_solution_highlights_logo",
+            "label": "Delivered By Logo",
+            "name": "solution_highlights_logo",
+            "type": "image",
+            "return_format": "id",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_solution_capabilities_tab",
+            "label": "Capabilities Section",
+            "name": "solution_capabilities_tab",
+            "type": "tab",
+            "placement": "top",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_solution_capabilities_enabled",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ]
+        },
+        {
+            "key": "field_solution_capabilities_heading",
+            "label": "Capabilities Heading",
+            "name": "solution_capabilities_heading",
+            "type": "text",
+            "required": 1
+        },
+        {
+            "key": "field_solution_capabilities_intro",
+            "label": "Capabilities Intro Text",
+            "name": "solution_capabilities_intro",
+            "type": "textarea",
+            "rows": 3
+        },
+        {
+            "key": "field_solution_capabilities_bg_color",
+            "label": "Background Color",
+            "name": "solution_capabilities_bg_color",
+            "type": "color_picker",
+            "default_value": "#ECECEC"
+        },
+        {
+            "key": "field_solution_capabilities_tick_icon",
+            "label": "Bullet Tick Icon",
+            "name": "solution_capabilities_tick_icon",
+            "type": "image",
+            "return_format": "id",
+            "preview_size": "thumbnail"
+        },
+        {
+            "key": "field_solution_capabilities_cards",
+            "label": "Capability Cards",
+            "name": "solution_capabilities_cards",
+            "type": "repeater",
+            "sub_fields": [
+                {
+                    "key": "field_capability_title",
+                    "label": "Card Title",
+                    "name": "title",
+                    "type": "text",
+                    "required": 1
+                },
+                {
+                    "key": "field_capability_paragraph",
+                    "label": "Card Description",
+                    "name": "paragraph",
+                    "type": "textarea",
+                    "rows": 2
+                },
+                {
+                    "key": "field_capability_image",
+                    "label": "Card Image",
+                    "name": "image",
+                    "type": "image",
+                    "return_format": "id",
+                    "preview_size": "medium"
+                },
+                {
+                    "key": "field_capability_bullets",
+                    "label": "Bullet Points",
+                    "name": "bullets",
+                    "type": "repeater",
+                    "sub_fields": [
+                        {
+                            "key": "field_bullet_text",
+                            "label": "Bullet Text",
+                            "name": "bullet",
+                            "type": "text",
+                            "required": 1
+                        }
+                    ]
+                }
+            ],
+            "min": 0,
+            "max": 0,
+            "layout": "block",
+            "button_label": "Add Card"
+        },
+        {
+            "key": "field_solution_cta_tab",
+            "label": "CTA Section",
+            "name": "solution_cta_tab",
+            "type": "tab",
+            "placement": "top",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_solution_cta_enabled",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ]
+        },
+        {
+            "key": "field_solution_cta_heading",
+            "label": "CTA Heading",
+            "name": "solution_cta_heading",
+            "type": "text",
+            "required": 1
+        },
+        {
+            "key": "field_solution_cta_description",
+            "label": "CTA Description",
+            "name": "solution_cta_description",
+            "type": "textarea",
+            "rows": 3
+        },
+        {
+            "key": "field_solution_cta_bg_color",
+            "label": "Background Color",
+            "name": "solution_cta_bg_color",
+            "type": "color_picker",
+            "default_value": "#0D6B75"
+        },
+        {
+            "key": "field_solution_cta_primary_button",
+            "label": "Primary Button",
+            "name": "solution_cta_primary_button",
+            "type": "link",
+            "return_format": "array"
+        },
+        {
+            "key": "field_solution_cta_secondary_button",
+            "label": "Secondary Button",
+            "name": "solution_cta_secondary_button",
+            "type": "link",
+            "return_format": "array"
+        },
+        {
+            "key": "field_solution_faq_tab",
+            "label": "FAQ Section",
+            "name": "solution_faq_tab",
+            "type": "tab",
+            "placement": "top",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_solution_faq_enabled",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ]
+        },
+        {
+            "key": "field_solution_faq_heading",
+            "label": "FAQ Heading",
+            "name": "solution_faq_heading",
+            "type": "text",
+            "required": 0
+        },
+        {
+            "key": "field_solution_faq_description",
+            "label": "FAQ Description",
+            "name": "solution_faq_description",
+            "type": "textarea",
+            "rows": 3
+        },
+        {
+            "key": "field_solution_faq_items",
+            "label": "FAQ Items",
+            "name": "solution_faq_items",
+            "type": "repeater",
+            "sub_fields": [
+                {
+                    "key": "field_faq_question",
+                    "label": "Question",
+                    "name": "question",
+                    "type": "text",
+                    "required": 1
+                },
+                {
+                    "key": "field_faq_answer",
+                    "label": "Answer",
+                    "name": "answer",
+                    "type": "textarea",
+                    "rows": 3
+                }
+            ],
+            "min": 0,
+            "max": 0,
+            "layout": "block",
+            "button_label": "Add FAQ Item"
+        },
+        {
+            "key": "field_solution_faq_cta_text",
+            "label": "FAQ CTA Primary Text",
+            "name": "solution_faq_cta_text",
+            "type": "text"
+        },
+        {
+            "key": "field_solution_faq_cta_subtext",
+            "label": "FAQ CTA Secondary Text",
+            "name": "solution_faq_cta_subtext",
+            "type": "textarea",
+            "rows": 2
+        },
+        {
+            "key": "field_solution_faq_cta_link",
+            "label": "FAQ CTA Link",
+            "name": "solution_faq_cta_link",
+            "type": "link",
+            "return_format": "array"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            },
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "solutions-template/solution-content-studio-page.php"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "solution"
+            },
+            {
+                "param": "post_template",
+                "operator": "==",
+                "value": "solutions-template/solution-content-studio-page.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [],
+    "active": true,
+    "description": "Dynamic content fields for Solution — Content Studio page template"
+}
