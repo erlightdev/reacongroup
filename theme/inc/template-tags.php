@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Custom template tags for this theme
  *
@@ -7,68 +8,72 @@
  * @package reacon-group
  */
 
-if ( ! function_exists( 'reacon_group_posted_on' ) ) :
+if (! function_exists('reacon_group_posted_on')) :
 	/**
 	 * Prints HTML with meta information for the current post-date/time.
 	 */
-	function reacon_group_posted_on() {
+	function reacon_group_posted_on()
+	{
 		$time_string = '<time class="published updated" datetime="%1$s">%2$s</time>';
-		if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
+		if (get_the_time('U') !== get_the_modified_time('U')) {
 			$time_string = '<time class="published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
 		}
 
 		$time_string = sprintf(
 			$time_string,
-			esc_attr( get_the_date( DATE_W3C ) ),
-			esc_html( get_the_date() ),
-			esc_attr( get_the_modified_date( DATE_W3C ) ),
-			esc_html( get_the_modified_date() )
+			esc_attr(get_the_date(DATE_W3C)),
+			esc_html(get_the_date()),
+			esc_attr(get_the_modified_date(DATE_W3C)),
+			esc_html(get_the_modified_date())
 		);
 
 		printf(
 			'<a href="%1$s" rel="bookmark">%2$s</a>',
-			esc_url( get_permalink() ),
+			esc_url(get_permalink()),
 			$time_string // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		);
 	}
 endif;
 
-if ( ! function_exists( 'reacon_group_posted_by' ) ) :
+if (! function_exists('reacon_group_posted_by')) :
 	/**
 	 * Prints HTML with meta information about theme author.
 	 */
-	function reacon_group_posted_by() {
+	function reacon_group_posted_by()
+	{
 		printf(
-		/* translators: 1: posted by label, only visible to screen readers. 2: author link. 3: post author. */
+			/* translators: 1: posted by label, only visible to screen readers. 2: author link. 3: post author. */
 			'<span class="sr-only">%1$s</span><span class="author vcard"><a class="url fn n" href="%2$s">%3$s</a></span>',
-			esc_html__( 'Posted by', 'reacon-group' ),
-			esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
-			esc_html( get_the_author() )
+			esc_html__('Posted by', 'reacon-group'),
+			esc_url(get_author_posts_url(get_the_author_meta('ID'))),
+			esc_html(get_the_author())
 		);
 	}
 endif;
 
-if ( ! function_exists( 'reacon_group_comment_count' ) ) :
+if (! function_exists('reacon_group_comment_count')) :
 	/**
 	 * Prints HTML with the comment count for the current post.
 	 */
-	function reacon_group_comment_count() {
-		if ( ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
+	function reacon_group_comment_count()
+	{
+		if (! post_password_required() && (comments_open() || get_comments_number())) {
 			/* translators: %s: Name of current post. Only visible to screen readers. */
-			comments_popup_link( sprintf( __( 'Leave a comment<span class="sr-only"> on %s</span>', 'reacon-group' ), get_the_title() ) );
+			comments_popup_link(sprintf(__('Leave a comment<span class="sr-only"> on %s</span>', 'reacon-group'), get_the_title()));
 		}
 	}
 endif;
 
-if ( ! function_exists( 'reacon_group_entry_meta' ) ) :
+if (! function_exists('reacon_group_entry_meta')) :
 	/**
 	 * Prints HTML with meta information for the categories, tags and comments.
 	 * This template tag is used in the entry header.
 	 */
-	function reacon_group_entry_meta() {
+	function reacon_group_entry_meta()
+	{
 
 		// Hide author, post date, category and tag text for pages.
-		if ( 'post' === get_post_type() ) {
+		if ('post' === get_post_type()) {
 
 			// Posted by.
 			reacon_group_posted_by();
@@ -77,30 +82,30 @@ if ( ! function_exists( 'reacon_group_entry_meta' ) ) :
 			reacon_group_posted_on();
 
 			/* translators: used between list items, there is a space after the comma. */
-			$categories_list = get_the_category_list( __( ', ', 'reacon-group' ) );
-			if ( $categories_list ) {
+			$categories_list = get_the_category_list(__(', ', 'reacon-group'));
+			if ($categories_list) {
 				printf(
-				/* translators: 1: posted in label, only visible to screen readers. 2: list of categories. */
+					/* translators: 1: posted in label, only visible to screen readers. 2: list of categories. */
 					'<span><span class="sr-only">%1$s</span>%2$s</span>',
-					esc_html__( 'Posted in', 'reacon-group' ),
+					esc_html__('Posted in', 'reacon-group'),
 					$categories_list // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				);
 			}
 
 			/* translators: used between list items, there is a space after the comma. */
-			$tags_list = get_the_tag_list( '', __( ', ', 'reacon-group' ) );
-			if ( $tags_list ) {
+			$tags_list = get_the_tag_list('', __(', ', 'reacon-group'));
+			if ($tags_list) {
 				printf(
-				/* translators: 1: tags label, only visible to screen readers. 2: list of tags. */
+					/* translators: 1: tags label, only visible to screen readers. 2: list of tags. */
 					'<span><span class="sr-only">%1$s</span>%2$s</span>',
-					esc_html__( 'Tags:', 'reacon-group' ),
+					esc_html__('Tags:', 'reacon-group'),
 					$tags_list // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				);
 			}
 		}
 
 		// Comment count.
-		if ( ! is_singular() ) {
+		if (! is_singular()) {
 			reacon_group_comment_count();
 		}
 
@@ -108,8 +113,8 @@ if ( ! function_exists( 'reacon_group_entry_meta' ) ) :
 		edit_post_link(
 			sprintf(
 				wp_kses(
-				/* translators: %s: Name of current post. Only visible to screen readers. */
-					__( 'Edit <span class="sr-only">%s</span>', 'reacon-group' ),
+					/* translators: %s: Name of current post. Only visible to screen readers. */
+					__('Edit <span class="sr-only">%s</span>', 'reacon-group'),
 					array(
 						'span' => array(
 							'class' => array(),
@@ -122,14 +127,15 @@ if ( ! function_exists( 'reacon_group_entry_meta' ) ) :
 	}
 endif;
 
-if ( ! function_exists( 'reacon_group_entry_footer' ) ) :
+if (! function_exists('reacon_group_entry_footer')) :
 	/**
 	 * Prints HTML with meta information for the categories, tags and comments.
 	 */
-	function reacon_group_entry_footer() {
+	function reacon_group_entry_footer()
+	{
 
 		// Hide author, post date, category and tag text for pages.
-		if ( 'post' === get_post_type() ) {
+		if ('post' === get_post_type()) {
 
 			// Posted by.
 			reacon_group_posted_by();
@@ -138,30 +144,30 @@ if ( ! function_exists( 'reacon_group_entry_footer' ) ) :
 			reacon_group_posted_on();
 
 			/* translators: used between list items, there is a space after the comma. */
-			$categories_list = get_the_category_list( __( ', ', 'reacon-group' ) );
-			if ( $categories_list ) {
+			$categories_list = get_the_category_list(__(', ', 'reacon-group'));
+			if ($categories_list) {
 				printf(
-				/* translators: 1: posted in label, only visible to screen readers. 2: list of categories. */
+					/* translators: 1: posted in label, only visible to screen readers. 2: list of categories. */
 					'<span><span class="sr-only">%1$s</span>%2$s</span>',
-					esc_html__( 'Posted in', 'reacon-group' ),
+					esc_html__('Posted in', 'reacon-group'),
 					$categories_list // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				);
 			}
 
 			/* translators: used between list items, there is a space after the comma. */
-			$tags_list = get_the_tag_list( '', __( ', ', 'reacon-group' ) );
-			if ( $tags_list ) {
+			$tags_list = get_the_tag_list('', __(', ', 'reacon-group'));
+			if ($tags_list) {
 				printf(
-				/* translators: 1: tags label, only visible to screen readers. 2: list of tags. */
+					/* translators: 1: tags label, only visible to screen readers. 2: list of tags. */
 					'<span><span class="sr-only">%1$s</span>%2$s</span>',
-					esc_html__( 'Tags:', 'reacon-group' ),
+					esc_html__('Tags:', 'reacon-group'),
 					$tags_list // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				);
 			}
 		}
 
 		// Comment count.
-		if ( ! is_singular() ) {
+		if (! is_singular()) {
 			reacon_group_comment_count();
 		}
 
@@ -169,8 +175,8 @@ if ( ! function_exists( 'reacon_group_entry_footer' ) ) :
 		edit_post_link(
 			sprintf(
 				wp_kses(
-				/* translators: %s: Name of current post. Only visible to screen readers. */
-					__( 'Edit <span class="sr-only">%s</span>', 'reacon-group' ),
+					/* translators: %s: Name of current post. Only visible to screen readers. */
+					__('Edit <span class="sr-only">%s</span>', 'reacon-group'),
 					array(
 						'span' => array(
 							'class' => array(),
@@ -183,26 +189,27 @@ if ( ! function_exists( 'reacon_group_entry_footer' ) ) :
 	}
 endif;
 
-if ( ! function_exists( 'reacon_group_post_thumbnail' ) ) :
+if (! function_exists('reacon_group_post_thumbnail')) :
 	/**
 	 * Displays an optional post thumbnail, wrapping the post thumbnail in an
 	 * anchor element except when viewing a single post.
 	 */
-	function reacon_group_post_thumbnail() {
-		if ( ! reacon_group_can_show_post_thumbnail() ) {
+	function reacon_group_post_thumbnail()
+	{
+		if (! reacon_group_can_show_post_thumbnail()) {
 			return;
 		}
 
-		if ( is_singular() ) :
-			?>
+		if (is_singular()) :
+?>
 
 			<figure>
 				<?php the_post_thumbnail(); ?>
 			</figure><!-- .post-thumbnail -->
 
-			<?php
+		<?php
 		else :
-			?>
+		?>
 
 			<figure>
 				<a href="<?php the_permalink(); ?>" aria-hidden="true" tabindex="-1">
@@ -210,65 +217,125 @@ if ( ! function_exists( 'reacon_group_post_thumbnail' ) ) :
 				</a>
 			</figure>
 
-			<?php
+<?php
 		endif; // End is_singular().
 	}
 endif;
 
-if ( ! function_exists( 'reacon_group_comment_avatar' ) ) :
+if (! function_exists('reacon_group_comment_avatar')) :
 	/**
 	 * Returns the HTML markup to generate a user avatar.
 	 *
 	 * @param mixed $id_or_email The Gravatar to retrieve. Accepts a user_id, gravatar md5 hash,
 	 *                           user email, WP_User object, WP_Post object, or WP_Comment object.
 	 */
-	function reacon_group_get_user_avatar_markup( $id_or_email = null ) {
+	function reacon_group_get_user_avatar_markup($id_or_email = null)
+	{
 
-		if ( ! isset( $id_or_email ) ) {
+		if (! isset($id_or_email)) {
 			$id_or_email = get_current_user_id();
 		}
 
-		return sprintf( '<div class="vcard">%s</div>', get_avatar( $id_or_email, reacon_group_get_avatar_size() ) );
+		return sprintf('<div class="vcard">%s</div>', get_avatar($id_or_email, reacon_group_get_avatar_size()));
 	}
 endif;
 
-if ( ! function_exists( 'reacon_group_discussion_avatars_list' ) ) :
+if (! function_exists('reacon_group_discussion_avatars_list')) :
 	/**
 	 * Displays a list of avatars involved in a discussion for a given post.
 	 *
 	 * @param array $comment_authors Comment authors to list as avatars.
 	 */
-	function reacon_group_discussion_avatars_list( $comment_authors ) {
-		if ( empty( $comment_authors ) ) {
+	function reacon_group_discussion_avatars_list($comment_authors)
+	{
+		if (empty($comment_authors)) {
 			return;
 		}
 		echo '<ol>', "\n";
-		foreach ( $comment_authors as $id_or_email ) {
+		foreach ($comment_authors as $id_or_email) {
 			printf(
 				"<li>%s</li>\n",
-				reacon_group_get_user_avatar_markup( $id_or_email ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				reacon_group_get_user_avatar_markup($id_or_email) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			);
 		}
 		echo '</ol>', "\n";
 	}
 endif;
 
-if ( ! function_exists( 'reacon_group_the_posts_navigation' ) ) :
+if (! function_exists('reacon_group_the_posts_navigation')) :
 	/**
-	 * Wraps `the_posts_pagination` for use throughout the theme.
+	 * Outputs a styled pagination control for archives, search, and blog pages.
 	 */
-	function reacon_group_the_posts_navigation() {
-		the_posts_pagination(
+	function reacon_group_the_posts_navigation()
+	{
+		global $wp_query;
+
+		$total = (int) $wp_query->max_num_pages;
+		if ($total < 2) {
+			return;
+		}
+
+		$paged = max(1, get_query_var('paged', 1));
+		$page_links = paginate_links(
 			array(
-				'mid_size'  => 2,
-				'prev_text' => __( 'Newer posts', 'reacon-group' ),
-				'next_text' => __( 'Older posts', 'reacon-group' ),
+				'total'     => $total,
+				'current'   => $paged,
+				'type'      => 'array',
+				'end_size'  => 1,
+				'mid_size'  => 1,
+				'prev_next' => false,
 			)
 		);
+
+		$prev_url = $paged > 1 ? get_pagenum_link($paged - 1) : '';
+		$next_url = $paged < $total ? get_pagenum_link($paged + 1) : '';
+
+		if (empty($page_links) || ! is_array($page_links)) {
+			return;
+		}
+
+		echo '<nav class="w-full flex items-center justify-center" aria-label="' . esc_attr__('Pagination', 'reacon-group') . '">';
+		echo '<div class="inline-flex flex-wrap items-center justify-center gap-2 rounded-[1.25rem] border border-border/10 bg-surface px-2 py-2 shadow-sm">';
+
+		printf(
+			'<a href="%s" class="inline-flex items-center gap-2 rounded-full border border-border/10 bg-background px-4 py-2 text-sm font-medium text-muted-foreground transition-colors duration-200 hover:border-primary hover:text-foreground %s" %s><span aria-hidden="true">‹</span><span>%s</span></a>',
+			esc_url($prev_url ? $prev_url : '#'),
+			$prev_url ? '' : 'opacity-40 cursor-not-allowed pointer-events-none',
+			$prev_url ? '' : 'aria-disabled="true" tabindex="-1"',
+			esc_html__('Previous', 'reacon-group')
+		);
+
+		foreach ($page_links as $link_html) {
+			$is_dots = strpos($link_html, 'dots') !== false;
+			if ($is_dots) {
+				echo '<span class="inline-flex h-10 min-w-[40px] items-center justify-center rounded-[10px] px-3 text-sm font-medium text-muted-foreground">…</span>';
+				continue;
+			}
+
+			$is_current = strpos($link_html, 'current') !== false;
+			$page_label = trim(wp_strip_all_tags($link_html));
+			$page_url = '';
+			if (preg_match('/href=["\\\']([^"\\\']+)["\\\']/', $link_html, $matches)) {
+				$page_url = $matches[1];
+			}
+
+			echo '<a href="' . esc_url($page_url ? $page_url : '#') . '" aria-current="' . ($is_current ? 'page' : 'false') . '" class="inline-flex h-10 min-w-[40px] items-center justify-center rounded-[10px] border px-3 text-sm font-medium transition-colors duration-200 ' . ($is_current ? 'border-primary bg-primary text-white' : 'border-border/10 bg-background text-foreground hover:border-primary hover:text-foreground') . '">' . esc_html($page_label) . '</a>';
+		}
+
+		printf(
+			'<a href="%s" class="inline-flex items-center gap-2 rounded-full border border-border/10 bg-background px-4 py-2 text-sm font-medium text-muted-foreground transition-colors duration-200 hover:border-primary hover:text-foreground %s" %s><span>%s</span><span aria-hidden="true">›</span></a>',
+			esc_url($next_url ? $next_url : '#'),
+			$next_url ? '' : 'opacity-40 cursor-not-allowed pointer-events-none',
+			$next_url ? '' : 'aria-disabled="true" tabindex="-1"',
+			esc_html__('Next', 'reacon-group')
+		);
+
+		echo '</div>';
+		echo '</nav>';
 	}
 endif;
 
-if ( ! function_exists( 'reacon_group_content_class' ) ) :
+if (! function_exists('reacon_group_content_class')) :
 	/**
 	 * Displays the class names for the post content wrapper.
 	 *
@@ -282,13 +349,14 @@ if ( ! function_exists( 'reacon_group_content_class' ) ) :
 	 * @param string|string[] $classes Space-separated string or array of class
 	 *                                 names to add to the class list.
 	 */
-	function reacon_group_content_class( $classes = '' ) {
-		$all_classes = array( $classes, REACON_GROUP_TYPOGRAPHY_CLASSES );
+	function reacon_group_content_class($classes = '')
+	{
+		$all_classes = array($classes, REACON_GROUP_TYPOGRAPHY_CLASSES);
 
-		foreach ( $all_classes as &$class_groups ) {
-			if ( ! empty( $class_groups ) ) {
-				if ( ! is_array( $class_groups ) ) {
-					$class_groups = preg_split( '#\s+#', $class_groups );
+		foreach ($all_classes as &$class_groups) {
+			if (! empty($class_groups)) {
+				if (! is_array($class_groups)) {
+					$class_groups = preg_split('#\s+#', $class_groups);
 				}
 			} else {
 				// Ensure that we always coerce class to being an array.
@@ -296,11 +364,11 @@ if ( ! function_exists( 'reacon_group_content_class' ) ) :
 			}
 		}
 
-		$combined_classes = array_merge( $all_classes[0], $all_classes[1] );
-		$combined_classes = array_map( 'esc_attr', $combined_classes );
+		$combined_classes = array_merge($all_classes[0], $all_classes[1]);
+		$combined_classes = array_map('esc_attr', $combined_classes);
 
 		// Separates class names with a single space, preparing them for the
 		// post content wrapper.
-		echo 'class="' . esc_attr( implode( ' ', $combined_classes ) ) . '"';
+		echo 'class="' . esc_attr(implode(' ', $combined_classes)) . '"';
 	}
 endif;
