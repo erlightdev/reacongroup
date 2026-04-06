@@ -523,6 +523,23 @@
                             "max_size": 0,
                             "mime_types": "",
                             "parent_repeater": "field_scl_capabilities_cards"
+                        },
+                        {
+                            "key": "field_scl_capability_card_link",
+                            "label": "Card link",
+                            "name": "link",
+                            "aria-label": "",
+                            "type": "link",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "parent_repeater": "field_scl_capabilities_cards"
                         }
                     ]
                 }

@@ -194,6 +194,7 @@ if ($capabilities_enabled && !empty($capabilities['cards']) && is_array($capabil
             'title' => $card_title,
             'description' => $card_description,
             'image_url' => $card_image_url,
+            'link' => reacon_group_solution_link_data(isset($card['link']) ? $card['link'] : null),
         );
     }
 }
@@ -321,7 +322,16 @@ $faq_support_icon = isset($faq['support_card_icon']) && is_array($faq['support_c
 
                 <div class="mt-8 grid grid-cols-1 gap-5 sm:mt-10 md:grid-cols-2 lg:mt-14 lg:grid-cols-3 lg:gap-8">
                     <?php foreach ($capability_cards as $card_index => $card): ?>
+                        <?php $card_link = isset($card['link']) && is_array($card['link']) ? $card['link'] : null; ?>
                         <article class="overflow-hidden rounded-4xl border border-[#ECEFF2] bg-card p-1 shadow-[0_14px_45px_rgba(14,28,46,0.06)] <?php echo 2 === $card_index ? 'md:col-span-2 lg:col-span-1' : ''; ?>">
+                            <?php if ($card_link) : ?>
+                                <a
+                                    href="<?php echo esc_url($card_link['url']); ?>"
+                                    target="<?php echo esc_attr($card_link['target']); ?>"
+                                    <?php echo '_blank' === $card_link['target'] ? 'rel="noopener noreferrer"' : ''; ?>
+                                    aria-label="<?php echo esc_attr($card['title']); ?>"
+                                    class="block no-underline">
+                            <?php endif; ?>
                             <div class="relative overflow-hidden rounded-t-4xl rounded-b-2xl bg-muted">
                                 <img
                                     src="<?php echo esc_url($card['image_url']); ?>"
@@ -338,6 +348,9 @@ $faq_support_icon = isset($faq['support_card_icon']) && is_array($faq['support_c
                                     <?php echo esc_html($card['description']); ?>
                                 </p>
                             </div>
+                            <?php if ($card_link) : ?>
+                                </a>
+                            <?php endif; ?>
                         </article>
                     <?php endforeach; ?>
                 </div>
