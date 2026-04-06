@@ -1,11 +1,11 @@
 {
-    "key": "ui_options_page_69cf2e65956f2",
-    "title": "Industries Landing",
+    "key": "ui_options_page_69d33e9eeef71",
+    "title": "Production Landing",
     "active": true,
     "menu_order": 0,
-    "page_title": "Industries Landing",
-    "menu_slug": "industries-landing",
-    "parent_slug": "edit.php?post_type=industry",
+    "page_title": "Production Landing",
+    "menu_slug": "production-landing",
+    "parent_slug": "edit.php?post_type=solution",
     "advanced_configuration": 0,
     "icon_url": "",
     "menu_title": "",
@@ -19,5 +19,5 @@
     "data_storage": "options",
     "post_id": "",
     "autoload": 0,
-    "modified": 1775451240
+    "modified": 1775451846
 }
