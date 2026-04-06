@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Template Name: Solution — Content Studio
+ * Template Name: Solution — Production Print
  * Template Post Type: page, solution
  *
- * Placeholder layout for Content Studio solution pages. Assign this template in
+ * Placeholder layout for Production Print solution pages. Assign this template in
  * Page Attributes (or the template panel on your `solution` CPT). If the CPT slug
  * registered by your plugin is not `solution`, update `Template Post Type` below.
  *
