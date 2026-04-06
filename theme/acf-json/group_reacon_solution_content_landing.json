@@ -1,0 +1,1291 @@
+{
+    "key": "group_reacon_solution_content_landing",
+    "title": "Solution Content",
+    "fields": [
+        {
+            "key": "field_scl_tab_hero",
+            "label": "Hero",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_scl_enable_hero",
+            "label": "Enable hero section",
+            "name": "solution_content_enable_hero",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Turn this section off to hide the hero entirely.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "Enabled",
+            "ui_off_text": "Disabled",
+            "message": ""
+        },
+        {
+            "key": "field_scl_hero_group",
+            "label": "Hero content",
+            "name": "solution_content_hero",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_scl_enable_hero",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_scl_hero_bg",
+                    "label": "Background image",
+                    "name": "background_image",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "Decorative hero background image for the top notched section.",
+                    "required": 1,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "preview_size": "medium",
+                    "library": "all",
+                    "min_width": 0,
+                    "min_height": 0,
+                    "min_size": 0,
+                    "max_width": 0,
+                    "max_height": 0,
+                    "max_size": 0,
+                    "mime_types": ""
+                },
+                {
+                    "key": "field_scl_hero_eyebrow",
+                    "label": "Eyebrow",
+                    "name": "eyebrow",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Uppercase label shown above the hero heading.",
+                    "required": 1,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_scl_hero_title",
+                    "label": "Hero heading",
+                    "name": "title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Main hero heading (H1).",
+                    "required": 1,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_scl_hero_description",
+                    "label": "Hero description",
+                    "name": "description",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "Supporting hero copy.",
+                    "required": 1,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 4,
+                    "new_lines": "",
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": ""
+                }
+            ]
+        },
+        {
+            "key": "field_scl_tab_sections",
+            "label": "Content Sections",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_scl_enable_sections",
+            "label": "Enable content sections",
+            "name": "solution_content_enable_sections",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Turn this section off to hide the alternating content rows.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "Enabled",
+            "ui_off_text": "Disabled",
+            "message": ""
+        },
+        {
+            "key": "field_scl_sections_group",
+            "label": "Content rows",
+            "name": "solution_content_sections",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_scl_enable_sections",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add content section",
+            "min": 1,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_scl_section_enabled",
+                    "label": "Enable section",
+                    "name": "enabled",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "Disable this row without removing it.",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": 1,
+                    "ui": 1,
+                    "ui_on_text": "Enabled",
+                    "ui_off_text": "Disabled",
+                    "message": "",
+                    "parent_repeater": "field_scl_sections_group"
+                },
+                {
+                    "key": "field_scl_section_title",
+                    "label": "Section heading",
+                    "name": "title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_scl_sections_group"
+                },
+                {
+                    "key": "field_scl_section_paragraphs",
+                    "label": "Paragraphs",
+                    "name": "paragraphs",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "table",
+                    "button_label": "Add paragraph",
+                    "min": 1,
+                    "max": 0,
+                    "rows_per_page": 20,
+                    "collapsed": "",
+                    "sub_fields": [
+                        {
+                            "key": "field_scl_section_paragraph_text",
+                            "label": "Paragraph text",
+                            "name": "text",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "rows": 4,
+                            "new_lines": "",
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "parent_repeater": "field_scl_section_paragraphs"
+                        }
+                    ],
+                    "parent_repeater": "field_scl_sections_group"
+                },
+                {
+                    "key": "field_scl_section_image",
+                    "label": "Section image",
+                    "name": "image",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "preview_size": "medium",
+                    "library": "all",
+                    "min_width": 0,
+                    "min_height": 0,
+                    "min_size": 0,
+                    "max_width": 0,
+                    "max_height": 0,
+                    "max_size": 0,
+                    "mime_types": "",
+                    "parent_repeater": "field_scl_sections_group"
+                }
+            ]
+        },
+        {
+            "key": "field_scl_tab_capabilities",
+            "label": "Core Capabilities",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_scl_enable_capabilities",
+            "label": "Enable capabilities section",
+            "name": "solution_content_enable_capabilities",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Turn this section off to hide the capability cards.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "Enabled",
+            "ui_off_text": "Disabled",
+            "message": ""
+        },
+        {
+            "key": "field_scl_capabilities_group",
+            "label": "Core capabilities content",
+            "name": "solution_content_capabilities",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_scl_enable_capabilities",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_scl_capabilities_heading",
+                    "label": "Heading",
+                    "name": "heading",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_scl_capabilities_description",
+                    "label": "Description",
+                    "name": "description",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 3,
+                    "new_lines": "",
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_scl_capabilities_cards",
+                    "label": "Capability cards",
+                    "name": "cards",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "block",
+                    "button_label": "Add capability card",
+                    "min": 1,
+                    "max": 0,
+                    "rows_per_page": 20,
+                    "collapsed": "",
+                    "sub_fields": [
+                        {
+                            "key": "field_scl_capability_card_title",
+                            "label": "Card title",
+                            "name": "title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_scl_capabilities_cards"
+                        },
+                        {
+                            "key": "field_scl_capability_card_description",
+                            "label": "Card description",
+                            "name": "description",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "rows": 3,
+                            "new_lines": "",
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "parent_repeater": "field_scl_capabilities_cards"
+                        },
+                        {
+                            "key": "field_scl_capability_card_image",
+                            "label": "Card image",
+                            "name": "image",
+                            "aria-label": "",
+                            "type": "image",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "preview_size": "medium",
+                            "library": "all",
+                            "min_width": 0,
+                            "min_height": 0,
+                            "min_size": 0,
+                            "max_width": 0,
+                            "max_height": 0,
+                            "max_size": 0,
+                            "mime_types": "",
+                            "parent_repeater": "field_scl_capabilities_cards"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "field_scl_tab_cta",
+            "label": "CTA",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_scl_enable_cta",
+            "label": "Enable CTA section",
+            "name": "solution_content_enable_cta",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Turn this section off to hide the CTA banner.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "Enabled",
+            "ui_off_text": "Disabled",
+            "message": ""
+        },
+        {
+            "key": "field_scl_cta_group",
+            "label": "CTA content",
+            "name": "solution_content_cta",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_scl_enable_cta",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_scl_cta_heading",
+                    "label": "Heading",
+                    "name": "heading",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_scl_cta_description",
+                    "label": "Description",
+                    "name": "description",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 3,
+                    "new_lines": "",
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_scl_cta_primary_link",
+                    "label": "Primary button link",
+                    "name": "primary_link",
+                    "aria-label": "",
+                    "type": "link",
+                    "instructions": "The link title is used as the button label.",
+                    "required": 1,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array"
+                },
+                {
+                    "key": "field_scl_cta_primary_icon",
+                    "label": "Primary button icon",
+                    "name": "primary_icon",
+                    "aria-label": "",
+                    "type": "group",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_scl_cta_primary_icon_source",
+                            "label": "Icon source",
+                            "name": "icon_source",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "phosphor": "Phosphor",
+                                "lucide": "Lucide",
+                                "svg_asset": "SVG asset",
+                                "image": "Image"
+                            },
+                            "default_value": "phosphor",
+                            "return_format": "value",
+                            "ui": 1,
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "create_options": 0,
+                            "save_options": 0
+                        },
+                        {
+                            "key": "field_scl_cta_primary_icon_phosphor",
+                            "label": "Phosphor icon",
+                            "name": "phosphor_icon",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_scl_cta_primary_icon_source",
+                                        "operator": "==",
+                                        "value": "phosphor"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "arrow-up-right": "arrow-up-right",
+                                "arrow-right": "arrow-right",
+                                "check": "check",
+                                "check-circle": "check-circle",
+                                "plus": "plus",
+                                "minus": "minus"
+                            },
+                            "default_value": "arrow-up-right",
+                            "return_format": "value",
+                            "ui": 1,
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "create_options": 0,
+                            "save_options": 0
+                        },
+                        {
+                            "key": "field_scl_cta_primary_icon_lucide",
+                            "label": "Lucide icon",
+                            "name": "lucide_icon",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_scl_cta_primary_icon_source",
+                                        "operator": "==",
+                                        "value": "lucide"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "arrow-up-right": "arrow-up-right",
+                                "arrow-right": "arrow-right",
+                                "check": "check",
+                                "check-circle": "circle-check",
+                                "plus": "plus",
+                                "minus": "minus"
+                            },
+                            "default_value": "arrow-up-right",
+                            "return_format": "value",
+                            "ui": 1,
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "create_options": 0,
+                            "save_options": 0
+                        },
+                        {
+                            "key": "field_scl_cta_primary_icon_svg",
+                            "label": "SVG asset path",
+                            "name": "svg_asset",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "Theme-relative SVG path or attachment ID supported by reacon_group_inline_svg().",
+                            "required": 1,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_scl_cta_primary_icon_source",
+                                        "operator": "==",
+                                        "value": "svg_asset"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_scl_cta_primary_icon_image",
+                            "label": "Image icon",
+                            "name": "image_asset",
+                            "aria-label": "",
+                            "type": "image",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_scl_cta_primary_icon_source",
+                                        "operator": "==",
+                                        "value": "image"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "preview_size": "thumbnail",
+                            "library": "all",
+                            "min_width": 0,
+                            "min_height": 0,
+                            "min_size": 0,
+                            "max_width": 0,
+                            "max_height": 0,
+                            "max_size": 0,
+                            "mime_types": ""
+                        }
+                    ]
+                },
+                {
+                    "key": "field_scl_cta_secondary_link",
+                    "label": "Secondary button link",
+                    "name": "secondary_link",
+                    "aria-label": "",
+                    "type": "link",
+                    "instructions": "The link title is used as the button label.",
+                    "required": 1,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array"
+                }
+            ]
+        },
+        {
+            "key": "field_scl_tab_faq",
+            "label": "FAQ",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_scl_enable_faq",
+            "label": "Enable FAQ section",
+            "name": "solution_content_enable_faq",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Turn this section off to hide the FAQ and support card.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "Enabled",
+            "ui_off_text": "Disabled",
+            "message": ""
+        },
+        {
+            "key": "field_scl_faq_group",
+            "label": "FAQ content",
+            "name": "solution_content_faq",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_scl_enable_faq",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_scl_faq_heading",
+                    "label": "Heading",
+                    "name": "heading",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_scl_faq_description",
+                    "label": "Description",
+                    "name": "description",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 3,
+                    "new_lines": "",
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_scl_faq_items",
+                    "label": "FAQ items",
+                    "name": "items",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "block",
+                    "button_label": "Add FAQ item",
+                    "min": 1,
+                    "max": 0,
+                    "rows_per_page": 20,
+                    "collapsed": "",
+                    "sub_fields": [
+                        {
+                            "key": "field_scl_faq_question",
+                            "label": "Question",
+                            "name": "question",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_scl_faq_items"
+                        },
+                        {
+                            "key": "field_scl_faq_answer",
+                            "label": "Answer",
+                            "name": "answer",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "rows": 4,
+                            "new_lines": "",
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "parent_repeater": "field_scl_faq_items"
+                        }
+                    ]
+                },
+                {
+                    "key": "field_scl_faq_support_heading",
+                    "label": "Support card heading",
+                    "name": "support_card_heading",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_scl_faq_support_description",
+                    "label": "Support card description",
+                    "name": "support_card_description",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 3,
+                    "new_lines": "",
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_scl_faq_support_link",
+                    "label": "Support card link",
+                    "name": "support_card_link",
+                    "aria-label": "",
+                    "type": "link",
+                    "instructions": "The link title is used as the button label.",
+                    "required": 1,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array"
+                },
+                {
+                    "key": "field_scl_faq_support_icon",
+                    "label": "Support card icon",
+                    "name": "support_card_icon",
+                    "aria-label": "",
+                    "type": "group",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_scl_faq_support_icon_source",
+                            "label": "Icon source",
+                            "name": "icon_source",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "phosphor": "Phosphor",
+                                "lucide": "Lucide",
+                                "svg_asset": "SVG asset",
+                                "image": "Image"
+                            },
+                            "default_value": "phosphor",
+                            "return_format": "value",
+                            "ui": 1,
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "create_options": 0,
+                            "save_options": 0
+                        },
+                        {
+                            "key": "field_scl_faq_support_icon_phosphor",
+                            "label": "Phosphor icon",
+                            "name": "phosphor_icon",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_scl_faq_support_icon_source",
+                                        "operator": "==",
+                                        "value": "phosphor"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "arrow-up-right": "arrow-up-right",
+                                "arrow-right": "arrow-right",
+                                "check": "check",
+                                "check-circle": "check-circle",
+                                "plus": "plus",
+                                "minus": "minus"
+                            },
+                            "default_value": "arrow-right",
+                            "return_format": "value",
+                            "ui": 1,
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "create_options": 0,
+                            "save_options": 0
+                        },
+                        {
+                            "key": "field_scl_faq_support_icon_lucide",
+                            "label": "Lucide icon",
+                            "name": "lucide_icon",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_scl_faq_support_icon_source",
+                                        "operator": "==",
+                                        "value": "lucide"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "arrow-up-right": "arrow-up-right",
+                                "arrow-right": "arrow-right",
+                                "check": "check",
+                                "check-circle": "circle-check",
+                                "plus": "plus",
+                                "minus": "minus"
+                            },
+                            "default_value": "arrow-right",
+                            "return_format": "value",
+                            "ui": 1,
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "create_options": 0,
+                            "save_options": 0
+                        },
+                        {
+                            "key": "field_scl_faq_support_icon_svg",
+                            "label": "SVG asset path",
+                            "name": "svg_asset",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "Theme-relative SVG path or attachment ID supported by reacon_group_inline_svg().",
+                            "required": 1,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_scl_faq_support_icon_source",
+                                        "operator": "==",
+                                        "value": "svg_asset"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_scl_faq_support_icon_image",
+                            "label": "Image icon",
+                            "name": "image_asset",
+                            "aria-label": "",
+                            "type": "image",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_scl_faq_support_icon_source",
+                                        "operator": "==",
+                                        "value": "image"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "preview_size": "thumbnail",
+                            "library": "all",
+                            "min_width": 0,
+                            "min_height": 0,
+                            "min_size": 0,
+                            "max_width": 0,
+                            "max_height": 0,
+                            "max_size": 0,
+                            "mime_types": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "solution"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "ACF fields for the Solution single template.",
+    "show_in_rest": 0,
+    "display_title": "",
+    "modified": 1775467492
+}
