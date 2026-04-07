@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Template Name: Solution — Content Studio
+ * Template Name: Solution — Main
  * Template Post Type: page, solution
  *
- * Dynamic ACF-powered solution page template for Content Studio.
+ * Dynamic ACF-powered solution page template for Main.
  * All content is managed through ACF Pro field groups.
  *
  * @package reacon-group
@@ -148,7 +148,7 @@ $show_faq = get_field('solution_faq_enabled');
 
 		$highlight_video_url = reacon_solution_media_url($highlights_video_field);
 		$has_highlight_video = !empty($highlight_video_url);
-		$highlight_video_label = __('Content studio showreel video', 'reacon-group');
+		$highlight_video_label = __('Solution main showreel video', 'reacon-group');
 		?>
 		<section
 			id="solution-highlights"
@@ -267,63 +267,63 @@ $show_faq = get_field('solution_faq_enabled');
 							?>
 							<article class="overflow-hidden rounded-[32px] border border-[#ECEFF2] bg-card">
 								<?php if ($card_link_url): ?>
-								<a
-									href="<?php echo esc_url($card_link_url); ?>"
-									target="<?php echo esc_attr($card_link_target); ?>"
-									<?php echo $card_link_rel ? 'rel="' . esc_attr($card_link_rel) . '"' : ''; ?>
-									aria-label="<?php echo esc_attr($card_title !== '' ? $card_title : __('Open capability card', 'reacon-group')); ?>"
-									class="group block no-underline">
-								<?php endif; ?>
-								<?php if ($card_image_url): ?>
-									<div class="h-[260px] overflow-hidden rounded-t-[32px] rounded-b-[20px] bg-white">
-										<img
-											src="<?php echo esc_url($card_image_url); ?>"
-											alt="<?php echo esc_attr($card_title); ?>"
-											loading="lazy"
-											decoding="async"
-											class="h-full w-full object-cover" />
-									</div>
-								<?php endif; ?>
-
-								<div class="px-[20px] pb-[20px] pt-[12px]">
-									<?php if ($card_title): ?>
-										<h3 class="font-display text-[24px] font-semibold leading-[1.32] text-foreground sm:text-[28px] lg:text-[32px]">
-											<?php echo esc_html($card_title); ?>
-										</h3>
+									<a
+										href="<?php echo esc_url($card_link_url); ?>"
+										target="<?php echo esc_attr($card_link_target); ?>"
+										<?php echo $card_link_rel ? 'rel="' . esc_attr($card_link_rel) . '"' : ''; ?>
+										aria-label="<?php echo esc_attr($card_title !== '' ? $card_title : __('Open capability card', 'reacon-group')); ?>"
+										class="group block no-underline">
 									<?php endif; ?>
-
-									<?php if ($card_paragraph): ?>
-										<p class="mt-2 font-sans text-[16px] leading-[22.72px] text-foreground/80">
-											<?php echo esc_html($card_paragraph); ?>
-										</p>
-									<?php endif; ?>
-
-									<?php if (!empty($card_bullets)): ?>
-										<div class="mt-5 space-y-1">
-											<?php foreach ($card_bullets as $bullet_item): ?>
-												<?php $bullet_text = $bullet_item['bullet'] ?? ''; ?>
-												<?php if ($bullet_text): ?>
-													<div class="flex items-start gap-3">
-														<?php if ($tick_icon_url): ?>
-															<img
-																src="<?php echo esc_url($tick_icon_url); ?>"
-																alt=""
-																aria-hidden="true"
-																loading="lazy"
-																decoding="async"
-																class="mt-1 h-[16px] w-[16px] shrink-0" />
-														<?php endif; ?>
-														<p class="font-sans text-[16px] leading-[22.72px] text-foreground">
-															<?php echo esc_html($bullet_text); ?>
-														</p>
-													</div>
-												<?php endif; ?>
-											<?php endforeach; ?>
+									<?php if ($card_image_url): ?>
+										<div class="h-[260px] overflow-hidden rounded-t-[32px] rounded-b-[20px] bg-white">
+											<img
+												src="<?php echo esc_url($card_image_url); ?>"
+												alt="<?php echo esc_attr($card_title); ?>"
+												loading="lazy"
+												decoding="async"
+												class="h-full w-full object-cover" />
 										</div>
 									<?php endif; ?>
-								</div>
-								<?php if ($card_link_url): ?>
-								</a>
+
+									<div class="px-[20px] pb-[20px] pt-[12px]">
+										<?php if ($card_title): ?>
+											<h3 class="font-display text-[24px] font-semibold leading-[1.32] text-foreground sm:text-[28px] lg:text-[32px]">
+												<?php echo esc_html($card_title); ?>
+											</h3>
+										<?php endif; ?>
+
+										<?php if ($card_paragraph): ?>
+											<p class="mt-2 font-sans text-[16px] leading-[22.72px] text-foreground/80">
+												<?php echo esc_html($card_paragraph); ?>
+											</p>
+										<?php endif; ?>
+
+										<?php if (!empty($card_bullets)): ?>
+											<div class="mt-5 space-y-1">
+												<?php foreach ($card_bullets as $bullet_item): ?>
+													<?php $bullet_text = $bullet_item['bullet'] ?? ''; ?>
+													<?php if ($bullet_text): ?>
+														<div class="flex items-start gap-3">
+															<?php if ($tick_icon_url): ?>
+																<img
+																	src="<?php echo esc_url($tick_icon_url); ?>"
+																	alt=""
+																	aria-hidden="true"
+																	loading="lazy"
+																	decoding="async"
+																	class="mt-1 h-[16px] w-[16px] shrink-0" />
+															<?php endif; ?>
+															<p class="font-sans text-[16px] leading-[22.72px] text-foreground">
+																<?php echo esc_html($bullet_text); ?>
+															</p>
+														</div>
+													<?php endif; ?>
+												<?php endforeach; ?>
+											</div>
+										<?php endif; ?>
+									</div>
+									<?php if ($card_link_url): ?>
+									</a>
 								<?php endif; ?>
 							</article>
 						<?php endforeach; ?>

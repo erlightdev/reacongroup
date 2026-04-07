@@ -1,6 +1,6 @@
 {
     "key": "group_solution_content_studio",
-    "title": "Solution: Content Studio",
+    "title": "Solution: Main",
     "fields": [
         {
             "key": "field_solution_section_toggles",
@@ -411,5 +411,5 @@
     "instruction_placement": "label",
     "hide_on_screen": [],
     "active": true,
-    "description": "Dynamic content fields for Solution — Content Studio page template"
+    "description": "Dynamic content fields for Solution — Main page template"
 }
