@@ -21,19 +21,21 @@ $blog_index_url = home_url('/blogs/');
 		id="blog-single-content"
 		class="py-10 sm:py-14 lg:py-20 xl:py-20"
 		aria-labelledby="blog-single-title">
-		
+
 		<div class="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12">
 			<div class="mx-auto flex w-full max-w-[1280px] flex-col items-start gap-6 sm:gap-8 lg:gap-10  pt-14 md:pt-12 ">
-				
+
 				<!-- Blog Single: Back Link -->
 				<header class="w-full">
 					<a
 						href="<?php echo esc_url($blog_index_url); ?>"
 						class="inline-flex items-center gap-2 text-muted-foreground no-underline transition-colors hover:text-foreground"
 						aria-label="<?php esc_attr_e('Back to blogs', 'reacon-group'); ?>">
-						<span class="font-sans text-[14px] leading-[22.72px] sm:text-[16px]">
+						<span class="inline-flex items-center gap-1.5 font-sans text-[14px] leading-[22.72px] sm:text-[16px]">
+							<i class="ph-bold ph-caret-left text-[16px] leading-none text-current sm:text-[18px]" aria-hidden="true"></i>
 							<?php esc_html_e('Blogs', 'reacon-group'); ?>
 						</span>
+
 					</a>
 				</header>
 				<!-- End Blog Single: Back Link -->
@@ -43,7 +45,7 @@ $blog_index_url = home_url('/blogs/');
 					<h1
 						id="blog-single-title"
 						itemprop="headline"
-						class="font-display text-[32px] font-semibold leading-tight text-foreground sm:text-[40px] lg:text-[48px] xl:text-[56px] xl:leading-[73.92px]">
+						class="font-display text-[24px] font-semibold leading-tight text-foreground sm:text-[40px] lg:text-[48px] xl:text-[56px] xl:leading-[73.92px]">
 						<?php the_title(); ?>
 					</h1>
 				</div>
@@ -77,7 +79,7 @@ $blog_index_url = home_url('/blogs/');
 
 				<!-- Blog Single: Meta and Body -->
 				<div class="w-full space-y-5 sm:space-y-6">
-					
+
 					<!-- Semantic Author & Date Meta -->
 					<div class="font-sans text-[14px] font-medium leading-[22.72px] text-muted-foreground sm:text-[16px]">
 						<span itemprop="author" itemscope itemtype="https://schema.org/Person">
@@ -111,7 +113,7 @@ $blog_index_url = home_url('/blogs/');
 				<section
 					id="explore-more-blogs"
 					class="w-full pt-10 sm:pt-14 lg:pt-16 xl:pt-16">
-					
+
 					<div class="w-full">
 						<h2 class="font-display text-[32px] font-semibold leading-[42.24px] text-foreground">
 							<?php esc_html_e('Explore More Blogs', 'reacon-group'); ?>
@@ -119,80 +121,76 @@ $blog_index_url = home_url('/blogs/');
 					</div>
 
 					<?php
-					// Data structure for explore cards
-					$explore_post_url = home_url('/blogs/');
-					$explore_cards = array(
+					$explore_query = new WP_Query(
 						array(
-							'meta' => __('Alec Whitten • 17 Jan 2026', 'reacon-group'),
-							'title' => __('Why Integrated Production Saves Time and Cost', 'reacon-group'),
-							'content' => __('Exploring how unified creative, print, and fulfilment workflows reduce friction and improve speed to market.', 'reacon-group'),
-							'button' => __('Read More', 'reacon-group'),
-							'url' => $explore_post_url,
-						),
-						array(
-							'meta' => __('Maria Chen • 22 Jan 2026', 'reacon-group'),
-							'title' => __('The Future of Sustainable Packaging', 'reacon-group'),
-							'content' => __('Examining innovative materials and processes that minimize environmental impact while maximizing functionality.', 'reacon-group'),
-							'button' => __('Read More', 'reacon-group'),
-							'url' => $explore_post_url,
-						),
-						array(
-							'meta' => __('Jordan Lee • 30 Jan 2026', 'reacon-group'),
-							'title' => __('Leveraging Data for Targeted Marketing', 'reacon-group'),
-							'content' => __('Understanding how analytics can drive personalized customer experiences and enhance engagement.', 'reacon-group'),
-							'button' => __('Read More', 'reacon-group'),
-							'url' => $explore_post_url,
-						),
-						array(
-							'meta' => __('Alec Whitten • 17 Jan 2026', 'reacon-group'),
-							'title' => __('Why Integrated Production Saves Time and Cost', 'reacon-group'),
-							'content' => __('Exploring how unified creative, print, and fulfilment workflows reduce friction and improve speed to market.', 'reacon-group'),
-							'button' => __('Read More', 'reacon-group'),
-							'url' => $explore_post_url,
-						),
+							'post_type' => 'post',
+							'post_status' => 'publish',
+							'posts_per_page' => 6,
+							'post__not_in' => array((int) get_the_ID()),
+							'ignore_sticky_posts' => true,
+							'no_found_rows' => true,
+						)
 					);
 					?>
 
 					<div class="mt-[16px] w-full">
 						<div class="swiper js-explore-more-swiper w-full overflow-hidden">
 							<div class="swiper-wrapper">
-								<?php foreach ($explore_cards as $card): ?>
-									<article class="swiper-slide bg-white border border-border rounded-[32px] p-[10px] flex flex-col gap-[24px] overflow-hidden min-h-[420px]">
-										<div class="h-[240px] relative rounded-[24px] overflow-hidden">
-											<img
-												src="<?php echo esc_url($blog_fallback_image); ?>"
-												alt="<?php echo esc_attr($card['title']); ?>"
-												class="absolute inset-0 h-full w-full object-cover pointer-events-none" 
-												loading="lazy" />
-										</div>
+								<?php if ($explore_query->have_posts()): ?>
+									<?php foreach ($explore_query->posts as $explore_post): ?>
+										<?php
+										$explore_post_id = $explore_post instanceof WP_Post ? (int) $explore_post->ID : 0;
+										$explore_title = $explore_post_id ? get_the_title($explore_post_id) : '';
+										$explore_url = $explore_post_id ? get_permalink($explore_post_id) : $blog_index_url;
+										$explore_excerpt = $explore_post_id ? wp_trim_words(wp_strip_all_tags((string) get_the_excerpt($explore_post_id)), 12, '...') : '';
+										$explore_thumb = $explore_post_id ? get_the_post_thumbnail_url($explore_post_id, 'large') : '';
+										$explore_author = $explore_post instanceof WP_Post ? get_the_author_meta('display_name', (int) $explore_post->post_author) : '';
+										$explore_date = $explore_post_id ? get_the_date('d M Y', $explore_post_id) : '';
+										$explore_meta = trim($explore_author . ' • ' . $explore_date);
+										?>
+										<article class="swiper-slide flex min-h-[430px] flex-col overflow-hidden rounded-[28px] border border-[#DCE3EC] bg-white p-[10px] shadow-[0_1px_0_rgba(15,23,42,0.04)] transition-shadow duration-200 hover:shadow-[0_8px_24px_rgba(15,23,42,0.06)]">
+											<div class="relative h-[220px] overflow-hidden rounded-[22px] sm:h-[230px]">
+												<img
+													src="<?php echo esc_url($explore_thumb ? $explore_thumb : $blog_fallback_image); ?>"
+													alt="<?php echo esc_attr($explore_title); ?>"
+													class="pointer-events-none absolute inset-0 h-full w-full object-cover"
+													loading="lazy" />
+											</div>
 
-										<div class="flex flex-col items-start gap-[12px] pt-[8px] px-[8px]">
-											<p class="font-sans text-[14px] font-medium leading-[19.6px] text-muted-foreground">
-												<?php echo esc_html($card['meta']); ?>
-											</p>
-											<h3 class="font-display text-[24px] font-semibold leading-[31.68px] text-foreground">
-												<a href="<?php echo esc_url($card['url']); ?>" class="hover:text-primary transition-colors no-underline">
-													<?php echo esc_html($card['title']); ?>
-												</a>
-											</h3>
-											<p class="font-sans text-[16px] leading-[22.72px] text-muted-foreground line-clamp-3 pb-2">
-												<?php echo esc_html(wp_trim_words(wp_strip_all_tags((string) $card['content']), 10, '…')); ?>
-											</p>
+											<div class="flex flex-1 flex-col items-start gap-3 px-2 pb-2 pt-5 sm:px-3 sm:pt-6">
+												<p class="text-sm font-medium text-[#6B7280]">
+													<?php echo esc_html($explore_meta); ?>
+												</p>
+												<h3 class="text-[20px] leading-[1.22] text-foreground sm:text-[20px]">
+													<a href="<?php echo esc_url($explore_url); ?>" class="transition-colors no-underline hover:text-primary">
+														<?php echo esc_html($explore_title); ?>
+													</a>
+												</h3>
+												<p class="text-md line-clamp-3 text-[#667085]">
+													<?php echo esc_html($explore_excerpt); ?>
+												</p>
+												<div class="mt-auto flex w-full justify-end pt-3">
+													<a
+														href="<?php echo esc_url($explore_url); ?>"
+														aria-label="<?php echo esc_attr(sprintf(__('Read more about %s', 'reacon-group'), $explore_title)); ?>"
+														class="inline-flex items-center justify-center rounded-full border border-[#D1D9E6] px-5 py-2 text-[15px] leading-none text-[#667085] no-underline transition-colors hover:border-primary hover:text-primary">
+														<?php esc_html_e('Read More', 'reacon-group'); ?>
+													</a>
+												</div>
+											</div>
+										</article>
+									<?php endforeach; ?>
+								<?php else: ?>
+									<article class="swiper-slide flex min-h-[430px] flex-col overflow-hidden rounded-[28px] border border-[#DCE3EC] bg-white p-[10px] shadow-[0_1px_0_rgba(15,23,42,0.04)]">
+										<div class="flex min-h-[240px] items-center justify-center rounded-[22px] bg-background px-6 text-center font-sans text-[16px] text-muted-foreground">
+											<?php esc_html_e('No more blog posts found.', 'reacon-group'); ?>
 										</div>
-
-										<a
-											href="<?php echo esc_url($card['url']); ?>"
-											aria-label="<?php echo esc_attr(sprintf(__('Read more about %s', 'reacon-group'), $card['title'])); ?>"
-											class="self-end w-fit border border-border rounded-[24px] px-[16px] mt-auto py-[8px] flex items-center justify-end transition-colors hover:border-primary no-underline">
-											<span class="font-sans text-[16px] leading-[22.72px] text-muted-foreground whitespace-nowrap">
-												<?php echo esc_html($card['button']); ?>
-											</span>
-										</a>
 									</article>
-								<?php endforeach; ?>
+								<?php endif; ?>
 							</div>
 						</div>
 					</div>
+					<?php wp_reset_postdata(); ?>
 				</section>
 				<!-- End Major Section: Explore More Blogs -->
 
@@ -200,7 +198,7 @@ $blog_index_url = home_url('/blogs/');
 				<script>
 					document.addEventListener('DOMContentLoaded', function() {
 						var swiperEl = document.querySelector('.js-explore-more-swiper');
-						if ( ! swiperEl || typeof Swiper === 'undefined' ) {
+						if (!swiperEl || typeof Swiper === 'undefined') {
 							return;
 						}
 
@@ -215,7 +213,7 @@ $blog_index_url = home_url('/blogs/');
 							},
 							breakpoints: {
 								1024: {
-									slidesPerView: 3,
+									slidesPerView: 3.5,
 									slidesPerGroup: 1
 								}
 							}
@@ -252,11 +250,11 @@ $solution_cta = array(
 	aria-labelledby="solution-cta-heading">
 	<div class="mx-auto w-full px-4 md:px-10">
 		<div class="relative overflow-hidden rounded-[22px] bg-[#0D6B75] px-5 py-14 sm:px-8 sm:py-16 lg:rounded-[24px] lg:px-12 lg:py-[70px]">
-			
+
 			<!-- Background Overlays & Gradients -->
 			<div class="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_100%_at_50%_10%,rgba(255,255,255,0.08)_0%,rgba(255,255,255,0)_58%)]" aria-hidden="true"></div>
 			<div class="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,#0E6D77_0%,#0A4E57_100%)] opacity-75" aria-hidden="true"></div>
-			
+
 			<div class="pointer-events-none absolute left-16 top-0 h-[205px] w-[1566px]" aria-hidden="true">
 				<svg viewBox="0 0 1566 205" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-full w-full">
 					<path
@@ -271,7 +269,7 @@ $solution_cta = array(
 					</defs>
 				</svg>
 			</div>
-			
+
 			<div class="pointer-events-none absolute right-[-955px] h-[791px] w-[2122px]" aria-hidden="true">
 				<svg width="2122" height="791" viewBox="0 0 2122 791" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-full w-full">
 					<path d="M1287.5 -60L0 683.596L2122 731L1287.5 -60Z" fill="url(#solutionCtaShardGradient)" fill-opacity="0.15" />
@@ -311,7 +309,7 @@ $solution_cta = array(
 					</a>
 				</div>
 			</div>
-			
+
 		</div>
 	</div>
 </section>

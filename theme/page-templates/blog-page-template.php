@@ -143,7 +143,7 @@ if ($acf_enabled) {
 						<?php echo esc_html(reacon_blog_fallback_text($hero_eyebrow, 'Blogs')); ?>
 					</p>
 
-					<h1 class="max-w-[860px] font-display text-[30px] font-bold leading-[1.16] text-white sm:text-[40px] lg:text-[56px]">
+					<h1 class="max-w-[860px] font-display text-[24px] font-bold leading-[1.16] text-white sm:text-[40px] lg:text-[56px]">
 						<?php echo esc_html(reacon_blog_fallback_text($hero_title, 'Insights, Ideas & Industry Thinking')); ?>
 					</h1>
 
@@ -232,7 +232,7 @@ if ($acf_enabled) {
 			id="blog-latest"
 			class="bg-background py-12"
 			aria-labelledby="blog-latest-heading">
-			<div class="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12">
+			<div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12">
 				<div class="flex flex-col gap-[32px] items-start">
 					<h2
 						id="blog-latest-heading"
@@ -362,7 +362,7 @@ if ($acf_enabled) {
 									type="button"
 									<?php echo $prev_url ? 'data-url="' . esc_attr($prev_url) . '"' : 'disabled'; ?>
 									class="group inline-flex items-center gap-2 rounded-full px-1.5 py-1 text-[#475569] transition-colors hover:text-[#334155] disabled:cursor-not-allowed disabled:opacity-40">
-									<i class="ph ph-caret-left text-[22px] leading-none text-current" aria-hidden="true"></i>
+									<i class="ph-bold ph-caret-left text-[22px] leading-none text-current" aria-hidden="true"></i>
 									<span class="type-body-md text-current">
 										<?php echo esc_html(reacon_blog_fallback_text($pagination_prev_label, 'Previous')); ?>
 									</span>
