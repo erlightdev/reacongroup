@@ -117,42 +117,42 @@ if ($acf_enabled) {
 	}
 	?>
 	<?php if ($blog_sections['hero']): ?>
-	<section
-		id="blog-hero"
-		class="relative w-full p-1.5 md:p-2.5"
-		aria-label="<?php esc_attr_e('Blog page hero', 'reacon-group'); ?>">
-		<div
-			class="reacon-blog-hero-card relative min-h-[255px] overflow-hidden rounded-[24px] bg-[#062B53] sm:min-h-[300px] lg:min-h-[380px] lg:rounded-[31px]">
-			<img
-				src="<?php echo esc_url($hero_bg !== '' ? $hero_bg : $blog_hero_bg); ?>"
-				alt=""
-				aria-hidden="true"
-				class="pointer-events-none absolute inset-0 h-full w-full object-cover object-center"
-				fetchpriority="high"
-				loading="eager"
-				decoding="async" />
-
-			<!-- Dark overlay to keep typography readable over the image -->
+		<section
+			id="blog-hero"
+			class="relative w-full p-1.5 md:p-2.5"
+			aria-label="<?php esc_attr_e('Blog page hero', 'reacon-group'); ?>">
 			<div
-				class="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,10,33,0.28)_0%,rgba(0,10,33,0.18)_45%,rgba(0,10,33,0.28)_100%)]"
-				aria-hidden="true"></div>
+				class="reacon-blog-hero-card relative min-h-[255px] overflow-hidden rounded-[24px] bg-[#062B53] sm:min-h-[300px] lg:min-h-[380px] lg:rounded-[31px]">
+				<img
+					src="<?php echo esc_url($hero_bg !== '' ? $hero_bg : $blog_hero_bg); ?>"
+					alt=""
+					aria-hidden="true"
+					class="pointer-events-none absolute inset-0 h-full w-full object-cover object-center"
+					fetchpriority="high"
+					loading="eager"
+					decoding="async" />
 
-			<div
-				class="relative z-10 mx-auto flex min-h-[255px] w-full max-w-[1200px] flex-col items-center justify-center px-5 pb-10 pt-28 text-center sm:min-h-[300px] sm:px-6 sm:pt-32 lg:min-h-[380px] lg:px-10 lg:pb-14 lg:pt-36">
-				<p class="mb-4 font-sans text-[11px] font-medium uppercase tracking-[0.18em] text-white/85 lg:mb-5">
+				<!-- Dark overlay to keep typography readable over the image -->
+				<div
+					class="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,10,33,0.28)_0%,rgba(0,10,33,0.18)_45%,rgba(0,10,33,0.28)_100%)]"
+					aria-hidden="true"></div>
+
+				<div
+					class="relative z-10 mx-auto flex min-h-[255px] w-full max-w-[1200px] flex-col items-center justify-center px-5 pb-10 pt-28 text-center sm:min-h-[300px] sm:px-6 sm:pt-32 lg:min-h-[380px] lg:px-10 lg:pb-14 lg:pt-36">
+					<p class="mb-4 font-sans text-[11px] font-medium uppercase tracking-[0.18em] text-white/85 lg:mb-5">
 						<?php echo esc_html(reacon_blog_fallback_text($hero_eyebrow, 'Blogs')); ?>
 					</p>
 
-				<h1 class="max-w-[860px] font-display text-[30px] font-bold leading-[1.16] text-white sm:text-[40px] lg:text-[56px]">
-					<?php echo esc_html(reacon_blog_fallback_text($hero_title, 'Insights, Ideas & Industry Thinking')); ?>
-				</h1>
+					<h1 class="max-w-[860px] font-display text-[30px] font-bold leading-[1.16] text-white sm:text-[40px] lg:text-[56px]">
+						<?php echo esc_html(reacon_blog_fallback_text($hero_title, 'Insights, Ideas & Industry Thinking')); ?>
+					</h1>
 
-				<p class="mt-4 max-w-[780px] font-sans text-[13px] leading-[1.45] text-white/90 sm:text-[15px] lg:mt-5 lg:text-base">
-					<?php echo esc_html(reacon_blog_fallback_text($hero_description, 'Please add hero description in ACF.')); ?>
-				</p>
+					<p class="mt-4 max-w-[780px] font-sans text-[13px] leading-[1.45] text-white/90 sm:text-[15px] lg:mt-5 lg:text-base">
+						<?php echo esc_html(reacon_blog_fallback_text($hero_description, 'Please add hero description in ACF.')); ?>
+					</p>
+				</div>
 			</div>
-		</div>
-	</section>
+		</section>
 	<?php endif; ?>
 	<!-- End Major Section: Blog Hero -->
 
@@ -228,192 +228,192 @@ if ($acf_enabled) {
 	);
 	?>
 	<?php if ($blog_sections['latest']): ?>
-	<section
-		id="blog-latest"
-		class="bg-background py-12"
-		aria-labelledby="blog-latest-heading">
-		<div class="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12">
-			<div class="flex flex-col gap-[32px] items-start">
-				<h2
-					id="blog-latest-heading"
-					class="font-display text-[32px] font-semibold leading-[42.24px] text-foreground">
-					<?php echo esc_html(reacon_blog_fallback_text($latest_heading, 'Latest Blogs')); ?>
-				</h2>
+		<section
+			id="blog-latest"
+			class="bg-background py-12"
+			aria-labelledby="blog-latest-heading">
+			<div class="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12">
+				<div class="flex flex-col gap-[32px] items-start">
+					<h2
+						id="blog-latest-heading"
+						class="font-display text-[32px] font-semibold leading-[42.24px] text-foreground">
+						<?php echo esc_html(reacon_blog_fallback_text($latest_heading, 'Latest Blogs')); ?>
+					</h2>
 
-				<?php
-				$featured_url = $featured_post_id ? get_permalink($featured_post_id) : '#';
-				$featured_title = $featured_post_id ? get_the_title($featured_post_id) : '';
-				$featured_meta = '';
-				$featured_excerpt = '';
-				$featured_img_url = '';
-				$featured_img_alt = '';
-				if ($featured_post_id) {
-					$featured_meta = trim(get_the_author_meta('display_name', (int) $featured_post->post_author) . ' • ' . get_the_date('d M Y', $featured_post_id));
-					$featured_excerpt = wp_trim_words(get_the_excerpt($featured_post_id), 55, '');
-					$thumb_id = get_post_thumbnail_id($featured_post_id);
-					$featured_img_url = get_the_post_thumbnail_url($featured_post_id, 'full');
-					$featured_img_alt = $thumb_id ? (string) get_post_meta($thumb_id, '_wp_attachment_image_alt', true) : '';
-				}
-				?>
-				<a
-					href="<?php echo esc_url($featured_url); ?>"
-					aria-label="<?php echo esc_attr(reacon_blog_fallback_text($featured_title, 'Featured blog')); ?>"
-					class="group bg-card w-full border border-border rounded-[32px] overflow-hidden p-[10px] flex flex-col gap-[16px] transition-colors hover:border-primary">
-					<div class="h-[420px] relative rounded-[24px] w-full overflow-hidden">
-						<img
-							src="<?php echo esc_url($featured_img_url ? $featured_img_url : $blog_card_image); ?>"
-							alt="<?php echo esc_attr(reacon_blog_fallback_text($featured_img_alt, 'Featured blog cover')); ?>"
-							class="absolute inset-0 h-full w-full object-cover pointer-events-none"
-							loading="eager"
-							decoding="async" />
-					</div>
-
-					<div class="flex flex-col items-start gap-[8px] pt-[8px] px-[8px]">
-						<p class="font-sans text-[14px] font-medium leading-[19.6px] text-muted-foreground">
-							<?php echo esc_html($featured_meta); ?>
-						</p>
-						<p class="font-display text-[32px] font-semibold leading-[42.24px] text-foreground">
-							<?php echo esc_html(reacon_blog_fallback_text($featured_title, 'Latest blog post')); ?>
-						</p>
-						<p class="font-sans text-[16px] leading-[22.72px] text-muted-foreground">
-							<?php echo esc_html(reacon_blog_fallback_text($featured_excerpt, 'No blog posts found.')); ?>
-						</p>
-					</div>
-
-				</a>
-
-			
-
-				<div class="flex flex-col gap-[24px] w-full">
-					<div class="grid grid-cols-1 gap-[24px] sm:grid-cols-2 lg:grid-cols-3">
-						<?php if ($posts_query->have_posts()): ?>
-							<?php foreach ($posts_query->posts as $index => $post): ?>
-								<?php
-								$post_id = $post instanceof WP_Post ? (int) $post->ID : 0;
-								$card_img_url = $post_id ? get_the_post_thumbnail_url($post_id, 'large') : '';
-								$card_thumb_id = $post_id ? get_post_thumbnail_id($post_id) : 0;
-								$card_img_alt = $card_thumb_id ? (string) get_post_meta($card_thumb_id, '_wp_attachment_image_alt', true) : '';
-								$card_meta = $post_id ? trim(get_the_author_meta('display_name', (int) $post->post_author) . ' • ' . get_the_date('d M Y', $post_id)) : '';
-								$card_title = $post_id ? get_the_title($post_id) : '';
-								$card_excerpt = $post_id ? wp_trim_words(get_the_excerpt($post_id), 24, '') : '';
-								$card_url = $post_id ? get_permalink($post_id) : '#';
-								?>
-							<article class="bg-card border border-border rounded-[32px] p-[10px] flex flex-col gap-[24px] overflow-hidden transition-colors hover:border-primary">
-								<div class="h-[240px] relative rounded-[24px] overflow-hidden">
-									<img
-										src="<?php echo esc_url($card_img_url ? $card_img_url : $blog_card_image); ?>"
-										alt="<?php echo esc_attr($card_img_alt !== '' ? $card_img_alt : ('Blog cover ' . ((int) $index + 1))); ?>"
-										class="absolute inset-0 h-full w-full object-cover pointer-events-none"
-										loading="lazy"
-										decoding="async" />
-								</div>
-								<div class="flex flex-col items-start gap-[12px] pt-[8px] px-[8px]">
-									<p class="font-sans text-[14px] font-medium leading-[19.6px] text-muted-foreground">
-										<?php echo esc_html($card_meta); ?>
-									</p>
-									<p class="font-display text-[24px] font-semibold leading-[31.68px] text-foreground">
-										<a href="<?php echo esc_url($card_url); ?>" class="no-underline text-inherit">
-											<?php echo esc_html($card_title); ?>
-										</a>
-									</p>
-									<p class="font-sans text-[16px] leading-[22.72px] text-muted-foreground line-clamp-3">
-										<?php echo esc_html($card_excerpt); ?>
-									</p>
-								</div>
-								<a
-									href="<?php echo esc_url($card_url); ?>"
-									class="mt-auto self-end w-fit border border-border rounded-[24px] px-[16px] py-[8px] flex items-center justify-end font-sans text-[16px] leading-[22.72px] text-muted-foreground transition-colors hover:text-foreground hover:border-primary no-underline">
-									<?php echo esc_html(reacon_blog_fallback_text($read_more_label, 'Read More')); ?>
-								</a>
-							</article>
-							<?php endforeach; ?>
-						<?php else: ?>
-							<article class="bg-card border border-border rounded-[32px] p-[10px] flex flex-col gap-[24px] overflow-hidden">
-								<div class="flex min-h-[240px] items-center justify-center rounded-[24px] bg-background px-6 text-center font-sans text-[16px] text-muted-foreground">
-									<?php echo esc_html('Please add blog cards in ACF.'); ?>
-								</div>
-							</article>
-						<?php endif; ?>
-					</div>
-				</div>
-
-				<?php
-				$max_pages = (int) $posts_query->max_num_pages;
-				$show_pagination = $max_pages > 1 && $posts_query->found_posts > $posts_per_page;
-				$prev_url = $paged > 1 ? get_pagenum_link($paged - 1) : '';
-				$next_url = $paged < $max_pages ? get_pagenum_link($paged + 1) : '';
-				$page_links = $show_pagination ? paginate_links(
-					array(
-						'total' => $max_pages,
-						'current' => $paged,
-						'type' => 'array',
-						'end_size' => 1,
-						'mid_size' => 1,
-						'prev_next' => false,
-					)
-				) : array();
-				?>
-				<?php if ($show_pagination): ?>
-				<nav
-					class="w-full flex items-center justify-center mt-[8px]"
-					aria-label="<?php esc_attr_e('Blog pagination', 'reacon-group'); ?>">
-					<div class="flex items-center justify-center gap-[10px] px-[12px] py-[10px] border border-border rounded-[18px] bg-card">
-						<button
-							type="button"
-							<?php echo $prev_url ? 'data-url="' . esc_attr($prev_url) . '"' : 'disabled'; ?>
-							class="flex items-center gap-[10px] text-muted-foreground hover:text-foreground transition-colors px-[8px] py-[6px] cursor-pointer disabled:cursor-not-allowed disabled:opacity-40">
-							<i class="ph-bold ph-arrow-left text-muted-foreground" aria-hidden="true"></i>
-							<span class="font-sans text-[14px] leading-[19.88px]">
-								<?php echo esc_html(reacon_blog_fallback_text($pagination_prev_label, 'Previous')); ?>
-							</span>
-						</button>
-
-						<div class="flex items-center gap-[8px] px-[6px]">
-							<?php
-							if (is_array($page_links)) {
-								foreach ($page_links as $link_html) {
-									$is_dots = strpos($link_html, 'dots') !== false;
-									if ($is_dots) {
-										echo '<span class="font-sans text-[14px] leading-[19.88px] text-muted-foreground px-[6px] select-none">...</span>';
-										continue;
-									}
-
-									$is_current = strpos($link_html, 'current') !== false;
-									$page_label = trim(wp_strip_all_tags($link_html));
-									$page_url = '';
-									if (preg_match("/href=[\\\\\"\']([^\\\\\"\']+)[\\\\\"\']/", $link_html, $m)) {
-										$page_url = $m[1];
-									}
-									?>
-									<a
-										href="<?php echo esc_url($page_url ? $page_url : '#'); ?>"
-										aria-current="<?php echo $is_current ? 'page' : 'false'; ?>"
-										class="<?php echo $is_current
-										? 'bg-primary border-primary text-white'
-										: 'bg-transparent border border-border text-foreground hover:border-primary hover:text-foreground'; ?> flex items-center justify-center rounded-[10px] size-[32px] transition-colors">
-										<span class="font-sans text-[14px] leading-[19.88px]"><?php echo esc_html($page_label); ?></span>
-									</a>
-									<?php
-								}
-							}
-							?>
+					<?php
+					$featured_url = $featured_post_id ? get_permalink($featured_post_id) : '#';
+					$featured_title = $featured_post_id ? get_the_title($featured_post_id) : '';
+					$featured_meta = '';
+					$featured_excerpt = '';
+					$featured_img_url = '';
+					$featured_img_alt = '';
+					if ($featured_post_id) {
+						$featured_meta = trim(get_the_author_meta('display_name', (int) $featured_post->post_author) . ' • ' . get_the_date('d M Y', $featured_post_id));
+						$featured_excerpt = wp_trim_words(get_the_excerpt($featured_post_id), 55, '');
+						$thumb_id = get_post_thumbnail_id($featured_post_id);
+						$featured_img_url = get_the_post_thumbnail_url($featured_post_id, 'full');
+						$featured_img_alt = $thumb_id ? (string) get_post_meta($thumb_id, '_wp_attachment_image_alt', true) : '';
+					}
+					?>
+					<a
+						href="<?php echo esc_url($featured_url); ?>"
+						aria-label="<?php echo esc_attr(reacon_blog_fallback_text($featured_title, 'Featured blog')); ?>"
+						class="group bg-card w-full border border-border rounded-[32px] overflow-hidden p-[10px] flex flex-col gap-[16px] transition-colors hover:border-primary">
+						<div class="h-[420px] relative rounded-[24px] w-full overflow-hidden">
+							<img
+								src="<?php echo esc_url($featured_img_url ? $featured_img_url : $blog_card_image); ?>"
+								alt="<?php echo esc_attr(reacon_blog_fallback_text($featured_img_alt, 'Featured blog cover')); ?>"
+								class="absolute inset-0 h-full w-full object-cover pointer-events-none"
+								loading="eager"
+								decoding="async" />
 						</div>
 
-						<button
-							type="button"
-							<?php echo $next_url ? 'data-url="' . esc_attr($next_url) . '"' : 'disabled'; ?>
-							class="flex items-center gap-[10px] text-muted-foreground hover:text-foreground transition-colors px-[8px] py-[6px] cursor-pointer disabled:cursor-not-allowed disabled:opacity-40">
-							<span class="font-sans text-[14px] leading-[19.88px]">
-								<?php echo esc_html(reacon_blog_fallback_text($pagination_next_label, 'Next')); ?>
-							</span>
-							<i class="ph-bold ph-arrow-right text-muted-foreground" aria-hidden="true"></i>
-						</button>
+						<div class="flex flex-col items-start gap-[8px] pt-[8px] px-[8px]">
+							<p class="font-sans text-[14px] font-medium leading-[19.6px] text-muted-foreground">
+								<?php echo esc_html($featured_meta); ?>
+							</p>
+							<p class="font-display text-[32px] font-semibold leading-[42.24px] text-foreground">
+								<?php echo esc_html(reacon_blog_fallback_text($featured_title, 'Latest blog post')); ?>
+							</p>
+							<p class="font-sans text-[16px] leading-[22.72px] text-muted-foreground">
+								<?php echo esc_html(reacon_blog_fallback_text($featured_excerpt, 'No blog posts found.')); ?>
+							</p>
+						</div>
+
+					</a>
+
+
+
+					<div class="flex flex-col gap-[24px] w-full">
+						<div class="grid grid-cols-1 gap-[24px] sm:grid-cols-2 lg:grid-cols-3">
+							<?php if ($posts_query->have_posts()): ?>
+								<?php foreach ($posts_query->posts as $index => $post): ?>
+									<?php
+									$post_id = $post instanceof WP_Post ? (int) $post->ID : 0;
+									$card_img_url = $post_id ? get_the_post_thumbnail_url($post_id, 'large') : '';
+									$card_thumb_id = $post_id ? get_post_thumbnail_id($post_id) : 0;
+									$card_img_alt = $card_thumb_id ? (string) get_post_meta($card_thumb_id, '_wp_attachment_image_alt', true) : '';
+									$card_meta = $post_id ? trim(get_the_author_meta('display_name', (int) $post->post_author) . ' • ' . get_the_date('d M Y', $post_id)) : '';
+									$card_title = $post_id ? get_the_title($post_id) : '';
+									$card_excerpt = $post_id ? wp_trim_words(get_the_excerpt($post_id), 24, '') : '';
+									$card_url = $post_id ? get_permalink($post_id) : '#';
+									?>
+									<article class="bg-card border border-border rounded-[32px] p-[10px] flex flex-col gap-[24px] overflow-hidden transition-colors hover:border-primary">
+										<div class="h-[240px] relative rounded-[24px] overflow-hidden">
+											<img
+												src="<?php echo esc_url($card_img_url ? $card_img_url : $blog_card_image); ?>"
+												alt="<?php echo esc_attr($card_img_alt !== '' ? $card_img_alt : ('Blog cover ' . ((int) $index + 1))); ?>"
+												class="absolute inset-0 h-full w-full object-cover pointer-events-none"
+												loading="lazy"
+												decoding="async" />
+										</div>
+										<div class="flex flex-col items-start gap-[12px] pt-[8px] px-[8px]">
+											<p class="font-sans text-[14px] font-medium leading-[19.6px] text-muted-foreground">
+												<?php echo esc_html($card_meta); ?>
+											</p>
+											<p class="font-display text-[24px] font-semibold leading-[31.68px] text-foreground">
+												<a href="<?php echo esc_url($card_url); ?>" class="no-underline text-inherit">
+													<?php echo esc_html($card_title); ?>
+												</a>
+											</p>
+											<p class="font-sans text-[16px] leading-[22.72px] text-muted-foreground line-clamp-3">
+												<?php echo esc_html($card_excerpt); ?>
+											</p>
+										</div>
+										<a
+											href="<?php echo esc_url($card_url); ?>"
+											class="mt-auto self-end w-fit border border-border rounded-[24px] px-[16px] py-[8px] flex items-center justify-end font-sans text-[16px] leading-[22.72px] text-muted-foreground transition-colors hover:text-foreground hover:border-primary no-underline">
+											<?php echo esc_html(reacon_blog_fallback_text($read_more_label, 'Read More')); ?>
+										</a>
+									</article>
+								<?php endforeach; ?>
+							<?php else: ?>
+								<article class="bg-card border border-border rounded-[32px] p-[10px] flex flex-col gap-[24px] overflow-hidden">
+									<div class="flex min-h-[240px] items-center justify-center rounded-[24px] bg-background px-6 text-center font-sans text-[16px] text-muted-foreground">
+										<?php echo esc_html('Please add blog cards in ACF.'); ?>
+									</div>
+								</article>
+							<?php endif; ?>
+						</div>
 					</div>
-				</nav>
-				<?php endif; ?>
+
+					<?php
+					$max_pages = (int) $posts_query->max_num_pages;
+					$show_pagination = $max_pages > 1 && $posts_query->found_posts > $posts_per_page;
+					$prev_url = $paged > 1 ? get_pagenum_link($paged - 1) : '';
+					$next_url = $paged < $max_pages ? get_pagenum_link($paged + 1) : '';
+					$page_links = $show_pagination ? paginate_links(
+						array(
+							'total' => $max_pages,
+							'current' => $paged,
+							'type' => 'array',
+							'end_size' => 1,
+							'mid_size' => 1,
+							'prev_next' => false,
+						)
+					) : array();
+					?>
+					<?php if ($show_pagination): ?>
+						<nav
+							class="mt-2 flex w-full items-center justify-center"
+							aria-label="<?php esc_attr_e('Blog pagination', 'reacon-group'); ?>">
+							<div class="flex items-center justify-center gap-2 rounded-[14px] bg-[#F3F4F6] px-3 py-2 sm:gap-3 sm:px-4 sm:py-2.5">
+								<button
+									type="button"
+									<?php echo $prev_url ? 'data-url="' . esc_attr($prev_url) . '"' : 'disabled'; ?>
+									class="group inline-flex items-center gap-2 rounded-full px-1.5 py-1 text-[#475569] transition-colors hover:text-[#334155] disabled:cursor-not-allowed disabled:opacity-40">
+									<i class="ph ph-caret-left text-[22px] leading-none text-current" aria-hidden="true"></i>
+									<span class="type-body-md text-current">
+										<?php echo esc_html(reacon_blog_fallback_text($pagination_prev_label, 'Previous')); ?>
+									</span>
+								</button>
+
+								<div class="flex items-center gap-1.5 px-1 sm:gap-2">
+									<?php
+									if (is_array($page_links)) {
+										foreach ($page_links as $link_html) {
+											$is_dots = strpos($link_html, 'dots') !== false;
+											if ($is_dots) {
+												echo '<span class="type-body-md select-none px-1 text-[#64748B]">...</span>';
+												continue;
+											}
+
+											$is_current = strpos($link_html, 'current') !== false;
+											$page_label = trim(wp_strip_all_tags($link_html));
+											$page_url = '';
+											if (preg_match("/href=[\\\\\"\']([^\\\\\"\']+)[\\\\\"\']/", $link_html, $m)) {
+												$page_url = $m[1];
+											}
+									?>
+											<a
+												href="<?php echo esc_url($page_url ? $page_url : '#'); ?>"
+												aria-current="<?php echo $is_current ? 'page' : 'false'; ?>"
+												class="<?php echo $is_current
+															? 'bg-primary text-white'
+															: 'bg-transparent text-[#374151] hover:text-[#111827]'; ?> inline-flex h-10 w-10 items-center justify-center rounded-full transition-colors">
+												<span class="type-body-md"><?php echo esc_html($page_label); ?></span>
+											</a>
+									<?php
+										}
+									}
+									?>
+								</div>
+
+								<button
+									type="button"
+									<?php echo $next_url ? 'data-url="' . esc_attr($next_url) . '"' : 'disabled'; ?>
+									class="group inline-flex items-center gap-2 rounded-full px-1.5 py-1 text-[#475569] transition-colors hover:text-[#334155] disabled:cursor-not-allowed disabled:opacity-40">
+									<span class="type-body-md text-current">
+										<?php echo esc_html(reacon_blog_fallback_text($pagination_next_label, 'Next')); ?>
+									</span>
+									<i class="ph ph-caret-right text-[22px] leading-none text-current" aria-hidden="true"></i>
+								</button>
+							</div>
+						</nav>
+					<?php endif; ?>
+				</div>
 			</div>
-		</div>
-	</section>
+		</section>
 	<?php endif; ?>
 	<!-- End Major Section: Latest Blogs -->
 
@@ -523,49 +523,49 @@ if ($acf_enabled) {
 			</div>
 		</section>
 	<?php endif; ?>
-		<!-- End Cta Section -->
+	<!-- End Cta Section -->
 
-<style>
-	/* Desktop-only top notch that lets the fixed header "recess" into the hero. */
-	@media (min-width: 1024px) {
-		#blog-hero .reacon-blog-hero-card {
-			--hero-notch-width: clamp(560px, 48vw, 720px);
-			--hero-notch-radius: 40px;
-			--hero-notch-height: 86px;
-			--hero-notch-swoop: 40px;
-		}
+	<style>
+		/* Desktop-only top notch that lets the fixed header "recess" into the hero. */
+		@media (min-width: 1024px) {
+			#blog-hero .reacon-blog-hero-card {
+				--hero-notch-width: clamp(560px, 48vw, 720px);
+				--hero-notch-radius: 40px;
+				--hero-notch-height: 86px;
+				--hero-notch-swoop: 40px;
+			}
 
-		#blog-hero .reacon-blog-hero-card::before {
-			content: "";
-			position: absolute;
-			left: 50%;
-			top: 0;
-			transform: translateX(calc(-50% + var(--hero-notch-shift, 0px)));
-			width: var(--hero-notch-width);
-			height: var(--hero-notch-height);
-			background: #fff;
-			border-bottom-left-radius: var(--hero-notch-radius);
-			border-bottom-right-radius: var(--hero-notch-radius);
-			z-index: 3;
-			pointer-events: none;
-		}
+			#blog-hero .reacon-blog-hero-card::before {
+				content: "";
+				position: absolute;
+				left: 50%;
+				top: 0;
+				transform: translateX(calc(-50% + var(--hero-notch-shift, 0px)));
+				width: var(--hero-notch-width);
+				height: var(--hero-notch-height);
+				background: #fff;
+				border-bottom-left-radius: var(--hero-notch-radius);
+				border-bottom-right-radius: var(--hero-notch-radius);
+				z-index: 3;
+				pointer-events: none;
+			}
 
-		#blog-hero .reacon-blog-hero-card::after {
-			content: "";
-			position: absolute;
-			top: 0;
-			left: 50%;
-			transform: translateX(calc(-50% + var(--hero-notch-shift, 0px)));
-			width: calc(var(--hero-notch-width) + (var(--hero-notch-swoop) * 2));
-			height: var(--hero-notch-swoop);
-			background:
-				radial-gradient(circle at 0% 100%, transparent var(--hero-notch-swoop), #fff calc(var(--hero-notch-swoop) + 1px)) no-repeat left bottom / var(--hero-notch-swoop) var(--hero-notch-swoop),
-				radial-gradient(circle at 100% 100%, transparent var(--hero-notch-swoop), #fff calc(var(--hero-notch-swoop) + 1px)) no-repeat right bottom / var(--hero-notch-swoop) var(--hero-notch-swoop);
-			z-index: 4;
-			pointer-events: none;
+			#blog-hero .reacon-blog-hero-card::after {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 50%;
+				transform: translateX(calc(-50% + var(--hero-notch-shift, 0px)));
+				width: calc(var(--hero-notch-width) + (var(--hero-notch-swoop) * 2));
+				height: var(--hero-notch-swoop);
+				background:
+					radial-gradient(circle at 0% 100%, transparent var(--hero-notch-swoop), #fff calc(var(--hero-notch-swoop) + 1px)) no-repeat left bottom / var(--hero-notch-swoop) var(--hero-notch-swoop),
+					radial-gradient(circle at 100% 100%, transparent var(--hero-notch-swoop), #fff calc(var(--hero-notch-swoop) + 1px)) no-repeat right bottom / var(--hero-notch-swoop) var(--hero-notch-swoop);
+				z-index: 4;
+				pointer-events: none;
+			}
 		}
-	}
-</style>
+	</style>
 
 	<?php
 	$blog_debug_enabled = isset($_GET['blog_debug']) && '1' === (string) $_GET['blog_debug'];
@@ -592,7 +592,7 @@ if ($acf_enabled) {
 				'blog_cta_color' => reacon_blog_get_acf('blog_cta_color', null, $blog_page_id),
 			),
 		);
-		?>
+	?>
 		<pre style="margin:16px;background:#111;color:#0f0;padding:12px;border-radius:8px;white-space:pre-wrap;word-break:break-word;"><?php echo esc_html(print_r($debug_dump, true)); ?></pre>
 	<?php endif; ?>
 </main>
