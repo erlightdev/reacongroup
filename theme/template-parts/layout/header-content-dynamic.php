@@ -100,7 +100,7 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 		</button>
 	</div>
 
-	<div id="mobile-menu" class="fixed inset-0 z-40 flex flex-col bg-[#f6f8fb] opacity-0 translate-x-full pointer-events-none transition-all duration-300 ease-out lg:hidden" aria-hidden="true" aria-label="<?php esc_attr_e('Mobile navigation', 'reacon-group'); ?>">
+	<div id="mobile-menu" class="fixed inset-0 z-40 flex flex-col bg-[#f6f8fb] opacity-0 translate-x-full pointer-events-none transition-all duration-300 ease-out lg:hidden" inert aria-label="<?php esc_attr_e('Mobile navigation', 'reacon-group'); ?>">
 		<div class="flex items-center justify-between px-6 pt-8 pb-4">
 			<a href="<?php echo esc_url(home_url('/')); ?>" rel="home" aria-label="<?php echo esc_attr($site_name); ?> — <?php esc_attr_e('home', 'reacon-group'); ?>" class="shrink-0">
 				<img src="<?php echo esc_url($logo_src); ?>" alt="<?php echo esc_attr($site_name); ?>" width="140" height="36" class="h-9 w-auto" />
@@ -122,6 +122,11 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 						'items_wrap' => '<ul class="mobile-menu-list absolute inset-0 flex flex-col gap-1 overflow-y-auto transition-transform duration-300 ease-out translate-x-0">%3$s</ul>',
 					)
 				);
+
+				// Output the mobile submenu panels as siblings to the main rootList
+				if (method_exists($mobile_walker, 'get_panels_html')) {
+					echo $mobile_walker->get_panels_html(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				}
 				?>
 			</div>
 
@@ -324,7 +329,7 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 				}
 				panel.classList.add('hidden', 'translate-x-full');
 				panel.classList.remove('translate-x-0');
-				panel.setAttribute('aria-hidden', 'true');
+				panel.setAttribute('inert', '');
 			});
 
 			if (rootList) {
@@ -348,7 +353,7 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 			}
 
 			panel.classList.remove('hidden');
-			panel.setAttribute('aria-hidden', 'false');
+			panel.removeAttribute('inert');
 			rootList.classList.add('-translate-x-full');
 			rootList.classList.remove('translate-x-0');
 
@@ -370,7 +375,7 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 
 			panel.classList.add('translate-x-full');
 			panel.classList.remove('translate-x-0');
-			panel.setAttribute('aria-hidden', 'true');
+			panel.setAttribute('inert', '');
 			rootList.classList.remove('-translate-x-full');
 			rootList.classList.add('translate-x-0');
 
@@ -398,7 +403,11 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 			iconClose.classList.toggle('hidden', !open);
 
 			toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-			menu.setAttribute('aria-hidden', open ? 'false' : 'true');
+			if (open) {
+				menu.removeAttribute('inert');
+			} else {
+				menu.setAttribute('inert', '');
+			}
 
 			document.body.style.overflow = open ? 'hidden' : '';
 			if (!open) resetMobilePanels();
@@ -445,7 +454,7 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 					if (otherPanel !== panel) {
 						otherPanel.classList.add('hidden', 'translate-x-full');
 						otherPanel.classList.remove('translate-x-0');
-						otherPanel.setAttribute('aria-hidden', 'true');
+						otherPanel.setAttribute('inert', '');
 					}
 				});
 
