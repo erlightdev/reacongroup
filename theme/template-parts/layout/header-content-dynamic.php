@@ -61,7 +61,7 @@ $desktop_walker = new Reacon_Group_Header_Desktop_Walker($children_by_parent_id)
 $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 ?>
 
-<header id="masthead" class="fixed inset-x-0 top-4 z-50 transition-all duration-300" role="banner">
+<header id="masthead" class="absolute inset-x-0 top-4 z-50 transition-all duration-300" role="banner">
 	<div class="mx-auto grid h-20 w-full max-w-7xl grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 px-4 sm:gap-3 sm:px-6 lg:px-4 xl:px-6 2xl:px-8">
 		<a href="<?php echo esc_url(home_url('/')); ?>" rel="home" aria-label="<?php echo esc_attr($site_name); ?> — <?php esc_attr_e('home', 'reacon-group'); ?>" class="relative z-10 shrink-0">
 			<img src="<?php echo esc_url($logo_src); ?>" alt="<?php echo esc_attr($site_name); ?>" width="160" height="42" class="h-10 w-auto" />
@@ -128,8 +128,13 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 </header>
 
 <style>
-	#masthead #site-navigation > ul { box-shadow: none; }
-	#masthead.top-0 #site-navigation > ul { box-shadow: 0 10px 22px rgba(0,0,0,0.16); }
+	#masthead #site-navigation>ul {
+		box-shadow: none;
+	}
+
+	#masthead.top-0 #site-navigation>ul {
+		box-shadow: 0 10px 22px rgba(0, 0, 0, 0.16);
+	}
 </style>
 
 <script>
@@ -158,7 +163,9 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 		var navEl = document.getElementById('site-navigation');
 
 		function closeDesktopMegaMenus() {
-			megaPanels.forEach(function(panel) { panel.classList.add('hidden'); });
+			megaPanels.forEach(function(panel) {
+				panel.classList.add('hidden');
+			});
 			megaTriggers.forEach(function(trigger) {
 				trigger.setAttribute('aria-expanded', 'false');
 				var down = trigger.querySelector('.mega-parent-caret-down');
@@ -260,7 +267,9 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 		});
 
 		mobileLinks.forEach(function(link) {
-			link.addEventListener('click', function() { setMenuState(false); });
+			link.addEventListener('click', function() {
+				setMenuState(false);
+			});
 		});
 
 		subToggles.forEach(function(btn) {
@@ -297,4 +306,3 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 		setMenuState(false);
 	})();
 </script>
-
