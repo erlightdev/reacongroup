@@ -724,12 +724,8 @@ if (!class_exists('Reacon_Group_Header_Mobile_Walker')) {
 					$this->current_parent_split_index = (int) ceil(count($children_for_parent) / 2);
 
 					$output .= '<button type="button" class="flex w-full items-center justify-between rounded-xl px-4 py-3 font-sans text-base font-medium ' . esc_attr($active_cls) . ' transition-colors mobile-submenu-toggle" aria-expanded="false" aria-controls="mobile-submenu-' . esc_attr((string) $item->ID) . '" data-mobile-menu-parent="' . esc_attr((string) $item->ID) . '">';
-					$output .= esc_html((string) $item->title);
-					// Caret icon (down when closed, up when open).
-					$output .= '<span class="ml-3 inline-flex items-center gap-0.5">';
-					$output .= '<i class="mobile-parent-caret-down ph-bold ph-caret-down text-sm opacity-70" aria-hidden="true"></i>';
-					$output .= '<i class="mobile-parent-caret-up ph-bold ph-caret-up text-sm opacity-70 hidden" aria-hidden="true"></i>';
-					$output .= '</span>';
+					$output .= '<span class="min-w-0 flex-1 text-left">' . esc_html((string) $item->title) . '</span>';
+					$output .= '<i class="mobile-parent-caret-right ph-bold ph-caret-right ml-3 shrink-0 text-sm opacity-70" aria-hidden="true"></i>';
 					$output .= '</button>';
 				} else {
 					$output .= '<a href="' . esc_url($item->url) . '" class="block rounded-xl px-4 py-3 font-sans text-base font-medium no-underline transition-colors ' . esc_attr($active_cls) . '">';

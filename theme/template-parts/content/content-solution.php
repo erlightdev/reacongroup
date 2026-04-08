@@ -360,7 +360,7 @@ $faq_support_icon = isset($faq['support_card_icon']) && is_array($faq['support_c
 
     <?php if ($cta_enabled && $cta_heading !== '' && $cta_description !== '' && $cta_primary_link && $cta_secondary_link) : ?>
         <section id="solution-cta" class="py-10 sm:py-12 lg:py-14" aria-labelledby="solution-cta-heading">
-            <div class="mx-auto w-full max-w-[1370px] px-5 sm:px-6 lg:px-10">
+            <div class="mx-auto w-full px-5 sm:px-6 lg:px-10">
                 <div class="relative overflow-hidden rounded-[22px] bg-[#0D6B75] px-5 py-14 sm:px-8 sm:py-16 lg:rounded-[24px] lg:px-12 lg:py-[70px]">
                     <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_100%_at_50%_10%,rgba(255,255,255,0.08)_0%,rgba(255,255,255,0)_58%)]" aria-hidden="true"></div>
                     <div class="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,#0E6D77_0%,#0A4E57_100%)] opacity-75" aria-hidden="true"></div>
