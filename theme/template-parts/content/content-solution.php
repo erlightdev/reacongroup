@@ -272,11 +272,11 @@ $faq_support_icon = isset($faq['support_card_icon']) && is_array($faq['support_c
     <?php endif; ?>
 
     <?php if ($details_enabled && !empty($solution_sections)) : ?>
-        <section id="solution-visual-content" class="bg-background py-8 sm:py-12 lg:py-16" aria-label="<?php esc_attr_e('Visual studio service details', 'reacon-group'); ?>">
+        <section id="solution-visual-content" class="bg-background py-8 sm:py-12 lg:py-16" aria-label="<?php esc_attr_e('Visual studio service details', 'reacon-group'); ?>" data-stack-enabled="true">
             <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12">
                 <?php foreach ($solution_sections as $section_index => $section): ?>
                     <?php $is_even_row = 1 === ($section_index % 2); ?>
-                    <article class="py-8 sm:py-10 lg:py-14">
+                    <article class="solution-stack-card bg-background py-8 sm:py-10 lg:py-14" data-stack-card>
                         <div class="grid grid-cols-1 items-center gap-6 <?php echo esc_attr($is_even_row ? 'lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]' : 'lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]'); ?> lg:gap-16 xl:gap-20">
                             <div class="order-2 max-w-[560px] <?php echo esc_attr($is_even_row ? 'lg:order-2 lg:pl-2' : 'lg:order-1 lg:pr-2'); ?>">
                                 <header class="space-y-5 text-foreground">
@@ -309,7 +309,7 @@ $faq_support_icon = isset($faq['support_card_icon']) && is_array($faq['support_c
     <?php endif; ?>
 
     <?php if ($capabilities_enabled && $capability_heading !== '' && $capability_description !== '' && !empty($capability_cards)) : ?>
-        <section id="solution-visual-core-capabilities" class="bg-background pb-12 pt-6 sm:pb-16 sm:pt-8 lg:pb-24 lg:pt-12 xl:pb-28 xl:pt-14 2xl:pb-16 2xl:pt-10" aria-label="<?php esc_attr_e('Our core creative capabilities', 'reacon-group'); ?>">
+        <section id="solution-visual-core-capabilities" class="bg-background pb-12 pt-6 sm:pb-16 sm:pt-8 lg:pb-24 lg:pt-12 xl:pb-16 xl:pt-14 2xl:pb-16 2xl:pt-10" aria-label="<?php esc_attr_e('Our core creative capabilities', 'reacon-group'); ?>">
             <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12">
                 <header class="mx-auto max-w-[780px] text-center">
                     <h2 class="font-display text-[32px] font-semibold leading-tight text-foreground sm:text-[36px] md:text-[40px] lg:text-[44px] lg:leading-[58.08px]">
@@ -331,24 +331,24 @@ $faq_support_icon = isset($faq['support_card_icon']) && is_array($faq['support_c
                                     <?php echo '_blank' === $card_link['target'] ? 'rel="noopener noreferrer"' : ''; ?>
                                     aria-label="<?php echo esc_attr($card['title']); ?>"
                                     class="block no-underline">
-                            <?php endif; ?>
-                            <div class="relative overflow-hidden rounded-t-4xl rounded-b-2xl bg-muted">
-                                <img
-                                    src="<?php echo esc_url($card['image_url']); ?>"
-                                    alt=""
-                                    class="aspect-4/3 w-full object-cover"
-                                    loading="lazy"
-                                    decoding="async" />
-                            </div>
-                            <div class="px-5 pb-5 pt-3">
-                                <h3 class="font-display text-[22px] font-semibold leading-[1.32] text-foreground sm:text-[24px] sm:leading-[31.68px]">
-                                    <?php echo esc_html($card['title']); ?>
-                                </h3>
-                                <p class="mt-2 font-sans text-[16px] font-normal leading-[22.72px] text-foreground/80">
-                                    <?php echo esc_html($card['description']); ?>
-                                </p>
-                            </div>
-                            <?php if ($card_link) : ?>
+                                <?php endif; ?>
+                                <div class="relative overflow-hidden rounded-t-4xl rounded-b-2xl bg-muted">
+                                    <img
+                                        src="<?php echo esc_url($card['image_url']); ?>"
+                                        alt=""
+                                        class="aspect-4/3 w-full object-cover"
+                                        loading="lazy"
+                                        decoding="async" />
+                                </div>
+                                <div class="px-5 pb-5 pt-3">
+                                    <h3 class="font-display text-[22px] font-semibold leading-[1.32] text-foreground sm:text-[24px] sm:leading-[31.68px]">
+                                        <?php echo esc_html($card['title']); ?>
+                                    </h3>
+                                    <p class="mt-2 font-sans text-[16px] font-normal leading-[22.72px] text-foreground/80">
+                                        <?php echo esc_html($card['description']); ?>
+                                    </p>
+                                </div>
+                                <?php if ($card_link) : ?>
                                 </a>
                             <?php endif; ?>
                         </article>
@@ -512,6 +512,42 @@ $faq_support_icon = isset($faq['support_card_icon']) && is_array($faq['support_c
                 z-index: 4;
                 pointer-events: none;
             }
+
+            #solution-visual-content[data-stack-enabled="true"] {
+                overflow: visible;
+            }
+
+            #solution-visual-content[data-stack-enabled="true"] [data-stack-card] {
+                position: sticky;
+                top: 112px;
+                z-index: 1;
+                opacity: 1;
+                will-change: transform, opacity;
+            }
+
+            #solution-visual-content[data-stack-enabled="true"] [data-stack-card]:nth-child(1) {
+                z-index: 10;
+            }
+
+            #solution-visual-content[data-stack-enabled="true"] [data-stack-card]:nth-child(2) {
+                z-index: 20;
+            }
+
+            #solution-visual-content[data-stack-enabled="true"] [data-stack-card]:nth-child(3) {
+                z-index: 30;
+            }
+
+            #solution-visual-content[data-stack-enabled="true"] [data-stack-card]:nth-child(4) {
+                z-index: 40;
+            }
+
+            #solution-visual-content[data-stack-enabled="true"] [data-stack-card]:nth-child(5) {
+                z-index: 50;
+            }
+
+            #solution-visual-content[data-stack-enabled="true"] [data-stack-card]:nth-child(6) {
+                z-index: 60;
+            }
         }
     </style>
 
@@ -555,6 +591,78 @@ $faq_support_icon = isset($faq['support_card_icon']) && is_array($faq['support_c
             if (document.fonts && document.fonts.ready) {
                 document.fonts.ready.then(scheduleSolutionNotchSync).catch(() => {});
             }
+
+            const initDesktopSolutionStack = () => {
+                if (typeof window.gsap === 'undefined' || typeof window.ScrollTrigger === 'undefined') {
+                    return;
+                }
+
+                const stackRoot = document.querySelector('#solution-visual-content[data-stack-enabled="true"]');
+                if (!stackRoot) {
+                    return;
+                }
+
+                const stackCards = gsap.utils.toArray('#solution-visual-content [data-stack-card]');
+                if (!stackCards.length) {
+                    return;
+                }
+
+                gsap.registerPlugin(ScrollTrigger);
+
+                ScrollTrigger.matchMedia({
+                    '(min-width: 1024px)': function() {
+                        stackCards.forEach((card, index) => {
+                            gsap.set(card, {
+                                clearProps: 'all'
+                            });
+
+                            if (index > 0) {
+                                gsap.fromTo(
+                                    card, {
+                                        y: 90,
+                                        scale: 0.97,
+                                    }, {
+                                        y: 0,
+                                        scale: 1,
+                                        ease: 'none',
+                                        scrollTrigger: {
+                                            trigger: card,
+                                            start: 'top 86%',
+                                            end: 'top 38%',
+                                            scrub: true,
+                                            invalidateOnRefresh: true,
+                                        },
+                                    }
+                                );
+
+                                const previousCard = stackCards[index - 1];
+                                if (previousCard) {
+                                    gsap.to(previousCard, {
+                                        scale: 0.965,
+                                        ease: 'none',
+                                        scrollTrigger: {
+                                            trigger: card,
+                                            start: 'top 86%',
+                                            end: 'top 38%',
+                                            scrub: true,
+                                            invalidateOnRefresh: true,
+                                        },
+                                    });
+                                }
+                            }
+                        });
+                    },
+                    '(max-width: 1023px)': function() {
+                        stackCards.forEach((card) => {
+                            gsap.set(card, {
+                                clearProps: 'transform,opacity,visibility',
+                            });
+                        });
+                    },
+                });
+            };
+
+            initDesktopSolutionStack();
         });
     </script>
 

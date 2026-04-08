@@ -105,38 +105,38 @@ if ($acf_enabled) {
 	?>
 	<!-- Page Section: Hero -->
 	<?php if ($about_sections['hero']): ?>
-	<section
-		id="about-hero"
-		class="relative w-full p-1.5 md:p-2.5"
-		aria-label="<?php esc_attr_e('About page hero', 'reacon-group'); ?>">
+		<section
+			id="about-hero"
+			class="relative w-full p-1.5 md:p-2.5"
+			aria-label="<?php esc_attr_e('About page hero', 'reacon-group'); ?>">
 
-		<div class="reacon-about-hero-card relative min-h-[255px] overflow-hidden rounded-[24px] bg-[#062B53] sm:min-h-[300px] lg:min-h-[380px] lg:rounded-[31px]">
-			<img
-				src="<?php echo esc_url($hero_bg !== '' ? $hero_bg : $about_header_bg); ?>"
-				alt=""
-				aria-hidden="true"
-				class="pointer-events-none absolute inset-0 h-full w-full object-cover object-center"
-				fetchpriority="high"
-				loading="eager"
-				decoding="async" />
+			<div class="reacon-about-hero-card relative min-h-[255px] overflow-hidden rounded-[24px] bg-[#062B53] sm:min-h-[300px] lg:min-h-[380px] lg:rounded-[31px]">
+				<img
+					src="<?php echo esc_url($hero_bg !== '' ? $hero_bg : $about_header_bg); ?>"
+					alt=""
+					aria-hidden="true"
+					class="pointer-events-none absolute inset-0 h-full w-full object-cover object-center"
+					fetchpriority="high"
+					loading="eager"
+					decoding="async" />
 
-			<div class="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,10,33,0.28)_0%,rgba(0,10,33,0.18)_45%,rgba(0,10,33,0.28)_100%)]" aria-hidden="true"></div>
+				<div class="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,10,33,0.28)_0%,rgba(0,10,33,0.18)_45%,rgba(0,10,33,0.28)_100%)]" aria-hidden="true"></div>
 
-			<div class="relative z-10 mx-auto flex min-h-[255px] w-full max-w-[1200px] flex-col items-center justify-center px-5 pb-10 pt-28 text-center sm:min-h-[300px] sm:px-6 sm:pt-32 lg:min-h-[380px] lg:px-10 lg:pb-14 lg:pt-36">
-				<p class="mb-4 font-sans text-[11px] font-medium uppercase tracking-[0.18em] text-white/85 lg:mb-5">
-					<?php echo esc_html(reacon_about_fallback_text($hero_eyebrow, 'About')); ?>
-				</p>
+				<div class="relative z-10 mx-auto flex min-h-[255px] w-full max-w-[1200px] flex-col items-center justify-center px-5 pb-10 pt-28 text-center sm:min-h-[300px] sm:px-6 sm:pt-32 lg:min-h-[380px] lg:px-10 lg:pb-14 lg:pt-36">
+					<p class="mb-4 font-sans text-[11px] font-medium uppercase tracking-[0.18em] text-white/85 lg:mb-5">
+						<?php echo esc_html(reacon_about_fallback_text($hero_eyebrow, 'About')); ?>
+					</p>
 
-				<h1 class="max-w-[860px] font-display text-[30px] font-bold leading-[1.16] text-white sm:text-[40px] lg:text-[56px]">
-					<?php echo esc_html(reacon_about_fallback_text($hero_title, 'Hero content coming soon.')); ?>
-				</h1>
+					<h1 class="max-w-[860px] font-display text-[30px] font-bold leading-[1.16] text-white sm:text-[40px] lg:text-[56px]">
+						<?php echo esc_html(reacon_about_fallback_text($hero_title, 'Hero content coming soon.')); ?>
+					</h1>
 
-				<p class="mt-4 max-w-[780px] font-sans text-[13px] leading-[1.45] text-white/90 sm:text-[15px] lg:mt-5 lg:text-base">
-					<?php echo esc_html(reacon_about_fallback_text($hero_description, 'Please add hero description content in ACF.')); ?>
-				</p>
+					<p class="mt-4 max-w-[780px] font-sans text-[13px] leading-[1.45] text-white/90 sm:text-[15px] lg:mt-5 lg:text-base">
+						<?php echo esc_html(reacon_about_fallback_text($hero_description, 'Please add hero description content in ACF.')); ?>
+					</p>
+				</div>
 			</div>
-		</div>
-	</section>
+		</section>
 	<?php endif; ?>
 	<!-- End Page Section: Hero -->
 
@@ -155,134 +155,134 @@ if ($acf_enabled) {
 	}
 	?>
 	<?php if ($about_sections['overview']): ?>
-	<section
-		id="about-overview"
-		class="bg-[#f5f5f5] py-14 sm:py-16 lg:py-20"
-		aria-label="<?php esc_attr_e('About Reacon Group overview', 'reacon-group'); ?>">
-		<div class="mx-auto grid w-full max-w-[1220px] grid-cols-1 gap-8 px-5 sm:px-6 lg:grid-cols-[220px_1fr] lg:gap-10 lg:px-10">
-			<div class="pt-1">
-				<p class="font-sans text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
-					<?php echo esc_html(reacon_about_fallback_text($overview_eyebrow, 'Overview')); ?>
-				</p>
-			</div>
+		<section
+			id="about-overview"
+			class="bg-[#f5f5f5] py-14 sm:py-16 lg:py-20"
+			aria-label="<?php esc_attr_e('About Reacon Group overview', 'reacon-group'); ?>">
+			<div class="mx-auto grid w-full max-w-[1220px] grid-cols-1 gap-8 px-5 sm:px-6 lg:grid-cols-[220px_1fr] lg:gap-10 lg:px-10">
+				<div class="pt-1">
+					<p class="font-sans text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
+						<?php echo esc_html(reacon_about_fallback_text($overview_eyebrow, 'Overview')); ?>
+					</p>
+				</div>
 
-			<div>
-				<p class="max-w-4xl font-sans text-[24px] font-medium leading-[1.22] text-foreground sm:text-[28px] lg:text-[32px]">
-					<?php echo esc_html(reacon_about_fallback_text($overview_body, 'Please add overview content in ACF.')); ?>
-				</p>
+				<div>
+					<p class="max-w-4xl font-sans text-[24px] font-medium leading-[1.22] text-foreground sm:text-[28px] lg:text-[32px]">
+						<?php echo esc_html(reacon_about_fallback_text($overview_body, 'Please add overview content in ACF.')); ?>
+					</p>
 
-				<div class="mt-8 grid grid-cols-2 gap-x-6 gap-y-7 border-t border-black/8 pt-7 sm:mt-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-8 lg:pt-8">
-					<?php if (!empty($overview_stats)): ?>
-						<?php foreach ($overview_stats as $stat): ?>
+					<div class="mt-8 grid grid-cols-2 gap-x-6 gap-y-7 border-t border-black/8 pt-7 sm:mt-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-8 lg:pt-8">
+						<?php if (!empty($overview_stats)): ?>
+							<?php foreach ($overview_stats as $stat): ?>
+								<div>
+									<p class="max-w-[180px] font-sans text-[12px] leading-[1.35] text-muted-foreground">
+										<?php echo esc_html(isset($stat['label']) ? $stat['label'] : ''); ?>
+									</p>
+									<p class="mt-2 font-sans text-[44px] font-medium leading-none text-foreground">
+										<?php echo esc_html(isset($stat['value']) ? $stat['value'] : ''); ?>
+									</p>
+								</div>
+							<?php endforeach; ?>
+						<?php else: ?>
 							<div>
-								<p class="max-w-[180px] font-sans text-[12px] leading-[1.35] text-muted-foreground">
-									<?php echo esc_html(isset($stat['label']) ? $stat['label'] : ''); ?>
-								</p>
-								<p class="mt-2 font-sans text-[44px] font-medium leading-none text-foreground">
-									<?php echo esc_html(isset($stat['value']) ? $stat['value'] : ''); ?>
-								</p>
+								<p class="max-w-[180px] font-sans text-[12px] leading-[1.35] text-muted-foreground"><?php echo esc_html('Statistic'); ?></p>
+								<p class="mt-2 font-sans text-[44px] font-medium leading-none text-foreground"><?php echo esc_html('--'); ?></p>
 							</div>
-						<?php endforeach; ?>
-					<?php else: ?>
-						<div>
-							<p class="max-w-[180px] font-sans text-[12px] leading-[1.35] text-muted-foreground"><?php echo esc_html('Statistic'); ?></p>
-							<p class="mt-2 font-sans text-[44px] font-medium leading-none text-foreground"><?php echo esc_html('--'); ?></p>
-						</div>
-					<?php endif; ?>
+						<?php endif; ?>
+					</div>
 				</div>
 			</div>
-		</div>
-	</section>
+		</section>
 	<?php endif; ?>
 
-	
+
 	<!--Start Partners Section -->
 	<?php if ($about_sections['partners']): ?>
-	<?php
-	$partner_logos = array();
-	$partners_aria_label = '';
-	$partners_marquee_duration = 30;
+		<?php
+		$partner_logos = array();
+		$partners_aria_label = '';
+		$partners_marquee_duration = 30;
 
-	if (function_exists('get_field')) {
-		$partners_aria_label = (string) get_field('about_partners_aria_label');
-		$partners_marquee_duration_raw = get_field('about_partners_marquee_duration');
-		if (is_numeric($partners_marquee_duration_raw) && (int) $partners_marquee_duration_raw > 0) {
-			$partners_marquee_duration = (int) $partners_marquee_duration_raw;
-		}
+		if (function_exists('get_field')) {
+			$partners_aria_label = (string) get_field('about_partners_aria_label');
+			$partners_marquee_duration_raw = get_field('about_partners_marquee_duration');
+			if (is_numeric($partners_marquee_duration_raw) && (int) $partners_marquee_duration_raw > 0) {
+				$partners_marquee_duration = (int) $partners_marquee_duration_raw;
+			}
 
-		$partners_logos_field = get_field('about_partners_logos');
-		if (is_array($partners_logos_field) && !empty($partners_logos_field)) {
-			foreach ($partners_logos_field as $item) {
-				$image_field = isset($item['logo']) ? $item['logo'] : '';
-				$image_url = '';
-				$image_alt = '';
+			$partners_logos_field = get_field('about_partners_logos');
+			if (is_array($partners_logos_field) && !empty($partners_logos_field)) {
+				foreach ($partners_logos_field as $item) {
+					$image_field = isset($item['logo']) ? $item['logo'] : '';
+					$image_url = '';
+					$image_alt = '';
 
-				if (is_array($image_field)) {
-					$image_url = !empty($image_field['url']) ? (string) $image_field['url'] : '';
-					$image_alt = !empty($image_field['alt']) ? (string) $image_field['alt'] : '';
-				} elseif (is_string($image_field)) {
-					$image_url = $image_field;
+					if (is_array($image_field)) {
+						$image_url = !empty($image_field['url']) ? (string) $image_field['url'] : '';
+						$image_alt = !empty($image_field['alt']) ? (string) $image_field['alt'] : '';
+					} elseif (is_string($image_field)) {
+						$image_url = $image_field;
+					}
+
+					$custom_alt = isset($item['alt']) ? (string) $item['alt'] : '';
+					if ($image_url === '') {
+						continue;
+					}
+
+					$partner_logos[] = array(
+						'url' => esc_url($image_url),
+						'alt' => sanitize_text_field($custom_alt !== '' ? $custom_alt : $image_alt),
+					);
 				}
-
-				$custom_alt = isset($item['alt']) ? (string) $item['alt'] : '';
-				if ($image_url === '') {
-					continue;
-				}
-
-				$partner_logos[] = array(
-					'url' => esc_url($image_url),
-					'alt' => sanitize_text_field($custom_alt !== '' ? $custom_alt : $image_alt),
-				);
 			}
 		}
-	}
 
-	$partners_empty_text = 'Please add partner logos in ACF.';
-	?>
+		$partners_empty_text = 'Please add partner logos in ACF.';
+		?>
 
-<section class="relative w-full overflow-hidden" aria-label="<?php echo esc_attr($partners_aria_label !== '' ? $partners_aria_label : 'Partners section'); ?>">
-    <div class="pointer-events-none absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-white to-transparent lg:w-32" aria-hidden="true"></div>
-    <div class="pointer-events-none absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-white to-transparent lg:w-32" aria-hidden="true"></div>
+		<section class="relative w-full overflow-hidden" aria-label="<?php echo esc_attr($partners_aria_label !== '' ? $partners_aria_label : 'Partners section'); ?>">
+			<div class="pointer-events-none absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-white to-transparent lg:w-32" aria-hidden="true"></div>
+			<div class="pointer-events-none absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-white to-transparent lg:w-32" aria-hidden="true"></div>
 
-    <div class="mx-auto flex min-h-[74px] w-full max-w-[1320px] items-center overflow-hidden px-4 lg:px-0">
-		<?php if (!empty($partner_logos)): ?>
-			<div class="flex w-fit animate-partner-marquee items-center gap-12">
-				<?php for ($rep = 0; $rep < 2; $rep++): ?>
-					<?php foreach ($partner_logos as $logo): ?>
-						<img
-							class="h-14 w-[90px] object-contain mix-blend-luminosity opacity-70 transition-opacity duration-200 hover:opacity-100"
-							src="<?php echo esc_attr($logo['url']); ?>"
-							alt="<?php echo esc_attr($logo['alt']); ?>"
-							loading="lazy"
-							decoding="async" />
-					<?php endforeach; ?>
-				<?php endfor; ?>
+			<div class="mx-auto flex min-h-[74px] w-full max-w-[1320px] items-center overflow-hidden px-4 lg:px-0">
+				<?php if (!empty($partner_logos)): ?>
+					<div class="flex w-fit animate-partner-marquee items-center gap-12">
+						<?php for ($rep = 0; $rep < 2; $rep++): ?>
+							<?php foreach ($partner_logos as $logo): ?>
+								<img
+									class="h-14 w-[90px] object-contain mix-blend-luminosity opacity-70 transition-opacity duration-200 hover:opacity-100"
+									src="<?php echo esc_attr($logo['url']); ?>"
+									alt="<?php echo esc_attr($logo['alt']); ?>"
+									loading="lazy"
+									decoding="async" />
+							<?php endforeach; ?>
+						<?php endfor; ?>
+					</div>
+				<?php else: ?>
+					<p class="w-full text-center font-sans text-sm text-muted-foreground"><?php echo esc_html($partners_empty_text); ?></p>
+				<?php endif; ?>
 			</div>
-		<?php else: ?>
-			<p class="w-full text-center font-sans text-sm text-muted-foreground"><?php echo esc_html($partners_empty_text); ?></p>
-		<?php endif; ?>
-    </div>
 
-    <style>
-        @keyframes partner-marquee {
-            0% {
-                transform: translateX(0);
-            }
+			<style>
+				@keyframes partner-marquee {
+					0% {
+						transform: translateX(0);
+					}
 
-            100% {
-                transform: translateX(-50%);
-            }
-        }
+					100% {
+						transform: translateX(-50%);
+					}
+				}
 
-        .animate-partner-marquee {
-            animation: partner-marquee <?php echo esc_attr($partners_marquee_duration); ?>s linear infinite;
-        }
+				.animate-partner-marquee {
+					animation: partner-marquee <?php echo esc_attr($partners_marquee_duration); ?>s linear infinite;
+				}
 
-        .animate-partner-marquee:hover {
-            animation-play-state: paused;
-        }
-    </style>
-</section>
+				.animate-partner-marquee:hover {
+					animation-play-state: paused;
+				}
+			</style>
+		</section>
 	<?php endif; ?>
 	<!--End Partners Section -->
 	<!-- Ecosystem Section -->
@@ -303,60 +303,60 @@ if ($acf_enabled) {
 	}
 	?>
 	<?php if ($about_sections['ecosystem']): ?>
-	<section id="reacon-ecosystem-section" class="pb-12 pt-14 sm:pb-14 sm:pt-16 md:pb-16 md:pt-20 lg:pb-20 lg:pt-24 xl:pb-16 xl:pt-16">
-		<div class="mx-auto w-full max-w-[1370px] px-4 sm:px-6 md:px-8 xl:px-0">
-			<div class="mx-auto w-full max-w-[820px] text-center">
-				<p class="font-sans text-[13px] uppercase tracking-[0.08em] text-muted-foreground sm:text-sm md:text-base">
-					<?php echo esc_html(reacon_about_fallback_text($ecosystem_eyebrow, 'Our Ecosystem')); ?>
-				</p>
-				<h2 class="mt-2 font-display text-[34px] font-semibold leading-[1.15] text-foreground sm:text-[40px] md:text-[44px] lg:text-[52px] xl:text-[56px]">
-					<?php echo esc_html(reacon_about_fallback_text($ecosystem_title, 'Ecosystem content coming soon.')); ?>
-				</h2>
-				<p class="mt-3 font-sans text-[15px] leading-[1.42] text-muted-foreground sm:text-base md:mt-4">
-					<?php echo esc_html(reacon_about_fallback_text($ecosystem_description, 'Please add ecosystem description in ACF.')); ?>
-				</p>
-			</div>
+		<section id="reacon-ecosystem-section" class="pb-12 pt-14 sm:pb-14 sm:pt-16 md:pb-16 md:pt-20 lg:pb-20 lg:pt-24 xl:pb-16 xl:pt-16">
+			<div class="mx-auto w-full max-w-[1370px] px-4 sm:px-6 md:px-8 xl:px-0">
+				<div class="mx-auto w-full max-w-[820px] text-center">
+					<p class="font-sans text-[13px] uppercase tracking-[0.08em] text-muted-foreground sm:text-sm md:text-base">
+						<?php echo esc_html(reacon_about_fallback_text($ecosystem_eyebrow, 'Our Ecosystem')); ?>
+					</p>
+					<h2 class="mt-2 font-display text-[34px] font-semibold leading-[1.15] text-foreground sm:text-[40px] md:text-[44px] lg:text-[52px] xl:text-[56px]">
+						<?php echo esc_html(reacon_about_fallback_text($ecosystem_title, 'Ecosystem content coming soon.')); ?>
+					</h2>
+					<p class="mt-3 font-sans text-[15px] leading-[1.42] text-muted-foreground sm:text-base md:mt-4">
+						<?php echo esc_html(reacon_about_fallback_text($ecosystem_description, 'Please add ecosystem description in ACF.')); ?>
+					</p>
+				</div>
 
-			<div class="mt-8 grid grid-cols-1 gap-4 sm:mt-10 sm:grid-cols-2 sm:gap-5 lg:mt-12 lg:grid-cols-4 lg:gap-8">
-				<?php if (!empty($ecosystem_cards)): ?>
-					<?php foreach ($ecosystem_cards as $card): ?>
-					<article class="flex min-h-[240px] flex-col justify-between rounded-[20px] border border-[#f3f4f6] bg-[#f6f6f6] p-5 sm:p-6 transition-all duration-200 hover:bg-white hover:border-primary hover:shadow-sm">
-						<?php
-						$card_link = isset($card['link']) ? $card['link'] : (isset($card['url']) ? $card['url'] : '');
-						$card_link_data = reacon_about_get_link($card_link, '#', 'Explore');
-						?>
-						<div>
-							<div class="mb-3 flex h-[32px] items-center justify-end">
-								<?php if (isset($card['type']) && 'westman' === $card['type']): ?>
-									<div class="relative h-10 w-auto" aria-label="<?php echo esc_attr(isset($card['logo_alt']) ? $card['logo_alt'] : ''); ?>">
+				<div class="mt-8 grid grid-cols-1 gap-4 sm:mt-10 sm:grid-cols-2 sm:gap-5 lg:mt-12 lg:grid-cols-4 lg:gap-8">
+					<?php if (!empty($ecosystem_cards)): ?>
+						<?php foreach ($ecosystem_cards as $card): ?>
+							<article class="flex min-h-[240px] group flex-col justify-between rounded-[20px] border border-[#f3f4f6] bg-[#f6f6f6] p-5 sm:p-6 transition-all duration-200 hover:bg-white hover:border-primary hover:shadow-sm">
+								<?php
+								$card_link = isset($card['link']) ? $card['link'] : (isset($card['url']) ? $card['url'] : '');
+								$card_link_data = reacon_about_get_link($card_link, '#', 'Explore');
+								?>
+								<div>
+									<div class="mb-3 flex h-[32px] items-center justify-end">
+										<?php if (isset($card['type']) && 'westman' === $card['type']): ?>
+											<div class="relative h-10 w-auto" aria-label="<?php echo esc_attr(isset($card['logo_alt']) ? $card['logo_alt'] : ''); ?>">
 
-										<img src="<?php echo esc_url($ecosystem_assets_uri . '/westman.png'); ?>" alt="" aria-hidden="true" class="h-12 w-[55px]" />
+												<img src="<?php echo esc_url($ecosystem_assets_uri . '/westman.png'); ?>" alt="" aria-hidden="true" class="h-12 w-[55px]" />
+											</div>
+										<?php else: ?>
+											<img src="<?php echo esc_url(isset($card['logo']) ? $card['logo'] : ''); ?>" alt="<?php echo esc_attr(isset($card['logo_alt']) ? $card['logo_alt'] : ''); ?>" class="h-[32px] w-auto object-contain" loading="lazy" decoding="async" />
+										<?php endif; ?>
 									</div>
-								<?php else: ?>
-									<img src="<?php echo esc_url(isset($card['logo']) ? $card['logo'] : ''); ?>" alt="<?php echo esc_attr(isset($card['logo_alt']) ? $card['logo_alt'] : ''); ?>" class="h-[32px] w-auto object-contain" loading="lazy" decoding="async" />
-								<?php endif; ?>
-							</div>
-							<h3 class="font-display text-[28px] font-semibold leading-[1.2] text-foreground sm:text-[24px]">
-								<?php echo esc_html(isset($card['name']) ? $card['name'] : ''); ?>
-							</h3>
-							<p class="mt-2 font-sans text-[14px] leading-[1.42] text-muted-foreground">
-								<?php echo esc_html(isset($card['description']) ? $card['description'] : ''); ?>
-							</p>
+									<h3 class="font-display text-[28px] font-semibold leading-[1.2] text-foreground sm:text-[24px]">
+										<?php echo esc_html(isset($card['name']) ? $card['name'] : ''); ?>
+									</h3>
+									<p class="mt-2 font-sans text-[14px] leading-[1.42] text-muted-foreground">
+										<?php echo esc_html(isset($card['description']) ? $card['description'] : ''); ?>
+									</p>
+								</div>
+								<a href="<?php echo esc_url($card_link_data['url']); ?>" target="<?php echo esc_attr($card_link_data['target']); ?>" class="mt-auto inline-flex w-max items-center gap-1.5 font-sans text-sm font-medium text-foreground no-underline transition-colors group-hover:text-primary">
+									<span><?php echo esc_html($card_link_data['title']); ?></span>
+									<i class="ph-bold ph-arrow-right text-[12px]" aria-hidden="true"></i>
+								</a>
+							</article>
+						<?php endforeach; ?>
+					<?php else: ?>
+						<div class="col-span-full text-center font-sans text-sm text-muted-foreground">
+							<?php echo esc_html('Please add ecosystem cards in ACF.'); ?>
 						</div>
-						<a href="<?php echo esc_url($card_link_data['url']); ?>" target="<?php echo esc_attr($card_link_data['target']); ?>" class="mt-5 inline-flex items-center gap-1.5 font-sans text-sm text-[#1e293b] no-underline">
-							<span><?php echo esc_html($card_link_data['title']); ?></span>
-							<img src="<?php echo esc_url($ecosystem_assets_uri . '/ecosystem-arrow-right.svg'); ?>" alt="" aria-hidden="true" class="h-3 w-3" />
-						</a>
-					</article>
-					<?php endforeach; ?>
-				<?php else: ?>
-					<div class="col-span-full text-center font-sans text-sm text-muted-foreground">
-						<?php echo esc_html('Please add ecosystem cards in ACF.'); ?>
-					</div>
-				<?php endif; ?>
+					<?php endif; ?>
+				</div>
 			</div>
-		</div>
-	</section>
+		</section>
 	<?php endif; ?>
 	<!-- End Ecosystem Section -->
 	<!-- What we do section -->
@@ -386,74 +386,74 @@ if ($acf_enabled) {
 	}
 	?>
 	<?php if ($about_sections['what_we_do']): ?>
-	<section id="reacon-what-we-do-section" class="bg-[#f5f5f5] py-12 sm:py-14 md:py-16 lg:py-20 xl:py-[120px]">
-		<div class="mx-auto grid w-full max-w-[1370px] grid-cols-1 gap-8 px-4 sm:px-6 md:gap-10 lg:grid-cols-[minmax(0,720px)_minmax(0,620px)] lg:items-stretch lg:gap-[30px] lg:px-8 xl:px-0">
-			<div class="flex flex-col gap-6 md:gap-8">
-				<div class="w-full max-w-[720px]">
-					<p class="font-sans text-[13px] uppercase tracking-[0.08em] text-muted-foreground sm:text-sm md:text-base">
-						<?php echo esc_html(reacon_about_fallback_text($what_we_do_eyebrow, 'What We Do')); ?>
-					</p>
-					<h2 class="mt-2 font-display text-[36px] font-semibold leading-[1.15] text-foreground sm:text-[40px] md:text-[44px] lg:text-[56px] xl:text-[60px]">
-						<?php echo esc_html(reacon_about_fallback_text($what_we_do_title, 'Section content coming soon.')); ?>
-					</h2>
-					<p class="mt-3 max-w-[720px] font-sans text-[15px] leading-[1.42] text-muted-foreground sm:text-base md:mt-4">
-						<?php echo esc_html(reacon_about_fallback_text($what_we_do_description, 'Please add What We Do description in ACF.')); ?>
-					</p>
-				</div>
+		<section id="reacon-what-we-do-section" class="bg-[#f5f5f5] py-12 sm:py-14 md:py-16 lg:py-20 xl:py-[120px]">
+			<div class="mx-auto grid w-full max-w-[1370px] grid-cols-1 gap-8 px-4 sm:px-6 md:gap-10 lg:grid-cols-[minmax(0,720px)_minmax(0,620px)] lg:items-stretch lg:gap-[30px] lg:px-8 xl:px-0">
+				<div class="flex flex-col gap-6 md:gap-8">
+					<div class="w-full max-w-[720px]">
+						<p class="font-sans text-[13px] uppercase tracking-[0.08em] text-muted-foreground sm:text-sm md:text-base">
+							<?php echo esc_html(reacon_about_fallback_text($what_we_do_eyebrow, 'What We Do')); ?>
+						</p>
+						<h2 class="mt-2 font-display text-[36px] font-semibold leading-[1.15] text-foreground sm:text-[40px] md:text-[44px] lg:text-[56px] xl:text-[60px]">
+							<?php echo esc_html(reacon_about_fallback_text($what_we_do_title, 'Section content coming soon.')); ?>
+						</h2>
+						<p class="mt-3 max-w-[720px] font-sans text-[15px] leading-[1.42] text-muted-foreground sm:text-base md:mt-4">
+							<?php echo esc_html(reacon_about_fallback_text($what_we_do_description, 'Please add What We Do description in ACF.')); ?>
+						</p>
+					</div>
 
-				<div class="grid grid-cols-1 border border-[#eceff2] sm:grid-cols-2">
-					<?php if (!empty($what_we_do_cards)): ?>
-						<?php foreach ($what_we_do_cards as $index => $card): ?>
-						<?php
-						$is_top_row = $index < 2;
-						$is_left_col = 0 === $index % 2;
-						$cell_border = $is_top_row ? 'border-b border-[#eceff2]' : '';
-						if ($is_left_col) {
-							$cell_border .= ' sm:border-r sm:border-[#eceff2]';
-						}
-						?>
-						<article class="flex gap-2 p-4 sm:p-5 md:p-6 <?php echo esc_attr(trim($cell_border)); ?> <?php echo $card['highlight'] ? 'bg-[rgba(233,251,252,0.5)]' : 'bg-transparent'; ?>">
-							<div class="pt-1.5 text-primary">
+					<div class="grid grid-cols-1 border border-[#eceff2] sm:grid-cols-2">
+						<?php if (!empty($what_we_do_cards)): ?>
+							<?php foreach ($what_we_do_cards as $index => $card): ?>
 								<?php
-								reacon_about_render_icon(
-									isset($card['icon_type']) ? $card['icon_type'] : 'phosphor',
-									isset($card['icon_value']) ? $card['icon_value'] : 'ph-fill ph-check-circle',
-									'',
-									'text-[18px] leading-none'
-								);
+								$is_top_row = $index < 2;
+								$is_left_col = 0 === $index % 2;
+								$cell_border = $is_top_row ? 'border-b border-[#eceff2]' : '';
+								if ($is_left_col) {
+									$cell_border .= ' sm:border-r sm:border-[#eceff2]';
+								}
 								?>
+								<article class="flex gap-2 p-4 sm:p-5 md:p-6 <?php echo esc_attr(trim($cell_border)); ?> <?php echo $card['highlight'] ? 'bg-[rgba(233,251,252,0.5)]' : 'bg-transparent'; ?>">
+									<div class="pt-1.5 text-primary">
+										<?php
+										reacon_about_render_icon(
+											isset($card['icon_type']) ? $card['icon_type'] : 'phosphor',
+											isset($card['icon_value']) ? $card['icon_value'] : 'ph-fill ph-check-circle',
+											'',
+											'text-[18px] leading-none'
+										);
+										?>
+									</div>
+									<div class="min-w-0">
+										<h3 class="font-display text-[24px] font-semibold leading-[1.2] text-foreground sm:text-xl md:text-2xl">
+											<?php echo esc_html($card['title']); ?>
+										</h3>
+										<p class="mt-2 font-sans text-[15px] font-medium leading-[1.42] text-foreground sm:text-base">
+											<?php echo esc_html($card['subtitle']); ?>
+										</p>
+										<p class="mt-1 font-sans text-[15px] leading-[1.42] text-muted-foreground sm:text-base">
+											<?php echo esc_html($card['body']); ?>
+										</p>
+									</div>
+								</article>
+							<?php endforeach; ?>
+						<?php else: ?>
+							<div class="p-4 sm:p-5 md:p-6 font-sans text-sm text-muted-foreground">
+								<?php echo esc_html('Please add What We Do cards in ACF.'); ?>
 							</div>
-							<div class="min-w-0">
-								<h3 class="font-display text-[24px] font-semibold leading-[1.2] text-foreground sm:text-xl md:text-2xl">
-									<?php echo esc_html($card['title']); ?>
-								</h3>
-								<p class="mt-2 font-sans text-[15px] font-medium leading-[1.42] text-foreground sm:text-base">
-									<?php echo esc_html($card['subtitle']); ?>
-								</p>
-								<p class="mt-1 font-sans text-[15px] leading-[1.42] text-muted-foreground sm:text-base">
-									<?php echo esc_html($card['body']); ?>
-								</p>
-							</div>
-						</article>
-						<?php endforeach; ?>
-					<?php else: ?>
-						<div class="p-4 sm:p-5 md:p-6 font-sans text-sm text-muted-foreground">
-							<?php echo esc_html('Please add What We Do cards in ACF.'); ?>
-						</div>
-					<?php endif; ?>
+						<?php endif; ?>
+					</div>
+				</div>
+
+				<div class="relative h-[440px] overflow-hidden rounded-3xl sm:h-[560px] md:h-[640px] lg:h-auto lg:min-h-[774px]">
+					<img
+						src="<?php echo esc_url($what_we_do_image_url); ?>"
+						alt="<?php echo esc_attr($what_we_do_image_alt); ?>"
+						class="h-full w-full object-cover"
+						loading="lazy"
+						decoding="async" />
 				</div>
 			</div>
-
-			<div class="relative h-[440px] overflow-hidden rounded-3xl sm:h-[560px] md:h-[640px] lg:h-auto lg:min-h-[774px]">
-				<img
-					src="<?php echo esc_url($what_we_do_image_url); ?>"
-					alt="<?php echo esc_attr($what_we_do_image_alt); ?>"
-					class="h-full w-full object-cover"
-					loading="lazy"
-					decoding="async" />
-			</div>
-		</div>
-	</section>
+		</section>
 	<?php endif; ?>
 	<!-- End What we do section -->
 
@@ -478,130 +478,130 @@ if ($acf_enabled) {
 	?>
 
 	<?php if ($about_sections['testimonials']): ?>
-	<section id="reacon-testimonials-section" class="relative overflow-hidden bg-[#fafafa] py-16 lg:py-24" aria-label="<?php esc_attr_e('Testimonials', 'reacon-group'); ?>">
-		<div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(233,251,252,0.9)_0%,rgba(255,255,255,0.85)_58%,rgba(255,255,255,1)_100%)]" aria-hidden="true"></div>
+		<section id="reacon-testimonials-section" class="relative overflow-hidden bg-[#fafafa] py-16 lg:py-24" aria-label="<?php esc_attr_e('Testimonials', 'reacon-group'); ?>">
+			<div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(233,251,252,0.9)_0%,rgba(255,255,255,0.85)_58%,rgba(255,255,255,1)_100%)]" aria-hidden="true"></div>
 
-		<div class="relative z-10 mx-auto mb-10 flex w-full max-w-[760px] flex-col items-center gap-3 px-6 text-center lg:mb-12">
-			<h2 class="font-display text-[32px] font-bold leading-[1.3] text-[#1e293b] sm:text-[38px] lg:text-[42px]">
-				<?php echo esc_html(reacon_about_fallback_text($testimonials_heading, 'Testimonials')); ?>
-			</h2>
-			<p class="max-w-[706px] font-sans text-sm leading-[1.42] text-[#262626] sm:text-base">
-				<?php echo esc_html(reacon_about_fallback_text($testimonials_description, 'Please add testimonials intro in ACF.')); ?>
-			</p>
-		</div>
+			<div class="relative z-10 mx-auto mb-10 flex w-full max-w-[760px] flex-col items-center gap-3 px-6 text-center lg:mb-12">
+				<h2 class="font-display text-[32px] font-bold leading-[1.3] text-[#1e293b] sm:text-[38px] lg:text-[42px]">
+					<?php echo esc_html(reacon_about_fallback_text($testimonials_heading, 'Testimonials')); ?>
+				</h2>
+				<p class="max-w-[706px] font-sans text-sm leading-[1.42] text-[#262626] sm:text-base">
+					<?php echo esc_html(reacon_about_fallback_text($testimonials_description, 'Please add testimonials intro in ACF.')); ?>
+				</p>
+			</div>
 
-		<div class="relative z-10 space-y-6 lg:space-y-8">
-			<div class="reacon-testi-track-wrap">
-				<div class="reacon-testi-track reacon-testi-track--forward">
-					<?php if (!empty($testimonials_row_1)): ?>
-						<?php for ($r = 0; $r < 2; $r++): ?>
-							<?php foreach ($testimonials_row_1 as $item): ?>
-							<article class="flex h-[260px] w-[86vw] max-w-[472px] shrink-0 flex-col justify-between rounded-3xl border border-[#e5e5e5] bg-white p-6 shadow-[0_1px_0_rgba(0,0,0,0.02)] sm:w-[472px]">
-								<p class="font-sans text-base leading-[1.42] text-foreground">
-									<?php echo esc_html($item['quote']); ?>
-								</p>
-								<div class="flex items-start gap-6">
-									<div class="min-w-0 flex-1">
-										<p class="font-sans text-base font-medium leading-[1.42] text-primary"><?php echo esc_html($item['name']); ?></p>
-										<p class="font-sans text-sm leading-[1.42] text-muted-foreground"><?php echo esc_html($item['role']); ?></p>
-									</div>
-									<?php
-									$item_img = isset($item['img']) ? $item['img'] : '';
-									$item_img_url = is_array($item_img) && !empty($item_img['url']) ? $item_img['url'] : $item_img;
-									?>
-									<img src="<?php echo esc_url($item_img_url); ?>" alt="<?php echo esc_attr($item['name']); ?>" class="h-[52px] w-[52px] shrink-0 rounded-full object-cover" loading="lazy" decoding="async" />
-								</div>
+			<div class="relative z-10 space-y-6 lg:space-y-8">
+				<div class="reacon-testi-track-wrap">
+					<div class="reacon-testi-track reacon-testi-track--forward">
+						<?php if (!empty($testimonials_row_1)): ?>
+							<?php for ($r = 0; $r < 2; $r++): ?>
+								<?php foreach ($testimonials_row_1 as $item): ?>
+									<article class="flex h-[260px] w-[86vw] max-w-[472px] shrink-0 flex-col justify-between rounded-3xl border border-[#e5e5e5] bg-white p-6 shadow-[0_1px_0_rgba(0,0,0,0.02)] sm:w-[472px]">
+										<p class="font-sans text-base leading-[1.42] text-foreground">
+											<?php echo esc_html($item['quote']); ?>
+										</p>
+										<div class="flex items-start gap-6">
+											<div class="min-w-0 flex-1">
+												<p class="font-sans text-base font-medium leading-[1.42] text-primary"><?php echo esc_html($item['name']); ?></p>
+												<p class="font-sans text-sm leading-[1.42] text-muted-foreground"><?php echo esc_html($item['role']); ?></p>
+											</div>
+											<?php
+											$item_img = isset($item['img']) ? $item['img'] : '';
+											$item_img_url = is_array($item_img) && !empty($item_img['url']) ? $item_img['url'] : $item_img;
+											?>
+											<img src="<?php echo esc_url($item_img_url); ?>" alt="<?php echo esc_attr($item['name']); ?>" class="h-[52px] w-[52px] shrink-0 rounded-full object-cover" loading="lazy" decoding="async" />
+										</div>
+									</article>
+								<?php endforeach; ?>
+							<?php endfor; ?>
+						<?php else: ?>
+							<article class="flex h-[260px] w-[86vw] max-w-[472px] shrink-0 flex-col justify-center rounded-3xl border border-[#e5e5e5] bg-white p-6 shadow-[0_1px_0_rgba(0,0,0,0.02)] sm:w-[472px]">
+								<p class="font-sans text-base leading-[1.42] text-foreground"><?php echo esc_html('Please add testimonials in ACF.'); ?></p>
 							</article>
-							<?php endforeach; ?>
-						<?php endfor; ?>
-					<?php else: ?>
-						<article class="flex h-[260px] w-[86vw] max-w-[472px] shrink-0 flex-col justify-center rounded-3xl border border-[#e5e5e5] bg-white p-6 shadow-[0_1px_0_rgba(0,0,0,0.02)] sm:w-[472px]">
-							<p class="font-sans text-base leading-[1.42] text-foreground"><?php echo esc_html('Please add testimonials in ACF.'); ?></p>
-						</article>
-					<?php endif; ?>
+						<?php endif; ?>
+					</div>
+				</div>
+
+				<div class="reacon-testi-track-wrap">
+					<div class="reacon-testi-track reacon-testi-track--reverse">
+						<?php if (!empty($testimonials_row_2)): ?>
+							<?php for ($r = 0; $r < 2; $r++): ?>
+								<?php foreach ($testimonials_row_2 as $item): ?>
+									<article class="flex h-[260px] w-[86vw] max-w-[472px] shrink-0 flex-col justify-between rounded-3xl border border-[#e5e5e5] bg-white p-6 shadow-[0_1px_0_rgba(0,0,0,0.02)] sm:w-[472px]">
+										<p class="font-sans text-base leading-[1.42] text-foreground">
+											<?php echo esc_html($item['quote']); ?>
+										</p>
+										<div class="flex items-start gap-6">
+											<div class="min-w-0 flex-1">
+												<p class="font-sans text-base font-medium leading-[1.42] text-primary"><?php echo esc_html($item['name']); ?></p>
+												<p class="font-sans text-sm leading-[1.42] text-muted-foreground"><?php echo esc_html($item['role']); ?></p>
+											</div>
+											<?php
+											$item_img = isset($item['img']) ? $item['img'] : '';
+											$item_img_url = is_array($item_img) && !empty($item_img['url']) ? $item_img['url'] : $item_img;
+											?>
+											<img src="<?php echo esc_url($item_img_url); ?>" alt="<?php echo esc_attr($item['name']); ?>" class="h-[52px] w-[52px] shrink-0 rounded-full object-cover" loading="lazy" decoding="async" />
+										</div>
+									</article>
+								<?php endforeach; ?>
+							<?php endfor; ?>
+						<?php else: ?>
+							<article class="flex h-[260px] w-[86vw] max-w-[472px] shrink-0 flex-col justify-center rounded-3xl border border-[#e5e5e5] bg-white p-6 shadow-[0_1px_0_rgba(0,0,0,0.02)] sm:w-[472px]">
+								<p class="font-sans text-base leading-[1.42] text-foreground"><?php echo esc_html('Please add testimonials in ACF.'); ?></p>
+							</article>
+						<?php endif; ?>
+					</div>
 				</div>
 			</div>
 
-			<div class="reacon-testi-track-wrap">
-				<div class="reacon-testi-track reacon-testi-track--reverse">
-					<?php if (!empty($testimonials_row_2)): ?>
-						<?php for ($r = 0; $r < 2; $r++): ?>
-							<?php foreach ($testimonials_row_2 as $item): ?>
-							<article class="flex h-[260px] w-[86vw] max-w-[472px] shrink-0 flex-col justify-between rounded-3xl border border-[#e5e5e5] bg-white p-6 shadow-[0_1px_0_rgba(0,0,0,0.02)] sm:w-[472px]">
-								<p class="font-sans text-base leading-[1.42] text-foreground">
-									<?php echo esc_html($item['quote']); ?>
-								</p>
-								<div class="flex items-start gap-6">
-									<div class="min-w-0 flex-1">
-										<p class="font-sans text-base font-medium leading-[1.42] text-primary"><?php echo esc_html($item['name']); ?></p>
-										<p class="font-sans text-sm leading-[1.42] text-muted-foreground"><?php echo esc_html($item['role']); ?></p>
-									</div>
-									<?php
-									$item_img = isset($item['img']) ? $item['img'] : '';
-									$item_img_url = is_array($item_img) && !empty($item_img['url']) ? $item_img['url'] : $item_img;
-									?>
-									<img src="<?php echo esc_url($item_img_url); ?>" alt="<?php echo esc_attr($item['name']); ?>" class="h-[52px] w-[52px] shrink-0 rounded-full object-cover" loading="lazy" decoding="async" />
-								</div>
-							</article>
-							<?php endforeach; ?>
-						<?php endfor; ?>
-					<?php else: ?>
-						<article class="flex h-[260px] w-[86vw] max-w-[472px] shrink-0 flex-col justify-center rounded-3xl border border-[#e5e5e5] bg-white p-6 shadow-[0_1px_0_rgba(0,0,0,0.02)] sm:w-[472px]">
-							<p class="font-sans text-base leading-[1.42] text-foreground"><?php echo esc_html('Please add testimonials in ACF.'); ?></p>
-						</article>
-					<?php endif; ?>
-				</div>
-			</div>
-		</div>
+			<div class="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#fafafa] via-[#fafafa]/75 to-transparent sm:w-24 lg:w-40" aria-hidden="true"></div>
+			<div class="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#fafafa] via-[#fafafa]/75 to-transparent sm:w-24 lg:w-40" aria-hidden="true"></div>
 
-		<div class="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#fafafa] via-[#fafafa]/75 to-transparent sm:w-24 lg:w-40" aria-hidden="true"></div>
-		<div class="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#fafafa] via-[#fafafa]/75 to-transparent sm:w-24 lg:w-40" aria-hidden="true"></div>
-
-		<style>
-			.reacon-testi-track-wrap {
-				overflow: hidden;
-			}
-
-			.reacon-testi-track {
-				display: flex;
-				width: max-content;
-				gap: 32px;
-				will-change: transform;
-			}
-
-			.reacon-testi-track--forward {
-				animation: reacon-testi-forward 46s linear infinite;
-			}
-
-			.reacon-testi-track--reverse {
-				animation: reacon-testi-reverse 52s linear infinite;
-			}
-
-			.reacon-testi-track-wrap:hover .reacon-testi-track {
-				animation-play-state: paused;
-			}
-
-			@keyframes reacon-testi-forward {
-				0% {
-					transform: translateX(0);
+			<style>
+				.reacon-testi-track-wrap {
+					overflow: hidden;
 				}
 
-				100% {
-					transform: translateX(calc(-50% - 16px));
-				}
-			}
-
-			@keyframes reacon-testi-reverse {
-				0% {
-					transform: translateX(calc(-50% - 16px));
+				.reacon-testi-track {
+					display: flex;
+					width: max-content;
+					gap: 32px;
+					will-change: transform;
 				}
 
-				100% {
-					transform: translateX(0);
+				.reacon-testi-track--forward {
+					animation: reacon-testi-forward 46s linear infinite;
 				}
-			}
-		</style>
-	</section>
+
+				.reacon-testi-track--reverse {
+					animation: reacon-testi-reverse 52s linear infinite;
+				}
+
+				.reacon-testi-track-wrap:hover .reacon-testi-track {
+					animation-play-state: paused;
+				}
+
+				@keyframes reacon-testi-forward {
+					0% {
+						transform: translateX(0);
+					}
+
+					100% {
+						transform: translateX(calc(-50% - 16px));
+					}
+				}
+
+				@keyframes reacon-testi-reverse {
+					0% {
+						transform: translateX(calc(-50% - 16px));
+					}
+
+					100% {
+						transform: translateX(0);
+					}
+				}
+			</style>
+		</section>
 	<?php endif; ?>
 	<!-- End Testimonials Section -->
 
@@ -644,73 +644,73 @@ if ($acf_enabled) {
 	}
 	?>
 	<?php if ($about_sections['cta']): ?>
-	<section id="home-cta" class="py-10 sm:py-12 lg:py-14" aria-labelledby="home-cta-heading">
-		<div class="mx-auto w-full  px-5 sm:px-6 lg:px-10">
-			<div class="relative overflow-hidden rounded-[22px] px-5 py-14 sm:px-8 sm:py-16 lg:rounded-[24px] lg:px-12 lg:py-[70px]" style="<?php echo esc_attr($cta_bg_style); ?>">
-				<div class="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
-					<svg preserveAspectRatio="none" style="display:block; width:100%; height:100%;" viewBox="0 0 2014 746" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<defs>
-							<linearGradient id="home-cta-left" x1="0" y1="0" x2="1000" y2="560" gradientUnits="userSpaceOnUse">
-								<stop offset="0" stop-color="#1ECAD3" stop-opacity="0.3" />
-								<stop offset="1" stop-color="#1ECAD3" stop-opacity="0.02" />
-							</linearGradient>
-							<linearGradient id="home-cta-right" x1="2014" y1="0" x2="980" y2="746" gradientUnits="userSpaceOnUse">
-								<stop offset="0" stop-color="#1ECAD3" stop-opacity="0.25" />
-								<stop offset="1" stop-color="#1ECAD3" stop-opacity="0.04" />
-							</linearGradient>
-						</defs>
-						<path d="M0 0 L0 285 L270 530 L960 0 Z" fill="url(#home-cta-left)" fill-opacity="0.5" />
-						<path d="M2014 0 L2014 290 L1520 746 L980 746 L1590 0 Z" fill="url(#home-cta-right)" fill-opacity="0.36" />
-					</svg>
-				</div>
-				<div class="pointer-events-none absolute inset-0 z-[1]" aria-hidden="true">
-					<svg preserveAspectRatio="none" style="display:block; width:100%; height:100%;" viewBox="0 0 1888 520" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<g filter="url(#filter0_n_611_7678)">
-							<rect x="0" y="0" width="1888" height="520" fill="black" fill-opacity="0.1" />
-						</g>
-						<defs>
-							<filter id="filter0_n_611_7678" x="0" y="0" width="1888" height="520" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-								<feFlood flood-opacity="0" result="BackgroundImageFix" />
-								<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-								<feTurbulence type="fractalNoise" baseFrequency="0.625 0.625" stitchTiles="stitch" numOctaves="3" result="noise" seed="367" />
-								<feColorMatrix in="noise" type="luminanceToAlpha" result="alphaNoise" />
-								<feComponentTransfer in="alphaNoise" result="coloredNoise1">
-									<feFuncA type="discrete" tableValues="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 " />
-								</feComponentTransfer>
-								<feComposite operator="in" in2="shape" in="coloredNoise1" result="noise1Clipped" />
-								<feFlood flood-color="#000000" result="color1Flood" />
-								<feComposite operator="in" in2="noise1Clipped" in="color1Flood" result="color1" />
-								<feMerge result="effect1_noise_611_7678">
-									<feMergeNode in="shape" />
-									<feMergeNode in="color1" />
-								</feMerge>
-							</filter>
-						</defs>
-					</svg>
-				</div>
-				<div class="pointer-events-none absolute inset-0 z-[2] bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08)_0%,rgba(255,255,255,0)_58%)]" aria-hidden="true"></div>
-				<div class="relative z-10 mx-auto flex max-w-[760px] flex-col items-center justify-center text-center">
-					<h2 id="home-cta-heading" class="font-display text-[34px] font-bold leading-[1.08] text-white sm:text-[46px] lg:text-[56px]">
-						<?php echo esc_html(reacon_about_fallback_text($about_cta['heading'], 'CTA content coming soon.')); ?>
-					</h2>
-					<p class="mx-auto mt-4 font-sans text-[14px] leading-[1.4] text-white/90 sm:text-[16px]">
-						<?php echo esc_html(reacon_about_fallback_text($about_cta['description'], 'Please add CTA description in ACF.')); ?>
-					</p>
-					<div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-[10px]">
-						<a href="<?php echo esc_url($about_cta['primary']['url']); ?>" target="<?php echo esc_attr(isset($about_cta['primary']['target']) ? $about_cta['primary']['target'] : '_self'); ?>" class="inline-flex items-center gap-[10px] rounded-full bg-white py-[4px] pl-[20px] pr-[4px] font-sans text-[16px] font-medium text-primary no-underline transition-all duration-300 hover:bg-white/90">
-							<span><?php echo esc_html(reacon_about_fallback_text($about_cta['primary']['label'], 'Primary Action')); ?></span>
-							<span class="flex h-[42px] w-[42px] items-center justify-center rounded-full bg-secondary/15">
-								<?php reacon_about_render_icon($about_cta_primary_icon_type, $about_cta_primary_icon_value, '', 'text-base text-primary'); ?>
-							</span>
-						</a>
-						<a href="<?php echo esc_url($about_cta['secondary']['url']); ?>" target="<?php echo esc_attr(isset($about_cta['secondary']['target']) ? $about_cta['secondary']['target'] : '_self'); ?>" class="inline-flex items-center gap-[10px] rounded-full border border-solid border-white pl-[20px] pr-[16px] py-[4px] font-sans text-[16px] font-normal text-white no-underline transition-all duration-300 hover:bg-white/10">
-							<?php echo esc_html(reacon_about_fallback_text($about_cta['secondary']['label'], 'Secondary Action')); ?>
-						</a>
+		<section id="home-cta" class="py-10 sm:py-12 lg:py-14" aria-labelledby="home-cta-heading">
+			<div class="mx-auto w-full  px-5 sm:px-6 lg:px-10">
+				<div class="relative overflow-hidden rounded-[22px] px-5 py-14 sm:px-8 sm:py-16 lg:rounded-[24px] lg:px-12 lg:py-[70px]" style="<?php echo esc_attr($cta_bg_style); ?>">
+					<div class="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
+						<svg preserveAspectRatio="none" style="display:block; width:100%; height:100%;" viewBox="0 0 2014 746" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<defs>
+								<linearGradient id="home-cta-left" x1="0" y1="0" x2="1000" y2="560" gradientUnits="userSpaceOnUse">
+									<stop offset="0" stop-color="#1ECAD3" stop-opacity="0.3" />
+									<stop offset="1" stop-color="#1ECAD3" stop-opacity="0.02" />
+								</linearGradient>
+								<linearGradient id="home-cta-right" x1="2014" y1="0" x2="980" y2="746" gradientUnits="userSpaceOnUse">
+									<stop offset="0" stop-color="#1ECAD3" stop-opacity="0.25" />
+									<stop offset="1" stop-color="#1ECAD3" stop-opacity="0.04" />
+								</linearGradient>
+							</defs>
+							<path d="M0 0 L0 285 L270 530 L960 0 Z" fill="url(#home-cta-left)" fill-opacity="0.5" />
+							<path d="M2014 0 L2014 290 L1520 746 L980 746 L1590 0 Z" fill="url(#home-cta-right)" fill-opacity="0.36" />
+						</svg>
+					</div>
+					<div class="pointer-events-none absolute inset-0 z-[1]" aria-hidden="true">
+						<svg preserveAspectRatio="none" style="display:block; width:100%; height:100%;" viewBox="0 0 1888 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<g filter="url(#filter0_n_611_7678)">
+								<rect x="0" y="0" width="1888" height="520" fill="black" fill-opacity="0.1" />
+							</g>
+							<defs>
+								<filter id="filter0_n_611_7678" x="0" y="0" width="1888" height="520" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+									<feFlood flood-opacity="0" result="BackgroundImageFix" />
+									<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+									<feTurbulence type="fractalNoise" baseFrequency="0.625 0.625" stitchTiles="stitch" numOctaves="3" result="noise" seed="367" />
+									<feColorMatrix in="noise" type="luminanceToAlpha" result="alphaNoise" />
+									<feComponentTransfer in="alphaNoise" result="coloredNoise1">
+										<feFuncA type="discrete" tableValues="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 " />
+									</feComponentTransfer>
+									<feComposite operator="in" in2="shape" in="coloredNoise1" result="noise1Clipped" />
+									<feFlood flood-color="#000000" result="color1Flood" />
+									<feComposite operator="in" in2="noise1Clipped" in="color1Flood" result="color1" />
+									<feMerge result="effect1_noise_611_7678">
+										<feMergeNode in="shape" />
+										<feMergeNode in="color1" />
+									</feMerge>
+								</filter>
+							</defs>
+						</svg>
+					</div>
+					<div class="pointer-events-none absolute inset-0 z-[2] bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08)_0%,rgba(255,255,255,0)_58%)]" aria-hidden="true"></div>
+					<div class="relative z-10 mx-auto flex max-w-[760px] flex-col items-center justify-center text-center">
+						<h2 id="home-cta-heading" class="font-display text-[34px] font-bold leading-[1.08] text-white sm:text-[46px] lg:text-[56px]">
+							<?php echo esc_html(reacon_about_fallback_text($about_cta['heading'], 'CTA content coming soon.')); ?>
+						</h2>
+						<p class="mx-auto mt-4 font-sans text-[14px] leading-[1.4] text-white/90 sm:text-[16px]">
+							<?php echo esc_html(reacon_about_fallback_text($about_cta['description'], 'Please add CTA description in ACF.')); ?>
+						</p>
+						<div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-[10px]">
+							<a href="<?php echo esc_url($about_cta['primary']['url']); ?>" target="<?php echo esc_attr(isset($about_cta['primary']['target']) ? $about_cta['primary']['target'] : '_self'); ?>" class="inline-flex items-center gap-[10px] rounded-full bg-white py-[4px] pl-[20px] pr-[4px] font-sans text-[16px] font-medium text-primary no-underline transition-all duration-300 hover:bg-white/90">
+								<span><?php echo esc_html(reacon_about_fallback_text($about_cta['primary']['label'], 'Primary Action')); ?></span>
+								<span class="flex h-[42px] w-[42px] items-center justify-center rounded-full bg-secondary/15">
+									<?php reacon_about_render_icon($about_cta_primary_icon_type, $about_cta_primary_icon_value, '', 'text-base text-primary'); ?>
+								</span>
+							</a>
+							<a href="<?php echo esc_url($about_cta['secondary']['url']); ?>" target="<?php echo esc_attr(isset($about_cta['secondary']['target']) ? $about_cta['secondary']['target'] : '_self'); ?>" class="inline-flex items-center gap-[10px] rounded-full border border-solid border-white pl-[20px] pr-[16px] py-[4px] font-sans text-[16px] font-normal text-white no-underline transition-all duration-300 hover:bg-white/10">
+								<?php echo esc_html(reacon_about_fallback_text($about_cta['secondary']['label'], 'Secondary Action')); ?>
+							</a>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</section>
+		</section>
 	<?php endif; ?>
 
 	<!-- End CTA SECTION -->
@@ -740,92 +740,92 @@ if ($acf_enabled) {
 	}
 	?>
 	<?php if ($about_sections['faq']): ?>
-	<section
-		id="reacon-faq-section"
-		class="w-full bg-white py-[72px] sm:py-[96px] lg:py-16"
-		aria-labelledby="reacon-faq-heading">
-		<div class="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-0">
-			<!-- Header -->
-			<div class="flex flex-col gap-[24px] lg:flex-row lg:items-end lg:justify-between">
-				<div class="flex flex-col gap-[24px]">
-					<h2
-						id="reacon-faq-heading"
-						class="text-[28px] font-semibold leading-[1.32] text-black sm:text-[36px] lg:text-[44px]"
-						style="font-family: 'Plus Jakarta Sans','Graphik Trial',ui-sans-serif,system-ui">
-						<?php echo esc_html(reacon_about_fallback_text($faq_heading, 'Frequently Asked Questions')); ?>
-					</h2>
-					<p
-						class="max-w-[1177px] text-[15px] leading-[1.42] text-black sm:text-[16px]">
-						<?php echo esc_html(reacon_about_fallback_text($faq_description, 'Please add FAQ intro content in ACF.')); ?>
-					</p>
-				</div>
-			</div>
-
-			<!-- FAQ items -->
-			<div
-				class="mt-[40px] flex flex-col gap-[12px] sm:mt-[48px] lg:mt-[56px]"
-				aria-label="Frequently asked questions list">
-				<?php if (!empty($faq_items)): ?>
-					<?php foreach ($faq_items as $faq_index => $faq_item): ?>
-					<details
-						<?php echo 0 === $faq_index ? 'open' : ''; ?>
-						class="transition-colors duration-300 rounded-[16px] <?php echo 0 === $faq_index ? 'bg-[#F9FAFB]' : 'border border-[#E7E7E7]'; ?> px-[20px] py-[18px] sm:px-[24px] sm:py-[20px]">
-						<summary class="flex cursor-pointer list-none items-center justify-between gap-4 outline-none focus-visible:ring-2 focus-visible:ring-[var(--reacon-teal)] focus-visible:ring-offset-2 rounded-md">
-							<span
-								class="text-[18px] font-medium leading-[1.32] text-[#383B43] sm:text-[20px]"
-								style="font-family: 'Plus Jakarta Sans','Graphik Trial',ui-sans-serif,system-ui">
-								<?php echo esc_html(isset($faq_item['question']) ? $faq_item['question'] : ''); ?>
-							</span>
-							<span class="text-[20px] leading-none text-[#383B43] select-none" aria-hidden="true">
-								<?php echo 0 === $faq_index ? '−' : '+'; ?>
-							</span>
-						</summary>
-						<p class="mt-[14px] text-[15px] leading-[1.42] text-[#666666] sm:mt-[20px] sm:text-[16px]">
-							<?php echo esc_html(isset($faq_item['answer']) ? $faq_item['answer'] : ''); ?>
-						</p>
-					</details>
-					<?php endforeach; ?>
-				<?php else: ?>
-					<details
-						open
-						class="transition-colors duration-300 rounded-[16px] bg-[#F9FAFB] px-[20px] py-[18px] sm:px-[24px] sm:py-[20px]">
-						<summary class="flex cursor-pointer list-none items-center justify-between gap-4 outline-none focus-visible:ring-2 focus-visible:ring-[var(--reacon-teal)] focus-visible:ring-offset-2 rounded-md">
-							<span class="text-[18px] font-medium leading-[1.32] text-[#383B43] sm:text-[20px]" style="font-family: 'Plus Jakarta Sans','Graphik Trial',ui-sans-serif,system-ui">
-								<?php echo esc_html('FAQ content coming soon.'); ?>
-							</span>
-							<span class="text-[20px] leading-none text-[#383B43] select-none" aria-hidden="true">−</span>
-						</summary>
-						<p class="mt-[14px] text-[15px] leading-[1.42] text-[#666666] sm:mt-[20px] sm:text-[16px]">
-							<?php echo esc_html('Please add FAQ items in ACF.'); ?>
-						</p>
-					</details>
-				<?php endif; ?>
-
-				<!-- CTA card -->
-				<div
-					class="mt-[4px] rounded-[16px] bg-[#E9FBFC] px-[20px] py-[18px] sm:px-[24px] sm:py-[20px]">
-					<div class="flex flex-col gap-[8px]">
-						<p class="text-[15px] font-medium leading-[1.42] text-[#383B43] sm:text-[16px]">
-							<?php echo esc_html(reacon_about_fallback_text($faq_cta_title, 'Need more help?')); ?>
-						</p>
-						<p class="text-[15px] leading-[1.42] text-[#666666] sm:text-[16px]">
-							<?php echo esc_html(reacon_about_fallback_text($faq_cta_description, 'Please add FAQ CTA description in ACF.')); ?>
+		<section
+			id="reacon-faq-section"
+			class="w-full bg-white py-[72px] sm:py-[96px] lg:py-16"
+			aria-labelledby="reacon-faq-heading">
+			<div class="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-0">
+				<!-- Header -->
+				<div class="flex flex-col gap-[24px] lg:flex-row lg:items-end lg:justify-between">
+					<div class="flex flex-col gap-[24px]">
+						<h2
+							id="reacon-faq-heading"
+							class="text-[28px] font-semibold leading-[1.32] text-black sm:text-[36px] lg:text-[44px]"
+							style="font-family: 'Plus Jakarta Sans','Graphik Trial',ui-sans-serif,system-ui">
+							<?php echo esc_html(reacon_about_fallback_text($faq_heading, 'Frequently Asked Questions')); ?>
+						</h2>
+						<p
+							class="max-w-[1177px] text-[15px] leading-[1.42] text-black sm:text-[16px]">
+							<?php echo esc_html(reacon_about_fallback_text($faq_description, 'Please add FAQ intro content in ACF.')); ?>
 						</p>
 					</div>
+				</div>
+
+				<!-- FAQ items -->
+				<div
+					class="mt-[40px] flex flex-col gap-[12px] sm:mt-[48px] lg:mt-[56px]"
+					aria-label="Frequently asked questions list">
+					<?php if (!empty($faq_items)): ?>
+						<?php foreach ($faq_items as $faq_index => $faq_item): ?>
+							<details
+								<?php echo 0 === $faq_index ? 'open' : ''; ?>
+								class="transition-colors duration-300 rounded-[16px] <?php echo 0 === $faq_index ? 'bg-[#F9FAFB]' : 'border border-[#E7E7E7]'; ?> px-[20px] py-[18px] sm:px-[24px] sm:py-[20px]">
+								<summary class="flex cursor-pointer list-none items-center justify-between gap-4 outline-none focus-visible:ring-2 focus-visible:ring-[var(--reacon-teal)] focus-visible:ring-offset-2 rounded-md">
+									<span
+										class="text-[18px] font-medium leading-[1.32] text-[#383B43] sm:text-[20px]"
+										style="font-family: 'Plus Jakarta Sans','Graphik Trial',ui-sans-serif,system-ui">
+										<?php echo esc_html(isset($faq_item['question']) ? $faq_item['question'] : ''); ?>
+									</span>
+									<span class="text-[20px] leading-none text-[#383B43] select-none" aria-hidden="true">
+										<?php echo 0 === $faq_index ? '−' : '+'; ?>
+									</span>
+								</summary>
+								<p class="mt-[14px] text-[15px] leading-[1.42] text-[#666666] sm:mt-[20px] sm:text-[16px]">
+									<?php echo esc_html(isset($faq_item['answer']) ? $faq_item['answer'] : ''); ?>
+								</p>
+							</details>
+						<?php endforeach; ?>
+					<?php else: ?>
+						<details
+							open
+							class="transition-colors duration-300 rounded-[16px] bg-[#F9FAFB] px-[20px] py-[18px] sm:px-[24px] sm:py-[20px]">
+							<summary class="flex cursor-pointer list-none items-center justify-between gap-4 outline-none focus-visible:ring-2 focus-visible:ring-[var(--reacon-teal)] focus-visible:ring-offset-2 rounded-md">
+								<span class="text-[18px] font-medium leading-[1.32] text-[#383B43] sm:text-[20px]" style="font-family: 'Plus Jakarta Sans','Graphik Trial',ui-sans-serif,system-ui">
+									<?php echo esc_html('FAQ content coming soon.'); ?>
+								</span>
+								<span class="text-[20px] leading-none text-[#383B43] select-none" aria-hidden="true">−</span>
+							</summary>
+							<p class="mt-[14px] text-[15px] leading-[1.42] text-[#666666] sm:mt-[20px] sm:text-[16px]">
+								<?php echo esc_html('Please add FAQ items in ACF.'); ?>
+							</p>
+						</details>
+					<?php endif; ?>
+
+					<!-- CTA card -->
 					<div
-						class="my-[16px] h-px w-full bg-[#ECEFF2] sm:my-[20px]"
-						aria-hidden="true"></div>
-					<a
-						href="<?php echo esc_url($faq_cta_link['url']); ?>"
-						target="<?php echo esc_attr($faq_cta_link['target']); ?>"
-						class="flex w-full items-center justify-between gap-4 text-[15px] font-medium leading-[1.42] text-[#0A969B] hover:text-black transition-colors duration-300 sm:text-[16px]">
-						<span><?php echo esc_html(reacon_about_fallback_text($faq_cta_link['title'], 'Contact our team')); ?></span>
-						<?php reacon_about_render_icon($faq_cta_icon_type, $faq_cta_icon_value); ?>
-					</a>
+						class="mt-[4px] rounded-[16px] bg-[#E9FBFC] px-[20px] py-[18px] sm:px-[24px] sm:py-[20px]">
+						<div class="flex flex-col gap-[8px]">
+							<p class="text-[15px] font-medium leading-[1.42] text-[#383B43] sm:text-[16px]">
+								<?php echo esc_html(reacon_about_fallback_text($faq_cta_title, 'Need more help?')); ?>
+							</p>
+							<p class="text-[15px] leading-[1.42] text-[#666666] sm:text-[16px]">
+								<?php echo esc_html(reacon_about_fallback_text($faq_cta_description, 'Please add FAQ CTA description in ACF.')); ?>
+							</p>
+						</div>
+						<div
+							class="my-[16px] h-px w-full bg-[#ECEFF2] sm:my-[20px]"
+							aria-hidden="true"></div>
+						<a
+							href="<?php echo esc_url($faq_cta_link['url']); ?>"
+							target="<?php echo esc_attr($faq_cta_link['target']); ?>"
+							class="flex w-full items-center justify-between gap-4 text-[15px] font-medium leading-[1.42] text-[#0A969B] hover:text-black transition-colors duration-300 sm:text-[16px]">
+							<span><?php echo esc_html(reacon_about_fallback_text($faq_cta_link['title'], 'Contact our team')); ?></span>
+							<?php reacon_about_render_icon($faq_cta_icon_type, $faq_cta_icon_value); ?>
+						</a>
+					</div>
 				</div>
 			</div>
-		</div>
-	</section>
+		</section>
 	<?php endif; ?>
 	<!-- End Faq Section -->
 </main>

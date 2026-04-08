@@ -207,6 +207,23 @@ function reacon_group_scripts()
 		true
 	);
 
+	// GSAP animation library.
+	wp_enqueue_script(
+		'reacon-group-gsap',
+		'https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js',
+		array(),
+		'3.12.7',
+		true
+	);
+
+	wp_enqueue_script(
+		'reacon-group-gsap-scrolltrigger',
+		'https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js',
+		array('reacon-group-gsap'),
+		'3.12.7',
+		true
+	);
+
 	if (is_singular('post') || is_page_template('page-templates/industries-page-template.php') || is_post_type_archive('industry')) {
 		wp_enqueue_style(
 			'reacon-group-swiper-style',
