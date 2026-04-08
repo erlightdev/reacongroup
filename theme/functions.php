@@ -731,6 +731,9 @@ if (!class_exists('Reacon_Group_Header_Mobile_Walker')) {
 			// Depth 1 (children) render as list items inside the submenu.
 			if ((int) $depth === 1) {
 				$parent_id = (int) $item->menu_item_parent;
+				$child_is_active = reacon_group_nav_menu_item_is_active($item);
+				$child_icon_wrap_cls = $child_is_active ? 'bg-[#d2f7f9] text-secondary' : 'bg-[#f1f5f9] text-[#8a94a6]';
+				$child_icon_class = $child_is_active ? 'w-[18px] h-[18px] text-secondary' : 'w-[18px] h-[18px] text-[#8a94a6]';
 				if (
 					$this->current_parent_is_solutions &&
 					$this->current_parent_id > 0 &&
@@ -744,8 +747,18 @@ if (!class_exists('Reacon_Group_Header_Mobile_Walker')) {
 					}
 				}
 
-				$output .= '<li><a href="' . esc_url($item->url) . '" class="block rounded-lg px-3 py-2 text-sm text-white/80 no-underline hover:bg-white/10 hover:text-white">';
-				$output .= esc_html((string) $item->title);
+				$output .= '<li><a href="' . esc_url($item->url) . '" class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-white/80 no-underline hover:bg-white/10 hover:text-white">';
+				$output .= '<span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full ' . esc_attr($child_icon_wrap_cls) . '">';
+				ob_start();
+				reacon_group_header_render_nav_menu_icon((int) $item->ID, $child_icon_class);
+				$icon_html = ob_get_clean();
+				if ($icon_html) {
+					$output .= $icon_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				} else {
+					$output .= '<i class="ph ph-image-square text-[18px]" aria-hidden="true"></i>';
+				}
+				$output .= '</span>';
+				$output .= '<span class="min-w-0 flex-1">' . esc_html((string) $item->title) . '</span>';
 				$output .= '</a></li>';
 
 				if (
