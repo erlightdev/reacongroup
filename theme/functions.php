@@ -738,9 +738,9 @@ if (!class_exists('Reacon_Group_Header_Mobile_Walker')) {
 				) {
 					// Insert headings to match the original mobile dropdown structure.
 					if ($this->current_parent_child_index === 0) {
-						$output .= '<li class="px-4 pb-1 pt-3 font-sans text-[11px] font-semibold tracking-wider text-white/50">' . esc_html(__('CONTENT STUDIO', 'reacon-group')) . '</li>';
+						$output .= '<li class="px-4 pb-1 pt-3 font-sans text-[11px] font-semibold tracking-wider ">' . esc_html(__('CONTENT STUDIO', 'reacon-group')) . '</li>';
 					} elseif ($this->current_parent_split_index > 0 && $this->current_parent_child_index === $this->current_parent_split_index) {
-						$output .= '<li class="px-4 pb-1 pt-4 font-sans text-[11px] font-semibold tracking-wider text-white/50">' . esc_html(__('PRODUCTION & FULFILMENT', 'reacon-group')) . '</li>';
+						$output .= '<li class="px-4 pb-1 pt-4 font-sans text-[11px] font-semibold tracking-wider ">' . esc_html(__('PRODUCTION & FULFILMENT', 'reacon-group')) . '</li>';
 					}
 				}
 

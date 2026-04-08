@@ -94,13 +94,21 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 			</a>
 		</div>
 
-		<button id="mobile-menu-toggle" type="button" class="relative z-[60] flex h-10 w-10 justify-self-end items-center justify-center rounded-lg text-white lg:hidden" aria-controls="mobile-menu" aria-expanded="false" aria-label="<?php esc_attr_e('Toggle menu', 'reacon-group'); ?>">
+		<button id="mobile-menu-toggle" type="button" class="relative z-[60] flex h-10 w-10 justify-self-end items-center justify-center rounded-lg lg:hidden" style="color: #adadad;" aria-controls="mobile-menu" aria-expanded="false" aria-label="<?php esc_attr_e('Toggle menu', 'reacon-group'); ?>">
 			<i class="ph ph-list text-2xl" aria-hidden="true" id="hamburger-icon"></i>
 			<i class="ph ph-x text-2xl hidden" aria-hidden="true" id="close-icon"></i>
 		</button>
 	</div>
 
-	<div id="mobile-menu" class="fixed inset-0 z-40 flex flex-col bg-[#062B2D] pt-20 opacity-0 -translate-y-6 pointer-events-none transition-all duration-300 ease-out lg:hidden" aria-hidden="true" aria-label="<?php esc_attr_e('Mobile navigation', 'reacon-group'); ?>">
+	<div id="mobile-menu" class="fixed inset-0 z-40 flex flex-col bg-[#f6f8fb] opacity-0 translate-x-full pointer-events-none transition-all duration-300 ease-out lg:hidden" aria-hidden="true" aria-label="<?php esc_attr_e('Mobile navigation', 'reacon-group'); ?>">
+		<div class="flex items-center justify-between px-6 pt-8 pb-4">
+			<a href="<?php echo esc_url(home_url('/')); ?>" rel="home" aria-label="<?php echo esc_attr($site_name); ?> — <?php esc_attr_e('home', 'reacon-group'); ?>" class="shrink-0">
+				<img src="<?php echo esc_url($logo_src); ?>" alt="<?php echo esc_attr($site_name); ?>" width="140" height="36" class="h-9 w-auto" />
+			</a>
+			<button id="mobile-menu-close" type="button" class="inline-flex h-10 w-10 items-center justify-center rounded-lg text-[#4f6076]" aria-controls="mobile-menu" aria-label="<?php esc_attr_e('Close menu', 'reacon-group'); ?>">
+				<i class="ph ph-x text-2xl" aria-hidden="true"></i>
+			</button>
+		</div>
 		<div class="flex-1 overflow-y-auto px-6 pb-8">
 			<?php
 			wp_nav_menu(
@@ -110,17 +118,20 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 					'fallback_cb' => false,
 					'depth' => 2,
 					'walker' => $mobile_walker,
-					'items_wrap' => '<ul class="flex flex-col gap-1">%3$s</ul>',
+					'items_wrap' => '<ul class="mobile-menu-list flex flex-col gap-1">%3$s</ul>',
 				)
 			);
 			?>
 
-			<div class="mt-6 flex flex-col gap-3">
-				<a href="<?php echo esc_url($start_order_url); ?>" class="block rounded-full bg-foreground py-3 text-center font-display text-sm font-bold text-white no-underline">
+			<div class="mt-6 flex flex-col gap-4">
+				<a href="<?php echo esc_url($start_order_url); ?>" class="block rounded-full border border-[#cfd8e3] bg-transparent px-5 py-3 text-left font-display text-base font-semibold text-[#4f6076] no-underline">
 					<?php echo esc_html($start_order_label); ?>
 				</a>
-				<a href="<?php echo esc_url($contact_url); ?>" class="block rounded-full bg-primary py-3 text-center font-display text-sm font-bold text-white no-underline">
-					<?php echo esc_html($contact_label); ?>
+				<a href="<?php echo esc_url($contact_url); ?>" class="inline-flex items-center justify-between rounded-full bg-primary px-5 py-2 font-display text-base font-semibold text-white no-underline">
+					<span><?php echo esc_html($contact_label); ?></span>
+					<span aria-hidden="true" class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#6be6ec]">
+						<i class="ph-bold ph-arrow-up-right text-[15px] text-white" aria-hidden="true"></i>
+					</span>
 				</a>
 			</div>
 		</div>
@@ -134,6 +145,62 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 
 	#masthead.top-0 #site-navigation>ul {
 		box-shadow: 0 10px 22px rgba(0, 0, 0, 0.16);
+	}
+
+	#mobile-menu .mobile-menu-list>li>a,
+	#mobile-menu .mobile-menu-list>li>.mobile-submenu-toggle {
+		border-bottom: 1px solid #d7dde4;
+		border-radius: 0 !important;
+		background: transparent !important;
+		padding: 14px 0;
+		font-family: var(--family-body, var(--font-sans));
+		font-size: 16px;
+		font-weight: 500;
+		line-height: 1.45;
+		color: #4f6076 !important;
+		opacity: 1 !important;
+	}
+
+	#mobile-menu .mobile-menu-list>li>.mobile-submenu-toggle:hover,
+	#mobile-menu .mobile-menu-list>li>a:hover {
+		background: transparent !important;
+		color: #24384d !important;
+	}
+
+	#mobile-menu .mobile-menu-list>li.current-menu-item>a,
+	#mobile-menu .mobile-menu-list>li.current_page_item>a,
+	#mobile-menu .mobile-menu-list>li.current-menu-ancestor>a,
+	#mobile-menu .mobile-menu-list>li.current-menu-item>.mobile-submenu-toggle,
+	#mobile-menu .mobile-menu-list>li.current_page_item>.mobile-submenu-toggle,
+	#mobile-menu .mobile-menu-list>li.current-menu-ancestor>.mobile-submenu-toggle {
+		background: transparent !important;
+		color: #4f6076 !important;
+	}
+
+	#mobile-menu .mobile-parent-caret-down,
+	#mobile-menu .mobile-parent-caret-up {
+		opacity: 1;
+		color: #4f6076;
+	}
+
+	#mobile-menu .mobile-submenu {
+		background: transparent;
+		padding-left: 0;
+		border-radius: 0;
+	}
+
+	#mobile-menu .mobile-submenu a {
+		border-bottom: 1px solid #e4e9ef;
+		border-radius: 0;
+		padding: 10px 0 10px 14px;
+		font-size: 14px;
+		line-height: 1.5;
+		color: #61748c;
+	}
+
+	#mobile-menu .mobile-submenu a:hover {
+		background: transparent;
+		color: #24384d;
 	}
 </style>
 
@@ -222,6 +289,7 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 
 		// Mobile drawer + submenus.
 		var toggle = document.getElementById('mobile-menu-toggle');
+		var closeBtn = document.getElementById('mobile-menu-close');
 		var menu = document.getElementById('mobile-menu');
 		var iconOpen = document.getElementById('hamburger-icon');
 		var iconClose = document.getElementById('close-icon');
@@ -245,11 +313,13 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 
 		function setMenuState(open) {
 			menu.classList.toggle('opacity-0', !open);
-			menu.classList.toggle('-translate-y-6', !open);
+			menu.classList.toggle('translate-x-full', !open);
 			menu.classList.toggle('pointer-events-none', !open);
 			menu.classList.toggle('opacity-100', open);
-			menu.classList.toggle('translate-y-0', open);
+			menu.classList.toggle('translate-x-0', open);
 			menu.classList.toggle('pointer-events-auto', open);
+			toggle.classList.toggle('opacity-0', open);
+			toggle.classList.toggle('pointer-events-none', open);
 
 			iconOpen.classList.toggle('hidden', open);
 			iconClose.classList.toggle('hidden', !open);
@@ -265,6 +335,12 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 			var isOpen = toggle.getAttribute('aria-expanded') === 'true';
 			setMenuState(!isOpen);
 		});
+
+		if (closeBtn) {
+			closeBtn.addEventListener('click', function() {
+				setMenuState(false);
+			});
+		}
 
 		mobileLinks.forEach(function(link) {
 			link.addEventListener('click', function() {
