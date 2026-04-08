@@ -22,8 +22,8 @@ $blog_index_url = home_url('/blogs/');
 		class="py-10 sm:py-14 lg:py-20 xl:py-20"
 		aria-labelledby="blog-single-title">
 
-		<div class="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12">
-			<div class="mx-auto flex w-full max-w-[1280px] flex-col items-start gap-6 sm:gap-8 lg:gap-10  pt-14 md:pt-12 ">
+		<div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12">
+			<div class="mx-auto flex w-full max-w-7xl flex-col items-start gap-6 sm:gap-8 lg:gap-10  pt-14 md:pt-12 ">
 
 				<!-- Blog Single: Back Link -->
 				<header class="w-full">
@@ -286,7 +286,7 @@ $solution_cta = array(
 			<div class="relative z-10 mx-auto flex max-w-[760px] flex-col items-center text-center">
 				<h2
 					id="solution-cta-heading"
-					class="font-display text-[34px] font-semibold leading-[1.16] text-white sm:text-[46px] lg:text-[56px] lg:leading-[1.12]">
+					class="font-display text-[24px] font-semibold leading-[1.16] text-white sm:text-[46px] lg:text-[56px] lg:leading-[1.12]">
 					<?php echo esc_html($solution_cta['heading']); ?>
 				</h2>
 				<p class="mt-4 max-w-[560px] font-sans text-[14px] leading-[1.42] text-white/85 sm:text-[16px] sm:leading-[22.72px]">
