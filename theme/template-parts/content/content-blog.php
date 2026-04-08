@@ -94,7 +94,7 @@ $blog_index_url = home_url('/blogs/');
 					<!-- Post Content -->
 					<div
 						itemprop="articleBody"
-						<?php reacon_group_content_class('entry-content blog-single-content font-sans text-[15px] leading-[22.72px] text-muted-foreground sm:text-[16px] [&_p]:mb-4 [&_p]:leading-[22.72px] [&_strong]:font-medium [&_h2]:mt-7 [&_h2]:mb-3 [&_h2]:font-sans [&_h2]:text-[20px][&_h2]:font-medium [&_h2]:leading-[28px] [&_h3]:mt-6 [&_h3]:mb-3 [&_h3]:font-sans [&_h3]:text-[18px] [&_h3]:font-medium [&_h3]:leading-[26px]'); ?>>
+						<?php reacon_group_content_class(' blog-single-content font-sans text-[15px] leading-[22.72px] text-muted-foreground sm:text-[16px] [&_p]:mb-4 [&_p]:leading-[22.72px] [&_strong]:font-medium [&_h2]:mt-7 [&_h2]:mb-3 [&_h2]:font-sans [&_h2]:text-[20px][&_h2]:font-medium [&_h2]:leading-[28px] [&_h3]:mt-6 [&_h3]:mb-3 [&_h3]:font-sans [&_h3]:text-[18px] [&_h3]:font-medium [&_h3]:leading-[26px]'); ?>>
 						<?php
 						the_content();
 
