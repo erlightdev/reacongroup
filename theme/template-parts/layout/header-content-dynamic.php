@@ -109,21 +109,23 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 				<i class="ph ph-x text-2xl" aria-hidden="true"></i>
 			</button>
 		</div>
-		<div class="flex-1 overflow-y-auto px-6 pb-8">
-			<?php
-			wp_nav_menu(
-				array(
-					'theme_location' => $menu_location,
-					'container' => false,
-					'fallback_cb' => false,
-					'depth' => 2,
-					'walker' => $mobile_walker,
-					'items_wrap' => '<ul class="mobile-menu-list flex flex-col gap-1">%3$s</ul>',
-				)
-			);
-			?>
+		<div class="flex flex-1 min-h-0 flex-col px-6 pb-8">
+			<div class="mobile-menu-stage relative flex-1 min-h-0 overflow-hidden">
+				<?php
+				wp_nav_menu(
+					array(
+						'theme_location' => $menu_location,
+						'container' => false,
+						'fallback_cb' => false,
+						'depth' => 2,
+						'walker' => $mobile_walker,
+						'items_wrap' => '<ul class="mobile-menu-list absolute inset-0 flex flex-col gap-1 overflow-y-auto transition-transform duration-300 ease-out translate-x-0">%3$s</ul>',
+					)
+				);
+				?>
+			</div>
 
-			<div class="mt-6 flex flex-col gap-4">
+			<div class="mt-6 flex shrink-0 flex-col gap-4">
 				<a href="<?php echo esc_url($start_order_url); ?>" class="block rounded-full border border-[#cfd8e3] bg-transparent px-5 py-3 text-left font-display text-base font-semibold text-[#4f6076] no-underline">
 					<?php echo esc_html($start_order_label); ?>
 				</a>
@@ -183,13 +185,16 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 		color: #4f6076;
 	}
 
-	#mobile-menu .mobile-submenu {
-		background: transparent;
-		padding-left: 0;
-		border-radius: 0;
+	#mobile-menu .mobile-menu-stage .mobile-menu-list,
+	#mobile-menu .mobile-menu-stage .mobile-submenu-panel {
+		will-change: transform;
 	}
 
-	#mobile-menu .mobile-submenu a {
+	#mobile-menu .mobile-submenu-panel {
+		background: #f6f8fb;
+	}
+
+	#mobile-menu .mobile-submenu-panel a {
 		border-bottom: 1px solid #e4e9ef;
 		border-radius: 0;
 		padding: 10px 0 10px 14px;
@@ -198,7 +203,7 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 		color: #61748c;
 	}
 
-	#mobile-menu .mobile-submenu a:hover {
+	#mobile-menu .mobile-submenu-panel a:hover {
 		background: transparent;
 		color: #24384d;
 	}
@@ -293,22 +298,90 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 		var menu = document.getElementById('mobile-menu');
 		var iconOpen = document.getElementById('hamburger-icon');
 		var iconClose = document.getElementById('close-icon');
-		var subToggles = document.querySelectorAll('.mobile-submenu-toggle');
+		var stage = menu ? menu.querySelector('.mobile-menu-stage') : null;
+		var rootList = menu ? menu.querySelector('.mobile-menu-list') : null;
+		var subToggles = menu ? menu.querySelectorAll('.mobile-submenu-toggle') : [];
+		var submenuPanels = menu ? menu.querySelectorAll('[data-mobile-submenu-panel]') : [];
+		var submenuBackButtons = menu ? menu.querySelectorAll('[data-mobile-submenu-back]') : [];
 		var mobileLinks = menu ? menu.querySelectorAll('a') : [];
+		var activeMobilePanel = null;
 
 		if (!toggle || !menu || !iconOpen || !iconClose) return;
 
-		function closeAllSubmenus() {
+		function resetMobilePanels() {
 			subToggles.forEach(function(btn) {
-				var sub = btn.nextElementSibling;
+				btn.setAttribute('aria-expanded', 'false');
 				var down = btn.querySelector('.mobile-parent-caret-down');
 				var up = btn.querySelector('.mobile-parent-caret-up');
-				if (!sub) return;
-				sub.classList.add('hidden');
-				btn.setAttribute('aria-expanded', 'false');
 				if (down) down.classList.remove('hidden');
 				if (up) up.classList.add('hidden');
 			});
+
+			submenuPanels.forEach(function(panel) {
+				if (panel._hideTimer) {
+					window.clearTimeout(panel._hideTimer);
+					panel._hideTimer = null;
+				}
+				panel.classList.add('hidden', 'translate-x-full');
+				panel.classList.remove('translate-x-0');
+				panel.setAttribute('aria-hidden', 'true');
+			});
+
+			if (rootList) {
+				rootList.classList.remove('-translate-x-full');
+				rootList.classList.add('translate-x-0');
+			}
+
+			activeMobilePanel = null;
+		}
+
+		function openMobilePanel(panel) {
+			if (!panel || !rootList) return;
+
+			if (activeMobilePanel && activeMobilePanel !== panel) {
+				resetMobilePanels();
+			}
+
+			if (panel._hideTimer) {
+				window.clearTimeout(panel._hideTimer);
+				panel._hideTimer = null;
+			}
+
+			panel.classList.remove('hidden');
+			panel.setAttribute('aria-hidden', 'false');
+			rootList.classList.add('-translate-x-full');
+			rootList.classList.remove('translate-x-0');
+
+			window.requestAnimationFrame(function() {
+				panel.classList.remove('translate-x-full');
+				panel.classList.add('translate-x-0');
+			});
+
+			activeMobilePanel = panel;
+		}
+
+		function closeMobilePanel(panel) {
+			if (!panel || !rootList) return;
+
+			if (panel._hideTimer) {
+				window.clearTimeout(panel._hideTimer);
+				panel._hideTimer = null;
+			}
+
+			panel.classList.add('translate-x-full');
+			panel.classList.remove('translate-x-0');
+			panel.setAttribute('aria-hidden', 'true');
+			rootList.classList.remove('-translate-x-full');
+			rootList.classList.add('translate-x-0');
+
+			panel._hideTimer = window.setTimeout(function() {
+				panel.classList.add('hidden');
+				panel._hideTimer = null;
+			}, 300);
+
+			if (activeMobilePanel === panel) {
+				activeMobilePanel = null;
+			}
 		}
 
 		function setMenuState(open) {
@@ -328,7 +401,11 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 			menu.setAttribute('aria-hidden', open ? 'false' : 'true');
 
 			document.body.style.overflow = open ? 'hidden' : '';
-			if (!open) closeAllSubmenus();
+			if (!open) resetMobilePanels();
+			if (open && stage && rootList) {
+				stage.scrollTop = 0;
+				rootList.scrollTop = 0;
+			}
 		}
 
 		toggle.addEventListener('click', function() {
@@ -350,19 +427,59 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 
 		subToggles.forEach(function(btn) {
 			btn.addEventListener('click', function() {
-				var sub = btn.nextElementSibling;
+				var panelId = btn.getAttribute('aria-controls');
+				var panel = panelId ? document.getElementById(panelId) : null;
 				var down = btn.querySelector('.mobile-parent-caret-down');
 				var up = btn.querySelector('.mobile-parent-caret-up');
-				if (!sub) return;
+				if (!panel) return;
 
-				var willOpen = sub.classList.contains('hidden');
-				closeAllSubmenus();
+				if (activeMobilePanel === panel) {
+					closeMobilePanel(panel);
+					btn.setAttribute('aria-expanded', 'false');
+					if (down) down.classList.remove('hidden');
+					if (up) up.classList.add('hidden');
+					return;
+				}
 
-				if (willOpen) {
-					sub.classList.remove('hidden');
-					btn.setAttribute('aria-expanded', 'true');
-					if (down) down.classList.add('hidden');
-					if (up) up.classList.remove('hidden');
+				submenuPanels.forEach(function(otherPanel) {
+					if (otherPanel !== panel) {
+						otherPanel.classList.add('hidden', 'translate-x-full');
+						otherPanel.classList.remove('translate-x-0');
+						otherPanel.setAttribute('aria-hidden', 'true');
+					}
+				});
+
+				subToggles.forEach(function(otherBtn) {
+					var otherDown = otherBtn.querySelector('.mobile-parent-caret-down');
+					var otherUp = otherBtn.querySelector('.mobile-parent-caret-up');
+					if (otherBtn !== btn) {
+						otherBtn.setAttribute('aria-expanded', 'false');
+						if (otherDown) otherDown.classList.remove('hidden');
+						if (otherUp) otherUp.classList.add('hidden');
+					}
+				});
+
+				btn.setAttribute('aria-expanded', 'true');
+				if (down) down.classList.add('hidden');
+				if (up) up.classList.remove('hidden');
+				openMobilePanel(panel);
+			});
+		});
+
+		submenuBackButtons.forEach(function(backButton) {
+			backButton.addEventListener('click', function() {
+				var panel = backButton.closest('[data-mobile-submenu-panel]');
+				if (!panel) return;
+
+				var panelId = panel.getAttribute('id');
+				var trigger = panelId ? document.querySelector('[aria-controls="' + panelId + '"]') : null;
+				closeMobilePanel(panel);
+				if (trigger) {
+					trigger.setAttribute('aria-expanded', 'false');
+					var down = trigger.querySelector('.mobile-parent-caret-down');
+					var up = trigger.querySelector('.mobile-parent-caret-up');
+					if (down) down.classList.remove('hidden');
+					if (up) up.classList.add('hidden');
 				}
 			});
 		});

@@ -660,6 +660,7 @@ if (!class_exists('Reacon_Group_Header_Mobile_Walker')) {
 	{
 		private array $children_by_parent_id;
 		private int $current_parent_id = 0;
+		private string $current_parent_title = '';
 		private bool $current_parent_is_solutions = false;
 		private int $current_parent_split_index = 0;
 		private int $current_parent_child_index = 0;
@@ -672,15 +673,24 @@ if (!class_exists('Reacon_Group_Header_Mobile_Walker')) {
 		public function start_lvl(&$output, $depth = 0, $args = null)
 		{
 			if ((int) $depth === 0) {
-				// Next sibling of the toggle button (required by existing JS).
-				$output .= '<div class="mobile-submenu hidden pl-4 bg-white/5 rounded-2xl"><ul class="flex flex-col gap-1 pb-2 pt-1">';
+				$panel_id = 'mobile-submenu-' . $this->current_parent_id;
+				$output .= '<div id="' . esc_attr($panel_id) . '" class="mobile-submenu-panel absolute inset-0 z-20 hidden translate-x-full bg-[#f6f8fb] transition-transform duration-300 ease-out" data-mobile-submenu-panel="' . esc_attr((string) $this->current_parent_id) . '" aria-hidden="true">';
+				$output .= '<div class="flex h-full min-h-0 flex-col">';
+				$output .= '<div class="flex items-center justify-between border-b border-[#d7dde4] px-4 py-4">';
+				$output .= '<button type="button" class="mobile-submenu-back inline-flex items-center gap-2 rounded-full px-2 py-1 font-sans text-sm font-semibold text-[#4f6076] transition-colors hover:text-[#24384d]" data-mobile-submenu-back="' . esc_attr((string) $this->current_parent_id) . '">';
+				$output .= '<i class="ph ph-arrow-left text-base" aria-hidden="true"></i>';
+				$output .= esc_html__('Back', 'reacon-group');
+				$output .= '</button>';
+				$output .= '<span class="min-w-0 truncate font-sans text-sm font-semibold text-[#24384d]">' . esc_html($this->current_parent_title) . '</span>';
+				$output .= '</div>';
+				$output .= '<ul class="mobile-submenu-list flex flex-1 min-h-0 flex-col gap-1 overflow-y-auto px-4 py-4">';
 			}
 		}
 
 		public function end_lvl(&$output, $depth = 0, $args = null)
 		{
 			if ((int) $depth === 0) {
-				$output .= '</ul></div>';
+				$output .= '</ul></div></div>';
 			}
 		}
 
@@ -698,6 +708,7 @@ if (!class_exists('Reacon_Group_Header_Mobile_Walker')) {
 				if ($has_children) {
 					// Track current parent context for depth-1 rendering (headings, etc.).
 					$this->current_parent_id = (int) $item->ID;
+					$this->current_parent_title = (string) $item->title;
 					$this->current_parent_child_index = 0;
 
 					$slug_l = strtolower(is_string($item->post_name) ? (string) $item->post_name : '');
@@ -712,7 +723,7 @@ if (!class_exists('Reacon_Group_Header_Mobile_Walker')) {
 					$children_for_parent = $this->children_by_parent_id[$this->current_parent_id] ?? array();
 					$this->current_parent_split_index = (int) ceil(count($children_for_parent) / 2);
 
-					$output .= '<button type="button" class="flex w-full items-center justify-between rounded-xl px-4 py-3 font-sans text-base font-medium ' . esc_attr($active_cls) . ' transition-colors mobile-submenu-toggle" aria-expanded="false">';
+					$output .= '<button type="button" class="flex w-full items-center justify-between rounded-xl px-4 py-3 font-sans text-base font-medium ' . esc_attr($active_cls) . ' transition-colors mobile-submenu-toggle" aria-expanded="false" aria-controls="mobile-submenu-' . esc_attr((string) $item->ID) . '" data-mobile-menu-parent="' . esc_attr((string) $item->ID) . '">';
 					$output .= esc_html((string) $item->title);
 					// Caret icon (down when closed, up when open).
 					$output .= '<span class="ml-3 inline-flex items-center gap-0.5">';
