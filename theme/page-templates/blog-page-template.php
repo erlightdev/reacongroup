@@ -272,9 +272,9 @@ if ($acf_enabled) {
 							<p class="reacon-type-caption text-muted-foreground">
 								<?php echo esc_html($featured_meta); ?>
 							</p>
-							<p class="reacon-type-h2 text-foreground">
+							<h3 class="reacon-type-h3 text-foreground">
 								<?php echo esc_html(reacon_blog_fallback_text($featured_title, 'Latest blog post')); ?>
-							</p>
+							</h3>
 							<p class="reacon-type-body text-muted-foreground">
 								<?php echo esc_html(reacon_blog_fallback_text($featured_excerpt, 'No blog posts found.')); ?>
 							</p>
@@ -311,11 +311,11 @@ if ($acf_enabled) {
 											<p class="reacon-type-caption text-muted-foreground">
 												<?php echo esc_html($card_meta); ?>
 											</p>
-											<p class="reacon-type-h3 text-foreground">
+											<h4 class="reacon-type-h4 text-foreground">
 												<a href="<?php echo esc_url($card_url); ?>" class="no-underline text-inherit">
 													<?php echo esc_html($card_title); ?>
 												</a>
-											</p>
+											</h4>
 											<p class="reacon-type-body line-clamp-3 text-muted-foreground">
 												<?php echo esc_html($card_excerpt); ?>
 											</p>
@@ -363,7 +363,7 @@ if ($acf_enabled) {
 									<?php echo $prev_url ? 'data-url="' . esc_attr($prev_url) . '"' : 'disabled'; ?>
 									class="group inline-flex items-center gap-2 rounded-full px-1.5 py-1 text-[#475569] transition-colors hover:text-[#334155] disabled:cursor-not-allowed disabled:opacity-40">
 									<i class="ph-bold ph-caret-left text-[22px] leading-none text-current" aria-hidden="true"></i>
-									<span class="reacon-type-button text-current">
+									<span class="reacon-type-label text-current">
 										<?php echo esc_html(reacon_blog_fallback_text($pagination_prev_label, 'Previous')); ?>
 									</span>
 								</button>
@@ -373,8 +373,8 @@ if ($acf_enabled) {
 									if (is_array($page_links)) {
 										foreach ($page_links as $link_html) {
 											$is_dots = strpos($link_html, 'dots') !== false;
-										if ($is_dots) {
-												echo '<span class="reacon-type-button select-none px-1 text-[#64748B]">...</span>';
+											if ($is_dots) {
+												echo '<span class="reacon-type-label select-none px-1 text-[#64748B]">...</span>';
 												continue;
 											}
 
@@ -387,11 +387,11 @@ if ($acf_enabled) {
 									?>
 											<a
 												href="<?php echo esc_url($page_url ? $page_url : '#'); ?>"
-												aria-current="<?php echo $is_current ? 'page' : 'false'; ?>"
+												<?php echo $is_current ? 'aria-current="page"' : ''; ?>
 												class="<?php echo $is_current
 															? 'bg-primary text-white'
 															: 'bg-transparent text-[#374151] hover:text-[#111827]'; ?> inline-flex h-10 w-10 items-center justify-center rounded-full transition-colors">
-												<span class="reacon-type-button"><?php echo esc_html($page_label); ?></span>
+												<span class="reacon-type-label"><?php echo esc_html($page_label); ?></span>
 											</a>
 									<?php
 										}
@@ -403,7 +403,7 @@ if ($acf_enabled) {
 									type="button"
 									<?php echo $next_url ? 'data-url="' . esc_attr($next_url) . '"' : 'disabled'; ?>
 									class="group inline-flex items-center gap-2 rounded-full px-1.5 py-1 text-[#475569] transition-colors hover:text-[#334155] disabled:cursor-not-allowed disabled:opacity-40">
-									<span class="reacon-type-button text-current">
+									<span class="reacon-type-label text-current">
 										<?php echo esc_html(reacon_blog_fallback_text($pagination_next_label, 'Next')); ?>
 									</span>
 									<i class="ph ph-caret-right text-[22px] leading-none text-current" aria-hidden="true"></i>

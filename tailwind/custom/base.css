@@ -13,6 +13,7 @@
 .reacon-type-body,
 .reacon-type-caption,
 .reacon-type-button,
+.reacon-type-label,
 .reacon-type-overline {
 	letter-spacing: var(--reacon-letter-spacing);
 }
@@ -30,6 +31,7 @@
 .reacon-type-body,
 .reacon-type-caption,
 .reacon-type-button,
+.reacon-type-label,
 .reacon-type-overline {
 	font-family: var(--font-sans);
 }
@@ -49,7 +51,7 @@
 
 .reacon-type-h2 {
 	font-size: var(--reacon-text-h2-size);
-	font-weight: 600;
+	font-weight: 700;
 	line-height: var(--reacon-text-h2-line-height);
 }
 
@@ -73,8 +75,18 @@
 
 .reacon-type-h6 {
 	font-size: var(--reacon-text-h6-size);
-	font-weight: 400;
+	font-weight: 500;
 	line-height: var(--reacon-text-h6-line-height);
+}
+
+@media (min-width: 1280px) {
+	.reacon-type-h2 {
+		font-weight: 600;
+	}
+
+	.reacon-type-h3 {
+		font-weight: 500;
+	}
 }
 
 .reacon-type-lead {
@@ -101,6 +113,12 @@
 }
 
 .reacon-type-button {
+	font-size: var(--reacon-text-button-size);
+	font-weight: 500;
+	line-height: var(--reacon-text-button-line-height);
+}
+
+.reacon-type-label {
 	font-size: var(--reacon-text-button-size);
 	font-weight: 500;
 	line-height: var(--reacon-text-button-line-height);
