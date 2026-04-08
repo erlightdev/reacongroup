@@ -406,7 +406,7 @@ if (!function_exists('render_reacon_dynamic_icon')) {
 						</p>
 					</div>
 
-					<a href="<?php echo esc_url($href); ?>" target="<?php echo esc_attr($target); ?>" class="relative z-10 mt-auto flex w-fit items-center gap-1.5 pt-6 text-sm font-medium <?php echo esc_attr($text_color); ?> transition-colors group-hover:text-[#1ecad3] before:absolute before:inset-0 before:-m-8">
+					<a href="<?php echo esc_url($href); ?>" target="<?php echo esc_attr($target); ?>" class="relative z-10 mt-auto flex w-fit cursor-pointer items-center gap-1.5 pt-6 text-sm font-medium <?php echo esc_attr($text_color); ?> transition-all duration-300 lg:translate-y-2 lg:opacity-0 lg:pointer-events-none lg:group-hover:translate-y-0 lg:group-hover:opacity-100 lg:group-hover:pointer-events-auto lg:group-focus-within:translate-y-0 lg:group-focus-within:opacity-100 lg:group-focus-within:pointer-events-auto group-hover:text-[#1ecad3] before:absolute before:inset-0 before:-m-8">
 						<?php echo esc_html($link_title); ?>
 					</a>
 				</article>
