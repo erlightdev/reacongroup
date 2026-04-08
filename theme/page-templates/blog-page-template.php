@@ -119,10 +119,10 @@ if ($acf_enabled) {
 	<?php if ($blog_sections['hero']): ?>
 		<section
 			id="blog-hero"
-			class="relative w-full p-1.5 md:p-2.5"
+			class="relative w-full p-0 md:p-2.5"
 			aria-label="<?php esc_attr_e('Blog page hero', 'reacon-group'); ?>">
 			<div
-				class="reacon-blog-hero-card relative min-h-[255px] overflow-hidden rounded-[24px] bg-[#062B53] sm:min-h-[300px] lg:min-h-[380px] lg:rounded-[31px]">
+				class="reacon-blog-hero-card relative min-h-[255px] overflow-hidden rounded-0 md:rounded-[24px] bg-[#062B53] sm:min-h-[300px] lg:min-h-[380px] lg:rounded-[31px]">
 				<img
 					src="<?php echo esc_url($hero_bg !== '' ? $hero_bg : $blog_hero_bg); ?>"
 					alt=""
@@ -139,15 +139,15 @@ if ($acf_enabled) {
 
 				<div
 					class="relative z-10 mx-auto flex min-h-[255px] w-full max-w-[1200px] flex-col items-center justify-center px-5 pb-10 pt-28 text-center sm:min-h-[300px] sm:px-6 sm:pt-32 lg:min-h-[380px] lg:px-10 lg:pb-14 lg:pt-36">
-					<p class="mb-4 font-sans text-[11px] font-medium uppercase tracking-[0.18em] text-white/85 lg:mb-5">
+					<p class="reacon-type-overline mb-4 text-white/85 lg:mb-5">
 						<?php echo esc_html(reacon_blog_fallback_text($hero_eyebrow, 'Blogs')); ?>
 					</p>
 
-					<h1 class="max-w-[860px] font-display text-[24px] font-bold leading-[1.16] text-white sm:text-[40px] lg:text-[56px]">
+					<h1 class="reacon-type-h1 max-w-[860px] text-white">
 						<?php echo esc_html(reacon_blog_fallback_text($hero_title, 'Insights, Ideas & Industry Thinking')); ?>
 					</h1>
 
-					<p class="mt-4 max-w-[780px] font-sans text-[13px] leading-[1.45] text-white/90 sm:text-[15px] lg:mt-5 lg:text-base">
+					<p class="reacon-type-lead mt-4 max-w-[780px] text-white/90 lg:mt-5">
 						<?php echo esc_html(reacon_blog_fallback_text($hero_description, 'Please add hero description in ACF.')); ?>
 					</p>
 				</div>
@@ -236,7 +236,7 @@ if ($acf_enabled) {
 				<div class="flex flex-col gap-[32px] items-start">
 					<h2
 						id="blog-latest-heading"
-						class="font-display text-[32px] font-semibold leading-[42.24px] text-foreground">
+						class="reacon-type-h2 text-foreground">
 						<?php echo esc_html(reacon_blog_fallback_text($latest_heading, 'Latest Blogs')); ?>
 					</h2>
 
@@ -269,13 +269,13 @@ if ($acf_enabled) {
 						</div>
 
 						<div class="flex flex-col items-start gap-[8px] pt-[8px] px-[8px]">
-							<p class="font-sans text-[14px] font-medium leading-[19.6px] text-muted-foreground">
+							<p class="reacon-type-caption text-muted-foreground">
 								<?php echo esc_html($featured_meta); ?>
 							</p>
-							<p class="font-display text-[32px] font-semibold leading-[42.24px] text-foreground">
+							<p class="reacon-type-h2 text-foreground">
 								<?php echo esc_html(reacon_blog_fallback_text($featured_title, 'Latest blog post')); ?>
 							</p>
-							<p class="font-sans text-[16px] leading-[22.72px] text-muted-foreground">
+							<p class="reacon-type-body text-muted-foreground">
 								<?php echo esc_html(reacon_blog_fallback_text($featured_excerpt, 'No blog posts found.')); ?>
 							</p>
 						</div>
@@ -308,28 +308,28 @@ if ($acf_enabled) {
 												decoding="async" />
 										</div>
 										<div class="flex flex-col items-start gap-[12px] pt-[8px] px-[8px]">
-											<p class="font-sans text-[14px] font-medium leading-[19.6px] text-muted-foreground">
+											<p class="reacon-type-caption text-muted-foreground">
 												<?php echo esc_html($card_meta); ?>
 											</p>
-											<p class="font-display text-[24px] font-semibold leading-[31.68px] text-foreground">
+											<p class="reacon-type-h3 text-foreground">
 												<a href="<?php echo esc_url($card_url); ?>" class="no-underline text-inherit">
 													<?php echo esc_html($card_title); ?>
 												</a>
 											</p>
-											<p class="font-sans text-[16px] leading-[22.72px] text-muted-foreground line-clamp-3">
+											<p class="reacon-type-body line-clamp-3 text-muted-foreground">
 												<?php echo esc_html($card_excerpt); ?>
 											</p>
 										</div>
 										<a
 											href="<?php echo esc_url($card_url); ?>"
-											class="mt-auto self-end w-fit border border-border rounded-[24px] px-[16px] py-[8px] flex items-center justify-end font-sans text-[16px] leading-[22.72px] text-muted-foreground transition-colors hover:text-foreground hover:border-primary no-underline">
+											class="reacon-type-button mt-auto flex w-fit self-end items-center justify-end rounded-[24px] border border-border px-[16px] py-[8px] text-muted-foreground no-underline transition-colors hover:border-primary hover:text-foreground">
 											<?php echo esc_html(reacon_blog_fallback_text($read_more_label, 'Read More')); ?>
 										</a>
 									</article>
 								<?php endforeach; ?>
 							<?php else: ?>
 								<article class="bg-card border border-border rounded-[32px] p-[10px] flex flex-col gap-[24px] overflow-hidden">
-									<div class="flex min-h-[240px] items-center justify-center rounded-[24px] bg-background px-6 text-center font-sans text-[16px] text-muted-foreground">
+									<div class="reacon-type-body flex min-h-[240px] items-center justify-center rounded-[24px] bg-background px-6 text-center text-muted-foreground">
 										<?php echo esc_html('Please add blog cards in ACF.'); ?>
 									</div>
 								</article>
@@ -363,7 +363,7 @@ if ($acf_enabled) {
 									<?php echo $prev_url ? 'data-url="' . esc_attr($prev_url) . '"' : 'disabled'; ?>
 									class="group inline-flex items-center gap-2 rounded-full px-1.5 py-1 text-[#475569] transition-colors hover:text-[#334155] disabled:cursor-not-allowed disabled:opacity-40">
 									<i class="ph-bold ph-caret-left text-[22px] leading-none text-current" aria-hidden="true"></i>
-									<span class="type-body-md text-current">
+									<span class="reacon-type-button text-current">
 										<?php echo esc_html(reacon_blog_fallback_text($pagination_prev_label, 'Previous')); ?>
 									</span>
 								</button>
@@ -373,8 +373,8 @@ if ($acf_enabled) {
 									if (is_array($page_links)) {
 										foreach ($page_links as $link_html) {
 											$is_dots = strpos($link_html, 'dots') !== false;
-											if ($is_dots) {
-												echo '<span class="type-body-md select-none px-1 text-[#64748B]">...</span>';
+										if ($is_dots) {
+												echo '<span class="reacon-type-button select-none px-1 text-[#64748B]">...</span>';
 												continue;
 											}
 
@@ -391,7 +391,7 @@ if ($acf_enabled) {
 												class="<?php echo $is_current
 															? 'bg-primary text-white'
 															: 'bg-transparent text-[#374151] hover:text-[#111827]'; ?> inline-flex h-10 w-10 items-center justify-center rounded-full transition-colors">
-												<span class="type-body-md"><?php echo esc_html($page_label); ?></span>
+												<span class="reacon-type-button"><?php echo esc_html($page_label); ?></span>
 											</a>
 									<?php
 										}
@@ -403,7 +403,7 @@ if ($acf_enabled) {
 									type="button"
 									<?php echo $next_url ? 'data-url="' . esc_attr($next_url) . '"' : 'disabled'; ?>
 									class="group inline-flex items-center gap-2 rounded-full px-1.5 py-1 text-[#475569] transition-colors hover:text-[#334155] disabled:cursor-not-allowed disabled:opacity-40">
-									<span class="type-body-md text-current">
+									<span class="reacon-type-button text-current">
 										<?php echo esc_html(reacon_blog_fallback_text($pagination_next_label, 'Next')); ?>
 									</span>
 									<i class="ph ph-caret-right text-[22px] leading-none text-current" aria-hidden="true"></i>
@@ -494,10 +494,10 @@ if ($acf_enabled) {
 					<div class="relative z-10 mx-auto flex max-w-[760px] flex-col items-center text-center">
 						<h2
 							id="solution-cta-heading"
-							class="font-display text-[34px] font-semibold leading-[1.16] text-white sm:text-[46px] lg:text-[56px] lg:leading-[1.12]">
+							class="reacon-type-h1 text-white">
 							<?php echo esc_html($solution_cta['heading']); ?>
 						</h2>
-						<p class="mt-4 max-w-[560px] font-sans text-[14px] leading-[1.42] text-white/85 sm:text-[16px] sm:leading-[22.72px]">
+						<p class="reacon-type-lead mt-4 max-w-[560px] text-white/85">
 							<?php echo esc_html($solution_cta['description']); ?>
 						</p>
 
@@ -505,7 +505,7 @@ if ($acf_enabled) {
 							<a
 								href="<?php echo esc_url($solution_cta['primary']['url']); ?>"
 								target="<?php echo esc_attr($solution_cta['primary']['target']); ?>"
-								class="inline-flex items-center gap-2 rounded-full bg-white py-1.5 pl-4 pr-1.5 font-sans text-[13px] font-medium text-[#0B6A74] no-underline transition hover:bg-white/90 sm:pl-5 sm:pr-2">
+								class="reacon-type-button inline-flex items-center gap-2 rounded-full bg-white py-1.5 pl-4 pr-1.5 text-[#0B6A74] no-underline transition hover:bg-white/90 sm:pl-5 sm:pr-2">
 								<span><?php echo esc_html($solution_cta['primary']['label']); ?></span>
 								<span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#dbeef1]" aria-hidden="true">
 									<?php reacon_blog_render_icon($cta_icon_type, $cta_icon_value, 'text-[12px] text-[#0B6A74]'); ?>
@@ -514,7 +514,7 @@ if ($acf_enabled) {
 							<a
 								href="<?php echo esc_url($solution_cta['secondary']['url']); ?>"
 								target="<?php echo esc_attr($solution_cta['secondary']['target']); ?>"
-								class="inline-flex items-center rounded-full border border-white/65 px-5 py-2.5 font-sans text-[13px] font-normal text-white no-underline transition hover:bg-white/10">
+								class="reacon-type-button inline-flex items-center rounded-full border border-white/65 px-5 py-2.5 text-white no-underline transition hover:bg-white/10">
 								<?php echo esc_html($solution_cta['secondary']['label']); ?>
 							</a>
 						</div>

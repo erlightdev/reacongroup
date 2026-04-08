@@ -177,8 +177,13 @@ add_action('widgets_init', 'reacon_group_widgets_init');
  */
 function reacon_group_scripts()
 {
-	wp_enqueue_style('reacon-group-style', get_stylesheet_uri(), array(), REACON_GROUP_VERSION);
-	wp_enqueue_script('reacon-group-script', get_template_directory_uri() . '/js/script.min.js', array(), REACON_GROUP_VERSION, true);
+	$style_path = get_stylesheet_directory() . '/style.css';
+	$script_path = get_template_directory() . '/js/script.min.js';
+	$style_version = file_exists($style_path) ? (string) filemtime($style_path) : REACON_GROUP_VERSION;
+	$script_version = file_exists($script_path) ? (string) filemtime($script_path) : REACON_GROUP_VERSION;
+
+	wp_enqueue_style('reacon-group-style', get_stylesheet_uri(), array(), $style_version);
+	wp_enqueue_script('reacon-group-script', get_template_directory_uri() . '/js/script.min.js', array(), $script_version, true);
 
 	// Alpine.js for lightweight interactive UI behavior.
 	wp_enqueue_script(

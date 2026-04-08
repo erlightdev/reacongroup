@@ -1,8 +1,7 @@
 /**
- * Custom styles to immediately follow Tailwind’s `utilities` layer
+ * Custom styles to immediately follow Tailwind's `utilities` layer
  *
- * Add your own utility classes to this theme. Complex utility classes should
- * be added using Tailwind’s plugin system:
- *
- * https://tailwindcss.com/docs/adding-custom-styles#adding-custom-utilities
+ * Keep this file for one-off utilities that truly belong in Tailwind's
+ * utilities phase. Reacon typography utilities live in `base.css` so they can
+ * override Preflight heading resets consistently.
  */

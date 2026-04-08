@@ -177,90 +177,90 @@ if ($acf_enabled) {
 <main id="primary" class="overflow-x-hidden" role="main">
 	<!-- Page Header Hero -->
 	<?php if ($start_order_show_hero): ?>
-	<section id="start-order-hero" class="relative w-full p-1.5 md:p-2.5" aria-labelledby="start-order-heading">
-		<div class="reacon-about-hero-card relative min-h-[255px] overflow-hidden rounded-[24px] bg-[linear-gradient(145deg,#0E6D77_0%,#062B53_42%,#0A4E57_100%)] sm:min-h-[300px] lg:min-h-[380px] lg:rounded-[31px]" style="<?php echo esc_attr($so_hero_bg_style); ?>">
-			<div class="reacon-start-order-hero-pattern pointer-events-none absolute inset-0" aria-hidden="true" style="<?php echo esc_attr($so_pattern_style); ?>"></div>
-			<div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_85%_60%_at_50%_-10%,rgba(30,202,211,0.22)_0%,transparent_55%)]" aria-hidden="true" style="<?php echo esc_attr($so_radial_style); ?>"></div>
-			<div class="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,10,33,0.22)_0%,rgba(0,10,33,0.12)_45%,rgba(0,10,33,0.26)_100%)]" aria-hidden="true" style="<?php echo esc_attr($so_dark_overlay_style); ?>"></div>
+		<section id="start-order-hero" class="relative w-full p-0 md:p-2.5" aria-labelledby="start-order-heading">
+			<div class="reacon-about-hero-card relative min-h-[255px] overflow-hidden rounded-0 md:rounded-[24px] bg-[linear-gradient(145deg,#0E6D77_0%,#062B53_42%,#0A4E57_100%)] sm:min-h-[300px] lg:min-h-[380px] lg:rounded-[31px]" style="<?php echo esc_attr($so_hero_bg_style); ?>">
+				<div class="reacon-start-order-hero-pattern pointer-events-none absolute inset-0" aria-hidden="true" style="<?php echo esc_attr($so_pattern_style); ?>"></div>
+				<div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_85%_60%_at_50%_-10%,rgba(30,202,211,0.22)_0%,transparent_55%)]" aria-hidden="true" style="<?php echo esc_attr($so_radial_style); ?>"></div>
+				<div class="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,10,33,0.22)_0%,rgba(0,10,33,0.12)_45%,rgba(0,10,33,0.26)_100%)]" aria-hidden="true" style="<?php echo esc_attr($so_dark_overlay_style); ?>"></div>
 
-			<div class="relative z-10 mx-auto flex min-h-[255px] w-full max-w-[1200px] flex-col items-center justify-center px-5 pb-10 pt-28 text-center sm:min-h-[300px] sm:px-6 sm:pt-32 lg:min-h-[380px] lg:px-10 lg:pb-14 lg:pt-36">
-				<p class="mb-4 font-sans text-[11px] font-medium uppercase tracking-[0.18em] text-white/85 lg:mb-5"><?php echo esc_html((string) ($so_hero['hero_eyebrow'] ?? '')); ?></p>
-				<h1 id="start-order-heading" class="max-w-[860px] font-display text-[30px] font-bold leading-[1.16] text-white sm:text-[40px] lg:text-[56px]">
-					<?php echo esc_html((string) ($so_hero['hero_heading'] ?? '')); ?>
-				</h1>
-				<p class="mt-4 max-w-[780px] font-sans text-[13px] leading-[1.45] text-white/90 sm:text-[15px] lg:mt-5 lg:text-base">
-					<?php echo esc_html((string) ($so_hero['hero_description'] ?? '')); ?>
-				</p>
+				<div class="relative z-10 mx-auto flex min-h-[255px] w-full max-w-[1200px] flex-col items-center justify-center px-5 pb-10 pt-28 text-center sm:min-h-[300px] sm:px-6 sm:pt-32 lg:min-h-[380px] lg:px-10 lg:pb-14 lg:pt-36">
+					<p class="reacon-type-overline mb-4 text-white/85 lg:mb-5"><?php echo esc_html((string) ($so_hero['hero_eyebrow'] ?? '')); ?></p>
+					<h1 id="start-order-heading" class="reacon-type-h1 max-w-[860px] text-white">
+						<?php echo esc_html((string) ($so_hero['hero_heading'] ?? '')); ?>
+					</h1>
+					<p class="reacon-type-lead mt-4 max-w-[780px] text-white/90 lg:mt-5">
+						<?php echo esc_html((string) ($so_hero['hero_description'] ?? '')); ?>
+					</p>
+				</div>
 			</div>
-		</div>
-	</section>
+		</section>
 	<?php endif; ?>
 
 
 
 	<!-- Form Layout -->
 	<?php if ($start_order_show_form_section): ?>
-	<section class="bg-[#FAFAFA] px-4 py-12 sm:px-6 md:py-14 lg:px-8 lg:py-16" aria-labelledby="order-form-title">
-		<div class="mx-auto grid w-full max-w-7xl grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_360px] lg:gap-10">
-			<div class="rounded-3xl border border-[#ECEFF2] bg-white p-5 sm:p-6 md:p-8">
-				<h2 id="order-form-title" class="font-display text-[26px] font-semibold leading-[1.2] text-[#1E293B] sm:text-[30px] md:text-[34px]"><?php echo esc_html((string) ($so_form['form_card_heading'] ?? '')); ?></h2>
-				<p class="mt-3 font-sans text-[14px] leading-[1.5] text-[#4B5058] sm:text-[15px] md:text-[16px]">
-					<?php echo esc_html((string) ($so_form['form_card_body'] ?? '')); ?>
-				</p>
+		<section class="bg-[#FAFAFA] px-4 py-12 sm:px-6 md:py-14 lg:px-8 lg:py-16" aria-labelledby="order-form-title">
+			<div class="mx-auto grid w-full max-w-7xl grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_360px] lg:gap-10">
+				<div class="rounded-3xl border border-[#ECEFF2] bg-white p-5 sm:p-6 md:p-8">
+					<h2 id="order-form-title" class="reacon-type-h2 text-[#1E293B]"><?php echo esc_html((string) ($so_form['form_card_heading'] ?? '')); ?></h2>
+					<p class="reacon-type-body mt-3 text-[#4B5058]">
+						<?php echo esc_html((string) ($so_form['form_card_body'] ?? '')); ?>
+					</p>
 
-				<div class="start-order-cf7 mt-8">
-					<?php
-					$cf7_form_id = isset($so_form['cf7_form']) ? absint((int) $so_form['cf7_form']) : 0;
-					if ($cf7_form_id > 0) {
-						echo do_shortcode('[contact-form-7 id="' . esc_attr((string) $cf7_form_id) . '"]');
-					}
-					?>
-				</div>
-			</div>
-
-			<aside class="rounded-3xl border border-[#ECEFF2] bg-white p-6 sm:p-7 lg:sticky lg:top-28 lg:h-fit" aria-label="How it works">
-				<h3 class="font-display text-[24px] font-semibold leading-[1.2] text-[#1E293B]"><?php echo esc_html((string) ($so_form['how_it_works_heading'] ?? '')); ?></h3>
-				<ol class="mt-6 space-y-5">
-					<?php foreach ($so_steps as $step): ?>
+					<div class="start-order-cf7 mt-8">
 						<?php
-						if (!is_array($step))
-							continue;
-						$step_desc = trim((string) ($step['step_description'] ?? ''));
-						$step_number = trim((string) ($step['step_number_label'] ?? ''));
+						$cf7_form_id = isset($so_form['cf7_form']) ? absint((int) $so_form['cf7_form']) : 0;
+						if ($cf7_form_id > 0) {
+							echo do_shortcode('[contact-form-7 id="' . esc_attr((string) $cf7_form_id) . '"]');
+						}
 						?>
-						<li class="flex gap-3">
-							<span class="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-primary font-sans text-[12px] font-semibold text-white">
-								<?php echo esc_html($step_number); ?>
-							</span>
-							<p class="font-sans text-[14px] leading-[1.5] text-[#4B5058]"><?php echo esc_html($step_desc); ?></p>
-						</li>
-					<?php endforeach; ?>
-				</ol>
-			</aside>
-		</div>
-	</section>
+					</div>
+				</div>
+
+				<aside class="rounded-3xl border border-[#ECEFF2] bg-white p-6 sm:p-7 lg:sticky lg:top-28 lg:h-fit" aria-label="How it works">
+					<h3 class="reacon-type-h3 text-[#1E293B]"><?php echo esc_html((string) ($so_form['how_it_works_heading'] ?? '')); ?></h3>
+					<ol class="mt-6 space-y-5">
+						<?php foreach ($so_steps as $step): ?>
+							<?php
+							if (!is_array($step))
+								continue;
+							$step_desc = trim((string) ($step['step_description'] ?? ''));
+							$step_number = trim((string) ($step['step_number_label'] ?? ''));
+							?>
+							<li class="flex gap-3">
+								<span class="reacon-type-caption mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-primary font-semibold text-white">
+									<?php echo esc_html($step_number); ?>
+								</span>
+								<p class="reacon-type-body text-[#4B5058]"><?php echo esc_html($step_desc); ?></p>
+							</li>
+						<?php endforeach; ?>
+					</ol>
+				</aside>
+			</div>
+		</section>
 	<?php endif; ?>
 	<!-- Intro Stats -->
 	<?php if ($start_order_show_stats_section): ?>
-	<section class="bg-white px-4 py-10 sm:px-6 sm:py-12 md:py-14 lg:px-8 lg:py-16" aria-label="Order highlights">
-		<div class="mx-auto grid w-full max-w-7xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
-			<?php
-			$stats_items = is_array($so_stats['stats_items'] ?? null) ? (array) $so_stats['stats_items'] : array();
-			foreach ($stats_items as $stat):
-				if (!is_array($stat))
-					continue;
-				$stat_val = trim((string) ($stat['stat_value'] ?? ''));
-				$stat_desc = trim((string) ($stat['stat_description'] ?? ''));
-				if ($stat_val === '' || $stat_desc === '')
-					continue;
+		<section class="bg-white px-4 py-10 sm:px-6 sm:py-12 md:py-14 lg:px-8 lg:py-16" aria-label="Order highlights">
+			<div class="mx-auto grid w-full max-w-7xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+				<?php
+				$stats_items = is_array($so_stats['stats_items'] ?? null) ? (array) $so_stats['stats_items'] : array();
+				foreach ($stats_items as $stat):
+					if (!is_array($stat))
+						continue;
+					$stat_val = trim((string) ($stat['stat_value'] ?? ''));
+					$stat_desc = trim((string) ($stat['stat_description'] ?? ''));
+					if ($stat_val === '' || $stat_desc === '')
+						continue;
 				?>
-				<div class="rounded-2xl border border-[#ECEFF2] bg-[#F9FAFB] p-6">
-					<p class="font-display text-[30px] font-bold leading-none text-primary sm:text-[34px]"><?php echo esc_html($stat_val); ?></p>
-					<p class="mt-2 font-sans text-[14px] leading-[1.45] text-[#383B43] sm:text-[15px]"><?php echo esc_html($stat_desc); ?></p>
-				</div>
-			<?php endforeach; ?>
-		</div>
-	</section>
+					<div class="rounded-2xl border border-[#ECEFF2] bg-[#F9FAFB] p-6">
+						<p class="reacon-type-h3 text-primary"><?php echo esc_html($stat_val); ?></p>
+						<p class="reacon-type-body mt-2 text-[#383B43]"><?php echo esc_html($stat_desc); ?></p>
+					</div>
+				<?php endforeach; ?>
+			</div>
+		</section>
 	<?php endif; ?>
 	<style>
 		/* Hero pattern mirrors Our Works for cross-page consistency. */
@@ -268,13 +268,11 @@ if ($acf_enabled) {
 			--so-hero-pattern-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Cg fill='none' stroke='%23FFFFFF' stroke-opacity='0.1'%3E%3Cpath d='M36 10v52M10 36h52' stroke-width='1'/%3E%3Ccircle cx='36' cy='36' r='3' stroke-opacity='0.14' stroke-width='1'/%3E%3C/g%3E%3Cpath d='M0 72L72 0' stroke='%23FFFFFF' stroke-opacity='0.04' stroke-width='1'/%3E%3C/svg%3E");
 			background-image:
 				var(--so-hero-pattern-svg),
-				repeating-linear-gradient(
-					-18deg,
+				repeating-linear-gradient(-18deg,
 					transparent,
 					transparent 14px,
 					rgba(255, 255, 255, 0.025) 14px,
-					rgba(255, 255, 255, 0.025) 15px
-				);
+					rgba(255, 255, 255, 0.025) 15px);
 			background-size: 72px 72px, auto;
 		}
 
@@ -312,10 +310,12 @@ if ($acf_enabled) {
 			display: block;
 			margin-bottom: 8px;
 			padding: 2px;
-			font-size: 13px;
-			line-height: 1.35;
+			font-family: var(--font-sans);
+			font-size: var(--reacon-text-caption-size);
+			line-height: var(--reacon-text-caption-line-height);
 			font-weight: 500;
 			color: #383b43;
+			letter-spacing: var(--reacon-letter-spacing);
 		}
 
 		.start-order-cf7 .wpcf7-form-control-wrap {
@@ -326,7 +326,7 @@ if ($acf_enabled) {
 			margin-top: 6px;
 		}
 
-		.start-order-cf7 .so-grid > div {
+		.start-order-cf7 .so-grid>div {
 			margin: 2px 0;
 		}
 
@@ -340,9 +340,10 @@ if ($acf_enabled) {
 			border: 1px solid #e5e7eb;
 			background: #fff;
 			color: #1e293b;
-			font-size: 14px;
-			line-height: 1.35;
-			font-family: inherit;
+			font-size: var(--reacon-text-body-size);
+			line-height: var(--reacon-text-body-line-height);
+			font-family: var(--font-sans);
+			letter-spacing: var(--reacon-letter-spacing);
 			transition: border-color 0.2s ease;
 			outline: none;
 		}
@@ -396,9 +397,11 @@ if ($acf_enabled) {
 			border-radius: 9999px;
 			background: var(--color-primary, #0a969b);
 			padding: 12px 24px;
-			font-size: 15px;
-			line-height: 1.2;
+			font-family: var(--font-sans);
+			font-size: var(--reacon-text-button-size);
+			line-height: var(--reacon-text-button-line-height);
 			font-weight: 500;
+			letter-spacing: var(--reacon-letter-spacing);
 			color: #fff;
 			cursor: pointer;
 			transition: background-color 0.2s ease;
@@ -412,14 +415,16 @@ if ($acf_enabled) {
 			margin: 14px 0 0;
 			padding: 10px 14px;
 			border-radius: 12px;
-			font-size: 13px;
-			line-height: 1.45;
+			font-family: var(--font-sans);
+			font-size: var(--reacon-text-caption-size);
+			line-height: var(--reacon-text-caption-line-height);
 		}
 
 		.start-order-cf7 .wpcf7-not-valid-tip {
 			margin-top: 6px;
-			font-size: 12px;
-			line-height: 1.4;
+			font-family: var(--font-sans);
+			font-size: var(--reacon-text-caption-size);
+			line-height: var(--reacon-text-caption-line-height);
 		}
 
 		.start-order-cf7 .wpcf7-spinner {

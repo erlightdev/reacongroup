@@ -49,6 +49,29 @@
 	--font-mono:
 		ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
 		"Liberation Mono", "Courier New", monospace;
+	--reacon-letter-spacing: 0;
+	--reacon-text-h1-size: 2rem;
+	--reacon-text-h1-line-height: 1.08;
+	--reacon-text-h2-size: 1.75rem;
+	--reacon-text-h2-line-height: 1.12;
+	--reacon-text-h3-size: 1.5rem;
+	--reacon-text-h3-line-height: 1.18;
+	--reacon-text-h4-size: 1.25rem;
+	--reacon-text-h4-line-height: 1.24;
+	--reacon-text-h5-size: 1.125rem;
+	--reacon-text-h5-line-height: 1.32;
+	--reacon-text-h6-size: 1rem;
+	--reacon-text-h6-line-height: 1.45;
+	--reacon-text-lead-size: 1.125rem;
+	--reacon-text-lead-line-height: 1.6;
+	--reacon-text-body-size: 1rem;
+	--reacon-text-body-line-height: 1.6;
+	--reacon-text-caption-size: 0.875rem;
+	--reacon-text-caption-line-height: 1.5;
+	--reacon-text-button-size: 1rem;
+	--reacon-text-button-line-height: 1.4;
+	--reacon-text-overline-size: 0.75rem;
+	--reacon-text-overline-line-height: 1.2;
 	--radius: 0.625rem;
 	--shadow-x: 0;
 	--shadow-y: 1px;
@@ -71,6 +94,50 @@
 	--shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
 	--tracking-normal: 0em;
 	--spacing: 0.25rem;
+}
+
+@media (min-width: 640px) {
+	:root {
+		--reacon-text-h1-size: 2.625rem;
+		--reacon-text-h2-size: 2.125rem;
+		--reacon-text-h3-size: 1.75rem;
+		--reacon-text-h4-size: 1.375rem;
+		--reacon-text-h5-size: 1.125rem;
+		--reacon-text-lead-size: 1.125rem;
+	}
+}
+
+@media (min-width: 1024px) {
+	:root {
+		--reacon-text-h1-size: 3.5rem;
+		--reacon-text-h2-size: 2.75rem;
+		--reacon-text-h3-size: 2rem;
+		--reacon-text-h4-size: 1.5rem;
+		--reacon-text-h5-size: 1.25rem;
+		--reacon-text-h6-size: 1rem;
+		--reacon-text-lead-size: 1.25rem;
+	}
+}
+
+@media (min-width: 1280px) {
+	:root {
+		--reacon-text-h1-size: 4rem;
+		--reacon-text-h2-size: 3rem;
+		--reacon-text-h3-size: 2.25rem;
+		--reacon-text-h4-size: 1.625rem;
+		--reacon-text-h5-size: 1.25rem;
+		--reacon-text-lead-size: 1.25rem;
+		--reacon-text-body-line-height: 1.65;
+		--reacon-text-lead-line-height: 1.65;
+	}
+}
+
+@media (min-width: 1536px) {
+	:root {
+		--reacon-text-h1-size: 4rem;
+		--reacon-text-h2-size: 3.25rem;
+		--reacon-text-h3-size: 2.375rem;
+	}
 }
 
 .dark {

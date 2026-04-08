@@ -275,9 +275,9 @@ $show_apac_section = $contact_enable_apac && ($apac_section_title !== '' || !emp
 	<?php if ($show_hero_section): ?>
 		<section
 			id="contact-hero"
-			class="relative w-full p-1.5 md:p-2.5"
+			class="relative w-full p-0 md:p-2.5"
 			<?php echo $hero_title !== '' ? 'aria-labelledby="contact-heading"' : 'aria-label="' . esc_attr__('Contact page hero', 'reacon-group') . '"'; ?>>
-			<div class="reacon-about-hero-card relative min-h-[255px] overflow-hidden rounded-[24px] bg-[#062B53] sm:min-h-[300px] lg:min-h-[380px] lg:rounded-[31px]">
+			<div class="reacon-about-hero-card relative min-h-[255px] overflow-hidden rounded-0 md:rounded-[24px] bg-[#062B53] sm:min-h-[300px] lg:min-h-[380px] lg:rounded-[31px]">
 				<?php if ($hero_bg_url !== ''): ?>
 					<img
 						src="<?php echo esc_url($hero_bg_url); ?>"
@@ -291,17 +291,17 @@ $show_apac_section = $contact_enable_apac && ($apac_section_title !== '' || !emp
 				<div class="<?php echo esc_attr($hero_overlay_class); ?>" aria-hidden="true"></div>
 				<div class="relative z-10 mx-auto flex min-h-[255px] w-full max-w-[1200px] flex-col items-center justify-center px-5 pb-10 pt-28 text-center sm:min-h-[300px] sm:px-6 sm:pt-32 lg:min-h-[380px] lg:px-10 lg:pb-14 lg:pt-36">
 					<?php if ($hero_eyebrow !== ''): ?>
-						<p class="mb-4 font-sans text-[11px] font-medium uppercase tracking-[0.18em] text-white/85 lg:mb-5">
+						<p class="reacon-type-overline mb-4 text-white/85 lg:mb-5">
 							<?php echo esc_html($hero_eyebrow); ?>
 						</p>
 					<?php endif; ?>
 					<?php if ($hero_title !== ''): ?>
-						<h1 id="contact-heading" class="max-w-[860px] font-display text-[30px] font-bold leading-[1.16] text-white sm:text-[40px] lg:text-[56px]">
+						<h1 id="contact-heading" class="reacon-type-h1 max-w-[860px] text-white">
 							<?php echo esc_html($hero_title); ?>
 						</h1>
 					<?php endif; ?>
 					<?php if ($hero_description !== ''): ?>
-						<p class="mt-4 max-w-[780px] font-sans text-[13px] leading-[1.45] text-white/90 sm:text-[15px] lg:mt-5 lg:text-base">
+						<p class="reacon-type-lead mt-4 max-w-[780px] text-white/90 lg:mt-5">
 							<?php echo esc_html($hero_description); ?>
 						</p>
 					<?php endif; ?>
@@ -312,16 +312,16 @@ $show_apac_section = $contact_enable_apac && ($apac_section_title !== '' || !emp
 
 	<?php if ($show_main_section): ?>
 		<section class="relative pb-12 pt-10 sm:pt-12 md:pt-14 lg:pt-[120px]">
-			<div class="mx-auto grid w-full max-w-7xl grid-cols-1 gap-8 px-4 sm:px-6 md:px-8 <?php echo esc_attr($main_grid_cols); ?> lg:items-start lg:gap-6 xl:px-0">
+			<div class="mx-auto grid w-full max-w-7xl grid-cols-1 gap-8 px-4 sm:px-6 md:px-8 <?php echo esc_attr($main_grid_cols); ?> lg:items-start lg:gap-6 xl:px-6">
 				<?php if ($show_intro_col): ?>
 					<div class="pt-2 md:pt-4 lg:pt-0">
 						<?php if ($intro_title !== ''): ?>
-							<h2 id="contact-intro-heading" class="max-w-[760px] font-display text-[38px] font-semibold leading-[1.15] text-black sm:text-[44px] md:text-[50px] lg:text-[56px]">
+							<h2 id="contact-intro-heading" class="reacon-type-h2 max-w-[760px] text-black">
 								<?php echo esc_html($intro_title); ?>
 							</h2>
 						<?php endif; ?>
 						<?php if ($intro_body !== ''): ?>
-							<p class="mt-4 max-w-[581px] font-display text-[18px] leading-[1.32] text-foreground sm:text-[20px]">
+							<p class="reacon-type-lead mt-4 max-w-[581px] text-foreground">
 								<?php echo esc_html($intro_body); ?>
 							</p>
 						<?php endif; ?>
@@ -329,11 +329,11 @@ $show_apac_section = $contact_enable_apac && ($apac_section_title !== '' || !emp
 						<?php if (null !== $contact_email_link || null !== $contact_phone_link): ?>
 							<div class="mt-10 flex flex-col gap-5">
 								<?php if (null !== $contact_email_link): ?>
-									<p class="flex items-center gap-1.5 font-display text-lg font-semibold leading-[1.32] text-foreground sm:text-xl">
+									<p class="reacon-type-h5 flex items-center gap-1.5 text-foreground">
 										<?php reacon_contact_render_icon($contact_email_icon, 'text-xl'); ?>
 										<span>
 											<a
-												class="font-display text-lg font-semibold leading-[1.32] text-foreground sm:text-xl"
+												class="reacon-type-h5 text-foreground transition-colors duration-200 hover:text-primary"
 												href="<?php echo esc_url($contact_email_link['url']); ?>"
 												target="<?php echo esc_attr($contact_email_link['target']); ?>"
 												<?php echo '_blank' === $contact_email_link['target'] ? ' rel="noopener noreferrer"' : ''; ?>>
@@ -343,11 +343,11 @@ $show_apac_section = $contact_enable_apac && ($apac_section_title !== '' || !emp
 									</p>
 								<?php endif; ?>
 								<?php if (null !== $contact_phone_link): ?>
-									<p class="flex items-center gap-1.5 font-display text-lg font-semibold leading-[1.32] text-foreground sm:text-xl">
+									<p class="reacon-type-h5 flex items-center gap-1.5 text-foreground">
 										<?php reacon_contact_render_icon($contact_phone_icon, 'text-xl'); ?>
 										<span>
 											<a
-												class="font-display text-lg font-semibold leading-[1.32] text-foreground sm:text-xl"
+												class="reacon-type-h5 text-foreground transition-colors duration-200 hover:text-primary"
 												href="<?php echo esc_url($contact_phone_link['url']); ?>"
 												target="<?php echo esc_attr($contact_phone_link['target']); ?>"
 												<?php echo '_blank' === $contact_phone_link['target'] ? ' rel="noopener noreferrer"' : ''; ?>>
@@ -362,9 +362,9 @@ $show_apac_section = $contact_enable_apac && ($apac_section_title !== '' || !emp
 				<?php endif; ?>
 
 				<?php if ($show_form_col): ?>
-					<div class="w-full z-20 rounded-2xl rounded-br-[24px] bg-white p-5 sm:p-6 lg:rounded-bl-[32px] lg:rounded-br-[32px] lg:p-8">
+					<div class="z-20 w-full rounded-2xl rounded-br-[24px] bg-white p-5 sm:p-6 lg:rounded-bl-[32px] lg:rounded-br-[32px] lg:p-8">
 						<?php if ($form_title !== ''): ?>
-							<h2 class="font-display text-[44px] font-semibold leading-[1.15] text-black sm:text-[48px] lg:text-[56px]">
+							<h2 class="reacon-type-h2 text-black">
 								<?php echo esc_html($form_title); ?>
 							</h2>
 						<?php endif; ?>
@@ -383,10 +383,10 @@ $show_apac_section = $contact_enable_apac && ($apac_section_title !== '' || !emp
 	<?php if ($show_apac_section): ?>
 		<!-- Talk to sales -->
 		<section class="bg-[#e9fbfc] py-10 sm:py-12 lg:py-14 mt-0 sm:-mt-80 relative">
-			<div class="relative mx-auto w-full max-w-7xl px-4 sm:px-6 md:px-8 xl:px-0">
+			<div class="relative mx-auto w-full max-w-7xl px-4 sm:px-6 md:px-8 xl:px-6">
 				<div class="max-w-[581px]">
 					<?php if ($apac_section_title !== ''): ?>
-						<h3 class="font-display text-[32px] font-medium leading-[1.32] text-black">
+						<h3 class="reacon-type-h3 text-black">
 							<?php echo esc_html($apac_section_title); ?>
 						</h3>
 					<?php endif; ?>
@@ -419,13 +419,13 @@ $show_apac_section = $contact_enable_apac && ($apac_section_title !== '' || !emp
 										aria-controls="<?php echo esc_attr($panel_id); ?>"
 										:aria-expanded="activeApac === <?php echo esc_attr((string) $idx); ?> ? 'true' : 'false'"
 										@click="activeApac = activeApac === <?php echo esc_attr((string) $idx); ?> ? -1 : <?php echo esc_attr((string) $idx); ?>">
-										<span class="font-display text-lg font-medium leading-[1.32] text-foreground sm:text-xl">
+										<span class="reacon-type-h5 text-foreground">
 											<?php echo esc_html($loc_label); ?>
 										</span>
 										<span
 											class="shrink-0 text-xl leading-none text-primary transition-transform duration-200 select-none group-hover:scale-110"
 											aria-hidden="true"
-											x-text="activeApac === <?php echo esc_attr((string) $idx); ?> ? '−' : '+'"></span>
+											x-text="activeApac === <?php echo esc_attr((string) $idx); ?> ? '-' : '+'"></span>
 									</button>
 									<?php if ($panel_txt !== ''): ?>
 										<div
@@ -439,7 +439,7 @@ $show_apac_section = $contact_enable_apac && ($apac_section_title !== '' || !emp
 											x-transition:leave-start="opacity-100 max-h-96"
 											x-transition:leave-end="opacity-0 max-h-0"
 											x-cloak>
-											<p class="mt-3 max-w-[520px] font-sans text-[15px] leading-relaxed text-[#4B5058]">
+											<p class="reacon-type-body mt-3 max-w-[520px] text-[#4B5058]">
 												<?php echo nl2br(esc_html($panel_txt)); ?>
 											</p>
 										</div>
@@ -470,12 +470,12 @@ $show_apac_section = $contact_enable_apac && ($apac_section_title !== '' || !emp
 			<div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
 				<header class="flex flex-col gap-6">
 					<?php if ($faq_heading !== ''): ?>
-						<h2 id="reacon-faq-heading" class="text-3xl font-semibold leading-tight text-black sm:text-4xl md:text-[2.625rem] lg:text-[2.75rem] xl:text-5xl" style="font-family: 'Plus Jakarta Sans','Graphik Trial',ui-sans-serif,system-ui">
+						<h2 id="reacon-faq-heading" class="reacon-type-h2 text-black">
 							<?php echo esc_html($faq_heading); ?>
 						</h2>
 					<?php endif; ?>
 					<?php if ($faq_description !== ''): ?>
-						<p class="max-w-4xl text-base leading-relaxed text-black/80 sm:text-[1.0625rem] md:text-lg">
+						<p class="reacon-type-lead max-w-4xl text-black/80">
 							<?php echo esc_html($faq_description); ?>
 						</p>
 					<?php endif; ?>
@@ -492,13 +492,13 @@ $show_apac_section = $contact_enable_apac && ($apac_section_title !== '' || !emp
 						?>
 							<div class="reacon-faq-item rounded-2xl border border-[#E7E7E7] px-5 py-[1.125rem] transition-colors duration-300 sm:px-6 sm:py-5" role="listitem" :class="{ 'reacon-faq-item--open': activeFaq === <?php echo esc_attr((string) $index); ?> }">
 								<button type="button" id="<?php echo esc_attr($item_id); ?>" class="flex w-full cursor-pointer items-start justify-between gap-4 rounded-md text-left outline-none focus-visible:ring-2 focus-visible:ring-[var(--reacon-teal)] focus-visible:ring-offset-2" aria-controls="<?php echo esc_attr($panel_id); ?>" :aria-expanded="activeFaq === <?php echo esc_attr((string) $index); ?> ? 'true' : 'false'" @click="activeFaq = activeFaq === <?php echo esc_attr((string) $index); ?> ? -1 : <?php echo esc_attr((string) $index); ?>">
-									<span class="text-lg font-medium leading-snug text-[#383B43] sm:text-xl" style="font-family: 'Plus Jakarta Sans','Graphik Trial',ui-sans-serif,system-ui">
+									<span class="reacon-type-h5 text-[#383B43]">
 										<?php echo esc_html($question); ?>
 									</span>
-									<span class="mt-0.5 shrink-0 text-xl leading-none text-[#383B43] select-none" aria-hidden="true" x-text="activeFaq === <?php echo esc_attr((string) $index); ?> ? '−' : '+'"></span>
+									<span class="mt-0.5 shrink-0 text-xl leading-none text-[#383B43] select-none" aria-hidden="true" x-text="activeFaq === <?php echo esc_attr((string) $index); ?> ? '-' : '+'"></span>
 								</button>
 								<div id="<?php echo esc_attr($panel_id); ?>" class="overflow-hidden" x-show="activeFaq === <?php echo esc_attr((string) $index); ?>" x-transition:enter="transition-all ease-out duration-300" x-transition:enter-start="opacity-0 max-h-0" x-transition:enter-end="opacity-100 max-h-96" x-transition:leave="transition-all ease-in duration-200" x-transition:leave-start="opacity-100 max-h-96" x-transition:leave-end="opacity-0 max-h-0" x-cloak>
-									<p class="text-[0.9375rem] leading-relaxed text-[#666666] sm:text-base">
+									<p class="reacon-type-body text-[#666666]">
 										<?php echo nl2br(esc_html($answer)); ?>
 									</p>
 								</div>
@@ -508,12 +508,12 @@ $show_apac_section = $contact_enable_apac && ($apac_section_title !== '' || !emp
 						<?php if ($faq_cta_title !== '' || $faq_cta_text !== ''): ?>
 							<aside class="mt-1 rounded-2xl bg-[#E9FBFC] px-5 py-[1.125rem] sm:px-6 sm:py-5" aria-label="<?php esc_attr_e('FAQ contact call to action', 'reacon-group'); ?>">
 								<div class="flex flex-col gap-2">
-									<?php if ($faq_cta_title !== ''): ?><p class="text-[0.9375rem] font-medium leading-relaxed text-[#383B43] sm:text-base"><?php echo esc_html($faq_cta_title); ?></p><?php endif; ?>
-									<?php if ($faq_cta_text !== ''): ?><p class="text-[0.9375rem] leading-relaxed text-[#666666] sm:text-base"><?php echo esc_html($faq_cta_text); ?></p><?php endif; ?>
+									<?php if ($faq_cta_title !== ''): ?><p class="reacon-type-button text-[#383B43]"><?php echo esc_html($faq_cta_title); ?></p><?php endif; ?>
+									<?php if ($faq_cta_text !== ''): ?><p class="reacon-type-body text-[#666666]"><?php echo esc_html($faq_cta_text); ?></p><?php endif; ?>
 								</div>
 								<div class="my-4 h-px w-full bg-[#ECEFF2] sm:my-5" aria-hidden="true"></div>
 								<?php if ($faq_cta_link_title !== '' && $faq_cta_link_url !== ''): ?>
-									<a href="<?php echo esc_url($faq_cta_link_url); ?>" target="<?php echo esc_attr($faq_cta_link_target); ?>" <?php echo '_blank' === $faq_cta_link_target ? 'rel="noopener noreferrer"' : ''; ?> class="flex w-full items-center justify-between gap-4 text-[0.9375rem] font-medium leading-relaxed text-[#0A969B] transition-colors duration-300 hover:text-black sm:text-base">
+									<a href="<?php echo esc_url($faq_cta_link_url); ?>" target="<?php echo esc_attr($faq_cta_link_target); ?>" <?php echo '_blank' === $faq_cta_link_target ? 'rel="noopener noreferrer"' : ''; ?> class="reacon-type-button flex w-full items-center justify-between gap-4 text-[#0A969B] transition-colors duration-300 hover:text-black">
 										<span><?php echo esc_html($faq_cta_link_title); ?></span>
 										<i class="ph ph-arrow-right" aria-hidden="true"></i>
 									</a>
@@ -550,10 +550,11 @@ $show_apac_section = $contact_enable_apac && ($apac_section_title !== '' || !emp
 		display: block;
 		margin-bottom: 3px;
 		font-family: var(--font-sans);
-		font-size: 15px;
+		font-size: 16px;
 		font-weight: 500;
-		line-height: 1.42;
+		line-height: var(--reacon-text-body-line-height);
 		color: var(--foreground);
+		letter-spacing: var(--reacon-letter-spacing);
 	}
 
 	.reacon-contact-cf7 input[type="text"],
@@ -568,8 +569,10 @@ $show_apac_section = $contact_enable_apac && ($apac_section_title !== '' || !emp
 		background: #fff;
 		padding: 10px 14px;
 		font-family: var(--font-sans);
-		font-size: 15px;
-		line-height: 1.42;
+		font-size: 16px;
+		font-weight: 400;
+		line-height: var(--reacon-text-body-line-height);
+		letter-spacing: var(--reacon-letter-spacing);
 		color: #516278;
 		outline: 0;
 	}
@@ -608,12 +611,17 @@ $show_apac_section = $contact_enable_apac && ($apac_section_title !== '' || !emp
 		background: var(--primary);
 		color: #fff;
 		font-family: var(--font-sans);
-		font-size: 15px;
+		font-size: 16px;
 		font-weight: 500;
-		line-height: 1.42;
+		line-height: var(--reacon-text-button-line-height);
+		letter-spacing: var(--reacon-letter-spacing);
 		padding: 11px 20px;
 		cursor: pointer;
 		transition: filter 0.2s ease;
+	}
+
+	.reacon-contact-cf7 .wpcf7-submit:hover {
+		filter: brightness(1.05);
 	}
 
 	.reacon-contact-cf7 .wpcf7-form-control-wrap {
@@ -624,17 +632,22 @@ $show_apac_section = $contact_enable_apac && ($apac_section_title !== '' || !emp
 		display: none;
 	}
 
-	.reacon-contact-cf7 .wpcf7-submit:hover {
-		filter: brightness(1.05);
-	}
-
 	.reacon-contact-cf7 .wpcf7-spinner {
 		margin-left: 8px;
 	}
 
 	.reacon-contact-cf7 .wpcf7-not-valid-tip {
 		margin-top: 6px;
-		font-size: 13px;
+		font-family: var(--font-sans);
+		font-size: 14px;
+		font-weight: 400;
+		line-height: var(--reacon-text-caption-line-height);
+		letter-spacing: var(--reacon-letter-spacing);
+	}
+
+	.reacon-faq-item--open {
+		border-color: #d7ecee;
+		background: #fcfeff;
 	}
 
 	/* Desktop-only top notch to keep header/hero consistency with About page. */

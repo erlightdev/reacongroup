@@ -1,5 +1,114 @@
 /**
- * Custom styles to immediately follow Tailwind’s `base` layer
+ * Custom styles to immediately follow Tailwind's `base` layer
  */
 
-/* Intentionally left minimal; global base styles live in `tailwind/tailwind-theme.css`. */
+/* Reusable typography classes live here so they override Preflight heading resets. */
+.reacon-type-h1,
+.reacon-type-h2,
+.reacon-type-h3,
+.reacon-type-h4,
+.reacon-type-h5,
+.reacon-type-h6,
+.reacon-type-lead,
+.reacon-type-body,
+.reacon-type-caption,
+.reacon-type-button,
+.reacon-type-overline {
+	letter-spacing: var(--reacon-letter-spacing);
+}
+
+.reacon-type-h1,
+.reacon-type-h2,
+.reacon-type-h3,
+.reacon-type-h4,
+.reacon-type-h5 {
+	font-family: var(--font-display);
+}
+
+.reacon-type-h6,
+.reacon-type-lead,
+.reacon-type-body,
+.reacon-type-caption,
+.reacon-type-button,
+.reacon-type-overline {
+	font-family: var(--font-sans);
+}
+
+.reacon-type-h1,
+.reacon-type-h2,
+.reacon-type-h3,
+.reacon-type-h4 {
+	text-wrap: balance;
+}
+
+.reacon-type-h1 {
+	font-size: var(--reacon-text-h1-size);
+	font-weight: 700;
+	line-height: var(--reacon-text-h1-line-height);
+}
+
+.reacon-type-h2 {
+	font-size: var(--reacon-text-h2-size);
+	font-weight: 600;
+	line-height: var(--reacon-text-h2-line-height);
+}
+
+.reacon-type-h3 {
+	font-size: var(--reacon-text-h3-size);
+	font-weight: 600;
+	line-height: var(--reacon-text-h3-line-height);
+}
+
+.reacon-type-h4 {
+	font-size: var(--reacon-text-h4-size);
+	font-weight: 600;
+	line-height: var(--reacon-text-h4-line-height);
+}
+
+.reacon-type-h5 {
+	font-size: var(--reacon-text-h5-size);
+	font-weight: 500;
+	line-height: var(--reacon-text-h5-line-height);
+}
+
+.reacon-type-h6 {
+	font-size: var(--reacon-text-h6-size);
+	font-weight: 400;
+	line-height: var(--reacon-text-h6-line-height);
+}
+
+.reacon-type-lead {
+	font-size: var(--reacon-text-lead-size);
+	font-weight: 400;
+	line-height: var(--reacon-text-lead-line-height);
+}
+
+.reacon-type-body,
+.reacon-type-button {
+	font-size: var(--reacon-text-body-size);
+}
+
+.reacon-type-body {
+	font-weight: 400;
+	line-height: var(--reacon-text-body-line-height);
+}
+
+.reacon-type-caption,
+.reacon-type-overline {
+	font-size: var(--reacon-text-caption-size);
+	font-weight: 400;
+	line-height: var(--reacon-text-caption-line-height);
+}
+
+.reacon-type-button {
+	font-size: var(--reacon-text-button-size);
+	font-weight: 500;
+	line-height: var(--reacon-text-button-line-height);
+}
+
+.reacon-type-overline {
+	font-size: var(--reacon-text-overline-size);
+	text-transform: uppercase;
+	letter-spacing: 0.18em;
+	line-height: var(--reacon-text-overline-line-height);
+}
