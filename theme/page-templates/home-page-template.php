@@ -60,7 +60,7 @@ if (!function_exists('render_reacon_dynamic_icon')) {
 			$bg_image = !empty($home_hero['bg_image']) ? $home_hero['bg_image'] : '';
 		?>
 			<section id="hero" class="relative w-full p-0 md:p-2.5" aria-label="<?php esc_attr_e('Hero', 'reacon-group'); ?>">
-				<div class="reacon-home-hero-card relative flex min-h-[60vh] w-full flex-col overflow-hidden rounded-b-[31px] md:rounded-[31px] bg-foreground lg:min-h-[640px] xl:min-h-[720px]">
+				<div class="reacon-home-hero-card relative flex min-h-[60vh] w-full flex-col overflow-hidden rounded-b-[31px] md:rounded-[31px] bg-foreground  lg:min-h-[640px] xl:min-h-[680px]">
 					<?php if ($bg_image): ?>
 						<picture class="pointer-events-none absolute inset-0" aria-hidden="true">
 							<img src="<?php echo esc_url($bg_image); ?>" alt="" class="h-full w-full object-cover object-center" fetchpriority="high" loading="eager" decoding="async" />
