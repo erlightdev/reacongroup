@@ -301,9 +301,9 @@ $cta_ready = $ow_enable_cta_section
 	<?php if ($hero_ready): ?>
 		<section
 			id="our-works-hero"
-			class="relative w-full p-1.5 md:p-2.5"
+			class="relative w-full p-0 md:p-2.5"
 			aria-labelledby="our-works-heading">
-			<div class="reacon-about-hero-card relative min-h-[255px] overflow-hidden rounded-[24px] bg-[linear-gradient(145deg,#0E6D77_0%,#062B53_42%,#0A4E57_100%)] sm:min-h-[300px] lg:min-h-[380px] lg:rounded-[31px]" style="<?php echo esc_attr($hero_bg_style); ?>">
+			<div class="reacon-about-hero-card relative min-h-[255px] overflow-hidden rounded-0 md:rounded-[24px] bg-[linear-gradient(145deg,#0E6D77_0%,#062B53_42%,#0A4E57_100%)] sm:min-h-[300px] lg:min-h-[380px] lg:rounded-[31px]" style="<?php echo esc_attr($hero_bg_style); ?>">
 				<div class="reacon-works-hero-pattern pointer-events-none absolute inset-0" aria-hidden="true" style="<?php echo esc_attr($hero_pattern_style); ?>"></div>
 				<div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_85%_60%_at_50%_-10%,rgba(30,202,211,0.22)_0%,transparent_55%)]" aria-hidden="true" style="<?php echo esc_attr($hero_radial_style); ?>"></div>
 				<div class="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,10,33,0.22)_0%,rgba(0,10,33,0.12)_45%,rgba(0,10,33,0.26)_100%)]" aria-hidden="true" style="<?php echo esc_attr($hero_dark_overlay_style); ?>"></div>
@@ -339,108 +339,105 @@ $cta_ready = $ow_enable_cta_section
 	<!-- Project grid -->
 	<?php if ($projects_ready): ?>
 		<section class="bg-slate-50 px-4 py-12 sm:px-6 sm:py-16 lg:px-8" aria-label="<?php esc_attr_e('Featured projects', 'reacon-group'); ?>">
-	<style>
-		/* Prevent flash before Alpine initializes x-cloak elements. */
-		[x-cloak] {
-			display: none !important;
-		}
-	</style>
-	<div class="mx-auto w-full max-w-7xl" x-data="{ visibleCount: 3, perPage: 3, totalCount: <?php echo (int) count($works_projects); ?> }">
-		
-		<!-- Optional: Enterprise-style section header could go here -->
-		
-		<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10">
-			<?php foreach ($works_projects as $index => $project): ?>
-				<!-- Card acts as a static display panel, not a clickable link -->
-				<article
-					class="group flex flex-col overflow-hidden rounded-2xl border border-slate-200/70 bg-white shadow-[0_1px_2px_rgba(15,23,42,0.04)] transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-0.5 hover:border-slate-300/90 hover:shadow-[0_10px_30px_rgba(15,23,42,0.08)]"
-					x-data="{ idx: <?php echo (int) $index; ?> }"
-					x-show="idx < visibleCount"
-					x-transition:enter="transition-all ease-out duration-300"
-					x-transition:enter-start="opacity-0 translate-y-2"
-					x-transition:enter-end="opacity-100 translate-y-0"
-					x-transition:leave="transition-all ease-in duration-200"
-					x-transition:leave-start="opacity-100 translate-y-0"
-					x-transition:leave-end="opacity-0 translate-y-2"
-					x-cloak>
-					
-					<!-- Image Container -->
-					<div class="relative aspect-[16/10] w-full overflow-hidden bg-slate-100">
-						<img
-							src="<?php echo esc_url($project['image']); ?>"
-							alt="<?php echo esc_attr($project['title']); ?>"
-							class="h-full w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-							loading="lazy"
-							decoding="async" 
-						/>
-						<!-- Subtle gradient overlay on hover for premium feel -->
-						<div class="absolute inset-0 bg-gradient-to-t from-slate-900/18 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none"></div>
-					</div>
+			<style>
+				/* Prevent flash before Alpine initializes x-cloak elements. */
+				[x-cloak] {
+					display: none !important;
+				}
+			</style>
+			<div class="mx-auto w-full max-w-7xl" x-data="{ visibleCount: 3, perPage: 3, totalCount: <?php echo (int) count($works_projects); ?> }">
 
-					<!-- Content Area -->
-					<div class="flex flex-1 flex-col p-5 sm:p-6 lg:p-7">
-						
-						<!-- Sleek Category Label with "Status" Dot -->
-						<div class="flex items-center gap-2">
-							<span class="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden="true"></span>
-							<p class="font-sans text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500">
-								<?php echo esc_html($project['category']); ?>
-							</p>
-						</div>
+				<!-- Optional: Enterprise-style section header could go here -->
 
-						<!-- Title -->
-						<h3 class="mt-4 font-display text-[18px] font-semibold tracking-tight text-slate-900 sm:text-[20px]">
-							<?php echo esc_html($project['title']); ?>
-						</h3>
+				<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10">
+					<?php foreach ($works_projects as $index => $project): ?>
+						<!-- Card acts as a static display panel, not a clickable link -->
+						<article
+							class="group flex flex-col overflow-hidden rounded-2xl border border-slate-200/70 bg-white shadow-[0_1px_2px_rgba(15,23,42,0.04)] transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-0.5 hover:border-slate-300/90 hover:shadow-[0_10px_30px_rgba(15,23,42,0.08)]"
+							x-data="{ idx: <?php echo (int) $index; ?> }"
+							x-show="idx < visibleCount"
+							x-transition:enter="transition-all ease-out duration-300"
+							x-transition:enter-start="opacity-0 translate-y-2"
+							x-transition:enter-end="opacity-100 translate-y-0"
+							x-transition:leave="transition-all ease-in duration-200"
+							x-transition:leave-start="opacity-100 translate-y-0"
+							x-transition:leave-end="opacity-0 translate-y-2"
+							x-cloak>
 
-						<!-- Excerpt -->
-						<p class="mt-2 flex-1 font-sans text-sm leading-relaxed text-slate-600">
-							<?php echo esc_html($project['excerpt']); ?>
-						</p>
+							<!-- Image Container -->
+							<div class="relative aspect-[16/10] w-full overflow-hidden bg-slate-100">
+								<img
+									src="<?php echo esc_url($project['image']); ?>"
+									alt="<?php echo esc_attr($project['title']); ?>"
+									class="h-full w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+									loading="lazy"
+									decoding="async" />
+								<!-- Subtle gradient overlay on hover for premium feel -->
+								<div class="absolute inset-0 bg-gradient-to-t from-slate-900/18 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none"></div>
+							</div>
 
-					</div>
+							<!-- Content Area -->
+							<div class="flex flex-1 flex-col p-5 sm:p-6 lg:p-7">
 
-					<!-- Dedicated Call-to-Action Footer -->
-					<div class="border-t border-slate-100 bg-white/60 px-5 py-3.5 sm:px-6 transition-colors duration-300 group-hover:bg-slate-50">
-						<a
-							href="<?php echo esc_url($project['cta_url']); ?>"
-							class="group/link flex items-center justify-between font-sans text-sm font-semibold text-slate-900 transition-colors hover:text-primary focus:outline-none"
-							<?php if (!empty($project['cta_target']) && '_self' !== $project['cta_target']) : ?>
-								target="<?php echo esc_attr($project['cta_target']); ?>"
-								rel="noopener noreferrer"
-							<?php endif; ?>
-						>
-							<span><?php echo esc_html($project['cta_label']); ?></span>
-							
-							<!-- Arrow animates to the right to indicate moving forward/contacting -->
-							<span class="flex h-8 w-8 items-center justify-center rounded-full bg-white border border-slate-200 text-slate-400 transition-all duration-300 group-hover/link:border-primary group-hover/link:bg-primary group-hover/link:text-white group-hover/link:translate-x-1 shadow-sm">
-								<?php reacon_our_works_render_icon($project['cta_icon'], 'text-sm'); ?>
-							</span>
-						</a>
-					</div>
-					
-				</article>
-			<?php endforeach; ?>
-		</div>
-		<div class="mt-10 flex items-center justify-center">
-			<button
-				type="button"
-				class="inline-flex cursor-pointer items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-3 font-sans text-sm font-semibold text-slate-900 shadow-sm transition-colors hover:border-slate-300 hover:bg-white/80 disabled:opacity-50 disabled:hover:bg-white"
-				@click="visibleCount = Math.min(visibleCount + perPage, totalCount)"
-				x-show="visibleCount < totalCount"
-				x-transition:enter="transition-all ease-out duration-300"
-				x-transition:enter-start="opacity-0 translate-y-2"
-				x-transition:enter-end="opacity-100 translate-y-0"
-				x-transition:leave="transition-all ease-in duration-200"
-				x-transition:leave-start="opacity-100 translate-y-0"
-				x-transition:leave-end="opacity-0 translate-y-2"
-				x-cloak
-			>
-				<span><?php echo esc_html($load_more_label); ?></span>
-				<?php reacon_our_works_render_icon($load_more_icon, 'text-[16px]'); ?>
-			</button>
-		</div>
-	</div>
+								<!-- Sleek Category Label with "Status" Dot -->
+								<div class="flex items-center gap-2">
+									<span class="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden="true"></span>
+									<p class="font-sans text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500">
+										<?php echo esc_html($project['category']); ?>
+									</p>
+								</div>
+
+								<!-- Title -->
+								<h3 class="mt-4 font-display text-[18px] font-semibold tracking-tight text-slate-900 sm:text-[20px]">
+									<?php echo esc_html($project['title']); ?>
+								</h3>
+
+								<!-- Excerpt -->
+								<p class="mt-2 flex-1 font-sans text-sm leading-relaxed text-slate-600">
+									<?php echo esc_html($project['excerpt']); ?>
+								</p>
+
+							</div>
+
+							<!-- Dedicated Call-to-Action Footer -->
+							<div class="border-t border-slate-100 bg-white/60 px-5 py-3.5 sm:px-6 transition-colors duration-300 group-hover:bg-slate-50">
+								<a
+									href="<?php echo esc_url($project['cta_url']); ?>"
+									class="group/link flex items-center justify-between font-sans text-sm font-semibold text-slate-900 transition-colors hover:text-primary focus:outline-none"
+									<?php if (!empty($project['cta_target']) && '_self' !== $project['cta_target']) : ?>
+									target="<?php echo esc_attr($project['cta_target']); ?>"
+									rel="noopener noreferrer"
+									<?php endif; ?>>
+									<span><?php echo esc_html($project['cta_label']); ?></span>
+
+									<!-- Arrow animates to the right to indicate moving forward/contacting -->
+									<span class="flex h-8 w-8 items-center justify-center rounded-full bg-white border border-slate-200 text-slate-400 transition-all duration-300 group-hover/link:border-primary group-hover/link:bg-primary group-hover/link:text-white group-hover/link:translate-x-1 shadow-sm">
+										<?php reacon_our_works_render_icon($project['cta_icon'], 'text-sm'); ?>
+									</span>
+								</a>
+							</div>
+
+						</article>
+					<?php endforeach; ?>
+				</div>
+				<div class="mt-10 flex items-center justify-center">
+					<button
+						type="button"
+						class="inline-flex cursor-pointer items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-3 font-sans text-sm font-semibold text-slate-900 shadow-sm transition-colors hover:border-slate-300 hover:bg-white/80 disabled:opacity-50 disabled:hover:bg-white"
+						@click="visibleCount = Math.min(visibleCount + perPage, totalCount)"
+						x-show="visibleCount < totalCount"
+						x-transition:enter="transition-all ease-out duration-300"
+						x-transition:enter-start="opacity-0 translate-y-2"
+						x-transition:enter-end="opacity-100 translate-y-0"
+						x-transition:leave="transition-all ease-in duration-200"
+						x-transition:leave-start="opacity-100 translate-y-0"
+						x-transition:leave-end="opacity-0 translate-y-2"
+						x-cloak>
+						<span><?php echo esc_html($load_more_label); ?></span>
+						<?php reacon_our_works_render_icon($load_more_icon, 'text-[16px]'); ?>
+					</button>
+				</div>
+			</div>
 		</section>
 	<?php endif; ?>
 
@@ -498,10 +495,9 @@ $cta_ready = $ow_enable_cta_section
 						href="<?php echo esc_url($primary_link_url); ?>"
 						class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 font-sans text-[15px] font-medium text-[#0E6D77] transition-colors hover:bg-[#E9FBFC]"
 						<?php if (!empty($primary_link_target) && '_self' !== $primary_link_target) : ?>
-							target="<?php echo esc_attr($primary_link_target); ?>"
-							rel="noopener noreferrer"
-						<?php endif; ?>
-					>
+						target="<?php echo esc_attr($primary_link_target); ?>"
+						rel="noopener noreferrer"
+						<?php endif; ?>>
 						<?php echo esc_html($primary_label); ?>
 						<?php reacon_our_works_render_icon($primary_icon, 'text-[16px]'); ?>
 					</a>
@@ -509,10 +505,9 @@ $cta_ready = $ow_enable_cta_section
 						href="<?php echo esc_url($secondary_link_url); ?>"
 						class="inline-flex items-center justify-center gap-2 rounded-full border border-white/40 px-6 py-3 font-sans text-[15px] font-medium text-white transition-colors hover:bg-white/10"
 						<?php if (!empty($secondary_link_target) && '_self' !== $secondary_link_target) : ?>
-							target="<?php echo esc_attr($secondary_link_target); ?>"
-							rel="noopener noreferrer"
-						<?php endif; ?>
-					>
+						target="<?php echo esc_attr($secondary_link_target); ?>"
+						rel="noopener noreferrer"
+						<?php endif; ?>>
 						<?php echo esc_html($secondary_label); ?>
 						<?php reacon_our_works_render_icon($secondary_icon, 'text-[16px]'); ?>
 					</a>
@@ -527,13 +522,11 @@ $cta_ready = $ow_enable_cta_section
 			--so-hero-pattern-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Cg fill='none' stroke='%23FFFFFF' stroke-opacity='0.1'%3E%3Cpath d='M36 10v52M10 36h52' stroke-width='1'/%3E%3Ccircle cx='36' cy='36' r='3' stroke-opacity='0.14' stroke-width='1'/%3E%3C/g%3E%3Cpath d='M0 72L72 0' stroke='%23FFFFFF' stroke-opacity='0.04' stroke-width='1'/%3E%3C/svg%3E");
 			background-image:
 				var(--so-hero-pattern-svg),
-				repeating-linear-gradient(
-					-18deg,
+				repeating-linear-gradient(-18deg,
 					transparent,
 					transparent 14px,
 					rgba(255, 255, 255, 0.025) 14px,
-					rgba(255, 255, 255, 0.025) 15px
-				);
+					rgba(255, 255, 255, 0.025) 15px);
 			background-size: 72px 72px, auto;
 		}
 

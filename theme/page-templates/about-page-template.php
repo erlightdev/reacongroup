@@ -107,10 +107,10 @@ if ($acf_enabled) {
 	<?php if ($about_sections['hero']): ?>
 		<section
 			id="about-hero"
-			class="relative w-full p-1.5 md:p-2.5"
+			class="relative w-full p-0 md:p-2.5"
 			aria-label="<?php esc_attr_e('About page hero', 'reacon-group'); ?>">
 
-			<div class="reacon-about-hero-card relative min-h-[255px] overflow-hidden rounded-[24px] bg-[#062B53] sm:min-h-[300px] lg:min-h-[380px] lg:rounded-[31px]">
+			<div class="reacon-about-hero-card relative min-h-[255px] overflow-hidden rounded-0 md:rounded-[24px] bg-[#062B53] sm:min-h-[300px] lg:min-h-[380px] lg:rounded-[31px]">
 				<img
 					src="<?php echo esc_url($hero_bg !== '' ? $hero_bg : $about_header_bg); ?>"
 					alt=""
@@ -703,7 +703,7 @@ if ($acf_enabled) {
 									<?php reacon_about_render_icon($about_cta_primary_icon_type, $about_cta_primary_icon_value, '', 'text-base text-primary'); ?>
 								</span>
 							</a>
-							<a href="<?php echo esc_url($about_cta['secondary']['url']); ?>" target="<?php echo esc_attr(isset($about_cta['secondary']['target']) ? $about_cta['secondary']['target'] : '_self'); ?>" class="inline-flex items-center gap-[10px] rounded-full border border-solid border-white pl-[20px] pr-[16px] py-[4px] font-sans text-[16px] font-normal text-white no-underline transition-all duration-300 hover:bg-white/10">
+							<a href="<?php echo esc_url($about_cta['secondary']['url']); ?>" target="<?php echo esc_attr(isset($about_cta['secondary']['target']) ? $about_cta['secondary']['target'] : '_self'); ?>" class="inline-flex items-center gap-[10px] rounded-full border border-solid border-white pl-[20px] pr-[16px] py-2.5 font-sans text-[16px] font-normal text-white no-underline transition-all duration-300 hover:bg-white/10">
 								<?php echo esc_html(reacon_about_fallback_text($about_cta['secondary']['label'], 'Secondary Action')); ?>
 							</a>
 						</div>
