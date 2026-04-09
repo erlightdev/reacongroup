@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Template part: Site header / navigation (dynamic mega menu).
  *
@@ -64,7 +65,7 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 ?>
 
 <header id="masthead" class="fixed inset-x-0 top-4 z-50 transition-all duration-300" role="banner">
-	<div class="mx-auto grid h-20 w-full max-w-7xl grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 px-4 sm:gap-3 sm:px-6 lg:px-4 xl:px-6 2xl:px-8">
+	<div class="mx-auto grid h-20 w-full md:max-w-7xl lg:max-w-7xl xl:max-w-7xl 2xl:max-w-none 2xl:w-full grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 px-4 sm:gap-3 sm:px-6 lg:px-4 xl:px-6 2xl:px-8">
 		<a href="<?php echo esc_url(home_url('/')); ?>" rel="home" aria-label="<?php echo esc_attr($site_name); ?> — <?php esc_attr_e('home', 'reacon-group'); ?>" class="relative z-10 shrink-0">
 			<img src="<?php echo esc_url($logo_src); ?>" alt="<?php echo esc_attr($site_name); ?>" width="160" height="42" class="h-10 w-auto" />
 		</a>
@@ -130,8 +131,13 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 </header>
 
 <style>
-	#masthead #site-navigation > ul { box-shadow: none; }
-	#masthead.top-0 #site-navigation > ul { box-shadow: 0 10px 22px rgba(0,0,0,0.16); }
+	#masthead #site-navigation>ul {
+		box-shadow: none;
+	}
+
+	#masthead.top-0 #site-navigation>ul {
+		box-shadow: 0 10px 22px rgba(0, 0, 0, 0.16);
+	}
 </style>
 
 <script>
@@ -159,8 +165,12 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 		var megaPanels = document.querySelectorAll('[data-mega-panel]');
 
 		function closeDesktopMegaMenus() {
-			megaPanels.forEach(function(panel) { panel.classList.add('hidden'); });
-			megaTriggers.forEach(function(trigger) { trigger.setAttribute('aria-expanded', 'false'); });
+			megaPanels.forEach(function(panel) {
+				panel.classList.add('hidden');
+			});
+			megaTriggers.forEach(function(trigger) {
+				trigger.setAttribute('aria-expanded', 'false');
+			});
 		}
 
 		function toggleDesktopMegaMenu(slug) {
@@ -247,7 +257,9 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 		});
 
 		mobileLinks.forEach(function(link) {
-			link.addEventListener('click', function() { setMenuState(false); });
+			link.addEventListener('click', function() {
+				setMenuState(false);
+			});
 		});
 
 		subToggles.forEach(function(btn) {
@@ -398,8 +410,13 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 </header>
 
 <style>
-	#masthead #site-navigation > ul { box-shadow: none; }
-	#masthead.top-0 #site-navigation > ul { box-shadow: 0 10px 22px rgba(0, 0, 0, 0.16); }
+	#masthead #site-navigation>ul {
+		box-shadow: none;
+	}
+
+	#masthead.top-0 #site-navigation>ul {
+		box-shadow: 0 10px 22px rgba(0, 0, 0, 0.16);
+	}
 </style>
 
 <script>
@@ -407,7 +424,9 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 		'use strict';
 
 		var masthead = document.getElementById('masthead');
-		if (!masthead) { return; }
+		if (!masthead) {
+			return;
+		}
 
 		function updateHeaderOnScroll() {
 			if (window.scrollY > 20) {
@@ -427,14 +446,20 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 		var megaPanels = document.querySelectorAll('[data-mega-panel]');
 
 		function closeDesktopMegaMenus() {
-			megaPanels.forEach(function(panel) { panel.classList.add('hidden'); });
-			megaTriggers.forEach(function(trigger) { trigger.setAttribute('aria-expanded', 'false'); });
+			megaPanels.forEach(function(panel) {
+				panel.classList.add('hidden');
+			});
+			megaTriggers.forEach(function(trigger) {
+				trigger.setAttribute('aria-expanded', 'false');
+			});
 		}
 
 		function toggleDesktopMegaMenu(slug) {
 			var targetPanel = document.querySelector('[data-mega-panel="' + slug + '"]');
 			var targetTrigger = document.querySelector('[data-mega-trigger="' + slug + '"]');
-			if (!targetPanel || !targetTrigger) { return; }
+			if (!targetPanel || !targetTrigger) {
+				return;
+			}
 
 			var willOpen = targetPanel.classList.contains('hidden');
 			closeDesktopMegaMenus();
@@ -448,14 +473,18 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 		megaTriggers.forEach(function(trigger) {
 			trigger.addEventListener('click', function(event) {
 				event.preventDefault();
-				if (window.innerWidth < 1024) { return; }
+				if (window.innerWidth < 1024) {
+					return;
+				}
 				toggleDesktopMegaMenu(trigger.getAttribute('data-mega-trigger'));
 			});
 		});
 
 		document.addEventListener('click', function(event) {
 			var nav = document.getElementById('site-navigation');
-			if (!nav || nav.contains(event.target)) { return; }
+			if (!nav || nav.contains(event.target)) {
+				return;
+			}
 			closeDesktopMegaMenus();
 		});
 
@@ -466,7 +495,9 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 		var iconClose = document.getElementById('close-icon');
 		var subToggles = document.querySelectorAll('.mobile-submenu-toggle');
 
-		if (!toggle || !menu || !iconOpen || !iconClose) { return; }
+		if (!toggle || !menu || !iconOpen || !iconClose) {
+			return;
+		}
 
 		var mobileLinks = menu.querySelectorAll('a');
 
@@ -474,10 +505,14 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 			subToggles.forEach(function(btn) {
 				var sub = btn.nextElementSibling;
 				var icon = btn.querySelector('i');
-				if (!sub) { return; }
+				if (!sub) {
+					return;
+				}
 				sub.classList.add('hidden');
 				btn.setAttribute('aria-expanded', 'false');
-				if (icon) { icon.style.transform = ''; }
+				if (icon) {
+					icon.style.transform = '';
+				}
 			});
 		}
 
@@ -497,7 +532,9 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 
 			document.body.style.overflow = open ? 'hidden' : '';
 
-			if (!open) { closeAllSubmenus(); }
+			if (!open) {
+				closeAllSubmenus();
+			}
 		}
 
 		toggle.addEventListener('click', function() {
@@ -513,19 +550,27 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 		});
 
 		window.addEventListener('resize', function() {
-			if (window.innerWidth < 1024) { closeDesktopMegaMenus(); }
-			if (window.innerWidth >= 1024) { setMenuState(false); }
+			if (window.innerWidth < 1024) {
+				closeDesktopMegaMenus();
+			}
+			if (window.innerWidth >= 1024) {
+				setMenuState(false);
+			}
 		});
 
 		mobileLinks.forEach(function(link) {
-			link.addEventListener('click', function() { setMenuState(false); });
+			link.addEventListener('click', function() {
+				setMenuState(false);
+			});
 		});
 
 		subToggles.forEach(function(btn) {
 			btn.addEventListener('click', function() {
 				var sub = btn.nextElementSibling;
 				var icon = btn.querySelector('i');
-				if (!sub) { return; }
+				if (!sub) {
+					return;
+				}
 
 				var willOpen = sub.classList.contains('hidden');
 				closeAllSubmenus();
@@ -533,7 +578,9 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 				if (willOpen) {
 					sub.classList.remove('hidden');
 					btn.setAttribute('aria-expanded', 'true');
-					if (icon) { icon.style.transform = 'rotate(180deg)'; }
+					if (icon) {
+						icon.style.transform = 'rotate(180deg)';
+					}
 				}
 			});
 		});
@@ -678,10 +725,11 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 </header>
 
 <style>
-	#masthead #site-navigation > ul {
+	#masthead #site-navigation>ul {
 		box-shadow: none;
 	}
-	#masthead.top-0 #site-navigation > ul {
+
+	#masthead.top-0 #site-navigation>ul {
 		box-shadow: 0 10px 22px rgba(0, 0, 0, 0.16);
 	}
 </style>
@@ -711,8 +759,12 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 		var megaPanels = document.querySelectorAll('[data-mega-panel]');
 
 		function closeDesktopMegaMenus() {
-			megaPanels.forEach(function(panel) { panel.classList.add('hidden'); });
-			megaTriggers.forEach(function(trigger) { trigger.setAttribute('aria-expanded', 'false'); });
+			megaPanels.forEach(function(panel) {
+				panel.classList.add('hidden');
+			});
+			megaTriggers.forEach(function(trigger) {
+				trigger.setAttribute('aria-expanded', 'false');
+			});
 		}
 
 		function toggleDesktopMegaMenu(slug) {
@@ -960,10 +1012,11 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 </header>
 
 <style>
-	#masthead #site-navigation > ul {
+	#masthead #site-navigation>ul {
 		box-shadow: none;
 	}
-	#masthead.top-0 #site-navigation > ul {
+
+	#masthead.top-0 #site-navigation>ul {
 		box-shadow: 0 10px 22px rgba(0, 0, 0, 0.16);
 	}
 </style>
@@ -992,8 +1045,12 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 		var megaPanels = document.querySelectorAll('[data-mega-panel]');
 
 		function closeDesktopMegaMenus() {
-			megaPanels.forEach(function(panel) { panel.classList.add('hidden'); });
-			megaTriggers.forEach(function(trigger) { trigger.setAttribute('aria-expanded', 'false'); });
+			megaPanels.forEach(function(panel) {
+				panel.classList.add('hidden');
+			});
+			megaTriggers.forEach(function(trigger) {
+				trigger.setAttribute('aria-expanded', 'false');
+			});
 		}
 
 		function toggleDesktopMegaMenu(slug) {
@@ -1075,7 +1132,9 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 		});
 
 		mobileLinks.forEach(function(link) {
-			link.addEventListener('click', function() { setMenuState(false); });
+			link.addEventListener('click', function() {
+				setMenuState(false);
+			});
 		});
 
 		subToggles.forEach(function(btn) {
@@ -1253,10 +1312,11 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 
 <style>
 	/* Match request: show nav pill shadow only when the header is in the scrolled position. */
-	#masthead #site-navigation > ul {
+	#masthead #site-navigation>ul {
 		box-shadow: none;
 	}
-	#masthead.top-0 #site-navigation > ul {
+
+	#masthead.top-0 #site-navigation>ul {
 		box-shadow: 0 10px 22px rgba(0, 0, 0, 0.16);
 	}
 </style>
@@ -1286,8 +1346,12 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 		var megaPanels = document.querySelectorAll('[data-mega-panel]');
 
 		function closeDesktopMegaMenus() {
-			megaPanels.forEach(function(panel) { panel.classList.add('hidden'); });
-			megaTriggers.forEach(function(trigger) { trigger.setAttribute('aria-expanded', 'false'); });
+			megaPanels.forEach(function(panel) {
+				panel.classList.add('hidden');
+			});
+			megaTriggers.forEach(function(trigger) {
+				trigger.setAttribute('aria-expanded', 'false');
+			});
 		}
 
 		function toggleDesktopMegaMenu(slug) {
@@ -1372,7 +1436,9 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 		});
 
 		mobileLinks.forEach(function(link) {
-			link.addEventListener('click', function() { setMenuState(false); });
+			link.addEventListener('click', function() {
+				setMenuState(false);
+			});
 		});
 
 		subToggles.forEach(function(btn) {
@@ -1593,6 +1659,7 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 	#masthead #site-navigation>ul {
 		box-shadow: none;
 	}
+
 	#masthead.top-0 #site-navigation>ul {
 		box-shadow: 0 10px 22px rgba(0, 0, 0, 0.16);
 	}
@@ -1963,6 +2030,7 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 	#masthead #site-navigation>ul {
 		box-shadow: none;
 	}
+
 	#masthead.top-0 #site-navigation>ul {
 		box-shadow: 0 10px 22px rgba(0, 0, 0, 0.16);
 	}
@@ -2330,6 +2398,7 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 	#masthead #site-navigation>ul {
 		box-shadow: none;
 	}
+
 	#masthead.top-0 #site-navigation>ul {
 		box-shadow: 0 10px 22px rgba(0, 0, 0, 0.16);
 	}
@@ -2575,7 +2644,7 @@ $nav_items = array(
 					$active_cls = $is_active
 						? 'bg-primary text-white shadow-[0_4px_10px_rgba(30,202,211,0.45)]'
 						: 'text-[#5a6b83] hover:bg-[#eef4f8] hover:text-[#263444]';
-					?>
+				?>
 					<li class="<?php echo $has_mega ? 'group static' : 'relative'; ?>">
 						<a
 							href="<?php echo esc_url($item['url']); ?>"
@@ -2834,7 +2903,7 @@ $nav_items = array(
 				foreach ($nav_items as $item):
 					$is_active = ($current_slug === $item['slug']);
 					$has_mega = !empty($item['has_mega']);
-					?>
+				?>
 					<li>
 						<?php if ($has_mega): ?>
 							<button

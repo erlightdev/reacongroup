@@ -62,7 +62,7 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 ?>
 
 <header id="masthead" class="absolute inset-x-0 top-4 z-50 transition-all duration-300" role="banner">
-	<div class="mx-auto grid h-20 w-full max-w-7xl grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 px-4 sm:gap-3 sm:px-6 lg:px-4 xl:px-6 2xl:px-8">
+	<div class="mx-auto grid h-20 w-full md:max-w-7xl lg:max-w-7xl xl:max-w-7xl 2xl:max-w-none 2xl:w-full grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 px-4 sm:gap-3 sm:px-6 lg:px-4 xl:px-6 2xl:px-8">
 		<a href="<?php echo esc_url(home_url('/')); ?>" rel="home" aria-label="<?php echo esc_attr($site_name); ?> — <?php esc_attr_e('home', 'reacon-group'); ?>" class="relative z-10 shrink-0">
 			<img src="<?php echo esc_url($logo_src); ?>" alt="<?php echo esc_attr($site_name); ?>" width="160" height="42" class="h-10 w-auto" />
 		</a>

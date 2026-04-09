@@ -77,28 +77,28 @@ if (!function_exists('render_reacon_dynamic_icon')) {
 
 					<div class="pointer-events-none absolute left-0 top-0 h-[60%] w-[42%] min-w-[280px]" style="background-image:linear-gradient(130deg, rgba(30, 202, 211, 0.34) 12%, rgba(30, 202, 211, 0) 58%);" aria-hidden="true"></div>
 
-					<div class="relative z-10 mx-auto flex h-full w-full max-w-7xl flex-1 flex-col justify-end px-4 pb-0 pt-28 sm:px-6 sm:pt-32 lg:px-8 lg:pt-24">
+					<div class="relative z-10 mx-auto flex h-full w-full md:max-w-7xl lg:max-w-7xl xl:max-w-7xl 2xl:max-w-none 2xl:w-full flex-1 flex-col justify-end px-4 pb-0 pt-28 sm:px-6 sm:pt-32 lg:px-8 lg:pt-24 ">
 						<div class="mb-10 flex w-full max-w-4xl flex-col items-start gap-6 lg:mb-[42px]">
 							<div class="flex flex-col gap-3 text-white">
 								<?php if ($hero_eyebrow): ?>
-									<p class="font-sans text-base leading-[1.42]"><?php echo esc_html($hero_eyebrow); ?></p>
+									<p class="reacon-type-body text-white/95"><?php echo esc_html($hero_eyebrow); ?></p>
 								<?php endif; ?>
 								<?php if ($hero_heading): ?>
-									<h1 class="font-display text-3xl font-bold leading-[1.15] tracking-tight xs:text-[2.125rem] sm:text-[2.5rem] md:text-[3rem] lg:text-[3.75rem] lg:leading-[1.14] xl:text-[4rem] 2xl:text-[4.25rem]">
+									<h1 class="reacon-type-hero font-bold tracking-tight xs:text-[2.125rem] md:text-[2.75rem] lg:text-[3.25rem] xl:text-[3.5rem] 2xl:text-[3.75rem]">
 										<?php echo esc_html($hero_heading); ?>
 									</h1>
 								<?php endif; ?>
 							</div>
 
 							<?php if ($hero_description): ?>
-								<p class="max-w-3xl font-sans text-sm leading-[1.42] text-white/95 sm:text-base md:text-[1.0625rem]">
+								<p class="reacon-type-body max-w-3xl text-white/95 md:text-[1.0625rem]">
 									<?php echo esc_html($hero_description); ?>
 								</p>
 							<?php endif; ?>
 
 							<?php if ($hero_cta_label && $hero_cta_url): ?>
 								<a href="<?php echo esc_url($hero_cta_url); ?>" target="<?php echo esc_attr($hero_cta_target); ?>" class="group inline-flex items-center gap-2.5 rounded-full bg-primary py-1 pl-5 pr-1 font-sans transition-all duration-300 hover:bg-secondary">
-									<span class="text-base font-medium text-primary-foreground"><?php echo esc_html($hero_cta_label); ?></span>
+									<span class="reacon-type-button text-primary-foreground"><?php echo esc_html($hero_cta_label); ?></span>
 									<span class="flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-full bg-white/30 transition-transform duration-300 group-hover:rotate-45" aria-hidden="true">
 										<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
 											<path d="M1.16699 12.8333L12.8337 1.16666M12.8337 1.16666H3.49965M12.8337 1.16666V10.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -117,13 +117,13 @@ if (!function_exists('render_reacon_dynamic_icon')) {
 								<?php endif; ?>
 
 								<div class="relative z-10 flex w-full flex-col gap-1">
-									<p class="font-display text-[44px] font-bold leading-[1.2] text-primary"><?php echo esc_html($hero_stat_value); ?></p>
-									<p class="font-sans text-base font-semibold leading-[1.42] text-foreground"><?php echo esc_html($hero_stat_label); ?></p>
+									<p class="reacon-type-h2 text-primary"><?php echo esc_html($hero_stat_value); ?></p>
+									<p class="reacon-type-body font-semibold text-foreground"><?php echo esc_html($hero_stat_label); ?></p>
 								</div>
 
 								<?php if ($hero_stat_description): ?>
 									<div class="relative z-10 w-full">
-										<p class="font-sans text-sm leading-[1.42] text-muted-foreground"><?php echo esc_html($hero_stat_description); ?></p>
+										<p class="reacon-type-caption text-muted-foreground"><?php echo esc_html($hero_stat_description); ?></p>
 									</div>
 								<?php endif; ?>
 							</div>
