@@ -45,7 +45,7 @@ $blog_index_url = home_url('/blogs/');
 					<h1
 						id="blog-single-title"
 						itemprop="headline"
-						class="font-display text-[24px] font-semibold leading-tight text-foreground sm:text-[40px] lg:text-[48px] xl:text-[56px] xl:leading-[73.92px]">
+						class="reacon-type-hero text-foreground">
 						<?php the_title(); ?>
 					</h1>
 				</div>
@@ -81,7 +81,7 @@ $blog_index_url = home_url('/blogs/');
 				<div class="w-full space-y-5 sm:space-y-6">
 
 					<!-- Semantic Author & Date Meta -->
-					<div class="font-sans text-[14px] font-medium leading-[22.72px] text-muted-foreground sm:text-[16px]">
+					<div class="reacon-type-caption font-medium text-muted-foreground">
 						<span itemprop="author" itemscope itemtype="https://schema.org/Person">
 							<span itemprop="name"><?php echo esc_html(get_the_author()); ?></span>
 						</span>
@@ -94,7 +94,7 @@ $blog_index_url = home_url('/blogs/');
 					<!-- Post Content -->
 					<div
 						itemprop="articleBody"
-						<?php reacon_group_content_class(' blog-single-content font-sans text-[15px] leading-[22.72px] text-muted-foreground sm:text-[16px] [&_p]:mb-4 [&_p]:leading-[22.72px] [&_strong]:font-medium [&_h2]:mt-7 [&_h2]:mb-3 [&_h2]:font-sans [&_h2]:text-[20px][&_h2]:font-medium [&_h2]:leading-[28px] [&_h3]:mt-6 [&_h3]:mb-3 [&_h3]:font-sans [&_h3]:text-[18px] [&_h3]:font-medium [&_h3]:leading-[26px]'); ?>>
+						<?php reacon_group_content_class(' blog-single-content reacon-type-body text-muted-foreground [&_p]:mb-4 [&_strong]:font-medium [&_h2]:mt-7 [&_h2]:mb-3 [&_h2]:font-sans [&_h2]:text-[20px][&_h2]:font-medium [&_h2]:leading-[28px] [&_h3]:mt-6 [&_h3]:mb-3 [&_h3]:font-sans [&_h3]:text-[18px] [&_h3]:font-medium [&_h3]:leading-[26px]'); ?>>
 						<?php
 						the_content();
 
@@ -115,9 +115,9 @@ $blog_index_url = home_url('/blogs/');
 					class="w-full pt-10 sm:pt-14 lg:pt-16 xl:pt-16">
 
 					<div class="w-full">
-						<h2 class="font-display text-[32px] font-semibold leading-[42.24px] text-foreground">
+						<h3 class="reacon-type-h3 text-foreground">
 							<?php esc_html_e('Explore More Blogs', 'reacon-group'); ?>
-						</h2>
+						</h3>
 					</div>
 
 					<?php
@@ -158,15 +158,15 @@ $blog_index_url = home_url('/blogs/');
 											</div>
 
 											<div class="flex flex-1 flex-col items-start gap-3 px-2 pb-2 pt-5 sm:px-3 sm:pt-6">
-												<p class="text-sm font-medium text-[#6B7280]">
+												<p class="reacon-type-caption font-medium text-[#6B7280]">
 													<?php echo esc_html($explore_meta); ?>
 												</p>
-												<h3 class="text-[20px] leading-[1.22] text-foreground sm:text-[20px]">
+												<h3 class="reacon-type-h4 text-foreground">
 													<a href="<?php echo esc_url($explore_url); ?>" class="transition-colors no-underline hover:text-primary">
 														<?php echo esc_html($explore_title); ?>
 													</a>
 												</h3>
-												<p class="text-md line-clamp-3 text-[#667085]">
+												<p class="reacon-type-body line-clamp-3 text-[#667085]">
 													<?php echo esc_html($explore_excerpt); ?>
 												</p>
 												<div class="mt-auto flex w-full justify-end pt-3">
@@ -182,7 +182,7 @@ $blog_index_url = home_url('/blogs/');
 									<?php endforeach; ?>
 								<?php else: ?>
 									<article class="swiper-slide flex min-h-[430px] flex-col overflow-hidden rounded-[28px] border border-[#DCE3EC] bg-white p-[10px] shadow-[0_1px_0_rgba(15,23,42,0.04)]">
-										<div class="flex min-h-[240px] items-center justify-center rounded-[22px] bg-background px-6 text-center font-sans text-[16px] text-muted-foreground">
+										<div class="reacon-type-body flex min-h-[240px] items-center justify-center rounded-[22px] bg-background px-6 text-center text-muted-foreground">
 											<?php esc_html_e('No more blog posts found.', 'reacon-group'); ?>
 										</div>
 									</article>
@@ -286,25 +286,25 @@ $solution_cta = array(
 			<div class="relative z-10 mx-auto flex max-w-[760px] flex-col items-center text-center">
 				<h2
 					id="solution-cta-heading"
-					class="font-display text-[24px] font-semibold leading-[1.16] text-white sm:text-[46px] lg:text-[56px] lg:leading-[1.12]">
+					class="reacon-type-h1 text-white">
 					<?php echo esc_html($solution_cta['heading']); ?>
 				</h2>
-				<p class="mt-4 max-w-[560px] font-sans text-[14px] leading-[1.42] text-white/85 sm:text-[16px] sm:leading-[22.72px]">
+				<p class="reacon-type-body mt-4 max-w-[560px] text-white/85">
 					<?php echo esc_html($solution_cta['description']); ?>
 				</p>
 
-				<div class="mt-6 flex flex-wrap items-center justify-center gap-3 sm:mt-7">
+				<div class="mt-6 flex w-full max-w-[430px] flex-col items-center justify-center gap-3.5 sm:mt-7 sm:max-w-none sm:flex-row sm:flex-wrap">
 					<a
 						href="<?php echo esc_url($solution_cta['primary']['url']); ?>"
-						class="inline-flex items-center gap-2 rounded-full bg-white py-1.5 pl-4 pr-1.5 font-sans text-[13px] font-medium text-[#0B6A74] no-underline transition hover:bg-white/90 sm:pl-5 sm:pr-2">
+						class="inline-flex min-h-[72px] w-full items-center justify-between gap-3 rounded-full bg-white py-1.5 pl-7 pr-1.5 font-sans text-[16px] font-semibold text-primary no-underline transition hover:bg-white/90 sm:min-h-0 sm:w-auto sm:justify-start sm:pl-5 sm:pr-2 sm:text-[13px] sm:font-medium sm:text-[#0B6A74]">
 						<span><?php echo esc_html($solution_cta['primary']['label']); ?></span>
-						<span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#dbeef1]" aria-hidden="true">
-							<i class="ph-bold ph-arrow-up-right text-[12px] text-[#0B6A74]"></i>
+						<span class="flex h-[58px] w-[58px] shrink-0 items-center justify-center rounded-full bg-[#d9e9ee] sm:h-7 sm:w-7 sm:bg-[#dbeef1]" aria-hidden="true">
+							<i class="ph-bold ph-arrow-up-right text-[28px] text-[#3f8ea0] sm:text-[12px] sm:text-[#0B6A74]"></i>
 						</span>
 					</a>
 					<a
 						href="<?php echo esc_url($solution_cta['secondary']['url']); ?>"
-						class="inline-flex items-center rounded-full border border-white/65 px-5 py-2.5 font-sans text-[13px] font-normal text-white no-underline transition hover:bg-white/10">
+						class="inline-flex min-h-[72px] w-full items-center justify-start rounded-full border border-white/80 px-7 py-2.5 font-sans text-[16px] font-normal text-white no-underline transition hover:bg-white/10 sm:min-h-0 sm:w-auto sm:justify-center sm:border-white/65 sm:px-5 sm:text-[13px]">
 						<?php echo esc_html($solution_cta['secondary']['label']); ?>
 					</a>
 				</div>

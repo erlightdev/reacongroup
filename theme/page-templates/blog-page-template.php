@@ -501,20 +501,20 @@ if ($acf_enabled) {
 							<?php echo esc_html($solution_cta['description']); ?>
 						</p>
 
-						<div class="mt-6 flex flex-wrap items-center justify-center gap-3 sm:mt-7">
+						<div class="mt-6 flex w-full max-w-[430px] flex-col items-center justify-center gap-3.5 sm:mt-7 sm:max-w-none sm:flex-row sm:flex-wrap">
 							<a
 								href="<?php echo esc_url($solution_cta['primary']['url']); ?>"
 								target="<?php echo esc_attr($solution_cta['primary']['target']); ?>"
-								class="reacon-type-button inline-flex items-center gap-2 rounded-full bg-white py-1.5 pl-4 pr-1.5 text-[#0B6A74] no-underline transition hover:bg-white/90 sm:pl-5 sm:pr-2">
+								class="inline-flex min-h-[72px] w-full items-center justify-between gap-3 rounded-full bg-white py-1.5 pl-7 pr-1.5 font-sans text-[16px] font-semibold text-primary no-underline transition hover:bg-white/90 sm:min-h-0 sm:w-auto sm:justify-start sm:pl-5 sm:pr-2 sm:text-[13px] sm:font-medium sm:text-[#0B6A74]">
 								<span><?php echo esc_html($solution_cta['primary']['label']); ?></span>
-								<span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#dbeef1]" aria-hidden="true">
-									<?php reacon_blog_render_icon($cta_icon_type, $cta_icon_value, 'text-[12px] text-[#0B6A74]'); ?>
+								<span class="flex h-[58px] w-[58px] shrink-0 items-center justify-center rounded-full bg-[#d9e9ee] sm:h-7 sm:w-7 sm:bg-[#dbeef1]" aria-hidden="true">
+									<?php reacon_blog_render_icon($cta_icon_type, $cta_icon_value, 'text-[28px] text-[#3f8ea0] sm:text-[12px] sm:text-[#0B6A74]'); ?>
 								</span>
 							</a>
 							<a
 								href="<?php echo esc_url($solution_cta['secondary']['url']); ?>"
 								target="<?php echo esc_attr($solution_cta['secondary']['target']); ?>"
-								class="reacon-type-button inline-flex items-center rounded-full border border-white/65 px-5 py-2.5 text-white no-underline transition hover:bg-white/10">
+								class="inline-flex min-h-[72px] w-full items-center justify-start rounded-full border border-white/80 px-7 py-2.5 font-sans text-[16px] font-normal text-white no-underline transition hover:bg-white/10 sm:min-h-0 sm:w-auto sm:justify-center sm:border-white/65 sm:px-5 sm:text-[13px]">
 								<?php echo esc_html($solution_cta['secondary']['label']); ?>
 							</a>
 						</div>

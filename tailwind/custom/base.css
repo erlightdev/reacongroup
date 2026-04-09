@@ -49,6 +49,16 @@
 	line-height: var(--reacon-text-h1-line-height);
 }
 
+/* Blog/CTA hero heading scale: 24px mobile -> 56px xl. */
+.reacon-type-hero {
+	font-family: var(--font-display);
+	font-size: 1.5rem;
+	font-weight: 600;
+	line-height: 1.16;
+	letter-spacing: var(--reacon-letter-spacing);
+	text-wrap: balance;
+}
+
 .reacon-type-h2 {
 	font-size: var(--reacon-text-h2-size);
 	font-weight: 700;
@@ -79,6 +89,18 @@
 	line-height: var(--reacon-text-h6-line-height);
 }
 
+@media (min-width: 640px) {
+	.reacon-type-hero {
+		font-size: 2.5rem;
+	}
+}
+
+@media (min-width: 1024px) {
+	.reacon-type-hero {
+		font-size: 3rem;
+	}
+}
+
 @media (min-width: 1280px) {
 	.reacon-type-h2 {
 		font-weight: 600;
@@ -86,6 +108,11 @@
 
 	.reacon-type-h3 {
 		font-weight: 500;
+	}
+
+	.reacon-type-hero {
+		font-size: 3.5rem;
+		line-height: 1.12;
 	}
 }
 
