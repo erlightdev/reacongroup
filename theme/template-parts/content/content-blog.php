@@ -125,7 +125,7 @@ $blog_index_url = home_url('/blogs/');
 						array(
 							'post_type' => 'post',
 							'post_status' => 'publish',
-							'posts_per_page' => 6,
+							'posts_per_page' => 4,
 							'post__not_in' => array((int) get_the_ID()),
 							'ignore_sticky_posts' => true,
 							'no_found_rows' => true,
@@ -189,6 +189,23 @@ $blog_index_url = home_url('/blogs/');
 								<?php endif; ?>
 							</div>
 						</div>
+						<div class="mt-5 flex w-full items-center justify-end sm:mt-6" aria-label="<?php esc_attr_e('Explore more blogs pagination', 'reacon-group'); ?>">
+							<button
+								type="button"
+								class="js-explore-more-prev inline-flex items-center gap-2 font-sans text-[18px] font-normal leading-[21px] text-[#A1AAB9] transition-colors hover:text-[#6B7280]">
+								<i class="ph-bold ph-caret-left text-[14px] leading-none" aria-hidden="true"></i>
+								<?php esc_html_e('Previous', 'reacon-group'); ?>
+							</button>
+
+							<div class="swiper-pagination js-explore-more-pagination !static !mx-4 !w-auto !gap-2 [--swiper-pagination-bullet-horizontal-gap:0px] [&_.swiper-pagination-bullet]:!m-0 [&_.swiper-pagination-bullet]:!h-8 [&_.swiper-pagination-bullet]:!w-8 [&_.swiper-pagination-bullet]:!rounded-full [&_.swiper-pagination-bullet]:!bg-transparent [&_.swiper-pagination-bullet]:!text-[18px] [&_.swiper-pagination-bullet]:!font-normal [&_.swiper-pagination-bullet]:!leading-8 [&_.swiper-pagination-bullet]:!text-[#4B5563] [&_.swiper-pagination-bullet-active]:!bg-[#2C8C9B] [&_.swiper-pagination-bullet-active]:!text-white"></div>
+
+							<button
+								type="button"
+								class="js-explore-more-next inline-flex items-center gap-2 font-sans text-[18px] font-normal leading-[21px] text-[#7B8798] transition-colors hover:text-[#4B5563]">
+								<?php esc_html_e('Next', 'reacon-group'); ?>
+								<i class="ph-bold ph-caret-right text-[14px] leading-none" aria-hidden="true"></i>
+							</button>
+						</div>
 					</div>
 					<?php wp_reset_postdata(); ?>
 				</section>
@@ -207,6 +224,17 @@ $blog_index_url = home_url('/blogs/');
 							spaceBetween: 16,
 							slidesPerView: 1,
 							slidesPerGroup: 1,
+							pagination: {
+								el: '.js-explore-more-pagination',
+								clickable: true,
+								renderBullet: function(index, className) {
+									return '<button type="button" class="' + className + '">' + (index + 1) + '</button>';
+								}
+							},
+							navigation: {
+								nextEl: '.js-explore-more-next',
+								prevEl: '.js-explore-more-prev'
+							},
 							autoplay: {
 								delay: 3500,
 								disableOnInteraction: false

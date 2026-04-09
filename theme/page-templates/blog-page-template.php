@@ -236,7 +236,7 @@ if ($acf_enabled) {
 				<div class="flex flex-col gap-[32px] items-start">
 					<h2
 						id="blog-latest-heading"
-						class="reacon-type-h2 text-foreground">
+						class="reacon-type-h3 text-foreground">
 						<?php echo esc_html(reacon_blog_fallback_text($latest_heading, 'Latest Blogs')); ?>
 					</h2>
 
@@ -357,7 +357,7 @@ if ($acf_enabled) {
 						<nav
 							class="mt-2 flex w-full items-center justify-center"
 							aria-label="<?php esc_attr_e('Blog pagination', 'reacon-group'); ?>">
-							<div class="flex items-center justify-center gap-2 rounded-[14px] bg-[#F3F4F6] px-3 py-2 sm:gap-3 sm:px-4 sm:py-2.5">
+							<div class="flex items-center justify-center gap-2 rounded-[14px]  px-3 py-2 sm:gap-3 sm:px-4 sm:py-2.5">
 								<button
 									type="button"
 									<?php echo $prev_url ? 'data-url="' . esc_attr($prev_url) . '"' : 'disabled'; ?>

@@ -387,6 +387,7 @@ if (!function_exists('render_reacon_dynamic_icon')) {
 				$target = !empty($href_data['target']) ? $href_data['target'] : '_self';
 
 				$text_color = !empty($card['text_color']) ? $card['text_color'] : 'text-white';
+				$button_text_color = $text_color;
 				$overlay = !empty($card['overlay']) ? $card['overlay'] : 'linear-gradient(to top, rgba(3,21,22,0) 43%, rgba(3,21,22,0.52) 58%, #2c8d9d 93%)';
 				$img_class = !empty($card['img_class']) ? $card['img_class'] : 'absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105';
 				$height_class = $is_tall ? 'lg:h-[346px]' : 'lg:h-[420px]';
@@ -406,7 +407,7 @@ if (!function_exists('render_reacon_dynamic_icon')) {
 						</p>
 					</div>
 
-					<a href="<?php echo esc_url($href); ?>" target="<?php echo esc_attr($target); ?>" class="relative z-10 mt-auto flex w-fit cursor-pointer items-center gap-1.5 pt-6 text-sm font-medium <?php echo esc_attr($text_color); ?> transition-all duration-300 lg:translate-y-2 lg:opacity-0 lg:pointer-events-none lg:group-hover:translate-y-0 lg:group-hover:opacity-100 lg:group-hover:pointer-events-auto lg:group-focus-within:translate-y-0 lg:group-focus-within:opacity-100 lg:group-focus-within:pointer-events-auto group-hover:text-[#1ecad3] before:absolute before:inset-0 before:-m-8">
+					<a href="<?php echo esc_url($href); ?>" target="<?php echo esc_attr($target); ?>" class="relative z-10 mt-auto flex w-fit cursor-pointer items-center gap-1.5 pt-6 text-sm font-medium <?php echo esc_attr($button_text_color); ?> transition-all duration-300 lg:translate-y-2 lg:opacity-0 lg:pointer-events-none lg:group-hover:translate-y-0 lg:group-hover:opacity-100 lg:group-hover:pointer-events-auto lg:group-focus-within:translate-y-0 lg:group-focus-within:opacity-100 lg:group-focus-within:pointer-events-auto before:absolute before:inset-0 before:-m-8">
 						<?php echo esc_html($link_title); ?>
 					</a>
 				</article>
