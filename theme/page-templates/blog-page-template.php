@@ -263,7 +263,7 @@ if ($acf_enabled) {
 							<img
 								src="<?php echo esc_url($featured_img_url ? $featured_img_url : $blog_card_image); ?>"
 								alt="<?php echo esc_attr(reacon_blog_fallback_text($featured_img_alt, 'Featured blog cover')); ?>"
-								class="absolute inset-0 h-full w-full object-contain pointer-events-none"
+								class="absolute inset-0 h-full w-full object-cover pointer-events-none"
 								loading="eager"
 								decoding="async" />
 						</div>
