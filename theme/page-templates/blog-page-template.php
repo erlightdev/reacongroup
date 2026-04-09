@@ -233,7 +233,7 @@ if ($acf_enabled) {
 			class="bg-background py-12"
 			aria-labelledby="blog-latest-heading">
 			<div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12">
-				<div class="flex flex-col gap-[32px] items-start">
+				<div class="flex flex-col gap-4 items-start">
 					<h2
 						id="blog-latest-heading"
 						class="reacon-type-h3 text-foreground">
@@ -258,12 +258,12 @@ if ($acf_enabled) {
 					<a
 						href="<?php echo esc_url($featured_url); ?>"
 						aria-label="<?php echo esc_attr(reacon_blog_fallback_text($featured_title, 'Featured blog')); ?>"
-						class="group bg-card w-full border border-border rounded-[32px] overflow-hidden p-[10px] flex flex-col gap-[16px] transition-colors hover:border-primary">
+						class="group bg-card w-full border border-border rounded-[32px] overflow-hidden p-[10px] flex flex-col gap-[16px] transition-colors hover:border-primary lg:border-transparent lg:hover:border-transparent">
 						<div class="h-[420px] relative rounded-[24px] w-full overflow-hidden">
 							<img
 								src="<?php echo esc_url($featured_img_url ? $featured_img_url : $blog_card_image); ?>"
 								alt="<?php echo esc_attr(reacon_blog_fallback_text($featured_img_alt, 'Featured blog cover')); ?>"
-								class="absolute inset-0 h-full w-full object-cover pointer-events-none"
+								class="absolute inset-0 h-full w-full object-contain pointer-events-none"
 								loading="eager"
 								decoding="async" />
 						</div>
@@ -282,6 +282,9 @@ if ($acf_enabled) {
 
 					</a>
 
+					<div class="w-full py-4" aria-hidden="true">
+						<div class="h-px w-full bg-[#d6d6d6]"></div>
+					</div>
 
 
 					<div class="flex flex-col gap-[24px] w-full">
