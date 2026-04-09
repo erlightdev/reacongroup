@@ -92,7 +92,8 @@ $show_faq = get_field('solution_faq_enabled');
 		$hero_bg_id = get_field('solution_hero_background');
 		$hero_bg_url = $hero_bg_id ? wp_get_attachment_url($hero_bg_id) : '';
 		$hero_eyebrow = get_field('solution_hero_eyebrow');
-		$hero_title = get_the_title();
+		$hero_title = get_field('solution_hero_title');
+		$hero_title = $hero_title ? $hero_title : get_the_title();
 		$hero_lead = get_field('solution_hero_lead');
 		?>
 		<section
@@ -157,7 +158,7 @@ $show_faq = get_field('solution_faq_enabled');
 			<div class="mx-auto flex w-full max-w-[1200px] flex-col gap-12 px-5 py-16 sm:gap-14 sm:px-6 sm:py-20 md:gap-16 md:py-24 lg:gap-[60px] lg:px-10 lg:py-[120px] xl:max-w-[1370px]">
 				<div class="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
 					<?php if ($highlights_heading): ?>
-						<h2 id="solution-highlights-heading" class="max-w-[720px] font-display text-[32px] font-semibold leading-tight text-foreground sm:text-[40px] sm:leading-[1.15] md:text-[48px] md:leading-[1.2] lg:text-[56px] lg:leading-[73.92px]">
+						<h2 id="solution-highlights-heading" class="max-w-[720px] font-display text-[32px] font-semibold leading-tight text-foreground sm:text-[40px] sm:leading-[1.15] md:text-[48px] ">
 							<?php echo esc_html($highlights_heading); ?>
 						</h2>
 					<?php endif; ?>

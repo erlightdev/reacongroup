@@ -263,10 +263,10 @@ $faq_is_ready = $faq_title !== '' && $faq_description !== '' && !empty($faq_item
         <!-- Start: Industry Hero Section -->
         <section
             id="industry-hero"
-            class="relative w-full p-1.5 md:p-2.5"
+            class="relative w-full p-0 md:p-2.5"
             aria-labelledby="industry-hero-title">
 
-            <div class="reacon-about-hero-card relative min-h-[255px] overflow-hidden rounded-[24px] sm:min-h-[300px] lg:min-h-[380px] lg:rounded-[31px]" style="background-color: <?php echo esc_attr($hero_bg_color); ?>;">
+            <div class="reacon-about-hero-card relative min-h-[255px] overflow-hidden rounded-0 md:rounded-[24px] sm:min-h-[300px] lg:min-h-[380px] lg:rounded-[31px]" style="background-color: <?php echo esc_attr($hero_bg_color); ?>;">
                 <img
                     src="<?php echo esc_url($hero_image_url); ?>"
                     alt=""
@@ -539,6 +539,17 @@ $faq_is_ready = $faq_title !== '' && $faq_description !== '' && !empty($faq_item
 
         /* Desktop-only notch so header sits recessed into the hero. */
         @media (min-width: 1024px) {
+            #masthead #site-navigation>ul {
+                position: relative;
+                box-shadow: 0 0 0 2px #fff;
+                outline: 2px solid #fff;
+                outline-offset: 0;
+            }
+
+            #masthead.top-0 #site-navigation>ul {
+                box-shadow: 0 0 0 2px #fff, 0 10px 22px rgba(0, 0, 0, 0.16);
+            }
+
             #industry-hero .reacon-about-hero-card {
                 --hero-notch-width: clamp(560px, 48vw, 720px);
                 --hero-notch-radius: 40px;
@@ -550,13 +561,15 @@ $faq_is_ready = $faq_title !== '' && $faq_description !== '' && !empty($faq_item
                 content: "";
                 position: absolute;
                 left: 50%;
-                top: 0;
+                top: -1px;
                 transform: translateX(calc(-50% + var(--hero-notch-shift, 0px)));
-                width: var(--hero-notch-width);
-                height: var(--hero-notch-height);
+                width: calc(var(--hero-notch-width) + 2px);
+                height: calc(var(--hero-notch-height) + 1px);
                 background: #fff;
                 border-bottom-left-radius: var(--hero-notch-radius);
                 border-bottom-right-radius: var(--hero-notch-radius);
+                margin-left: -1px;
+                box-shadow: 0 0 0 2px #fff;
                 z-index: 3;
                 pointer-events: none;
             }
@@ -564,14 +577,16 @@ $faq_is_ready = $faq_title !== '' && $faq_description !== '' && !empty($faq_item
             #industry-hero .reacon-about-hero-card::after {
                 content: "";
                 position: absolute;
-                top: 0;
+                top: -1px;
                 left: 50%;
                 transform: translateX(calc(-50% + var(--hero-notch-shift, 0px)));
-                width: calc(var(--hero-notch-width) + (var(--hero-notch-swoop) * 2));
-                height: var(--hero-notch-swoop);
+                width: calc(var(--hero-notch-width) + (var(--hero-notch-swoop) * 2) + 2px);
+                height: calc(var(--hero-notch-swoop) + 1px);
                 background:
                     radial-gradient(circle at 0% 100%, transparent var(--hero-notch-swoop), #fff calc(var(--hero-notch-swoop) + 1px)) no-repeat left bottom / var(--hero-notch-swoop) var(--hero-notch-swoop),
                     radial-gradient(circle at 100% 100%, transparent var(--hero-notch-swoop), #fff calc(var(--hero-notch-swoop) + 1px)) no-repeat right bottom / var(--hero-notch-swoop) var(--hero-notch-swoop);
+                margin-left: -1px;
+                filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 1px #fff);
                 z-index: 4;
                 pointer-events: none;
             }

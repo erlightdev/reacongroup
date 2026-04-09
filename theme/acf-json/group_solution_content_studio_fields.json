@@ -82,6 +82,13 @@
             "placeholder": "e.g., Solutions"
         },
         {
+            "key": "field_solution_hero_title",
+            "label": "Hero Title",
+            "name": "solution_hero_title",
+            "type": "text",
+            "placeholder": "Hero heading text"
+        },
+        {
             "key": "field_solution_hero_lead",
             "label": "Hero Lead Text",
             "name": "solution_hero_lead",
