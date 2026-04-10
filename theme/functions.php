@@ -246,6 +246,19 @@ function reacon_group_scripts()
 		);
 	}
 
+	$queried_id = get_queried_object_id();
+	$template_slug = $queried_id ? get_page_template_slug($queried_id) : '';
+
+	if ('industries-template/industry-custom-template-page.php' === $template_slug) {
+		wp_enqueue_script(
+			'reacon-group-apexcharts',
+			'https://cdn.jsdelivr.net/npm/apexcharts',
+			array(),
+			'3.49.2',
+			true
+		);
+	}
+
 
 	if (is_singular() && comments_open() && get_option('thread_comments')) {
 		wp_enqueue_script('comment-reply');

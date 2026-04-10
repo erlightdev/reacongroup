@@ -176,6 +176,10 @@ $faq_enabled = function_exists('get_field') ? (bool) get_field('custom_industry_
 $faq         = function_exists('get_field') ? get_field('custom_industry_faq', $industry_id) : array();
 $faq         = is_array($faq) ? $faq : array();
 
+$case_study_enabled = function_exists('get_field') ? (bool) get_field('custom_industry_enable_case_study_section', $industry_id) : false;
+$case_study         = function_exists('get_field') ? get_field('custom_industry_case_study', $industry_id) : array();
+$case_study         = is_array($case_study) ? $case_study : array();
+
 $hero_image_url       = reacon_group_industry_single_image_url(isset($hero['background_image']) ? $hero['background_image'] : '');
 $hero_kicker          = isset($hero['eyebrow']) ? trim((string) $hero['eyebrow']) : '';
 $hero_title           = isset($hero['title']) ? trim((string) $hero['title']) : '';
@@ -258,6 +262,31 @@ foreach ($faq_items_raw as $faq_item) {
 }
 
 $faq_is_ready = $faq_title !== '' && $faq_description !== '' && !empty($faq_items) && $faq_cta_heading !== '' && $faq_cta_description !== '' && null !== $faq_cta_link && $faq_cta_card_bg !== '' && $faq_cta_link_color !== '';
+
+$case_study_heading            = isset($case_study['heading']) ? trim((string) $case_study['heading']) : 'What our customers say about us!';
+$case_study_brochure_label     = isset($case_study['brochure_label']) ? trim((string) $case_study['brochure_label']) : 'Brochure';
+$case_study_brochure_link      = reacon_group_industry_single_link_data(isset($case_study['brochure_link']) ? $case_study['brochure_link'] : null);
+$case_study_title              = isset($case_study['title']) ? trim((string) $case_study['title']) : 'The Little National';
+$case_study_quote              = isset($case_study['quote']) ? trim((string) $case_study['quote']) : 'A professional and seamlessly integrated service for packaging, print and marketing comms, all rolled up in a technology solution that enables us to track inventory, order to stores, understand pricing, receive competitive quotes, manage comms campaigns and fulfilment requests from a click of button';
+$case_study_person_name        = isset($case_study['person_name']) ? trim((string) $case_study['person_name']) : 'Sandra Bellamy';
+$case_study_person_role        = isset($case_study['person_role']) ? trim((string) $case_study['person_role']) : 'Operations Manager';
+$case_study_person_company     = isset($case_study['person_company']) ? trim((string) $case_study['person_company']) : 'The Little National';
+$case_study_person_image_url   = reacon_group_industry_single_image_url(isset($case_study['person_image']) ? $case_study['person_image'] : '');
+$case_study_metric_value       = isset($case_study['metric_value']) ? (int) $case_study['metric_value'] : 19;
+$case_study_metric_value       = max(0, min(100, $case_study_metric_value));
+$case_study_metric_description = isset($case_study['metric_description']) ? trim((string) $case_study['metric_description']) : 'reduction in stock and delivery costs with Just-in-Time inventory management, automation and consolidation strategies.';
+$case_study_left_bg            = isset($case_study['left_card_bg_color']) ? (string) $case_study['left_card_bg_color'] : '#14b8a6';
+$case_study_right_bg           = isset($case_study['right_card_bg_color']) ? (string) $case_study['right_card_bg_color'] : '#111827';
+$case_study_track_color        = isset($case_study['chart_track_color']) ? (string) $case_study['chart_track_color'] : '#374151';
+$case_study_fill_color         = isset($case_study['chart_fill_color']) ? (string) $case_study['chart_fill_color'] : '#14b8a6';
+$case_study_gauge_id           = 'industry-case-study-gauge-' . (string) $industry_id;
+
+$case_study_is_ready =
+    $case_study_heading !== '' &&
+    $case_study_title !== '' &&
+    $case_study_quote !== '' &&
+    $case_study_person_name !== '' &&
+    $case_study_metric_description !== '';
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -352,7 +381,69 @@ $faq_is_ready = $faq_title !== '' && $faq_description !== '' && !empty($faq_item
         </section>
         <!-- End: Industry Vertical Accordion Section -->
     <?php endif; ?>
+    <?php if ($case_study_enabled && $case_study_is_ready) : ?>
+        <!-- Case Study Section -->
+        <section class="mx-auto w-full max-w-7xl px-4 py-12 md:py-20 lg:py-24 sm:px-6 lg:px-8" aria-label="<?php echo esc_attr__('Case study', 'reacon-group'); ?>">
+            <header class="mb-12 flex items-center justify-between gap-5 md:mb-16">
+                <h2 class="reacon-type-h2 font-extrabold tracking-tight text-[#030712]">
+                    <?php echo esc_html($case_study_heading); ?>
+                </h2>
 
+                <?php if (null !== $case_study_brochure_link) : ?>
+                    <a href="<?php echo esc_url($case_study_brochure_link['url']); ?>" target="<?php echo esc_attr($case_study_brochure_link['target']); ?>" class="group inline-flex flex-col items-center gap-2 no-underline" aria-label="<?php echo esc_attr($case_study_brochure_label); ?>">
+                        <span class="inline-flex rounded-full border border-[#E5E7EB] bg-white p-3 shadow-sm transition-shadow group-hover:shadow-md" aria-hidden="true">
+                            <svg class="h-6 w-6 text-[#14b8a6]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 0 1 2-2h6l2 2h6a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                            </svg>
+                        </span>
+                        <span class="text-xs font-semibold uppercase tracking-[0.14em] text-[#6B7280] transition-colors group-hover:text-[#14b8a6]">
+                            <?php echo esc_html($case_study_brochure_label); ?>
+                        </span>
+                    </a>
+                <?php endif; ?>
+            </header>
+
+            <div class="grid grid-cols-1 overflow-hidden rounded-3xl shadow-2xl md:grid-cols-[1fr_minmax(300px,auto)]">
+                <article class="flex flex-col justify-between p-8 text-white md:p-12 lg:p-16" style="background-color: <?php echo esc_attr($case_study_left_bg); ?>;">
+                    <div>
+                        <h3 class="mb-8 reacon font-extrabold text-white md:mb-10 md:text-3xl lg:mb-12 lg:text-4xl">
+                            <?php echo esc_html($case_study_title); ?>
+                        </h3>
+
+                        <blockquote class="mb-12 border-l-4 border-[#99F6E4] pl-6  italic  text-[#CCFBF1] reacon-type-body">
+                            <?php echo esc_html('“' . $case_study_quote . '”'); ?>
+                        </blockquote>
+                    </div>
+
+                    <div class="mt-auto flex items-center gap-5 sm:gap-6">
+                        <?php if ($case_study_person_image_url !== '') : ?>
+                            <img src="<?php echo esc_url($case_study_person_image_url); ?>" alt="<?php echo esc_attr($case_study_person_name); ?>" class="h-16 w-16 rounded-full border-4 border-white object-cover shadow-lg" loading="lazy" decoding="async" />
+                        <?php endif; ?>
+                        <div>
+                            <p class="text-lg font-semibold text-white"><?php echo esc_html($case_study_person_name); ?></p>
+                            <?php if ($case_study_person_role !== '') : ?>
+                                <p class="text-sm font-medium text-[#CCFBF1]"><?php echo esc_html($case_study_person_role); ?></p>
+                            <?php endif; ?>
+                            <?php if ($case_study_person_company !== '') : ?>
+                                <p class="text-sm font-medium text-[#CCFBF1]"><?php echo esc_html($case_study_person_company); ?></p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </article>
+
+                <aside class="flex flex-col items-center justify-center gap-10 border-t border-[#1F2937] p-8 text-white md:gap-12 md:border-l md:border-t-0 md:p-12 lg:p-16" style="background-color: <?php echo esc_attr($case_study_right_bg); ?>;">
+                    <div id="<?php echo esc_attr($case_study_gauge_id); ?>" class="w-full max-w-sm" data-case-study-gauge="true" data-value="<?php echo esc_attr((string) $case_study_metric_value); ?>" data-track-color="<?php echo esc_attr($case_study_track_color); ?>" data-fill-color="<?php echo esc_attr($case_study_fill_color); ?>"></div>
+
+                    <div class="max-w-md text-center md:text-left">
+                        <p class="text-lg leading-relaxed text-[#D1D5DB]">
+                            <?php echo esc_html($case_study_metric_description); ?>
+                        </p>
+                    </div>
+                </aside>
+            </div>
+        </section>
+        <!-- End Case Study Section -->
+    <?php endif; ?>
     <?php if ($cta_enabled && $cta_is_ready) : ?>
         <!-- Start: Industry CTA Section -->
         <section id="industry-cta" class="py-10" aria-labelledby="industry-cta-heading">
@@ -545,6 +636,17 @@ $faq_is_ready = $faq_title !== '' && $faq_description !== '' && !empty($faq_item
             padding-left: 1.1rem;
         }
 
+        .apexcharts-tooltip {
+            background: #1f2937 !important;
+            color: #ffffff !important;
+            border: 1px solid #374151 !important;
+        }
+
+        .apexcharts-tooltip-title {
+            background: #374151 !important;
+            color: #ffffff !important;
+        }
+
         /* Desktop-only notch so header sits recessed into the hero. */
         @media (min-width: 1024px) {
             #masthead #site-navigation>ul {
@@ -603,6 +705,65 @@ $faq_is_ready = $faq_title !== '' && $faq_description !== '' && !empty($faq_item
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            const caseStudyGauge = document.querySelector('[data-case-study-gauge="true"]');
+            if (caseStudyGauge && window.ApexCharts) {
+                const gaugeValue = Number(caseStudyGauge.getAttribute('data-value') || 0);
+                const trackColor = caseStudyGauge.getAttribute('data-track-color') || '#374151';
+                const fillColor = caseStudyGauge.getAttribute('data-fill-color') || '#14b8a6';
+
+                const chart = new ApexCharts(caseStudyGauge, {
+                    series: [Math.max(0, Math.min(100, gaugeValue))],
+                    chart: {
+                        type: 'radialBar',
+                        offsetY: -20,
+                        sparkline: {
+                            enabled: true,
+                        },
+                    },
+                    plotOptions: {
+                        radialBar: {
+                            startAngle: -90,
+                            endAngle: 90,
+                            track: {
+                                background: trackColor,
+                                strokeWidth: '97%',
+                                margin: 5,
+                            },
+                            dataLabels: {
+                                name: {
+                                    show: false,
+                                },
+                                value: {
+                                    offsetY: -2,
+                                    fontSize: '64px',
+                                    fontWeight: '900',
+                                    color: '#ffffff',
+                                    formatter(val) {
+                                        return `${Math.round(val)}%`;
+                                    },
+                                },
+                            },
+                        },
+                    },
+                    fill: {
+                        type: 'gradient',
+                        gradient: {
+                            shade: 'dark',
+                            type: 'horizontal',
+                            shadeIntensity: 0.5,
+                            gradientToColors: [fillColor],
+                            inverseColors: true,
+                            opacityFrom: 1,
+                            opacityTo: 1,
+                            stops: [0, 100],
+                        },
+                    },
+                    labels: ['Reduction'],
+                });
+
+                chart.render();
+            }
+
             const syncIndustryHeroNotchToDesktopMenu = () => {
                 const heroCard = document.querySelector('#industry-hero .reacon-about-hero-card');
                 const navPill = document.querySelector('#site-navigation > ul');

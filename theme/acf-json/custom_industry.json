@@ -160,6 +160,158 @@
             ]
         },
         {
+            "key": "field_custom_industry_tab_case_study",
+            "label": "Case Study",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_custom_industry_enable_case_study",
+            "label": "Enable case study section",
+            "name": "custom_industry_enable_case_study_section",
+            "type": "true_false",
+            "ui": 1,
+            "default_value": 1
+        },
+        {
+            "key": "field_custom_industry_case_study_group",
+            "label": "Case study content",
+            "name": "custom_industry_case_study",
+            "type": "group",
+            "layout": "block",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_custom_industry_enable_case_study",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "sub_fields": [
+                {
+                    "key": "field_custom_industry_case_study_heading",
+                    "label": "Section heading",
+                    "name": "heading",
+                    "type": "text",
+                    "default_value": "What our customers say about us!",
+                    "required": 1
+                },
+                {
+                    "key": "field_custom_industry_case_study_brochure_label",
+                    "label": "Brochure label",
+                    "name": "brochure_label",
+                    "type": "text",
+                    "default_value": "Brochure"
+                },
+                {
+                    "key": "field_custom_industry_case_study_brochure_link",
+                    "label": "Brochure link",
+                    "name": "brochure_link",
+                    "type": "link",
+                    "return_format": "array"
+                },
+                {
+                    "key": "field_custom_industry_case_study_title",
+                    "label": "Card title",
+                    "name": "title",
+                    "type": "text",
+                    "default_value": "The Little National",
+                    "required": 1
+                },
+                {
+                    "key": "field_custom_industry_case_study_quote",
+                    "label": "Quote",
+                    "name": "quote",
+                    "type": "textarea",
+                    "rows": 5,
+                    "new_lines": "",
+                    "required": 1
+                },
+                {
+                    "key": "field_custom_industry_case_study_person_name",
+                    "label": "Person name",
+                    "name": "person_name",
+                    "type": "text",
+                    "default_value": "Sandra Bellamy",
+                    "required": 1
+                },
+                {
+                    "key": "field_custom_industry_case_study_person_role",
+                    "label": "Person role",
+                    "name": "person_role",
+                    "type": "text",
+                    "default_value": "Operations Manager"
+                },
+                {
+                    "key": "field_custom_industry_case_study_person_company",
+                    "label": "Person company",
+                    "name": "person_company",
+                    "type": "text",
+                    "default_value": "The Little National"
+                },
+                {
+                    "key": "field_custom_industry_case_study_person_image",
+                    "label": "Person image",
+                    "name": "person_image",
+                    "type": "image",
+                    "return_format": "url",
+                    "preview_size": "medium",
+                    "library": "all"
+                },
+                {
+                    "key": "field_custom_industry_case_study_metric_value",
+                    "label": "Metric value (%)",
+                    "name": "metric_value",
+                    "type": "number",
+                    "default_value": 19,
+                    "min": 0,
+                    "max": 100,
+                    "step": 1,
+                    "required": 1
+                },
+                {
+                    "key": "field_custom_industry_case_study_metric_description",
+                    "label": "Metric description",
+                    "name": "metric_description",
+                    "type": "textarea",
+                    "rows": 3,
+                    "new_lines": "",
+                    "required": 1
+                },
+                {
+                    "key": "field_custom_industry_case_study_left_bg",
+                    "label": "Left card background color",
+                    "name": "left_card_bg_color",
+                    "type": "color_picker",
+                    "default_value": "#14b8a6"
+                },
+                {
+                    "key": "field_custom_industry_case_study_right_bg",
+                    "label": "Right card background color",
+                    "name": "right_card_bg_color",
+                    "type": "color_picker",
+                    "default_value": "#111827"
+                },
+                {
+                    "key": "field_custom_industry_case_study_track_color",
+                    "label": "Chart track color",
+                    "name": "chart_track_color",
+                    "type": "color_picker",
+                    "default_value": "#374151"
+                },
+                {
+                    "key": "field_custom_industry_case_study_fill_color",
+                    "label": "Chart fill color",
+                    "name": "chart_fill_color",
+                    "type": "color_picker",
+                    "default_value": "#14b8a6"
+                }
+            ]
+        },
+        {
             "key": "field_custom_industry_tab_cta",
             "label": "CTA",
             "name": "",
