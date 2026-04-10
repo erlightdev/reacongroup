@@ -154,6 +154,50 @@
                             "toolbar": "full",
                             "media_upload": 1,
                             "delay": 0
+                        },
+                        {
+                            "key": "field_custom_industry_content_enable_stats",
+                            "label": "Enable stats section (Market Dashboard)",
+                            "name": "enable_stats_section",
+                            "type": "true_false",
+                            "ui": 1,
+                            "default_value": 0
+                        },
+                        {
+                            "key": "field_custom_industry_content_stats_group",
+                            "label": "Stats data",
+                            "name": "stats_section",
+                            "type": "group",
+                            "layout": "block",
+                            "conditional_logic": [[{"field": "field_custom_industry_content_enable_stats","operator": "==","value": "1"}]],
+                            "sub_fields": [
+                                {"key": "field_custom_industry_content_stats_hero_title","label": "Hero title","name": "hero_title","type": "text","default_value": "Market Revenue 2023","required": 1},
+                                {"key": "field_custom_industry_content_stats_hero_value","label": "Hero value","name": "hero_value","type": "text","default_value": "$120.9B","required": 1},
+                                {"key": "field_custom_industry_content_stats_hero_description","label": "Hero description","name": "hero_description","type": "textarea","rows": 3,"new_lines": "","required": 1},
+                                {"key": "field_custom_industry_content_stats_chart_data","label": "Chart data JSON","name": "chart_data_json","type": "textarea","rows": 2,"new_lines": "","default_value": "[117.6, 99.0, 104.0, 115.0, 120.9, 61.9, 101.6]","instructions": "Array of 7 numbers for yearly revenue"},
+                                {"key": "field_custom_industry_content_stats_metrics","label": "Stat metrics (5 cards)","name": "metrics","type": "repeater","layout": "block","button_label": "Add metric","min": 1,"max": 5,"sub_fields": [{"key": "field_custom_industry_content_stats_metric_label","label": "Label","name": "label","type": "text","required": 1},{"key": "field_custom_industry_content_stats_metric_value","label": "Value","name": "value","type": "text","required": 1},{"key": "field_custom_industry_content_stats_metric_note","label": "Note","name": "note","type": "text"},{"key": "field_custom_industry_content_stats_metric_bg_color","label": "Background color","name": "bg_color","type": "color_picker","default_value": "#0d1b2a"}]},
+                                {"key": "field_custom_industry_content_stats_progress_items","label": "Progress bar items (5 rows)","name": "progress_items","type": "repeater","layout": "block","button_label": "Add progress item","min": 1,"max": 5,"sub_fields": [{"key": "field_custom_industry_content_stats_progress_label","label": "Label","name": "label","type": "text","required": 1},{"key": "field_custom_industry_content_stats_progress_value","label": "Percentage","name": "value","type": "number","min": 0,"max": 100,"step": 0.01,"required": 1},{"key": "field_custom_industry_content_stats_progress_note","label": "Note","name": "note","type": "text"}]}
+                            ]
+                        },
+                        {
+                            "key": "field_custom_industry_content_enable_services",
+                            "label": "Enable services section",
+                            "name": "enable_services_section",
+                            "type": "true_false",
+                            "ui": 1,
+                            "default_value": 0
+                        },
+                        {
+                            "key": "field_custom_industry_content_services_group",
+                            "label": "Services data",
+                            "name": "services_section",
+                            "type": "group",
+                            "layout": "block",
+                            "conditional_logic": [[{"field": "field_custom_industry_content_enable_services","operator": "==","value": "1"}]],
+                            "sub_fields": [
+                                {"key": "field_custom_industry_content_services_label","label": "Section label","name": "section_label","type": "text","default_value": "Our Capabilities"},
+                                {"key": "field_custom_industry_content_services_items","label": "Services (4-8 cards)","name": "items","type": "repeater","layout": "block","button_label": "Add service","min": 1,"max": 8,"sub_fields": [{"key": "field_custom_industry_content_services_item_title","label": "Service title","name": "title","type": "text","required": 1},{"key": "field_custom_industry_content_services_item_icon","label": "Icon name (e.g. printer, megaphone, bag, truck)","name": "icon_name","type": "text","placeholder": "printer"},{"key": "field_custom_industry_content_services_item_features","label": "Features","name": "features","type": "repeater","layout": "block","button_label": "Add feature","min": 1,"max": 6,"sub_fields": [{"key": "field_custom_industry_content_services_item_feature_text","label": "Feature text","name": "text","type": "text","required": 1}]}]}
+                            ]
                         }
                     ]
                 }

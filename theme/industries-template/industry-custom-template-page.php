@@ -204,11 +204,21 @@ foreach ($content_items_raw as $content_item) {
     $content_html = isset($content_item['content_block']) ? (string) $content_item['content_block'] : '';
     $has_content = trim(wp_strip_all_tags($content_html)) !== '' || preg_match('/<(img|figure|video|iframe|ul|ol|table|blockquote)\b/i', $content_html) === 1;
 
+    // Stats section
+    $stats_enabled = isset($content_item['enable_stats_section']) ? (bool) $content_item['enable_stats_section'] : false;
+    $stats_section = isset($content_item['stats_section']) && is_array($content_item['stats_section']) ? $content_item['stats_section'] : array();
+    $stats_ready = $stats_enabled && isset($stats_section['hero_value']) && $stats_section['hero_value'] !== '';
+
+    // Services section
+    $services_enabled = isset($content_item['enable_services_section']) ? (bool) $content_item['enable_services_section'] : false;
+    $services_section = isset($content_item['services_section']) && is_array($content_item['services_section']) ? $content_item['services_section'] : array();
+    $services_ready = $services_enabled && !empty($services_section['items']) && is_array($services_section['items']);
+
     if ($nav_label === '' && $title === '') {
         continue;
     }
 
-    if (!$has_content) {
+    if (!$has_content && !$stats_ready && !$services_ready) {
         continue;
     }
 
@@ -216,6 +226,12 @@ foreach ($content_items_raw as $content_item) {
         'nav_label' => $nav_label !== '' ? $nav_label : $title,
         'title' => $title !== '' ? $title : $nav_label,
         'content' => $content_html,
+        'stats_enabled' => $stats_enabled,
+        'stats' => $stats_section,
+        'stats_ready' => $stats_ready,
+        'services_enabled' => $services_enabled,
+        'services' => $services_section,
+        'services_ready' => $services_ready,
     );
 }
 
@@ -373,6 +389,120 @@ $case_study_is_ready =
                                     echo $content_item['content']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
                                     ?>
                                 </div>
+
+                                <?php if ($content_item['services_ready']) : ?>
+                                    <!-- Services Section in Accordion -->
+                                    <div class="mt-8 pt-6 border-t border-[#e5e7eb]">
+                                        <?php $services = $content_item['services']; ?>
+                                        <div class="text-[10px] font-semibold tracking-[0.16em] uppercase text-gray-500 mb-4">
+                                            <?php echo esc_html(!empty($services['section_label']) ? $services['section_label'] : 'Our Capabilities'); ?>
+                                        </div>
+                                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-gray-200 border border-gray-200 rounded-xl overflow-hidden">
+                                            <?php if (!empty($services['items'])) : ?>
+                                                <?php foreach ($services['items'] as $service) : ?>
+                                                    <div class="group flex flex-col bg-white hover:bg-[#fbfcff] transition-colors">
+                                                        <div class="flex items-center gap-3 p-4 border-b border-gray-100">
+                                                            <div class="w-9 h-9 rounded-lg bg-[#14b8a6]/10 text-[#14b8a6] flex items-center justify-center shrink-0 group-hover:bg-[#14b8a6] group-hover:text-white transition-all duration-300">
+                                                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                                </svg>
+                                                            </div>
+                                                            <h4 class="font-syne text-sm font-bold text-[#0d1b2a]">
+                                                                <?php echo esc_html($service['title']); ?>
+                                                            </h4>
+                                                        </div>
+                                                        <?php if (!empty($service['features']) && is_array($service['features'])) : ?>
+                                                            <ul class="p-4 flex-1 space-y-1.5">
+                                                                <?php foreach ($service['features'] as $feature) : ?>
+                                                                    <li class="text-[12px] text-gray-500 flex items-center gap-2 hover:text-gray-800 transition-colors">
+                                                                        <span class="w-1 h-1 rounded-full bg-[#14b8a6] opacity-50 group-hover:opacity-100 shrink-0"></span>
+                                                                        <?php echo esc_html(isset($feature['text']) ? $feature['text'] : ''); ?>
+                                                                    </li>
+                                                                <?php endforeach; ?>
+                                                            </ul>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                <?php endforeach; ?>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                <?php endif; ?>
+
+                                <?php if ($content_item['stats_ready']) : ?>
+                                    <!-- Stats Dashboard Section in Accordion -->
+                                    <div class="mt-8 pt-6 border-t border-[#e5e7eb]">
+                                        <?php $stats = $content_item['stats']; ?>
+                                        <div class="bg-white border border-gray-200 rounded-xl overflow-hidden flex flex-col shadow-sm">
+                                            <!-- Stats Header + Chart -->
+                                            <div class="grid grid-cols-1 md:grid-cols-2 border-b border-gray-200">
+                                                <div class="p-6 border-b md:border-b-0 md:border-r border-gray-200 flex flex-col justify-center">
+                                                    <div class="inline-flex items-center gap-2 text-[10px] font-semibold tracking-[0.1em] uppercase text-[#2ec4b6] mb-2">
+                                                        <span class="w-1.5 h-1.5 rounded-full bg-[#2ec4b6] animate-pulse"></span>
+                                                        <?php echo esc_html(isset($stats['hero_title']) ? $stats['hero_title'] : 'Market Data'); ?>
+                                                    </div>
+                                                    <h3 class="font-syne text-3xl font-extrabold text-[#0d1b2a] leading-none mb-2">
+                                                        <?php echo esc_html($stats['hero_value']); ?>
+                                                    </h3>
+                                                    <p class="text-[12px] text-gray-500 leading-relaxed">
+                                                        <?php echo esc_html(isset($stats['hero_description']) ? $stats['hero_description'] : ''); ?>
+                                                    </p>
+                                                </div>
+                                                <div class="p-6 flex items-center justify-center min-h-[180px]">
+                                                    <div id="industry-stats-chart-<?php echo esc_attr($industry_id . '-' . $index); ?>" class="w-full max-w-xs" data-accordion-stats-chart="true" data-chart-data="<?php echo esc_attr(isset($stats['chart_data_json']) ? $stats['chart_data_json'] : '[117.6, 99.0, 104.0, 115.0, 120.9, 61.9, 101.6]'); ?>"></div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Stats Metrics Grid -->
+                                            <?php if (!empty($stats['metrics']) && is_array($stats['metrics'])) : ?>
+                                                <div class="grid grid-cols-2 lg:grid-cols-<?php echo esc_attr(min(5, count($stats['metrics']))); ?> gap-px bg-gray-200 border-b border-gray-200">
+                                                    <?php foreach ($stats['metrics'] as $metric) : ?>
+                                                        <div class="p-4 text-white transition-colors" style="background-color: <?php echo esc_attr(isset($metric['bg_color']) ? $metric['bg_color'] : '#0d1b2a'); ?>;">
+                                                            <p class="text-[9px] font-semibold tracking-widest uppercase mb-1 text-white/50">
+                                                                <?php echo esc_html($metric['label']); ?>
+                                                            </p>
+                                                            <p class="font-syne text-lg font-bold leading-none">
+                                                                <?php echo esc_html($metric['value']); ?>
+                                                            </p>
+                                                            <?php if (!empty($metric['note'])) : ?>
+                                                                <p class="text-[10px] mt-1.5 text-white/40">
+                                                                    <?php echo esc_html($metric['note']); ?>
+                                                                </p>
+                                                            <?php endif; ?>
+                                                        </div>
+                                                    <?php endforeach; ?>
+                                                </div>
+                                            <?php endif; ?>
+
+                                            <!-- Progress Bars -->
+                                            <?php if (!empty($stats['progress_items']) && is_array($stats['progress_items'])) : ?>
+                                                <div class="grid grid-cols-2 lg:grid-cols-<?php echo esc_attr(min(5, count($stats['progress_items']))); ?> gap-px bg-gray-200">
+                                                    <?php foreach ($stats['progress_items'] as $progress) : ?>
+                                                        <div class="bg-white hover:bg-gray-50 p-4 transition-colors flex flex-col justify-between">
+                                                            <div>
+                                                                <p class="text-[10px] font-semibold text-[#2ec4b6] tracking-wide uppercase mb-1.5 leading-tight">
+                                                                    <?php echo esc_html($progress['label']); ?>
+                                                                </p>
+                                                                <p class="font-syne text-xl font-extrabold text-[#0d1b2a] leading-none">
+                                                                    <?php echo esc_html(number_format($progress['value'], 2)); ?>%
+                                                                </p>
+                                                            </div>
+                                                            <div class="mt-3">
+                                                                <div class="h-[2px] bg-gray-200 rounded-sm mb-1.5 overflow-hidden">
+                                                                    <div class="h-full bg-[#2ec4b6] origin-left" style="width: <?php echo esc_attr($progress['value']); ?>%"></div>
+                                                                </div>
+                                                                <?php if (!empty($progress['note'])) : ?>
+                                                                    <p class="text-[10px] text-gray-500 leading-tight">
+                                                                        <?php echo esc_html($progress['note']); ?>
+                                                                    </p>
+                                                                <?php endif; ?>
+                                                            </div>
+                                                        </div>
+                                                    <?php endforeach; ?>
+                                                </div>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                <?php endif; ?>
                             </article>
                         <?php endforeach; ?>
                     </div>
@@ -762,6 +892,112 @@ $case_study_is_ready =
                 });
 
                 chart.render();
+            }
+
+            // Initialize Stats Dashboard Charts in Accordion Items
+            const statsCharts = document.querySelectorAll('[data-accordion-stats-chart="true"]');
+            if (statsCharts.length > 0 && window.ApexCharts) {
+                statsCharts.forEach((chartContainer) => {
+                    const chartDataJson = chartContainer.getAttribute('data-chart-data');
+                    if (!chartDataJson) return;
+
+                    try {
+                        const chartData = JSON.parse(chartDataJson);
+                        const series = Array.isArray(chartData) ? chartData : [chartData];
+
+                        const chart = new ApexCharts(chartContainer, {
+                            series: [{
+                                name: 'Revenue',
+                                data: series,
+                            }],
+                            chart: {
+                                type: 'bar',
+                                height: 180,
+                                sparkline: {
+                                    enabled: false,
+                                },
+                                toolbar: {
+                                    show: false,
+                                },
+                            },
+                            colors: ['#2ec4b6'],
+                            plotOptions: {
+                                bar: {
+                                    borderRadius: 4,
+                                    columnWidth: '65%',
+                                    dataLabels: {
+                                        position: 'top',
+                                    },
+                                },
+                            },
+                            dataLabels: {
+                                enabled: false,
+                            },
+                            xaxis: {
+                                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+                                axisBorder: {
+                                    show: false,
+                                },
+                                axisTicks: {
+                                    show: false,
+                                },
+                                labels: {
+                                    style: {
+                                        fontSize: '11px',
+                                        fontWeight: 500,
+                                        colors: '#8b9ab0',
+                                    },
+                                },
+                            },
+                            yaxis: {
+                                labels: {
+                                    style: {
+                                        fontSize: '11px',
+                                        fontWeight: 500,
+                                        colors: '#8b9ab0',
+                                    },
+                                },
+                                lines: {
+                                    show: true,
+                                },
+                            },
+                            grid: {
+                                show: true,
+                                borderColor: '#e5e7eb',
+                                strokeDashArray: 0,
+                                xaxis: {
+                                    lines: {
+                                        show: false,
+                                    },
+                                },
+                            },
+                            tooltip: {
+                                enabled: true,
+                                theme: 'dark',
+                                style: {
+                                    fontSize: '12px',
+                                },
+                                y: {
+                                    formatter: (val) => {
+                                        return val.toFixed(1);
+                                    },
+                                },
+                            },
+                            responsive: [{
+                                breakpoint: 1024,
+                                options: {
+                                    chart: {
+                                        height: 150,
+                                    },
+                                },
+                            }],
+                        });
+
+                        chart.render();
+                    } catch (e) {
+                        console.warn('Failed to parse stats chart data:', e);
+                    }
+                });
             }
 
             const syncIndustryHeroNotchToDesktopMenu = () => {
