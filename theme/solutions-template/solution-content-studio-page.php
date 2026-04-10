@@ -98,10 +98,10 @@ $show_faq = get_field('solution_faq_enabled');
 		?>
 		<section
 			id="solution-hero"
-			class="relative w-full p-1.5 md:p-2.5"
+			class="relative w-full p-0 md:p-2.5"
 			aria-label="<?php esc_attr_e('Solution page hero', 'reacon-group'); ?>">
 
-			<div class="reacon-about-hero-card relative min-h-[255px] overflow-hidden rounded-[24px] bg-[#062B53] sm:min-h-[300px] lg:min-h-[380px] lg:rounded-[31px]">
+			<div class="reacon-about-hero-card relative min-h-[255px] overflow-hidden rounded md:rounded-[24px] bg-[#062B53] sm:min-h-[300px] lg:min-h-[380px] lg:rounded-[31px]">
 				<?php if ($hero_bg_url): ?>
 					<img
 						src="<?php echo esc_url($hero_bg_url); ?>"
@@ -346,11 +346,11 @@ $show_faq = get_field('solution_faq_enabled');
 		?>
 		<section
 			id="solution-cta"
-			class="py-10 sm:py-12 lg:py-14"
+			class="py-10 xs:py-10 sm:py-12 md:py-14 "
 			aria-labelledby="solution-cta-heading">
-			<div class="mx-auto w-full max-w-[1370px] px-5 sm:px-6 lg:px-10">
+			<div class="mx-auto w-full  px-4 sm:px-6 lg:px-8">
 				<div
-					class="relative overflow-hidden rounded-[22px] px-5 py-14 sm:px-8 sm:py-16 lg:rounded-[24px] lg:px-12 lg:py-[70px]"
+					class="relative overflow-hidden rounded-[22px] px-5 py-10 sm:px-8 sm:py-10 lg:rounded-[24px] lg:px-12"
 					style="background-color: <?php echo esc_attr($cta_bg_color); ?>;">
 
 					<div class="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_100%_at_50%_10%,rgba(255,255,255,0.08)_0%,rgba(255,255,255,0)_58%)]" aria-hidden="true"></div>
@@ -387,22 +387,22 @@ $show_faq = get_field('solution_faq_enabled');
 						</svg>
 					</div>
 
-					<div class="relative z-10 mx-auto flex max-w-[760px] flex-col items-center text-center">
+					<div class="relative z-10 mx-auto flex max-w-4xl flex-col items-center justify-center text-center">
 						<?php if ($cta_heading): ?>
 							<h2
 								id="solution-cta-heading"
-								class="reacon-type-h1 text-white">
+								class="font-display text-[24px] font-bold leading-[1.1] text-white xs:text-[2.125rem] sm:text-[2.5rem] md:text-[2.75rem] lg:text-[3.25rem] xl:text-[3.5rem] 2xl:text-[3.75rem]">
 								<?php echo esc_html($cta_heading); ?>
 							</h2>
 						<?php endif; ?>
 
 						<?php if ($cta_description): ?>
-							<p class="mt-4 max-w-[560px] font-sans text-[14px] leading-[1.42] text-white/85 sm:text-[16px] sm:leading-[22.72px]">
+							<p class="mx-auto mt-4 max-w-3xl font-sans text-sm leading-relaxed text-white/90 xs:text-[0.9375rem] sm:text-base md:text-[1.0625rem] lg:text-lg">
 								<?php echo esc_html($cta_description); ?>
 							</p>
 						<?php endif; ?>
 
-						<div class="mt-6 flex w-full max-w-[430px] flex-col items-center justify-center gap-3.5 sm:mt-7 sm:max-w-none sm:flex-row sm:flex-wrap">
+						<div class="mt-8 flex w-full flex-col items-center justify-center gap-3 sm:mt-9 sm:w-auto sm:flex-row sm:gap-2.5 md:mt-10">
 							<?php if (!empty($cta_primary_btn)): ?>
 								<?php
 								$primary_url = $cta_primary_btn['url'] ?? '';
@@ -412,11 +412,11 @@ $show_faq = get_field('solution_faq_enabled');
 								<a
 									href="<?php echo esc_url($primary_url); ?>"
 									target="<?php echo esc_attr($primary_target); ?>"
-									class="inline-flex items-center gap-2 rounded-full bg-white py-1.5 pl-4 pr-1.5 font-sans text-[13px] font-medium text-[#0B6A74] no-underline transition hover:bg-white/90 sm:pl-5 sm:pr-2">
+									class="group inline-flex w-full items-center justify-between gap-2.5 rounded-full bg-white py-1 pl-5 pr-1 font-sans text-base font-medium text-[#0B6A74] no-underline transition-all duration-300 hover:bg-white/90 sm:w-auto">
 									<span><?php echo esc_html($primary_label); ?></span>
-									<span class="relative flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#dbeef1]" aria-hidden="true">
-										<i class="ph-bold ph-arrow-up-right absolute text-[12px] transition-all duration-300 group-hover:translate-x-2 group-hover:-translate-y-2 group-hover:opacity-0" aria-hidden="true"></i>
-										<i class="ph-bold ph-arrow-up-right absolute translate-x-[-10px] translate-y-[10px] text-[12px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100" aria-hidden="true"></i>
+									<span class="relative flex h-[42px] w-[42px] shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#dbeef1]" aria-hidden="true">
+										<i class="ph-bold ph-arrow-up-right absolute text-base transition-all duration-300 group-hover:translate-x-3 group-hover:-translate-y-3 group-hover:opacity-0" aria-hidden="true"></i>
+										<i class="ph-bold ph-arrow-up-right absolute translate-x-[-12px] translate-y-[12px] text-base opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100" aria-hidden="true"></i>
 									</span>
 								</a>
 							<?php endif; ?>
@@ -430,7 +430,7 @@ $show_faq = get_field('solution_faq_enabled');
 								<a
 									href="<?php echo esc_url($secondary_url); ?>"
 									target="<?php echo esc_attr($secondary_target); ?>"
-									class="inline-flex items-center rounded-full border border-white/65 px-5 py-2.5 font-sans text-[13px] font-normal text-white no-underline transition hover:bg-white/10">
+									class="inline-flex w-full items-center justify-start gap-2.5 rounded-full border border-solid border-white px-5 py-2.5 font-sans text-base font-normal text-white no-underline transition-all duration-300 hover:bg-white/10 sm:w-auto sm:justify-center sm:pr-4">
 									<?php echo esc_html($secondary_label); ?>
 								</a>
 							<?php endif; ?>

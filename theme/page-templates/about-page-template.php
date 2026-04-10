@@ -644,9 +644,9 @@ if ($acf_enabled) {
 	}
 	?>
 	<?php if ($about_sections['cta']): ?>
-		<section id="home-cta" class="py-10 sm:py-12 lg:py-14" aria-labelledby="home-cta-heading">
-			<div class="mx-auto w-full  px-5 sm:px-6 lg:px-10">
-				<div class="relative overflow-hidden rounded-[22px] px-5 py-14 sm:px-8 sm:py-16 lg:rounded-[24px] lg:px-12 lg:py-[70px]" style="<?php echo esc_attr($cta_bg_style); ?>">
+		<section id="home-cta" class="py-10 xs:py-10 sm:py-12 md:py-14 " aria-labelledby="home-cta-heading">
+			<div class="mx-auto w-full px-4 sm:px-6 lg:px-8">
+				<div class="relative overflow-hidden rounded-[22px] px-5 py-10 sm:px-8 sm:py-10 lg:rounded-[24px] lg:px-12" style="<?php echo esc_attr($cta_bg_style); ?>">
 					<div class="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
 						<svg preserveAspectRatio="none" style="display:block; width:100%; height:100%;" viewBox="0 0 2014 746" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<defs>
@@ -688,23 +688,24 @@ if ($acf_enabled) {
 							</defs>
 						</svg>
 					</div>
-					<div class="pointer-events-none absolute inset-0 z-[2] bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08)_0%,rgba(255,255,255,0)_58%)]" aria-hidden="true"></div>
-					<div class="relative z-10 mx-auto flex max-w-[760px] flex-col items-center justify-center text-center">
-						<h2 id="home-cta-heading" class="reacon-type-h1 text-white">
+					<div class="pointer-events-none absolute inset-0 z-[2] bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.0)_0%,rgba(255,255,255,0)_58%)]" aria-hidden="true"></div>
+
+					<div class="relative z-10 mx-auto flex max-w-4xl flex-col items-center justify-center text-center">
+						<h2 id="home-cta-heading" class="font-display text-[24px] font-bold leading-[1.1] text-white xs:text-[2.125rem] sm:text-[2.5rem] md:text-[2.75rem] lg:text-[3.25rem] xl:text-[3.5rem] 2xl:text-[3.75rem]">
 							<?php echo esc_html(reacon_about_fallback_text($about_cta['heading'], 'CTA content coming soon.')); ?>
 						</h2>
-						<p class="reacon-type-body mx-auto mt-4 text-white/90">
+						<p class="mx-auto mt-4 max-w-3xl font-sans text-sm leading-relaxed text-white/90 xs:text-[0.9375rem] sm:text-base md:text-[1.0625rem] lg:text-lg">
 							<?php echo esc_html(reacon_about_fallback_text($about_cta['description'], 'Please add CTA description in ACF.')); ?>
 						</p>
-						<div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-[10px]">
-							<a href="<?php echo esc_url($about_cta['primary']['url']); ?>" target="<?php echo esc_attr(isset($about_cta['primary']['target']) ? $about_cta['primary']['target'] : '_self'); ?>" class="group reacon-type-button inline-flex items-center gap-[10px] rounded-full bg-white py-[4px] pl-[20px] pr-[4px] text-primary no-underline transition-all duration-300 hover:bg-white/90">
+						<div class="mt-8 flex w-full flex-col items-center justify-center gap-3 sm:mt-9 sm:w-auto sm:flex-row sm:gap-2.5 md:mt-10">
+							<a href="<?php echo esc_url($about_cta['primary']['url']); ?>" target="<?php echo esc_attr(isset($about_cta['primary']['target']) ? $about_cta['primary']['target'] : '_self'); ?>" class="group inline-flex w-full items-center justify-between gap-2.5 rounded-full bg-white py-1 pl-5 pr-1 font-sans text-base font-medium text-primary no-underline transition-all duration-300 hover:bg-white/90 sm:w-auto">
 								<span><?php echo esc_html(reacon_about_fallback_text($about_cta['primary']['label'], 'Primary Action')); ?></span>
 								<span class="relative flex h-[42px] w-[42px] shrink-0 items-center justify-center overflow-hidden rounded-full bg-secondary/15">
 									<i class="ph-bold ph-arrow-up-right absolute text-base transition-all duration-300 group-hover:translate-x-3 group-hover:-translate-y-3 group-hover:opacity-0" aria-hidden="true"></i>
 									<i class="ph-bold ph-arrow-up-right absolute translate-x-[-12px] translate-y-[12px] text-base opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100" aria-hidden="true"></i>
 								</span>
 							</a>
-							<a href="<?php echo esc_url($about_cta['secondary']['url']); ?>" target="<?php echo esc_attr(isset($about_cta['secondary']['target']) ? $about_cta['secondary']['target'] : '_self'); ?>" class="reacon-type-button inline-flex items-center gap-[10px] rounded-full border border-solid border-white py-2.5 pl-[20px] pr-[16px] text-white no-underline transition-all duration-300 hover:bg-white/10">
+							<a href="<?php echo esc_url($about_cta['secondary']['url']); ?>" target="<?php echo esc_attr(isset($about_cta['secondary']['target']) ? $about_cta['secondary']['target'] : '_self'); ?>" class="inline-flex w-full items-center justify-start gap-2.5 rounded-full border border-solid border-white px-5 py-2.5 font-sans text-base font-normal text-white no-underline transition-all duration-300 hover:bg-white/10 sm:w-auto sm:justify-center sm:pr-4">
 								<?php echo esc_html(reacon_about_fallback_text($about_cta['secondary']['label'], 'Secondary Action')); ?>
 							</a>
 						</div>
