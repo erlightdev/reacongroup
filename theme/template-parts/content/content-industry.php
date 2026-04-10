@@ -185,9 +185,41 @@ $hero_overlay         = isset($hero['hero_overlay_gradient']) ? (string) $hero['
 $hero_is_ready        = $hero_image_url !== '' && $hero_kicker !== '' && $hero_title !== '' && $hero_summary !== '' && $hero_bg_color !== '' && $hero_overlay !== '';
 
 $main_content = isset($main['content']) ? (string) $main['content'] : '';
-$main_is_ready = trim(wp_strip_all_tags($main_content)) !== '';
+$main_has_media_blocks = preg_match('/<(img|figure|video|iframe|ul|ol|table|blockquote)\b/i', $main_content) === 1;
+$main_is_ready = trim(wp_strip_all_tags($main_content)) !== '' || $main_has_media_blocks;
 
-$partners_label = __('Our partners', 'reacon-group');
+$partners_marquee_label = __('Our partners', 'reacon-group');
+$who_served_label = __('Who we served', 'reacon-group');
+$who_served_heading = isset($main['who_we_served_heading']) ? trim((string) $main['who_we_served_heading']) : '';
+$who_served_heading = $who_served_heading !== '' ? $who_served_heading : $who_served_label;
+$who_served_logo_card_bg = '#F2F4F7';
+$who_served_logo_card_border = '#DCE3EC';
+$who_served_logos = !empty($main['who_we_served_logos']) && is_array($main['who_we_served_logos']) ? array_values($main['who_we_served_logos']) : array();
+$who_served_items = array();
+
+foreach ($who_served_logos as $who_served_logo) {
+    if (!is_array($who_served_logo)) {
+        continue;
+    }
+
+    $who_served_logo_url = reacon_group_industry_single_image_url(isset($who_served_logo['logo']) ? $who_served_logo['logo'] : '');
+    $who_served_logo_alt = isset($who_served_logo['alt']) ? trim((string) $who_served_logo['alt']) : '';
+
+    if ($who_served_logo_url === '') {
+        continue;
+    }
+
+    if ($who_served_logo_alt === '') {
+        $who_served_logo_alt = __('Served logo', 'reacon-group');
+    }
+
+    $who_served_items[] = array(
+        'url' => $who_served_logo_url,
+        'alt' => $who_served_logo_alt,
+    );
+}
+
+$who_served_is_ready = !empty($who_served_items);
 $partner_logos  = !empty($partners['logos']) && is_array($partners['logos']) ? array_values($partners['logos']) : array();
 $partner_items  = array();
 
@@ -296,18 +328,66 @@ $faq_is_ready = $faq_title !== '' && $faq_description !== '' && !empty($faq_item
         <!-- End: Industry Hero Section -->
     <?php endif; ?>
 
-    <?php if ($main_enabled && $main_is_ready) : ?>
-        <!-- Start: Main Content Section -->
-        <div <?php reacon_group_content_class('entry-content mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8'); ?>>
-            <?php echo apply_filters('the_content', $main_content); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
-            ?>
-        </div>
-        <!-- End: Main Content Section -->
+    <?php if ($main_enabled && ($main_is_ready || $who_served_is_ready)) : ?>
+        <!-- Start: Main Content + Who We Served Section -->
+        <section id="industry-main-content" class="w-full bg-white py-10 sm:py-12 lg:py-14" aria-label="<?php echo esc_attr__('Industry content', 'reacon-group'); ?>">
+            <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+                <?php if ($main_is_ready && $who_served_is_ready) : ?>
+                    <div class="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_280px] lg:gap-12">
+                        <div <?php reacon_group_content_class('entry-content reacon-industry-main-content min-w-0 text-foreground'); ?>>
+                            <?php echo apply_filters('the_content', $main_content); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
+                            ?>
+                        </div>
+                        <aside id="industry-who-we-served" class="w-full lg:sticky lg:top-28 lg:self-start" aria-label="<?php echo esc_attr($who_served_label); ?>">
+                            <h2 class="font-display text-[28px] font-semibold leading-[1.15] text-foreground sm:text-[32px] lg:text-[40px]">
+                                <?php echo esc_html($who_served_heading); ?>
+                            </h2>
+                            <div class="mt-4 flex flex-col gap-4">
+                                <?php foreach ($who_served_items as $who_served_item) : ?>
+                                    <div class="flex h-[110px] items-center justify-center rounded-[22px] border p-4 sm:h-[120px]" style="background-color: <?php echo esc_attr($who_served_logo_card_bg); ?>; border-color: <?php echo esc_attr($who_served_logo_card_border); ?>;">
+                                        <img
+                                            src="<?php echo esc_url($who_served_item['url']); ?>"
+                                            alt="<?php echo esc_attr($who_served_item['alt']); ?>"
+                                            class="max-h-[62px] w-auto max-w-full object-contain"
+                                            loading="lazy"
+                                            decoding="async" />
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </aside>
+                    </div>
+                <?php elseif ($main_is_ready) : ?>
+                    <div <?php reacon_group_content_class('entry-content reacon-industry-main-content text-foreground'); ?>>
+                        <?php echo apply_filters('the_content', $main_content); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
+                        ?>
+                    </div>
+                <?php elseif ($who_served_is_ready) : ?>
+                    <aside id="industry-who-we-served" class="mx-auto w-full max-w-[420px]" aria-label="<?php echo esc_attr($who_served_label); ?>">
+                        <h2 class="text-center font-display text-[28px] font-semibold leading-[1.15] text-foreground sm:text-[32px]">
+                            <?php echo esc_html($who_served_heading); ?>
+                        </h2>
+                        <div class="mt-4 flex flex-col gap-4">
+                            <?php foreach ($who_served_items as $who_served_item) : ?>
+                                <div class="flex h-[110px] items-center justify-center rounded-[22px] border p-4 sm:h-[120px]" style="background-color: <?php echo esc_attr($who_served_logo_card_bg); ?>; border-color: <?php echo esc_attr($who_served_logo_card_border); ?>;">
+                                    <img
+                                        src="<?php echo esc_url($who_served_item['url']); ?>"
+                                        alt="<?php echo esc_attr($who_served_item['alt']); ?>"
+                                        class="max-h-[62px] w-auto max-w-full object-contain"
+                                        loading="lazy"
+                                        decoding="async" />
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </aside>
+                <?php endif; ?>
+            </div>
+        </section>
+        <!-- End: Main Content + Who We Served Section -->
     <?php endif; ?>
 
     <?php if ($partners_enabled && $partners_is_ready) : ?>
         <!-- Start: Partners Marquee Section -->
-        <section id="industry-partners" class="relative w-full bg-white py-4 sm:py-5" aria-label="<?php echo esc_attr($partners_label); ?>">
+        <section id="industry-partners" class="relative w-full bg-white py-4 sm:py-5" aria-label="<?php echo esc_attr($partners_marquee_label); ?>">
             <div class="pointer-events-none absolute inset-y-0 left-0 z-10 w-8 bg-gradient-to-r from-white to-transparent sm:w-10 lg:w-12" aria-hidden="true"></div>
             <div class="pointer-events-none absolute inset-y-0 right-0 z-10 w-8 bg-gradient-to-l from-white to-transparent sm:w-10 lg:w-12" aria-hidden="true"></div>
 
@@ -372,7 +452,7 @@ $faq_is_ready = $faq_title !== '' && $faq_description !== '' && !empty($faq_item
                     <!-- End: CTA Background Decorations -->
 
                     <div class="relative z-10 mx-auto flex max-w-[760px] flex-col items-center text-center">
-                        <h2 id="industry-cta-heading" class="font-display text-[34px] font-semibold leading-[1.16] text-white sm:text-[46px] lg:text-[56px] lg:leading-[1.12]">
+                        <h2 id="industry-cta-heading" class="reacon-type-h1 text-white">
                             <?php echo esc_html($cta_heading); ?>
                         </h2>
 
@@ -380,12 +460,12 @@ $faq_is_ready = $faq_title !== '' && $faq_description !== '' && !empty($faq_item
                             <?php echo esc_html($cta_description); ?>
                         </p>
 
-                        <div class="mt-6 flex flex-wrap items-center justify-center gap-3 sm:mt-7">
+                        <div class="mt-6 flex w-full max-w-[430px] flex-col items-center justify-center gap-3.5 sm:mt-7 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center">
                             <?php if (null !== $cta_primary_link) : ?>
                                 <a
                                     href="<?php echo esc_url($cta_primary_link['url']); ?>"
                                     target="<?php echo esc_attr($cta_primary_link['target']); ?>"
-                                    class="group inline-flex items-center gap-2 rounded-full bg-white py-1.5 pl-4 pr-1.5 font-sans text-[13px] font-medium no-underline transition hover:bg-white/90 sm:pl-5 sm:pr-2"
+                                    class="group inline-flex w-[240px] items-center justify-between gap-2 rounded-full bg-white py-1.5 pl-4 pr-1.5 text-left font-sans text-[13px] font-medium no-underline transition hover:bg-white/90 sm:pl-5 sm:pr-2"
                                     style="color: <?php echo esc_attr($cta_primary_text_color); ?>;">
                                     <span><?php echo esc_html($cta_primary_link['title']); ?></span>
                                     <span class="relative flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded-full" style="background-color: <?php echo esc_attr($cta_primary_icon_bg); ?>;" aria-hidden="true">
@@ -399,7 +479,7 @@ $faq_is_ready = $faq_title !== '' && $faq_description !== '' && !empty($faq_item
                                 <a
                                     href="<?php echo esc_url($cta_secondary_link['url']); ?>"
                                     target="<?php echo esc_attr($cta_secondary_link['target']); ?>"
-                                    class="inline-flex items-center rounded-full border border-white/65 px-5 py-2.5 font-sans text-[13px] font-normal text-white no-underline transition hover:bg-white/10">
+                                    class="inline-flex w-[240px] items-center justify-start rounded-full border border-white/65 px-5 py-2.5 text-left font-sans text-[13px] font-normal text-white no-underline transition hover:bg-white/10 sm:justify-center sm:text-center">
                                     <?php echo esc_html($cta_secondary_link['title']); ?>
                                 </a>
                             <?php endif; ?>
@@ -536,6 +616,30 @@ $faq_is_ready = $faq_title !== '' && $faq_description !== '' && !empty($faq_item
             #industry-partners .reacon-partner-track {
                 animation: none;
             }
+        }
+
+        .reacon-industry-main-content img {
+            height: auto;
+            max-width: 100%;
+            border-radius: 16px;
+        }
+
+        .reacon-industry-main-content figure,
+        .reacon-industry-main-content .wp-caption {
+            margin: 1.25rem 0;
+            max-width: 100%;
+        }
+
+        .reacon-industry-main-content iframe,
+        .reacon-industry-main-content video {
+            width: 100%;
+            max-width: 100%;
+            border-radius: 16px;
+        }
+
+        .reacon-industry-main-content ul,
+        .reacon-industry-main-content ol {
+            padding-left: 1.1rem;
         }
 
         /* Desktop-only notch so header sits recessed into the hero. */

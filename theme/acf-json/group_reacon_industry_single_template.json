@@ -138,6 +138,41 @@
                     "toolbar": "full",
                     "media_upload": 1,
                     "required": 1
+                },
+                {
+                    "key": "field_industry_single_main_who_we_served_heading",
+                    "label": "Who we served heading",
+                    "name": "who_we_served_heading",
+                    "type": "text",
+                    "default_value": "Who we served"
+                },
+                {
+                    "key": "field_industry_single_main_who_we_served_logos",
+                    "label": "Who we served logos",
+                    "name": "who_we_served_logos",
+                    "type": "repeater",
+                    "layout": "block",
+                    "button_label": "Add served logo",
+                    "sub_fields": [
+                        {
+                            "key": "field_industry_single_main_who_we_served_logo_image",
+                            "label": "Logo image",
+                            "name": "logo",
+                            "type": "image",
+                            "return_format": "url",
+                            "preview_size": "medium",
+                            "library": "all",
+                            "mime_types": "jpg,jpeg,png,webp,svg",
+                            "required": 1
+                        },
+                        {
+                            "key": "field_industry_single_main_who_we_served_logo_alt",
+                            "label": "Logo alt text",
+                            "name": "alt",
+                            "type": "text",
+                            "instructions": "Optional accessibility label."
+                        }
+                    ]
                 }
             ]
         },
@@ -151,7 +186,7 @@
         },
         {
             "key": "field_industry_single_enable_partners",
-            "label": "Enable partners marquee section",
+            "label": "Enable who we served section",
             "name": "industry_single_enable_partners_section",
             "type": "true_false",
             "ui": 1,
@@ -174,6 +209,28 @@
             ],
             "sub_fields": [
                 {
+                    "key": "field_industry_single_partners_heading",
+                    "label": "Section heading",
+                    "name": "heading",
+                    "type": "text",
+                    "instructions": "Example: Who we served",
+                    "default_value": "Who we served"
+                },
+                {
+                    "key": "field_industry_single_partners_logo_card_bg",
+                    "label": "Logo card background",
+                    "name": "logo_card_bg",
+                    "type": "color_picker",
+                    "default_value": "#F2F4F7"
+                },
+                {
+                    "key": "field_industry_single_partners_logo_card_border",
+                    "label": "Logo card border",
+                    "name": "logo_card_border",
+                    "type": "color_picker",
+                    "default_value": "#DCE3EC"
+                },
+                {
                     "key": "field_industry_single_partners_logos",
                     "label": "Partner logos",
                     "name": "logos",
@@ -192,6 +249,13 @@
                             "library": "all",
                             "mime_types": "jpg,jpeg,png,webp,svg",
                             "required": 1
+                        },
+                        {
+                            "key": "field_industry_single_partners_logo_alt",
+                            "label": "Logo alt text",
+                            "name": "alt",
+                            "type": "text",
+                            "instructions": "Optional for better accessibility."
                         }
                     ]
                 }
