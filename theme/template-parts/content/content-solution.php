@@ -440,7 +440,7 @@ $faq_support_icon = isset($faq['support_card_icon']) && is_array($faq['support_c
                                 <span itemprop="name" class="font-sans text-sm font-medium leading-tight text-[#383B43] sm:text-xl">
                                     <?php echo esc_html($faq_item['question']); ?>
                                 </span>
-                                <span class="text-xl leading-none text-[#383B43] select-none" aria-hidden="true" x-text="activeIndex === <?php echo esc_attr((string) $faq_index); ?> ? '−' : '+'"></span>
+                                <span class="text-xl leading-none text-[#0A969B] select-none" aria-hidden="true" x-text="activeIndex === <?php echo esc_attr((string) $faq_index); ?> ? '−' : '+'"></span>
                             </button>
                             <div id="faq-answer-<?php echo esc_attr((string) $faq_index); ?>" x-show="activeIndex === <?php echo esc_attr((string) $faq_index); ?>" x-transition:enter="transition-all duration-300 ease-in-out" x-transition:enter-start="max-h-0 opacity-0 -translate-y-1" x-transition:enter-end="max-h-96 opacity-100 translate-y-0" x-transition:leave="transition-all duration-250 ease-in-out" x-transition:leave-start="max-h-96 opacity-100 translate-y-0" x-transition:leave-end="max-h-0 opacity-0 -translate-y-1" class="overflow-hidden" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
                                 <p itemprop="text" class="mt-4 text-base leading-snug text-[#666666] sm:mt-5">
@@ -464,7 +464,7 @@ $faq_support_icon = isset($faq['support_card_icon']) && is_array($faq['support_c
                             <a href="<?php echo esc_url($faq_support_link['url']); ?>" <?php echo '_blank' === $faq_support_link['target'] ? 'target="_blank" rel="noopener noreferrer"' : ''; ?> class="group flex w-full items-center justify-between gap-4 text-base font-medium leading-snug text-[#0A969B] transition-colors duration-300 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0A969B] focus-visible:ring-offset-2 rounded-md">
                                 <span><?php echo esc_html($faq_support_link['title']); ?></span>
                                 <span class="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">
-                                    <?php reacon_group_solution_render_icon($faq_support_icon, 'text-[12px]'); ?>
+                                    <i class="ph ph-arrow-right text-base" aria-hidden="true"></i>
                                 </span>
                             </a>
                         </div>

@@ -448,7 +448,7 @@ $faq_is_ready = $faq_title !== '' && $faq_description !== '' && !empty($faq_item
                                 <span itemprop="name" class="font-sans text-sm font-medium leading-tight text-[#383B43] sm:text-xl">
                                     <?php echo esc_html($faq_item['question']); ?>
                                 </span>
-                                <span class="select-none text-xl leading-none text-[#383B43]" aria-hidden="true" x-text="activeIndex === <?php echo esc_attr((string) $index); ?> ? '-' : '+'"></span>
+                                <span class="select-none text-xl leading-none text-[#0A969B]" aria-hidden="true" x-text="activeIndex === <?php echo esc_attr((string) $index); ?> ? '-' : '+'"></span>
                             </button>
                             <div
                                 id="faq-answer-<?php echo esc_attr((string) $index); ?>"
@@ -484,7 +484,7 @@ $faq_is_ready = $faq_title !== '' && $faq_description !== '' && !empty($faq_item
                             class="group flex w-full items-center justify-between gap-4 rounded-md text-base font-medium leading-snug transition-colors duration-300 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0A969B] focus-visible:ring-offset-2"
                             style="color: <?php echo esc_attr($faq_cta_link_color); ?>;">
                             <span><?php echo esc_html($faq_cta_link['title']); ?></span>
-                            <?php reacon_group_industry_single_render_icon(isset($faq['cta_icon']) ? $faq['cta_icon'] : array(), 'transition-transform duration-300 group-hover:translate-x-1'); ?>
+                            <i class="ph ph-arrow-right text-base transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true"></i>
                         </a>
                     </div>
                 </div>

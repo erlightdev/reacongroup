@@ -495,7 +495,7 @@ $show_apac_section = $contact_enable_apac && ($apac_section_title !== '' || !emp
 									<span class="reacon-type-h5 text-[#383B43]">
 										<?php echo esc_html($question); ?>
 									</span>
-									<span class="mt-0.5 shrink-0 text-xl leading-none text-[#383B43] select-none" aria-hidden="true" x-text="activeFaq === <?php echo esc_attr((string) $index); ?> ? '-' : '+'"></span>
+									<span class="mt-0.5 shrink-0 text-xl leading-none text-[#0A969B] select-none" aria-hidden="true" x-text="activeFaq === <?php echo esc_attr((string) $index); ?> ? '-' : '+'"></span>
 								</button>
 								<div id="<?php echo esc_attr($panel_id); ?>" class="overflow-hidden" x-show="activeFaq === <?php echo esc_attr((string) $index); ?>" x-transition:enter="transition-all ease-out duration-300" x-transition:enter-start="opacity-0 max-h-0" x-transition:enter-end="opacity-100 max-h-96" x-transition:leave="transition-all ease-in duration-200" x-transition:leave-start="opacity-100 max-h-96" x-transition:leave-end="opacity-0 max-h-0" x-cloak>
 									<p class="reacon-type-body text-[#666666]">
@@ -652,6 +652,17 @@ $show_apac_section = $contact_enable_apac && ($apac_section_title !== '' || !emp
 
 	/* Desktop-only top notch to keep header/hero consistency with About page. */
 	@media (min-width: 1024px) {
+		#masthead #site-navigation>ul {
+			position: relative;
+			box-shadow: 0 0 0 2px #fff;
+			outline: 2px solid #fff;
+			outline-offset: 0;
+		}
+
+		#masthead.top-0 #site-navigation>ul {
+			box-shadow: 0 0 0 2px #fff, 0 10px 22px rgba(0, 0, 0, 0.16);
+		}
+
 		#contact-hero .reacon-about-hero-card {
 			--hero-notch-width: clamp(560px, 48vw, 720px);
 			--hero-notch-radius: 40px;
@@ -663,13 +674,15 @@ $show_apac_section = $contact_enable_apac && ($apac_section_title !== '' || !emp
 			content: "";
 			position: absolute;
 			left: 50%;
-			top: 0;
+			top: -1px;
 			transform: translateX(calc(-50% + var(--hero-notch-shift, 0px)));
-			width: var(--hero-notch-width);
-			height: var(--hero-notch-height);
+			width: calc(var(--hero-notch-width) + 2px);
+			height: calc(var(--hero-notch-height) + 1px);
 			background: #fff;
 			border-bottom-left-radius: var(--hero-notch-radius);
 			border-bottom-right-radius: var(--hero-notch-radius);
+			margin-left: -1px;
+			box-shadow: 0 0 0 2px #fff;
 			z-index: 3;
 			pointer-events: none;
 		}
@@ -677,14 +690,16 @@ $show_apac_section = $contact_enable_apac && ($apac_section_title !== '' || !emp
 		#contact-hero .reacon-about-hero-card::after {
 			content: "";
 			position: absolute;
-			top: 0;
+			top: -1px;
 			left: 50%;
 			transform: translateX(calc(-50% + var(--hero-notch-shift, 0px)));
-			width: calc(var(--hero-notch-width) + (var(--hero-notch-swoop) * 2));
-			height: var(--hero-notch-swoop);
+			width: calc(var(--hero-notch-width) + (var(--hero-notch-swoop) * 2) + 2px);
+			height: calc(var(--hero-notch-swoop) + 1px);
 			background:
 				radial-gradient(circle at 0% 100%, transparent var(--hero-notch-swoop), #fff calc(var(--hero-notch-swoop) + 1px)) no-repeat left bottom / var(--hero-notch-swoop) var(--hero-notch-swoop),
 				radial-gradient(circle at 100% 100%, transparent var(--hero-notch-swoop), #fff calc(var(--hero-notch-swoop) + 1px)) no-repeat right bottom / var(--hero-notch-swoop) var(--hero-notch-swoop);
+			margin-left: -1px;
+			filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 1px #fff);
 			z-index: 4;
 			pointer-events: none;
 		}

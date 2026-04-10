@@ -333,7 +333,7 @@ if ($acf_enabled) {
 												<img src="<?php echo esc_url($ecosystem_assets_uri . '/westman.png'); ?>" alt="" aria-hidden="true" class="h-12 w-[55px]" />
 											</div>
 										<?php else: ?>
-											<img src="<?php echo esc_url(isset($card['logo']) ? $card['logo'] : ''); ?>" alt="<?php echo esc_attr(isset($card['logo_alt']) ? $card['logo_alt'] : ''); ?>" class="h-[32px] w-auto object-contain" loading="lazy" decoding="async" />
+											<img src="<?php echo esc_url(isset($card['logo']) ? $card['logo'] : ''); ?>" alt="<?php echo esc_attr(isset($card['logo_alt']) ? $card['logo_alt'] : ''); ?>" class="max-h-[32px] w-auto object-contain object-right" loading="lazy" decoding="async" />
 										<?php endif; ?>
 									</div>
 									<h3 class="reacon-type-h4 text-foreground">
@@ -773,7 +773,7 @@ if ($acf_enabled) {
 									<span class="reacon-type-h5 text-[#383B43]">
 										<?php echo esc_html(isset($faq_item['question']) ? $faq_item['question'] : ''); ?>
 									</span>
-									<span class="reacon-type-h5 leading-none text-[#383B43] select-none" aria-hidden="true">
+									<span class="reacon-type-h5 leading-none text-[#0A969B] select-none" aria-hidden="true">
 										<?php echo 0 === $faq_index ? '−' : '+'; ?>
 									</span>
 								</summary>
@@ -790,7 +790,7 @@ if ($acf_enabled) {
 								<span class="reacon-type-h5 text-[#383B43]">
 									<?php echo esc_html('FAQ content coming soon.'); ?>
 								</span>
-								<span class="reacon-type-h5 leading-none text-[#383B43] select-none" aria-hidden="true">−</span>
+								<span class="reacon-type-h5 leading-none text-[#0A969B] select-none" aria-hidden="true">−</span>
 							</summary>
 							<p class="reacon-type-body mt-[14px] text-[#666666] sm:mt-[20px]">
 								<?php echo esc_html('Please add FAQ items in ACF.'); ?>
@@ -817,7 +817,7 @@ if ($acf_enabled) {
 							target="<?php echo esc_attr($faq_cta_link['target']); ?>"
 							class="reacon-type-button flex w-full items-center justify-between gap-4 text-[#0A969B] transition-colors duration-300 hover:text-black">
 							<span><?php echo esc_html(reacon_about_fallback_text($faq_cta_link['title'], 'Contact our team')); ?></span>
-							<?php reacon_about_render_icon($faq_cta_icon_type, $faq_cta_icon_value); ?>
+							<i class="ph ph-arrow-right text-base" aria-hidden="true"></i>
 						</a>
 					</div>
 				</div>

@@ -40,27 +40,27 @@ if (!function_exists('render_reacon_dynamic_icon')) {
 		<?php
 		$home_hero = get_field('home_hero_section');
 		if (is_array($home_hero)):
+
 			$hero_eyebrow = !empty($home_hero['eyebrow']) ? $home_hero['eyebrow'] : '';
 			$hero_heading = !empty($home_hero['heading']) ? $home_hero['heading'] : '';
 			$hero_description = !empty($home_hero['description']) ? $home_hero['description'] : '';
-
 			$hero_cta = !empty($home_hero['cta']) && is_array($home_hero['cta']) ? $home_hero['cta'] : array();
 			$hero_cta_label = !empty($hero_cta['title']) ? $hero_cta['title'] : '';
 			$hero_cta_url = !empty($hero_cta['url']) ? $hero_cta['url'] : '#';
 			$hero_cta_target = !empty($hero_cta['target']) ? $hero_cta['target'] : '_self';
-
 			$hero_stat = !empty($home_hero['hero_stat']) && is_array($home_hero['hero_stat']) ? $home_hero['hero_stat'] : array();
 			$hero_stat_value = !empty($hero_stat['value']) ? $hero_stat['value'] : '';
 			$hero_stat_label = !empty($hero_stat['label']) ? $hero_stat['label'] : '';
 			$hero_stat_description = !empty($hero_stat['description']) ? $hero_stat['description'] : '';
 			$hero_stat_icon = !empty($hero_stat['icon']) ? $hero_stat['icon'] : '';
-
 			$bg_type = !empty($home_hero['bg_type']) ? $home_hero['bg_type'] : 'video';
 			$bg_video = !empty($home_hero['bg_video']) ? $home_hero['bg_video'] : '';
 			$bg_image = !empty($home_hero['bg_image']) ? $home_hero['bg_image'] : '';
 		?>
+
 			<section id="hero" class="relative w-full p-0 md:p-2.5" aria-label="<?php esc_attr_e('Hero', 'reacon-group'); ?>">
-				<div class="reacon-home-hero-card relative flex min-h-[60vh] w-full flex-col overflow-hidden rounded-b-[31px] md:rounded-[31px] bg-foreground  lg:min-h-[640px] xl:min-h-[680px]">
+
+				<div class="reacon-home-hero-card relative mb-1.5 flex min-h-[calc(100vh-6px)] w-full flex-col overflow-hidden rounded-b-[31px] bg-foreground md:rounded-[31px]">
 					<?php if ($bg_image): ?>
 						<picture class="pointer-events-none absolute inset-0" aria-hidden="true">
 							<img src="<?php echo esc_url($bg_image); ?>" alt="" class="h-full w-full object-cover object-center" fetchpriority="high" loading="eager" decoding="async" />
@@ -111,7 +111,7 @@ if (!function_exists('render_reacon_dynamic_icon')) {
 						<?php if ($hero_stat_value || $hero_stat_label): ?>
 							<div class="relative hidden w-full flex-col gap-3 rounded-t-[32px] bg-white p-6 sm:max-w-[320px] lg:absolute lg:bottom-0 lg:right-[42px] lg:flex lg:min-h-[287px]">
 								<?php if ($hero_stat_icon): ?>
-									<div class="pointer-events-none absolute right-4 top-4 h-[34px] w-[76px] overflow-hidden">
+									<div class="pointer-events-none absolute right-4 top-4 h-20 w-[76px] overflow-hidden">
 										<img src="<?php echo esc_url($hero_stat_icon); ?>" alt="" class="h-full w-full object-cover object-top" loading="lazy" decoding="async" />
 									</div>
 								<?php endif; ?>
@@ -206,7 +206,6 @@ if (!function_exists('render_reacon_dynamic_icon')) {
 								$card_description = !empty($card['description']) ? $card['description'] : '';
 								$card_logo = !empty($card['logo']) ? $card['logo'] : '';
 								$card_logo_alt = !empty($card['logo_alt']) ? $card['logo_alt'] : $card_title;
-								$card_logo_class = !empty($card['logo_class']) ? $card['logo_class'] : 'h-full w-auto object-contain';
 
 								$card_link = !empty($card['url']) && is_array($card['url']) ? $card['url'] : array();
 								$card_url = !empty($card_link['url']) ? $card_link['url'] : '#';
@@ -216,17 +215,20 @@ if (!function_exists('render_reacon_dynamic_icon')) {
 								if (!$card_title && !$card_description) continue;
 							?>
 								<article class="group flex h-full min-h-[240px] flex-col rounded-[20px] border border-border bg-muted p-5 transition-all duration-300 hover:border-primary hover:bg-white hover:shadow-sm sm:p-6">
-									<div class="mb-6 flex flex-col gap-4">
-										<div class="flex h-8 w-full items-center justify-end">
-											<?php if ($card_logo): ?>
-												<img src="<?php echo esc_url($card_logo); ?>" alt="<?php echo esc_attr($card_logo_alt); ?>" class="<?php echo esc_attr($card_logo_class); ?>" loading="lazy" decoding="async" />
-											<?php endif; ?>
-										</div>
-										<div class="w-full">
-											<?php if ($card_title): ?><h3 class="mb-1.5 font-display text-xl font-semibold text-foreground"><?php echo esc_html($card_title); ?></h3><?php endif; ?>
-											<?php if ($card_description): ?><p class="line-clamp-3 font-sans text-sm leading-relaxed text-muted-foreground"><?php echo esc_html($card_description); ?></p><?php endif; ?>
-										</div>
+									<!-- Logo Container: Fixed to top right -->
+									<div class="flex w-full justify-end mb-6">
+										<?php if ($card_logo): ?>
+											<img src="<?php echo esc_url($card_logo); ?>" alt="<?php echo esc_attr($card_logo_alt); ?>" class="max-h-[32px] w-auto object-contain object-right" loading="lazy" decoding="async" />
+										<?php endif; ?>
 									</div>
+
+									<!-- Content Container -->
+									<div class="w-full mb-6">
+										<?php if ($card_title): ?><h3 class="mb-1.5 font-display text-xl font-semibold text-foreground"><?php echo esc_html($card_title); ?></h3><?php endif; ?>
+										<?php if ($card_description): ?><p class="line-clamp-3 font-sans text-sm leading-relaxed text-muted-foreground"><?php echo esc_html($card_description); ?></p><?php endif; ?>
+									</div>
+
+									<!-- Link -->
 									<a href="<?php echo esc_url($card_url); ?>" target="<?php echo esc_attr($card_target); ?>" class="mt-auto inline-flex w-max items-center gap-1.5 font-sans text-sm font-medium text-foreground no-underline transition-colors group-hover:text-primary">
 										<?php echo esc_html($card_link_title); ?>
 										<i class="ph ph-arrow-right text-sm transition-transform group-hover:translate-x-1" aria-hidden="true"></i>
@@ -399,7 +401,7 @@ if (!function_exists('render_reacon_dynamic_icon')) {
 					<div class="absolute inset-0" style="background:<?php echo esc_attr($overlay); ?>;"></div>
 
 					<div class="relative z-10 <?php echo esc_attr($text_color === 'text-foreground' ? 'text-white' : $text_color); ?>">
-						<h3 class="mb-2 font-display text-xl font-semibold leading-tight sm:mb-3 sm:text-2xl lg:leading-[1.32]">
+						<h3 class="mb-2 font-display text-xl  leading-tight sm:mb-3 sm:text-2xl lg:leading-[1.32]">
 							<?php echo esc_html($title); ?>
 						</h3>
 						<p class="text-sm leading-relaxed sm:text-base lg:leading-[1.42]">
@@ -409,6 +411,7 @@ if (!function_exists('render_reacon_dynamic_icon')) {
 
 					<a href="<?php echo esc_url($href); ?>" target="<?php echo esc_attr($target); ?>" class="relative z-10 mt-auto flex w-fit cursor-pointer items-center gap-1.5 pt-6 text-sm font-medium <?php echo esc_attr($button_text_color); ?> transition-all duration-300 lg:translate-y-2 lg:opacity-0 lg:pointer-events-none lg:group-hover:translate-y-0 lg:group-hover:opacity-100 lg:group-hover:pointer-events-auto lg:group-focus-within:translate-y-0 lg:group-focus-within:opacity-100 lg:group-focus-within:pointer-events-auto before:absolute before:inset-0 before:-m-8">
 						<?php echo esc_html($link_title); ?>
+						<i class="ph ph-arrow-right text-sm transition-all duration-300 lg:translate-x-[-4px] lg:opacity-0 lg:group-hover:translate-x-0 lg:group-hover:opacity-100 lg:group-focus-within:translate-x-0 lg:group-focus-within:opacity-100" aria-hidden="true"></i>
 					</a>
 				</article>
 			<?php
@@ -705,7 +708,7 @@ if (!function_exists('render_reacon_dynamic_icon')) {
 										<span class="text-lg font-medium leading-snug text-[#383B43] sm:text-xl" style="font-family: 'Plus Jakarta Sans','Graphik Trial',ui-sans-serif,system-ui">
 											<?php echo esc_html($question); ?>
 										</span>
-										<span class="mt-0.5 shrink-0 text-xl leading-none text-[#383B43] select-none" aria-hidden="true" x-text="activeFaq === <?php echo esc_attr($index); ?> ? '−' : '+'"></span>
+										<span class="mt-0.5 shrink-0 text-xl leading-none text-[#0A969B] select-none" aria-hidden="true" x-text="activeFaq === <?php echo esc_attr($index); ?> ? '−' : '+'"></span>
 									</button>
 									<div id="<?php echo esc_attr($panel_id); ?>" class="overflow-hidden" x-show="activeFaq === <?php echo esc_attr($index); ?>" x-transition:enter="transition-all ease-out duration-300" x-transition:enter-start="opacity-0 max-h-0" x-transition:enter-end="opacity-100 max-h-96" x-transition:leave="transition-all ease-in duration-200" x-transition:leave-start="opacity-100 max-h-96" x-transition:leave-end="opacity-0 max-h-0">
 										<p class="text-[0.9375rem] leading-relaxed text-[#666666] sm:text-base">
