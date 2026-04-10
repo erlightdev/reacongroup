@@ -292,7 +292,7 @@ $faq_support_icon = isset($faq['support_card_icon']) && is_array($faq['support_c
                             </div>
 
                             <div class="order-1 lg:w-full lg:max-w-[620px] <?php echo esc_attr($is_even_row ? 'lg:order-1 lg:justify-self-start' : 'lg:order-2 lg:justify-self-end'); ?>">
-                                <div class="relative overflow-hidden rounded-[28px] bg-muted shadow-[0_18px_55px_rgba(14,28,46,0.08)]">
+                                <div class="relative overflow-hidden rounded-[28px] bg-muted ">
                                     <img
                                         src="<?php echo esc_url($section['image_url']); ?>"
                                         alt=""
@@ -395,14 +395,14 @@ $faq_support_icon = isset($faq['support_card_icon']) && is_array($faq['support_c
                     </div>
 
                     <div class="relative z-10 mx-auto flex max-w-[760px] flex-col items-center text-center">
-                        <h2 id="solution-cta-heading" class="font-display text-[34px] font-semibold leading-[1.16] text-white sm:text-[46px] lg:text-[56px] lg:leading-[1.12]">
+                        <h2 id="solution-cta-heading" class="reacon-type-h1 text-white">
                             <?php echo esc_html($cta_heading); ?>
                         </h2>
                         <p class="mt-4 max-w-[560px] font-sans text-[14px] leading-[1.42] text-white/85 sm:text-[16px] sm:leading-[22.72px]">
                             <?php echo esc_html($cta_description); ?>
                         </p>
 
-                        <div class="mt-6 flex flex-wrap items-center justify-center gap-3 sm:mt-7">
+                        <div class="mt-6 flex w-full max-w-[430px] flex-col items-center justify-center gap-3.5 sm:mt-7 sm:max-w-none sm:flex-row sm:flex-wrap">
                             <a href="<?php echo esc_url($cta_primary_link['url']); ?>" <?php echo '_blank' === $cta_primary_link['target'] ? 'target="_blank" rel="noopener noreferrer"' : ''; ?> class="group inline-flex items-center gap-2 rounded-full bg-white py-1.5 pl-4 pr-1.5 font-sans text-[13px] font-medium text-[#0B6A74] no-underline transition hover:bg-white/90 sm:pl-5 sm:pr-2">
                                 <span><?php echo esc_html($cta_primary_link['title']); ?></span>
                                 <span class="relative flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#dbeef1]" aria-hidden="true">
