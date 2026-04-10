@@ -752,6 +752,11 @@
                 "param": "post_type",
                 "operator": "==",
                 "value": "industry"
+            },
+            {
+                "param": "post_template",
+                "operator": "!=",
+                "value": "industries-template/industry-custom-template-page.php"
             }
         ]
     ],
