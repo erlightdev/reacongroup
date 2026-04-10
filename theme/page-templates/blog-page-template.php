@@ -494,7 +494,7 @@ if ($acf_enabled) {
 						</svg>
 					</div>
 
-					<div class="relative z-10 mx-auto flex max-w-[760px] flex-col items-center text-center">
+					<div class="relative z-10 mx-auto flex max-w-4xl flex-col items-center text-center">
 						<h2
 							id="solution-cta-heading"
 							class="reacon-type-h1 text-white">

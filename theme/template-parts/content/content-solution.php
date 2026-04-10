@@ -240,9 +240,9 @@ $faq_support_icon = isset($faq['support_card_icon']) && is_array($faq['support_c
     <?php if ($hero_enabled && $hero_background_url !== '' && $hero_eyebrow !== '' && $hero_title !== '' && $hero_description !== '') : ?>
         <section
             id="solution-visual-hero"
-            class="relative w-full p-1.5 md:p-2.5"
+            class="relative w-full p-0 md:p-2.5"
             aria-label="<?php esc_attr_e('Solution page hero', 'reacon-group'); ?>">
-            <div class="reacon-about-hero-card relative min-h-[255px] overflow-hidden rounded-[24px] bg-[#062B53] sm:min-h-[300px] lg:min-h-[380px] lg:rounded-[31px]">
+            <div class="reacon-about-hero-card relative min-h-[255px] overflow-hidden rounded-0 md:rounded-[24px] bg-[#062B53] sm:min-h-[300px] lg:min-h-[380px] lg:rounded-[31px]">
                 <img
                     src="<?php echo esc_url($hero_background_url); ?>"
                     alt=""

@@ -304,7 +304,7 @@ if ($acf_enabled) {
 	?>
 	<?php if ($about_sections['ecosystem']): ?>
 		<section id="reacon-ecosystem-section" class="pb-12 pt-14 sm:pb-14 sm:pt-16 md:pb-16 md:pt-20 lg:pb-20 lg:pt-24 xl:pb-16 xl:pt-16">
-			<div class="mx-auto w-full max-w-[1370px] px-4 sm:px-6 md:px-8 xl:px-0">
+			<div class="mx-auto w-full max-w-7xl px-4 sm:px-6 md:px-8 xl:px-0">
 				<div class="mx-auto w-full max-w-[820px] text-center">
 					<p class="reacon-type-overline text-muted-foreground">
 						<?php echo esc_html(reacon_about_fallback_text($ecosystem_eyebrow, 'Our Ecosystem')); ?>
@@ -336,7 +336,7 @@ if ($acf_enabled) {
 											<img src="<?php echo esc_url(isset($card['logo']) ? $card['logo'] : ''); ?>" alt="<?php echo esc_attr(isset($card['logo_alt']) ? $card['logo_alt'] : ''); ?>" class="max-h-[32px] w-auto object-contain object-right" loading="lazy" decoding="async" />
 										<?php endif; ?>
 									</div>
-									<h3 class="reacon-type-h4 text-foreground">
+									<h3 class="mb-1.5 font-display text-xl font-semibold text-foreground">
 										<?php echo esc_html(isset($card['name']) ? $card['name'] : ''); ?>
 									</h3>
 									<p class="reacon-type-body mt-2 text-muted-foreground">
@@ -386,8 +386,8 @@ if ($acf_enabled) {
 	}
 	?>
 	<?php if ($about_sections['what_we_do']): ?>
-		<section id="reacon-what-we-do-section" class="bg-[#f5f5f5] py-12 sm:py-14 md:py-16 lg:py-20 xl:py-[120px]">
-			<div class="mx-auto grid w-full max-w-[1370px] grid-cols-1 gap-8 px-4 sm:px-6 md:gap-10 lg:grid-cols-[minmax(0,720px)_minmax(0,620px)] lg:items-stretch lg:gap-[30px] lg:px-8 xl:px-0">
+		<section id="reacon-what-we-do-section" class="bg-[#f5f5f5] py-12 sm:py-14 md:py-16 ">
+			<div class="mx-auto grid w-full max-w-7xl grid-cols-1 gap-8 px-4 sm:px-6 md:gap-10 lg:grid-cols-[minmax(0,720px)_minmax(0,620px)] lg:items-stretch lg:gap-[30px] lg:px-8 xl:px-0">
 				<div class="flex flex-col gap-6 md:gap-8">
 					<div class="w-full max-w-[720px]">
 						<p class="reacon-type-overline text-muted-foreground">

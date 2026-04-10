@@ -578,9 +578,9 @@ if (!function_exists('render_reacon_dynamic_icon')) {
 			$cta_secondary_url = !empty($cta_secondary['url']) ? $cta_secondary['url'] : '#';
 			$cta_secondary_target = !empty($cta_secondary['target']) ? $cta_secondary['target'] : '_self';
 		?>
-			<section id="home-cta" class="py-10 xs:py-10 sm:py-12 md:py-14 lg:py-16 xl:py-16 2xl:py-20" aria-labelledby="home-cta-heading">
+			<section id="home-cta" class="py-10 xs:py-10 sm:py-12 md:py-14 " aria-labelledby="home-cta-heading">
 				<div class="mx-auto w-full px-4 sm:px-6 lg:px-8">
-					<div class="relative overflow-hidden rounded-[22px] px-5 py-14 sm:px-8 sm:py-16 md:px-10 md:py-[4.25rem] lg:rounded-3xl lg:px-12 lg:py-[4.5rem] xl:px-14 xl:py-20 2xl:px-16 2xl:py-24" style="background: linear-gradient(179deg, #076166 0%, #1ECAD3 100%);">
+					<div class="relative overflow-hidden rounded-[22px] px-5 py-10 sm:px-8 sm:py-10 lg:rounded-[24px] lg:px-12" style="background: linear-gradient(179deg, #076166 0%, #1ECAD3 100%);">
 						<div class="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
 							<svg preserveAspectRatio="none" style="display:block; width:100%; height:100%;" viewBox="0 0 2014 746" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<defs>
@@ -647,7 +647,7 @@ if (!function_exists('render_reacon_dynamic_icon')) {
 									</a>
 								<?php endif; ?>
 								<?php if ($cta_secondary_label && $cta_secondary_url): ?>
-									<a href="<?php echo esc_url($cta_secondary_url); ?>" target="<?php echo esc_attr($cta_secondary_target); ?>" class="inline-flex w-full items-center justify-center gap-2.5 rounded-full border border-solid border-white px-5 py-2.5 font-sans text-base font-normal text-white no-underline transition-all duration-300 hover:bg-white/10 sm:w-auto sm:pr-4">
+									<a href="<?php echo esc_url($cta_secondary_url); ?>" target="<?php echo esc_attr($cta_secondary_target); ?>" class="inline-flex w-full items-center justify-start gap-2.5 rounded-full border border-solid border-white px-5 py-2.5 font-sans text-base font-normal text-white no-underline transition-all duration-300 hover:bg-white/10 sm:w-auto sm:justify-center sm:pr-4">
 										<?php echo esc_html($cta_secondary_label); ?>
 									</a>
 								<?php endif; ?>

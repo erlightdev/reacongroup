@@ -1,0 +1,165 @@
+{
+    "key": "group_reacon_legal_page_template",
+    "title": "Legal Page Template Content",
+    "fields": [
+        {
+            "key": "field_legal_tab_hero",
+            "label": "Hero",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_legal_hero_background",
+            "label": "Hero background",
+            "name": "legal_hero_background",
+            "type": "image",
+            "return_format": "array",
+            "preview_size": "large",
+            "library": "all",
+            "mime_types": "jpg,jpeg,png,webp,svg"
+        },
+        {
+            "key": "field_legal_hero_eyebrow",
+            "label": "Hero eyebrow",
+            "name": "legal_hero_eyebrow",
+            "type": "text",
+            "default_value": "Legal"
+        },
+        {
+            "key": "field_legal_hero_title",
+            "label": "Hero title",
+            "name": "legal_hero_title",
+            "type": "text",
+            "default_value": "Terms of Use"
+        },
+        {
+            "key": "field_legal_hero_description",
+            "label": "Hero description",
+            "name": "legal_hero_description",
+            "type": "textarea",
+            "rows": 3,
+            "new_lines": "",
+            "default_value": "These Website Terms of Use apply to your use of this website."
+        },
+        {
+            "key": "field_legal_tab_intro",
+            "label": "Intro",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_legal_terms_heading",
+            "label": "Terms heading",
+            "name": "legal_terms_heading",
+            "type": "text",
+            "default_value": "Terms of Use"
+        },
+        {
+            "key": "field_legal_terms_download_url",
+            "label": "Download URL",
+            "name": "legal_terms_download_url",
+            "type": "url"
+        },
+        {
+            "key": "field_legal_intro_left",
+            "label": "Intro left column",
+            "name": "legal_intro_left",
+            "type": "wysiwyg",
+            "instructions": "Use the WordPress WYSIWYG editor for rich text.",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
+            "key": "field_legal_intro_right",
+            "label": "Intro right column",
+            "name": "legal_intro_right",
+            "type": "wysiwyg",
+            "instructions": "Use the WordPress WYSIWYG editor for rich text.",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
+            "key": "field_legal_tab_sections",
+            "label": "Terms Sections",
+            "name": "",
+            "type": "tab",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_legal_sections",
+            "label": "Sections",
+            "name": "legal_sections",
+            "type": "repeater",
+            "layout": "block",
+            "button_label": "Add section",
+            "rows_per_page": 20,
+            "collapsed": "field_legal_section_nav_label",
+            "sub_fields": [
+                {
+                    "key": "field_legal_section_id",
+                    "label": "Section ID",
+                    "name": "section_id",
+                    "type": "text",
+                    "instructions": "Optional. Auto-generated from nav label or title if empty.",
+                    "placeholder": "warranties-and-disclaimers"
+                },
+                {
+                    "key": "field_legal_section_nav_label",
+                    "label": "Tab label",
+                    "name": "nav_label",
+                    "type": "text",
+                    "required": 1
+                },
+                {
+                    "key": "field_legal_section_title",
+                    "label": "Section title",
+                    "name": "section_title",
+                    "type": "text",
+                    "required": 1
+                },
+                {
+                    "key": "field_legal_section_content",
+                    "label": "Section content",
+                    "name": "content",
+                    "type": "wysiwyg",
+                    "instructions": "Use the WordPress WYSIWYG editor for section content.",
+                    "required": 1,
+                    "tabs": "all",
+                    "toolbar": "full",
+                    "media_upload": 1,
+                    "delay": 0
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "page-templates/legal-template-page.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+        "the_content"
+    ],
+    "active": true,
+    "description": "Dynamic fields for Legal page template.",
+    "show_in_rest": 0,
+    "modified": 1775819200
+}
