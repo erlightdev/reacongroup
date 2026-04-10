@@ -324,10 +324,11 @@ $solution_cta = array(
 				<div class="mt-6 flex w-full max-w-[430px] flex-col items-center justify-center gap-3.5 sm:mt-7 sm:max-w-none sm:flex-row sm:flex-wrap">
 					<a
 						href="<?php echo esc_url($solution_cta['primary']['url']); ?>"
-						class="inline-flex min-h-[72px] w-full items-center justify-between gap-3 rounded-full bg-white py-1.5 pl-7 pr-1.5 font-sans text-[16px] font-semibold text-primary no-underline transition hover:bg-white/90 sm:min-h-0 sm:w-auto sm:justify-start sm:pl-5 sm:pr-2 sm:text-[13px] sm:font-medium sm:text-[#0B6A74]">
+						class="group inline-flex min-h-[72px] w-full items-center justify-between gap-3 rounded-full bg-white py-1.5 pl-7 pr-1.5 font-sans text-[16px] font-semibold text-primary no-underline transition hover:bg-white/90 sm:min-h-0 sm:w-auto sm:justify-start sm:pl-5 sm:pr-2 sm:text-[13px] sm:font-medium sm:text-[#0B6A74]">
 						<span><?php echo esc_html($solution_cta['primary']['label']); ?></span>
-						<span class="flex h-[58px] w-[58px] shrink-0 items-center justify-center rounded-full bg-[#d9e9ee] sm:h-7 sm:w-7 sm:bg-[#dbeef1]" aria-hidden="true">
-							<i class="ph-bold ph-arrow-up-right text-[28px] text-[#3f8ea0] sm:text-[12px] sm:text-[#0B6A74]"></i>
+						<span class="relative flex h-[58px] w-[58px] shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#d9e9ee] sm:h-7 sm:w-7 sm:bg-[#dbeef1]">
+							<i class="ph-bold ph-arrow-up-right absolute text-[28px] text-[#3f8ea0] transition-all duration-300 group-hover:translate-x-3 group-hover:-translate-y-3 group-hover:opacity-0 sm:text-[12px] sm:text-[#0B6A74]" aria-hidden="true"></i>
+							<i class="ph-bold ph-arrow-up-right absolute translate-x-[-12px] translate-y-[12px] text-[28px] text-[#3f8ea0] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100 sm:text-[12px] sm:text-[#0B6A74]" aria-hidden="true"></i>
 						</span>
 					</a>
 					<a

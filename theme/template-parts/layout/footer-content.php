@@ -330,12 +330,13 @@ $reacon_footer_echo_menu = static function ($location, $menu_class, $extra = arr
 							href="<?php echo esc_url($p['url']); ?>"
 							<?php echo $p_target !== '' ? ' target="' . esc_attr($p_target) . '"' : ''; ?>
 							<?php echo ($p_target && '_blank' === strtolower($p_target)) ? ' rel="noopener noreferrer"' : ''; ?>
-							class="inline-flex items-center gap-[10px] rounded-full bg-primary py-2 pl-5 pr-2.5 font-display text-[13.5px] font-bold text-white/85 no-underline transition-all duration-200 hover:-translate-y-px hover:brightness-110 whitespace-nowrap">
+							class="group inline-flex items-center gap-[10px] rounded-full bg-primary py-2 pl-5 pr-2.5 font-display text-[13.5px] font-bold text-white/85 no-underline transition-all duration-200 hover:-translate-y-px hover:brightness-110 whitespace-nowrap">
 							<?php echo esc_html($p_title); ?>
 							<span
 								aria-hidden="true"
-								class="flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-full bg-black/[.16]">
-								<i class="ph-bold ph-arrow-up-right text-[12px]" aria-hidden="true"></i>
+								class="relative flex h-[30px] w-[30px] shrink-0 items-center justify-center overflow-hidden rounded-full bg-black/[.16]">
+								<i class="ph-bold ph-arrow-up-right absolute text-[14px] transition-all duration-300 group-hover:translate-x-3 group-hover:-translate-y-3 group-hover:opacity-0" aria-hidden="true"></i>
+								<i class="ph-bold ph-arrow-up-right absolute translate-x-[-12px] translate-y-[12px] text-[14px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100" aria-hidden="true"></i>
 							</span>
 						</a>
 
@@ -411,7 +412,7 @@ $reacon_footer_echo_menu = static function ($location, $menu_class, $extra = arr
 		<div class="text-center">
 
 			<p class="mb-3 font-sans text-[12.5px] text-white/55">
-			
+
 				<?php if ($footer_copyright_suffix !== ''): ?>
 					<?php echo ' ' . esc_html($footer_copyright_suffix); ?>
 				<?php endif; ?>

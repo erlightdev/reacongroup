@@ -92,7 +92,7 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 			<a href="<?php echo esc_url($contact_url); ?>" class="inline-flex items-center gap-1.5 rounded-full bg-primary py-2 pl-4 pr-1.5 font-display text-[13px] font-bold text-white no-underline transition-all duration-200 hover:-translate-y-px hover:brightness-105 xl:gap-2 xl:pl-5 xl:pr-2 xl:text-sm">
 				<?php echo esc_html($contact_label); ?>
 				<span aria-hidden="true" class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#6be6ec] xl:h-8 xl:w-8">
-					<i class="ph-bold ph-arrow-up-right text-[11px]" aria-hidden="true"></i>
+					<i class="ph-bold ph-arrow-up-right text-[16px]" aria-hidden="true"></i>
 				</span>
 			</a>
 		</div>

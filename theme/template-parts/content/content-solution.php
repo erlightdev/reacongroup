@@ -403,10 +403,11 @@ $faq_support_icon = isset($faq['support_card_icon']) && is_array($faq['support_c
                         </p>
 
                         <div class="mt-6 flex flex-wrap items-center justify-center gap-3 sm:mt-7">
-                            <a href="<?php echo esc_url($cta_primary_link['url']); ?>" <?php echo '_blank' === $cta_primary_link['target'] ? 'target="_blank" rel="noopener noreferrer"' : ''; ?> class="inline-flex items-center gap-2 rounded-full bg-white py-1.5 pl-4 pr-1.5 font-sans text-[13px] font-medium text-[#0B6A74] no-underline transition hover:bg-white/90 sm:pl-5 sm:pr-2">
+                            <a href="<?php echo esc_url($cta_primary_link['url']); ?>" <?php echo '_blank' === $cta_primary_link['target'] ? 'target="_blank" rel="noopener noreferrer"' : ''; ?> class="group inline-flex items-center gap-2 rounded-full bg-white py-1.5 pl-4 pr-1.5 font-sans text-[13px] font-medium text-[#0B6A74] no-underline transition hover:bg-white/90 sm:pl-5 sm:pr-2">
                                 <span><?php echo esc_html($cta_primary_link['title']); ?></span>
-                                <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#dbeef1]" aria-hidden="true">
-                                    <?php reacon_group_solution_render_icon($cta_primary_icon, 'text-[12px] text-[#0B6A74]'); ?>
+                                <span class="relative flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#dbeef1]" aria-hidden="true">
+                                    <i class="ph-bold ph-arrow-up-right absolute text-[14px] transition-all duration-300 group-hover:translate-x-2 group-hover:-translate-y-2 group-hover:opacity-0" aria-hidden="true"></i>
+                                    <i class="ph-bold ph-arrow-up-right absolute translate-x-[-10px] translate-y-[10px] text-[14px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100" aria-hidden="true"></i>
                                 </span>
                             </a>
                             <a href="<?php echo esc_url($cta_secondary_link['url']); ?>" <?php echo '_blank' === $cta_secondary_link['target'] ? 'target="_blank" rel="noopener noreferrer"' : ''; ?> class="inline-flex items-center rounded-full border border-white/65 px-5 py-2.5 font-sans text-[13px] font-normal text-white no-underline transition hover:bg-white/10">

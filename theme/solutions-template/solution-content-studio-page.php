@@ -391,7 +391,7 @@ $show_faq = get_field('solution_faq_enabled');
 						<?php if ($cta_heading): ?>
 							<h2
 								id="solution-cta-heading"
-								class="font-display text-[34px] font-semibold leading-[1.16] text-white sm:text-[46px] lg:text-[56px] lg:leading-[1.12]">
+								class="reacon-type-h1 text-white">
 								<?php echo esc_html($cta_heading); ?>
 							</h2>
 						<?php endif; ?>
@@ -402,7 +402,7 @@ $show_faq = get_field('solution_faq_enabled');
 							</p>
 						<?php endif; ?>
 
-						<div class="mt-6 flex flex-wrap items-center justify-center gap-3 sm:mt-7">
+						<div class="mt-6 flex w-full max-w-[430px] flex-col items-center justify-center gap-3.5 sm:mt-7 sm:max-w-none sm:flex-row sm:flex-wrap">
 							<?php if (!empty($cta_primary_btn)): ?>
 								<?php
 								$primary_url = $cta_primary_btn['url'] ?? '';
@@ -414,8 +414,9 @@ $show_faq = get_field('solution_faq_enabled');
 									target="<?php echo esc_attr($primary_target); ?>"
 									class="inline-flex items-center gap-2 rounded-full bg-white py-1.5 pl-4 pr-1.5 font-sans text-[13px] font-medium text-[#0B6A74] no-underline transition hover:bg-white/90 sm:pl-5 sm:pr-2">
 									<span><?php echo esc_html($primary_label); ?></span>
-									<span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#dbeef1]" aria-hidden="true">
-										<i class="ph-bold ph-arrow-up-right text-[12px] text-[#0B6A74]"></i>
+									<span class="relative flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#dbeef1]" aria-hidden="true">
+										<i class="ph-bold ph-arrow-up-right absolute text-[12px] transition-all duration-300 group-hover:translate-x-2 group-hover:-translate-y-2 group-hover:opacity-0" aria-hidden="true"></i>
+										<i class="ph-bold ph-arrow-up-right absolute translate-x-[-10px] translate-y-[10px] text-[12px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100" aria-hidden="true"></i>
 									</span>
 								</a>
 							<?php endif; ?>

@@ -86,10 +86,11 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 			<a href="<?php echo esc_url($start_order_url); ?>" class="rounded-full border border-white/40 bg-[#07212c]/55 px-4 py-3.5 font-display text-[13px] font-bold text-white no-underline backdrop-blur-sm transition-all duration-200 hover:-translate-y-px hover:bg-[#07212c]/75 hover:border-white/60 xl:px-6 xl:text-sm">
 				<?php echo esc_html($start_order_label); ?>
 			</a>
-			<a href="<?php echo esc_url($contact_url); ?>" class="inline-flex items-center gap-1.5 rounded-full bg-primary py-2 pl-4 pr-1.5 font-display text-[13px] font-bold text-white no-underline transition-all duration-200 hover:-translate-y-px hover:brightness-105 xl:gap-2 xl:pl-5 xl:pr-2 xl:text-sm">
+			<a href="<?php echo esc_url($contact_url); ?>" class="group inline-flex items-center gap-1.5 rounded-full bg-primary py-2 pl-4 pr-1.5 font-display text-[13px] font-bold text-white no-underline transition-all duration-200 hover:-translate-y-px hover:brightness-105 xl:gap-2 xl:pl-5 xl:pr-2 xl:text-sm">
 				<?php echo esc_html($contact_label); ?>
-				<span aria-hidden="true" class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#6be6ec] xl:h-8 xl:w-8">
-					<i class="ph-bold ph-arrow-up-right text-[11px]" aria-hidden="true"></i>
+				<span aria-hidden="true" class="relative flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#6be6ec] xl:h-8 xl:w-8">
+					<i class="ph-bold ph-arrow-up-right absolute text-[16px] transition-all duration-300 group-hover:translate-x-3 group-hover:-translate-y-3 group-hover:opacity-0" aria-hidden="true"></i>
+					<i class="ph-bold ph-arrow-up-right absolute translate-x-[-12px] translate-y-[12px] text-[16px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100" aria-hidden="true"></i>
 				</span>
 			</a>
 		</div>

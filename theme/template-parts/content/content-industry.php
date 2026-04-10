@@ -385,11 +385,12 @@ $faq_is_ready = $faq_title !== '' && $faq_description !== '' && !empty($faq_item
                                 <a
                                     href="<?php echo esc_url($cta_primary_link['url']); ?>"
                                     target="<?php echo esc_attr($cta_primary_link['target']); ?>"
-                                    class="inline-flex items-center gap-2 rounded-full bg-white py-1.5 pl-4 pr-1.5 font-sans text-[13px] font-medium no-underline transition hover:bg-white/90 sm:pl-5 sm:pr-2"
+                                    class="group inline-flex items-center gap-2 rounded-full bg-white py-1.5 pl-4 pr-1.5 font-sans text-[13px] font-medium no-underline transition hover:bg-white/90 sm:pl-5 sm:pr-2"
                                     style="color: <?php echo esc_attr($cta_primary_text_color); ?>;">
                                     <span><?php echo esc_html($cta_primary_link['title']); ?></span>
-                                    <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full" style="background-color: <?php echo esc_attr($cta_primary_icon_bg); ?>;" aria-hidden="true">
-                                        <?php reacon_group_industry_single_render_icon($cta_primary_icon, 'text-[12px]'); ?>
+                                    <span class="relative flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded-full" style="background-color: <?php echo esc_attr($cta_primary_icon_bg); ?>;" aria-hidden="true">
+                                        <i class="ph-bold ph-arrow-up-right absolute text-[12px] transition-all duration-300 group-hover:translate-x-2 group-hover:-translate-y-2 group-hover:opacity-0" aria-hidden="true"></i>
+                                        <i class="ph-bold ph-arrow-up-right absolute translate-x-[-10px] translate-y-[10px] text-[12px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100" aria-hidden="true"></i>
                                     </span>
                                 </a>
                             <?php endif; ?>

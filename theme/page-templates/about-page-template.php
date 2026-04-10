@@ -697,10 +697,11 @@ if ($acf_enabled) {
 							<?php echo esc_html(reacon_about_fallback_text($about_cta['description'], 'Please add CTA description in ACF.')); ?>
 						</p>
 						<div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-[10px]">
-							<a href="<?php echo esc_url($about_cta['primary']['url']); ?>" target="<?php echo esc_attr(isset($about_cta['primary']['target']) ? $about_cta['primary']['target'] : '_self'); ?>" class="reacon-type-button inline-flex items-center gap-[10px] rounded-full bg-white py-[4px] pl-[20px] pr-[4px] text-primary no-underline transition-all duration-300 hover:bg-white/90">
+							<a href="<?php echo esc_url($about_cta['primary']['url']); ?>" target="<?php echo esc_attr(isset($about_cta['primary']['target']) ? $about_cta['primary']['target'] : '_self'); ?>" class="group reacon-type-button inline-flex items-center gap-[10px] rounded-full bg-white py-[4px] pl-[20px] pr-[4px] text-primary no-underline transition-all duration-300 hover:bg-white/90">
 								<span><?php echo esc_html(reacon_about_fallback_text($about_cta['primary']['label'], 'Primary Action')); ?></span>
-								<span class="flex h-[42px] w-[42px] items-center justify-center rounded-full bg-secondary/15">
-									<?php reacon_about_render_icon($about_cta_primary_icon_type, $about_cta_primary_icon_value, '', 'text-base text-primary'); ?>
+								<span class="relative flex h-[42px] w-[42px] shrink-0 items-center justify-center overflow-hidden rounded-full bg-secondary/15">
+									<i class="ph-bold ph-arrow-up-right absolute text-base transition-all duration-300 group-hover:translate-x-3 group-hover:-translate-y-3 group-hover:opacity-0" aria-hidden="true"></i>
+									<i class="ph-bold ph-arrow-up-right absolute translate-x-[-12px] translate-y-[12px] text-base opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100" aria-hidden="true"></i>
 								</span>
 							</a>
 							<a href="<?php echo esc_url($about_cta['secondary']['url']); ?>" target="<?php echo esc_attr(isset($about_cta['secondary']['target']) ? $about_cta['secondary']['target'] : '_self'); ?>" class="reacon-type-button inline-flex items-center gap-[10px] rounded-full border border-solid border-white py-2.5 pl-[20px] pr-[16px] text-white no-underline transition-all duration-300 hover:bg-white/10">

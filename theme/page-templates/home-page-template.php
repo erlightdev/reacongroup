@@ -99,8 +99,11 @@ if (!function_exists('render_reacon_dynamic_icon')) {
 							<?php if ($hero_cta_label && $hero_cta_url): ?>
 								<a href="<?php echo esc_url($hero_cta_url); ?>" target="<?php echo esc_attr($hero_cta_target); ?>" class="group inline-flex items-center gap-2.5 rounded-full bg-primary py-1 pl-5 pr-1 font-sans transition-all duration-300 hover:bg-secondary">
 									<span class="reacon-type-button text-primary-foreground"><?php echo esc_html($hero_cta_label); ?></span>
-									<span class="flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-full bg-white/30 transition-transform duration-300 group-hover:rotate-45" aria-hidden="true">
-										<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<span class="relative flex h-[42px] w-[42px] shrink-0 items-center justify-center overflow-hidden rounded-full bg-white/30" aria-hidden="true">
+										<svg class="absolute h-[14px] w-[14px] transition-all duration-300 group-hover:translate-x-3 group-hover:-translate-y-3 group-hover:opacity-0" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M1.16699 12.8333L12.8337 1.16666M12.8337 1.16666H3.49965M12.8337 1.16666V10.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+										</svg>
+										<svg class="absolute h-[14px] w-[14px] translate-x-[-12px] translate-y-[12px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
 											<path d="M1.16699 12.8333L12.8337 1.16666M12.8337 1.16666H3.49965M12.8337 1.16666V10.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
 										</svg>
 									</span>
@@ -336,10 +339,11 @@ if (!function_exists('render_reacon_dynamic_icon')) {
 									</div>
 
 									<?php if (!empty($row['button']['url'])): ?>
-										<a href="<?php echo esc_url($row_btn_url); ?>" target="<?php echo esc_attr($row_btn_target); ?>" class="mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-primary py-2.5 pl-5 pr-2.5 font-display text-sm font-bold text-white no-underline transition-all duration-200 hover:-translate-y-px hover:brightness-110">
+										<a href="<?php echo esc_url($row_btn_url); ?>" target="<?php echo esc_attr($row_btn_target); ?>" class="group mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-primary py-2.5 pl-5 pr-2.5 font-display text-sm font-bold text-white no-underline transition-all duration-200 hover:-translate-y-px hover:brightness-110">
 											<?php echo esc_html($row_btn_label); ?>
-											<span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white/20" aria-hidden="true">
-												<i class="ph-bold ph-arrow-up-right text-[11px]"></i>
+											<span class="relative flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded-full bg-white/20" aria-hidden="true">
+												<i class="ph-bold ph-arrow-up-right absolute text-[16px] transition-all duration-300 group-hover:translate-x-3 group-hover:-translate-y-3 group-hover:opacity-0"></i>
+												<i class="ph-bold ph-arrow-up-right absolute translate-x-[-12px] translate-y-[12px] text-[16px] opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100"></i>
 											</span>
 										</a>
 									<?php endif; ?>
@@ -634,10 +638,11 @@ if (!function_exists('render_reacon_dynamic_icon')) {
 							<?php endif; ?>
 							<div class="mt-8 flex w-full flex-col items-center justify-center gap-3 sm:mt-9 sm:w-auto sm:flex-row sm:gap-2.5 md:mt-10">
 								<?php if ($cta_primary_label && $cta_primary_url): ?>
-									<a href="<?php echo esc_url($cta_primary_url); ?>" target="<?php echo esc_attr($cta_primary_target); ?>" class="inline-flex w-full items-center justify-between gap-2.5 rounded-full bg-white py-1 pl-5 pr-1 font-sans text-base font-medium text-primary no-underline transition-all duration-300 hover:bg-white/90 sm:w-auto">
+									<a href="<?php echo esc_url($cta_primary_url); ?>" target="<?php echo esc_attr($cta_primary_target); ?>" class="group inline-flex w-full items-center justify-between gap-2.5 rounded-full bg-white py-1 pl-5 pr-1 font-sans text-base font-medium text-primary no-underline transition-all duration-300 hover:bg-white/90 sm:w-auto">
 										<span><?php echo esc_html($cta_primary_label); ?></span>
-										<span class="flex size-10 items-center justify-center rounded-full bg-secondary/15 sm:size-[42px]">
-											<i class="ph ph-arrow-up-right text-base text-primary" aria-hidden="true"></i>
+										<span class="relative flex h-[42px] w-[42px] shrink-0 items-center justify-center overflow-hidden rounded-full bg-secondary/15">
+											<i class="ph-bold ph-arrow-up-right absolute text-base transition-all duration-300 group-hover:translate-x-3 group-hover:-translate-y-3 group-hover:opacity-0" aria-hidden="true"></i>
+											<i class="ph-bold ph-arrow-up-right absolute translate-x-[-12px] translate-y-[12px] text-base opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100" aria-hidden="true"></i>
 										</span>
 									</a>
 								<?php endif; ?>
