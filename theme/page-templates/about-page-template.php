@@ -635,60 +635,45 @@ if ($acf_enabled) {
 		$about_cta_primary_icon_type = (string) get_field('about_cta_primary_icon_type');
 		$about_cta_primary_icon_value = get_field('about_cta_primary_icon_value');
 	}
-	$cta_bg_style = '';
-	if ('teal' === $about_cta_bg || '' === $about_cta_bg) {
-		$cta_bg_style = 'background: linear-gradient(179deg, #062b2d 0%, #1ECAD3 100%);';
-	}
+	$cta_bg_base = '#0D6B75';
+	$cta_gradient_start = '#0E6D77';
+	$cta_gradient_end = '#0A4E57';
 	if ('blue' === $about_cta_bg) {
-		$cta_bg_style = 'background: linear-gradient(179deg, #062B53 0%, #0A969B 100%);';
+		$cta_bg_base = '#0A4D7A';
+		$cta_gradient_start = '#0A4D7A';
+		$cta_gradient_end = '#0A969B';
 	}
+	$cta_primary_text_color = '#0B6A74';
+	$cta_primary_icon_circle_bg = '#dbeef1';
 	?>
 	<?php if ($about_sections['cta']): ?>
 		<section id="home-cta" class="py-10 xs:py-10 sm:py-12 md:py-14 " aria-labelledby="home-cta-heading">
 			<div class="mx-auto w-full px-4 sm:px-6 lg:px-8">
-				<div class="relative overflow-hidden rounded-[22px] px-5 py-10 sm:px-8 sm:py-10 lg:rounded-[24px] lg:px-12" style="<?php echo esc_attr($cta_bg_style); ?>">
-					<div class="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
-						<svg preserveAspectRatio="none" style="display:block; width:100%; height:100%;" viewBox="0 0 2014 746" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<div class="relative overflow-hidden rounded-[22px] px-5 py-10 sm:px-8 sm:py-10 lg:rounded-[24px] lg:px-12" style="background-color: <?php echo esc_attr($cta_bg_base); ?>;">
+					<div class="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_100%_at_50%_10%,rgba(255,255,255,0.08)_0%,rgba(255,255,255,0)_58%)]" aria-hidden="true"></div>
+					<div class="pointer-events-none absolute inset-0 opacity-75" aria-hidden="true" style="background: linear-gradient(180deg, <?php echo esc_attr($cta_gradient_start); ?> 0%, <?php echo esc_attr($cta_gradient_end); ?> 100%);"></div>
+					<div class="pointer-events-none absolute left-16 top-0 h-[205px] w-[1566px]" aria-hidden="true">
+						<svg viewBox="0 0 1566 205" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-full w-full">
+							<path d="M278.503 205L1566 -538.596L-556 -586L278.503 205Z" fill="url(#aboutCtaShardLeftGradient)" fill-opacity="0.15" />
 							<defs>
-								<linearGradient id="home-cta-left" x1="0" y1="0" x2="1000" y2="560" gradientUnits="userSpaceOnUse">
-									<stop offset="0" stop-color="#1ECAD3" stop-opacity="0.3" />
-									<stop offset="1" stop-color="#1ECAD3" stop-opacity="0.02" />
+								<linearGradient id="aboutCtaShardLeftGradient" x1="504.197" y1="170.056" x2="505.001" y2="-586" gradientUnits="userSpaceOnUse">
+									<stop stop-color="#1ECAD3" />
+									<stop offset="1" stop-color="#1ECAD3" stop-opacity="0" />
 								</linearGradient>
-								<linearGradient id="home-cta-right" x1="2014" y1="0" x2="980" y2="746" gradientUnits="userSpaceOnUse">
-									<stop offset="0" stop-color="#1ECAD3" stop-opacity="0.25" />
-									<stop offset="1" stop-color="#1ECAD3" stop-opacity="0.04" />
-								</linearGradient>
-							</defs>
-							<path d="M0 0 L0 285 L270 530 L960 0 Z" fill="url(#home-cta-left)" fill-opacity="0.5" />
-							<path d="M2014 0 L2014 290 L1520 746 L980 746 L1590 0 Z" fill="url(#home-cta-right)" fill-opacity="0.36" />
-						</svg>
-					</div>
-					<div class="pointer-events-none absolute inset-0 z-[1]" aria-hidden="true">
-						<svg preserveAspectRatio="none" style="display:block; width:100%; height:100%;" viewBox="0 0 1888 520" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<g filter="url(#filter0_n_611_7678)">
-								<rect x="0" y="0" width="1888" height="520" fill="black" fill-opacity="0.1" />
-							</g>
-							<defs>
-								<filter id="filter0_n_611_7678" x="0" y="0" width="1888" height="520" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-									<feFlood flood-opacity="0" result="BackgroundImageFix" />
-									<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-									<feTurbulence type="fractalNoise" baseFrequency="0.625 0.625" stitchTiles="stitch" numOctaves="3" result="noise" seed="367" />
-									<feColorMatrix in="noise" type="luminanceToAlpha" result="alphaNoise" />
-									<feComponentTransfer in="alphaNoise" result="coloredNoise1">
-										<feFuncA type="discrete" tableValues="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 " />
-									</feComponentTransfer>
-									<feComposite operator="in" in2="shape" in="coloredNoise1" result="noise1Clipped" />
-									<feFlood flood-color="#000000" result="color1Flood" />
-									<feComposite operator="in" in2="noise1Clipped" in="color1Flood" result="color1" />
-									<feMerge result="effect1_noise_611_7678">
-										<feMergeNode in="shape" />
-										<feMergeNode in="color1" />
-									</feMerge>
-								</filter>
 							</defs>
 						</svg>
 					</div>
-					<div class="pointer-events-none absolute inset-0 z-[2] bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.0)_0%,rgba(255,255,255,0)_58%)]" aria-hidden="true"></div>
+					<div class="pointer-events-none absolute right-[-955px] h-[791px] w-[2122px]" aria-hidden="true">
+						<svg width="2122" height="791" viewBox="0 0 2122 791" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-full w-full">
+							<path d="M1287.5 -60L0 683.596L2122 731L1287.5 -60Z" fill="url(#aboutCtaShardGradient)" fill-opacity="0.15" />
+							<defs>
+								<linearGradient id="aboutCtaShardGradient" x1="1061.8" y1="-25.0558" x2="1061" y2="731" gradientUnits="userSpaceOnUse">
+									<stop stop-color="#1ECAD3" />
+									<stop offset="1" stop-color="#1ECAD3" stop-opacity="0" />
+								</linearGradient>
+							</defs>
+						</svg>
+					</div>
 
 					<div class="relative z-10 mx-auto flex max-w-4xl flex-col items-center justify-center text-center">
 						<h2 id="home-cta-heading" class="font-display text-[24px] font-bold leading-[1.1] text-white xs:text-[2.125rem] sm:text-[2.5rem] md:text-[2.75rem] lg:text-[3.25rem] xl:text-[3.5rem] 2xl:text-[3.75rem]">
@@ -698,9 +683,9 @@ if ($acf_enabled) {
 							<?php echo esc_html(reacon_about_fallback_text($about_cta['description'], 'Please add CTA description in ACF.')); ?>
 						</p>
 						<div class="mt-8 flex w-full flex-col items-center justify-center gap-3 sm:mt-9 sm:w-auto sm:flex-row sm:gap-2.5 md:mt-10">
-							<a href="<?php echo esc_url($about_cta['primary']['url']); ?>" target="<?php echo esc_attr(isset($about_cta['primary']['target']) ? $about_cta['primary']['target'] : '_self'); ?>" class="group inline-flex w-full items-center justify-between gap-2.5 rounded-full bg-white py-1 pl-5 pr-1 font-sans text-base font-medium text-primary no-underline transition-all duration-300 hover:bg-white/90 sm:w-auto">
+							<a href="<?php echo esc_url($about_cta['primary']['url']); ?>" target="<?php echo esc_attr(isset($about_cta['primary']['target']) ? $about_cta['primary']['target'] : '_self'); ?>" class="group inline-flex w-full items-center justify-between gap-2.5 rounded-full bg-white py-1 pl-5 pr-1 font-sans text-base font-medium no-underline transition-all duration-300 hover:bg-white/90 sm:w-auto" style="color: <?php echo esc_attr($cta_primary_text_color); ?>;">
 								<span><?php echo esc_html(reacon_about_fallback_text($about_cta['primary']['label'], 'Primary Action')); ?></span>
-								<span class="relative flex h-[42px] w-[42px] shrink-0 items-center justify-center overflow-hidden rounded-full bg-secondary/15">
+								<span class="relative flex h-[42px] w-[42px] shrink-0 items-center justify-center overflow-hidden rounded-full" style="background-color: <?php echo esc_attr($cta_primary_icon_circle_bg); ?>;" aria-hidden="true">
 									<i class="ph-bold ph-arrow-up-right absolute text-base transition-all duration-300 group-hover:translate-x-3 group-hover:-translate-y-3 group-hover:opacity-0" aria-hidden="true"></i>
 									<i class="ph-bold ph-arrow-up-right absolute translate-x-[-12px] translate-y-[12px] text-base opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100" aria-hidden="true"></i>
 								</span>
