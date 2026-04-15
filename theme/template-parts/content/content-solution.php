@@ -146,14 +146,32 @@ if ($details_enabled && !empty($detail_sections)) {
         $paragraphs = array();
         if (!empty($section['paragraphs']) && is_array($section['paragraphs'])) {
             foreach ($section['paragraphs'] as $paragraph) {
+                $paragraph_featured_items = array();
+
                 if (is_array($paragraph) && isset($paragraph['text'])) {
                     $paragraph_text = trim((string) $paragraph['text']);
+
+                    if (!empty($paragraph['featured_list_enabled']) && !empty($paragraph['featured_list_items']) && is_array($paragraph['featured_list_items'])) {
+                        foreach ($paragraph['featured_list_items'] as $featured_item) {
+                            if (!is_array($featured_item)) {
+                                continue;
+                            }
+
+                            $featured_text = isset($featured_item['text']) ? trim((string) $featured_item['text']) : '';
+                            if ($featured_text !== '') {
+                                $paragraph_featured_items[] = $featured_text;
+                            }
+                        }
+                    }
                 } else {
                     $paragraph_text = trim((string) $paragraph);
                 }
 
                 if ($paragraph_text !== '') {
-                    $paragraphs[] = $paragraph_text;
+                    $paragraphs[] = array(
+                        'text' => $paragraph_text,
+                        'featured_items' => $paragraph_featured_items,
+                    );
                 }
             }
         }
@@ -286,7 +304,20 @@ $faq_support_icon = isset($faq['support_card_icon']) && is_array($faq['support_c
                                 </header>
                                 <div class="mt-5 space-y-3 font-sans text-[16px] font-normal leading-[1.42] text-foreground/85">
                                     <?php foreach ($section['paragraphs'] as $paragraph): ?>
-                                        <p><?php echo esc_html($paragraph); ?></p>
+                                        <div class="space-y-2">
+                                            <p><?php echo esc_html($paragraph['text']); ?></p>
+
+                                            <?php if (!empty($paragraph['featured_items'])): ?>
+                                                <ul class="space-y-1.5 pl-0 text-foreground" role="list">
+                                                    <?php foreach ($paragraph['featured_items'] as $featured_item): ?>
+                                                        <li class="relative pl-5 leading-[1.4]">
+                                                            <span class="absolute left-0 top-[0.58em] h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-foreground" aria-hidden="true"></span>
+                                                            <span class="block"><?php echo esc_html($featured_item); ?></span>
+                                                        </li>
+                                                    <?php endforeach; ?>
+                                                </ul>
+                                            <?php endif; ?>
+                                        </div>
                                     <?php endforeach; ?>
                                 </div>
                             </div>

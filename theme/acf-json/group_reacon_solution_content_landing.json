@@ -301,6 +301,80 @@
                             "maxlength": "",
                             "placeholder": "",
                             "parent_repeater": "field_scl_section_paragraphs"
+                        },
+                        {
+                            "key": "field_scl_section_paragraph_featured_list_enabled",
+                            "label": "Enable featured list",
+                            "name": "featured_list_enabled",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "Turn on to show a featured bullet list below this paragraph.",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "",
+                            "default_value": 0,
+                            "ui": 1,
+                            "ui_on_text": "Enabled",
+                            "ui_off_text": "Disabled",
+                            "parent_repeater": "field_scl_section_paragraphs"
+                        },
+                        {
+                            "key": "field_scl_section_paragraph_featured_list_items",
+                            "label": "Featured list items",
+                            "name": "featured_list_items",
+                            "aria-label": "",
+                            "type": "repeater",
+                            "instructions": "Add one single-line bullet item per row.",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_scl_section_paragraph_featured_list_enabled",
+                                        "operator": "==",
+                                        "value": "1"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "table",
+                            "button_label": "Add item",
+                            "min": 0,
+                            "max": 0,
+                            "rows_per_page": 20,
+                            "collapsed": "",
+                            "sub_fields": [
+                                {
+                                    "key": "field_scl_section_paragraph_featured_list_item_text",
+                                    "label": "Item text",
+                                    "name": "text",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 1,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": "",
+                                    "parent_repeater": "field_scl_section_paragraph_featured_list_items"
+                                }
+                            ],
+                            "parent_repeater": "field_scl_section_paragraphs"
                         }
                     ],
                     "parent_repeater": "field_scl_sections_group"
@@ -1309,5 +1383,5 @@
     "description": "ACF fields for the Solution single template.",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1775467492
+        "modified": 1776238233
 }
