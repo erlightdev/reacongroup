@@ -476,12 +476,12 @@ if (!function_exists('render_reacon_dynamic_icon')) {
 				<div class="relative z-10 mx-auto mb-10 w-full max-w-7xl px-4 text-center sm:mb-12 sm:px-6 lg:mb-14 lg:px-8">
 					<div class="mx-auto flex max-w-4xl flex-col items-center gap-3 sm:gap-4">
 						<?php if ($testimonials_heading): ?>
-							<h2 class="font-display text-[1.875rem] font-bold leading-tight text-[#1e293b] xs:text-[2rem] sm:text-[2.25rem] md:text-[2.375rem] lg:text-[2.625rem] xl:text-[2.75rem]">
+							<h2 class="reacon-type-h2 text-[#1e293b] font-semibold">
 								<?php echo esc_html($testimonials_heading); ?>
 							</h2>
 						<?php endif; ?>
 						<?php if ($testimonials_description): ?>
-							<p class="max-w-3xl font-sans text-sm leading-relaxed text-[#262626] xs:text-[0.9375rem] sm:text-base md:text-[1.0625rem]">
+							<p class="reacon-type-body max-w-[706px] text-[#262626]">
 								<?php echo esc_html($testimonials_description); ?>
 							</p>
 						<?php endif; ?>

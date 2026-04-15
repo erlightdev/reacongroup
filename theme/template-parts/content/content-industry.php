@@ -252,10 +252,10 @@ $cta_description        = isset($cta['description']) ? trim((string) $cta['descr
 $cta_primary_link       = reacon_group_industry_single_link_data(isset($cta['primary_link']) ? $cta['primary_link'] : null);
 $cta_secondary_link     = reacon_group_industry_single_link_data(isset($cta['secondary_link']) ? $cta['secondary_link'] : null);
 $cta_primary_icon       = isset($cta['primary_icon']) && is_array($cta['primary_icon']) ? $cta['primary_icon'] : array('icon_source' => 'phosphor', 'phosphor_icon' => 'arrow-up-right');
-$cta_bg_base            = '#062b2d';
-$cta_gradient_start     = '#0F3D47';
-$cta_gradient_end       = '#062B2D';
-$cta_primary_text_color = '#062b2d';
+$cta_bg_base            = '#0D6B75';
+$cta_gradient_start     = '#0E6D77';
+$cta_gradient_end       = '#0A4E57';
+$cta_primary_text_color = '#0B6A74';
 $cta_primary_icon_bg    = '#dbeef1';
 $cta_is_ready           = $cta_heading !== '' && $cta_description !== '';
 
@@ -420,7 +420,7 @@ $faq_is_ready = $faq_title !== '' && $faq_description !== '' && !empty($faq_item
             <div class="mx-auto w-full px-4 sm:px-6 lg:px-8">
                 <div class="relative overflow-hidden rounded-[22px] px-5 py-10 sm:px-8 sm:py-10 lg:rounded-[24px] lg:px-12" style="background-color: <?php echo esc_attr($cta_bg_base); ?>;">
                     <!-- Start: CTA Background Decorations -->
-                    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_100%_at_50%_10%,rgba(30,202,211,0.08)_0%,rgba(30,202,211,0)_58%)]" aria-hidden="true"></div>
+                    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_100%_at_50%_10%,rgba(255,255,255,0.08)_0%,rgba(255,255,255,0)_58%)]" aria-hidden="true"></div>
                     <div class="pointer-events-none absolute inset-0 opacity-75" aria-hidden="true" style="background: linear-gradient(180deg, <?php echo esc_attr($cta_gradient_start); ?> 0%, <?php echo esc_attr($cta_gradient_end); ?> 100%);"></div>
 
                     <div class="pointer-events-none absolute left-16 top-0 h-[205px] w-[1566px]" aria-hidden="true">

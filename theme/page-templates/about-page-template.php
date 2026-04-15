@@ -482,7 +482,7 @@ if ($acf_enabled) {
 			<div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(233,251,252,0.9)_0%,rgba(255,255,255,0.85)_58%,rgba(255,255,255,1)_100%)]" aria-hidden="true"></div>
 
 			<div class="relative z-10 mx-auto mb-10 flex w-full max-w-[760px] flex-col items-center gap-3 px-6 text-center lg:mb-12">
-				<h2 class="reacon-type-h2 text-[#1e293b]">
+				<h2 class="reacon-type-h2 text-[#1e293b] font-semibold">
 					<?php echo esc_html(reacon_about_fallback_text($testimonials_heading, 'Testimonials')); ?>
 				</h2>
 				<p class="reacon-type-body max-w-[706px] text-[#262626]">
