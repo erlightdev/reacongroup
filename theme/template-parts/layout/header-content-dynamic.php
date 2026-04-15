@@ -271,14 +271,13 @@ $mobile_walker = new Reacon_Group_Header_Mobile_Walker($children_by_parent_id);
 		}
 
 		megaTriggers.forEach(function(trigger) {
-			trigger.addEventListener('click', function(event) {
-				event.preventDefault();
+			// Open on hover/focus for desktop, but keep the parent link clickable.
+			trigger.addEventListener('mouseenter', function() {
 				if (window.innerWidth < 1024) return;
 				toggleDesktopMegaMenu(trigger.getAttribute('data-mega-trigger'));
 			});
 
-			// Open on hover (desktop).
-			trigger.addEventListener('mouseenter', function() {
+			trigger.addEventListener('focus', function() {
 				if (window.innerWidth < 1024) return;
 				toggleDesktopMegaMenu(trigger.getAttribute('data-mega-trigger'));
 			});
