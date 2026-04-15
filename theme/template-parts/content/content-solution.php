@@ -421,30 +421,30 @@ $faq_support_icon = isset($faq['support_card_icon']) && is_array($faq['support_c
     <?php endif; ?>
 
     <?php if ($faq_enabled && $faq_heading !== '' && $faq_description !== '' && !empty($faq_items) && $faq_support_link) : ?>
-        <section id="reacon-faq-section" class="w-full bg-white py-16" aria-labelledby="reacon-faq-heading" itemscope itemtype="https://schema.org/FAQPage" x-data="{ activeIndex: 0 }">
-            <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-                    <div class="flex flex-col gap-6">
-                        <h2 id="reacon-faq-heading" class="font-sans text-3xl font-semibold leading-tight text-black sm:text-4xl lg:text-5xl">
+        <section id="reacon-faq-section" class="w-full bg-white py-[72px] sm:py-[96px] lg:py-16" aria-labelledby="reacon-faq-heading" x-data="{ activeIndex: 0 }">
+            <div class="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-0">
+                <div class="flex flex-col gap-[24px] lg:flex-row lg:items-end lg:justify-between">
+                    <div class="flex flex-col gap-[24px]">
+                        <h2 id="reacon-faq-heading" class="reacon-type-h2 text-black">
                             <?php echo esc_html($faq_heading); ?>
                         </h2>
-                        <p class="max-w-4xl text-base leading-snug text-black">
+                        <p class="reacon-type-body max-w-[1177px] text-black">
                             <?php echo esc_html($faq_description); ?>
                         </p>
                     </div>
                 </div>
 
-                <div class="mt-10 flex flex-col gap-3 sm:mt-12 lg:mt-14" aria-label="<?php esc_attr_e('Frequently asked questions list', 'reacon-group'); ?>">
+                <div class="mt-[40px] flex flex-col gap-[12px] sm:mt-[48px] lg:mt-[56px]" aria-label="<?php esc_attr_e('Frequently asked questions list', 'reacon-group'); ?>">
                     <?php foreach ($faq_items as $faq_index => $faq_item): ?>
-                        <div class="transition-colors duration-300 rounded-2xl p-5 sm:p-6" :class="activeIndex === <?php echo esc_attr((string) $faq_index); ?> ? 'bg-[#F9FAFB]' : 'border border-[#E7E7E7]'" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                            <button type="button" @click="activeIndex = activeIndex === <?php echo esc_attr((string) $faq_index); ?> ? null : <?php echo esc_attr((string) $faq_index); ?>" :aria-expanded="activeIndex === <?php echo esc_attr((string) $faq_index); ?>" aria-controls="faq-answer-<?php echo esc_attr((string) $faq_index); ?>" class="flex w-full cursor-pointer items-center justify-between gap-4 rounded-md text-left outline-none focus-visible:ring-2 focus-visible:ring-[#0A969B] focus-visible:ring-offset-2">
-                                <span itemprop="name" class="font-sans text-sm font-medium leading-tight text-[#383B43] sm:text-xl">
+                        <div class="transition-colors duration-300 rounded-[16px] px-[20px] py-[18px] sm:px-[24px] sm:py-[20px]" :class="activeIndex === <?php echo esc_attr((string) $faq_index); ?> ? 'bg-[#F9FAFB]' : 'border border-[#E7E7E7]'">
+                            <button type="button" @click="activeIndex = activeIndex === <?php echo esc_attr((string) $faq_index); ?> ? -1 : <?php echo esc_attr((string) $faq_index); ?>" class="flex w-full cursor-pointer items-center justify-between gap-4 rounded-md text-left outline-none focus-visible:ring-2 focus-visible:ring-[var(--reacon-teal)] focus-visible:ring-offset-2">
+                                <span class="reacon-type-h5 text-[#383B43]">
                                     <?php echo esc_html($faq_item['question']); ?>
                                 </span>
-                                <span class="text-xl leading-none text-[#0A969B] select-none" aria-hidden="true" x-text="activeIndex === <?php echo esc_attr((string) $faq_index); ?> ? '−' : '+'"></span>
+                                <span class="reacon-type-h5 leading-none text-[#0A969B] select-none" aria-hidden="true" x-text="activeIndex === <?php echo esc_attr((string) $faq_index); ?> ? '−' : '+'"></span>
                             </button>
-                            <div id="faq-answer-<?php echo esc_attr((string) $faq_index); ?>" x-show="activeIndex === <?php echo esc_attr((string) $faq_index); ?>" x-transition:enter="transition-all duration-300 ease-in-out" x-transition:enter-start="max-h-0 opacity-0 -translate-y-1" x-transition:enter-end="max-h-96 opacity-100 translate-y-0" x-transition:leave="transition-all duration-250 ease-in-out" x-transition:leave-start="max-h-96 opacity-100 translate-y-0" x-transition:leave-end="max-h-0 opacity-0 -translate-y-1" class="overflow-hidden" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                                <p itemprop="text" class="mt-4 text-base leading-snug text-[#666666] sm:mt-5">
+                            <div class="overflow-hidden" x-show="activeIndex === <?php echo esc_attr((string) $faq_index); ?>" x-transition:enter="transition-all ease-out duration-300" x-transition:enter-start="opacity-0 max-h-0" x-transition:enter-end="opacity-100 max-h-96" x-transition:leave="transition-all ease-in duration-200" x-transition:leave-start="opacity-100 max-h-96" x-transition:leave-end="opacity-0 max-h-0">
+                                <p class="reacon-type-body mt-[14px] text-[#666666] sm:mt-[20px]">
                                     <?php echo esc_html($faq_item['answer']); ?>
                                 </p>
                             </div>
@@ -452,23 +452,21 @@ $faq_support_icon = isset($faq['support_card_icon']) && is_array($faq['support_c
                     <?php endforeach; ?>
 
                     <?php if ($faq_support_heading !== '' && $faq_support_description !== '' && $faq_support_link) : ?>
-                        <div class="mt-1 rounded-2xl bg-[#E9FBFC] p-5 sm:p-6">
-                            <div class="flex flex-col gap-2">
-                                <p class="text-base font-medium leading-snug text-[#383B43]">
+                        <aside class="mt-[4px] rounded-[16px] bg-[#E9FBFC] px-[20px] py-[18px] sm:px-[24px] sm:py-[20px]" aria-label="<?php esc_attr_e('FAQ contact call to action', 'reacon-group'); ?>">
+                            <div class="flex flex-col gap-[8px]">
+                                <p class="reacon-type-body font-medium text-[#383B43]">
                                     <?php echo esc_html($faq_support_heading); ?>
                                 </p>
-                                <p class="text-base leading-snug text-[#666666]">
+                                <p class="reacon-type-body text-[#666666]">
                                     <?php echo esc_html($faq_support_description); ?>
                                 </p>
                             </div>
-                            <div class="my-4 h-px w-full bg-[#ECEFF2] sm:my-5" aria-hidden="true"></div>
-                            <a href="<?php echo esc_url($faq_support_link['url']); ?>" <?php echo '_blank' === $faq_support_link['target'] ? 'target="_blank" rel="noopener noreferrer"' : ''; ?> class="group flex w-full items-center justify-between gap-4 text-base font-medium leading-snug text-[#0A969B] transition-colors duration-300 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0A969B] focus-visible:ring-offset-2 rounded-md">
+                            <div class="my-[16px] h-px w-full bg-[#ECEFF2] sm:my-[20px]" aria-hidden="true"></div>
+                            <a href="<?php echo esc_url($faq_support_link['url']); ?>" <?php echo '_blank' === $faq_support_link['target'] ? 'target="_blank" rel="noopener noreferrer"' : ''; ?> class="reacon-type-button flex w-full items-center justify-between gap-4 text-[#0A969B] transition-colors duration-300 hover:text-black">
                                 <span><?php echo esc_html($faq_support_link['title']); ?></span>
-                                <span class="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">
-                                    <i class="ph ph-arrow-right text-base" aria-hidden="true"></i>
-                                </span>
+                                <i class="ph ph-arrow-right text-base" aria-hidden="true"></i>
                             </a>
-                        </div>
+                        </aside>
                     <?php endif; ?>
                 </div>
             </div>

@@ -672,23 +672,25 @@ if (!function_exists('render_reacon_dynamic_icon')) {
 			$faq_cta_link_title = !empty($faq_cta_link_data['title']) ? $faq_cta_link_data['title'] : '';
 			$faq_cta_link_target = !empty($faq_cta_link_data['target']) ? $faq_cta_link_data['target'] : '_self';
 		?>
-			<section id="reacon-faq-section" class="w-full bg-white py-12 xs:py-12 sm:py-12 md:py-16 lg:py-16 xl:py-16 2xl:py-16" aria-labelledby="reacon-faq-heading">
-				<div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-					<header class="flex flex-col gap-6">
-						<?php if ($faq_heading): ?>
-							<h2 id="reacon-faq-heading" class="text-[24px] font-semibold leading-tight text-black sm:text-4xl md:text-[2.625rem] lg:text-[2.75rem] xl:text-5xl" style="font-family: 'Plus Jakarta Sans','Graphik Trial',ui-sans-serif,system-ui">
-								<?php echo esc_html($faq_heading); ?>
-							</h2>
-						<?php endif; ?>
-						<?php if ($faq_description): ?>
-							<p class="max-w-4xl text-base leading-relaxed text-black/80 sm:text-[1.0625rem] md:text-lg">
-								<?php echo esc_html($faq_description); ?>
-							</p>
-						<?php endif; ?>
-					</header>
+			<section id="reacon-faq-section" class="w-full bg-white py-[72px] sm:py-[96px] lg:py-16" aria-labelledby="reacon-faq-heading">
+				<div class="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-0">
+					<div class="flex flex-col gap-[24px] lg:flex-row lg:items-end lg:justify-between">
+						<div class="flex flex-col gap-[24px]">
+							<?php if ($faq_heading): ?>
+								<h2 id="reacon-faq-heading" class="reacon-type-h2 text-black">
+									<?php echo esc_html($faq_heading); ?>
+								</h2>
+							<?php endif; ?>
+							<?php if ($faq_description): ?>
+								<p class="reacon-type-body max-w-[1177px] text-black">
+									<?php echo esc_html($faq_description); ?>
+								</p>
+							<?php endif; ?>
+						</div>
+					</div>
 
 					<?php if (!empty($faq_items)): ?>
-						<div class="mt-10 flex flex-col gap-3 sm:mt-12 md:mt-14 lg:mt-16" role="list" aria-label="<?php esc_attr_e('Frequently asked questions list', 'reacon-group'); ?>" x-data="{ activeFaq: 0 }">
+						<div class="mt-[40px] flex flex-col gap-[12px] sm:mt-[48px] lg:mt-[56px]" role="list" aria-label="<?php esc_attr_e('Frequently asked questions list', 'reacon-group'); ?>" x-data="{ activeFaq: 0 }">
 							<?php foreach ($faq_items as $index => $faq_item):
 								$question = !empty($faq_item['question']) ? $faq_item['question'] : '';
 								$answer = !empty($faq_item['answer']) ? $faq_item['answer'] : '';
@@ -696,32 +698,32 @@ if (!function_exists('render_reacon_dynamic_icon')) {
 								$item_id = 'reacon-faq-item-' . ($index + 1);
 								$panel_id = $item_id . '-panel';
 							?>
-								<div class="reacon-faq-item rounded-2xl border border-[#E7E7E7] px-5 py-[1.125rem] transition-colors duration-300 sm:px-6 sm:py-5" role="listitem" :class="{ 'reacon-faq-item--open': activeFaq === <?php echo esc_attr($index); ?> }">
-									<button type="button" id="<?php echo esc_attr($item_id); ?>" class="flex w-full cursor-pointer items-start justify-between gap-4 rounded-md text-left outline-none focus-visible:ring-2 focus-visible:ring-[var(--reacon-teal)] focus-visible:ring-offset-2" aria-controls="<?php echo esc_attr($panel_id); ?>" :aria-expanded="activeFaq === <?php echo esc_attr($index); ?> ? 'true' : 'false'" @click="activeFaq = activeFaq === <?php echo esc_attr($index); ?> ? -1 : <?php echo esc_attr($index); ?>">
-										<span class="text-lg font-medium leading-snug text-[#383B43] sm:text-xl" style="font-family: 'Plus Jakarta Sans','Graphik Trial',ui-sans-serif,system-ui">
+								<div class="reacon-faq-item rounded-[16px] border border-[#E7E7E7] px-[20px] py-[18px] transition-colors duration-300 sm:px-[24px] sm:py-[20px]" role="listitem" :class="{ 'reacon-faq-item--open': activeFaq === <?php echo esc_attr($index); ?> }">
+									<button type="button" id="<?php echo esc_attr($item_id); ?>" class="flex w-full cursor-pointer items-center justify-between gap-4 rounded-md text-left outline-none focus-visible:ring-2 focus-visible:ring-[var(--reacon-teal)] focus-visible:ring-offset-2" aria-controls="<?php echo esc_attr($panel_id); ?>" :aria-expanded="activeFaq === <?php echo esc_attr($index); ?> ? 'true' : 'false'" @click="activeFaq = activeFaq === <?php echo esc_attr($index); ?> ? -1 : <?php echo esc_attr($index); ?>">
+										<span class="reacon-type-h5 text-[#383B43]">
 											<?php echo esc_html($question); ?>
 										</span>
-										<span class="mt-0.5 shrink-0 text-xl leading-none text-[#0A969B] select-none" aria-hidden="true" x-text="activeFaq === <?php echo esc_attr($index); ?> ? '−' : '+'"></span>
+										<span class="reacon-type-h5 leading-none text-[#0A969B] select-none" aria-hidden="true" x-text="activeFaq === <?php echo esc_attr($index); ?> ? '−' : '+'"></span>
 									</button>
 									<div id="<?php echo esc_attr($panel_id); ?>" class="overflow-hidden" x-show="activeFaq === <?php echo esc_attr($index); ?>" x-transition:enter="transition-all ease-out duration-300" x-transition:enter-start="opacity-0 max-h-0" x-transition:enter-end="opacity-100 max-h-96" x-transition:leave="transition-all ease-in duration-200" x-transition:leave-start="opacity-100 max-h-96" x-transition:leave-end="opacity-0 max-h-0">
-										<p class="text-[0.9375rem] leading-relaxed text-[#666666] sm:text-base">
-											<?php echo nl2br(esc_html($answer)); ?>
+										<p class="reacon-type-body mt-[14px] text-[#666666] sm:mt-[20px]">
+											<?php echo esc_html($answer); ?>
 										</p>
 									</div>
 								</div>
 							<?php endforeach; ?>
 
 							<?php if ($faq_cta_title || $faq_cta_text): ?>
-								<aside class="mt-1 rounded-2xl bg-[#E9FBFC] px-5 py-[1.125rem] sm:px-6 sm:py-5" aria-label="<?php esc_attr_e('FAQ contact call to action', 'reacon-group'); ?>">
-									<div class="flex flex-col gap-2">
-										<?php if ($faq_cta_title): ?><p class="text-[0.9375rem] font-medium leading-relaxed text-[#383B43] sm:text-base"><?php echo esc_html($faq_cta_title); ?></p><?php endif; ?>
-										<?php if ($faq_cta_text): ?><p class="text-[0.9375rem] leading-relaxed text-[#666666] sm:text-base"><?php echo esc_html($faq_cta_text); ?></p><?php endif; ?>
+								<aside class="mt-[4px] rounded-[16px] bg-[#E9FBFC] px-[20px] py-[18px] sm:px-[24px] sm:py-[20px]" aria-label="<?php esc_attr_e('FAQ contact call to action', 'reacon-group'); ?>">
+									<div class="flex flex-col gap-[8px]">
+										<?php if ($faq_cta_title): ?><p class="reacon-type-body font-medium text-[#383B43]"><?php echo esc_html($faq_cta_title); ?></p><?php endif; ?>
+										<?php if ($faq_cta_text): ?><p class="reacon-type-body text-[#666666]"><?php echo esc_html($faq_cta_text); ?></p><?php endif; ?>
 									</div>
-									<div class="my-4 h-px w-full bg-[#ECEFF2] sm:my-5" aria-hidden="true"></div>
+									<div class="my-[16px] h-px w-full bg-[#ECEFF2] sm:my-[20px]" aria-hidden="true"></div>
 									<?php if ($faq_cta_link_title && $faq_cta_link_url): ?>
-										<a href="<?php echo esc_url($faq_cta_link_url); ?>" target="<?php echo esc_attr($faq_cta_link_target); ?>" class="flex w-full items-center justify-between gap-4 text-[0.9375rem] font-medium leading-relaxed text-[#0A969B] transition-colors duration-300 hover:text-black sm:text-base">
+										<a href="<?php echo esc_url($faq_cta_link_url); ?>" target="<?php echo esc_attr($faq_cta_link_target); ?>" class="reacon-type-button flex w-full items-center justify-between gap-4 text-[#0A969B] transition-colors duration-300 hover:text-black">
 											<span><?php echo esc_html($faq_cta_link_title); ?></span>
-											<i class="ph ph-arrow-right" aria-hidden="true"></i>
+											<i class="ph ph-arrow-right text-base" aria-hidden="true"></i>
 										</a>
 									<?php endif; ?>
 								</aside>
